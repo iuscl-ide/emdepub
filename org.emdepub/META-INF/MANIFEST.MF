@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Eclipse Markdown ePub TM4E
+Bundle-SymbolicName: org.emdepub;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.emdepub.Activator
+Bundle-Vendor: emdepub.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.genericeditor,
+ org.eclipse.core.filebuffers,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-15
+Automatic-Module-Name: org.emdepub
+Bundle-ActivationPolicy: lazy
