@@ -1,5 +1,10 @@
 # Emojis
 
+:) :smile:
+```
+:smile:
+``` 
+
 ## People
 
 | People - column 1/3                                             | People - column 2/3                                             | People - column 3/3                         |

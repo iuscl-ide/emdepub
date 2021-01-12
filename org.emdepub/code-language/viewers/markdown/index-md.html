@@ -1,0 +1,344 @@
+﻿<!-- ePub MD Viewer - 2018-2020 epub-md-viewer.com -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!--<base href="" />-->
+    <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+<!--    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../css/ui-fonts.css">
+    <link rel="stylesheet" href="../css/index-style.css">
+-->
+
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        .markdown-body code {
+            color: initial;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+    <title></title>
+ 	<script src="./javascripts/jquery.min.js"></script>
+ 	<script src="./javascripts/marked.min.js"></script>
+ 	<script src="./javascripts/highlight.pack.js"></script>
+	<script src="./javascripts/iconv.js"></script>
+	
+	<script src="./javascripts/jschardet.min.js"></script>
+	<script src="./javascripts/emoji.min.js"></script>
+	
+<!--	<script src="./javascripts/chardet/lib/fs/browser.js"></script>-->
+	
+<!-- 	<script src="./javascripts/index-md.js"></script>-->
+</head>
+<body>
+    <article id="content" class="markdown-body"></article>
+
+    <!-- Client scripts -->
+    <script>
+
+		/* jQuery stuff */
+		var $content = $("#content");
+
+		/* Polyfills */
+		if (!String.prototype.startsWith) {
+		  String.prototype.startsWith = function(searchString, position) {
+		    position = position || 0;
+		    return this.indexOf(searchString, position) === position;
+		  };
+		}
+		if (!String.prototype.endsWith) {
+			String.prototype.endsWith = function(pattern) {
+			  var d = this.length - pattern.length;
+			  return d >= 0 && this.lastIndexOf(pattern) === d;
+			};
+		}
+
+		/* Helper */
+		var isUrlAbsolute = function (url) {
+			
+		    return url.indexOf('//') === 0 ? true : url.indexOf('://') === -1 ? false : 
+				url.indexOf('.') === -1 ? false : url.indexOf('/') === -1 ? false :
+				url.indexOf(':') > url.indexOf('/') ? false : url.indexOf('://') < url.indexOf('.') ? true : false;
+		};
+
+		/* Navigate MD link */
+		window.navigateMdLink = function (linkUrl) {
+		alert("navigateMdLink =  " + linkUrl);
+		
+			//var shell = new ActiveXObject("WScript.Shell");
+      		//shell.run(linkUrl);
+		    //shell.openExternal(linkUrl);
+			window.open(linkUrl);
+		};
+
+		/* Emoji */
+		var emoji = new EmojiConvertor();
+		emoji.replace_mode = "unified";
+
+/*
+		emoji.inits.env = 1;
+		emoji.allow_native = true;
+		emoji.avoid_ms_emoji = false;
+		emoji.wrap_native = true;
+		emoji.supports_css = false;
+		 
+		//emoji.wrap_native = true;
+		emoji.replace_mode = "css";
+		emoji.use_sheet = true;
+		emoji.img_set = "apple";
+		emoji.img_sets.apple.sheet = "styles/emoji/sheet_apple_20_indexed_256.png";
+		emoji.allow_native = true;
+		emoji.wrap_native = true;
+		emoji.include_text = true;
+		*/
+		// replaces \u{1F604} with platform appropriate content
+		//var mdText = emoji.replace_unified(mdText);
+		// replaces 😄 with platform appropriate content
+		//var mdText = emoji.replace_colons(mdText);
+
+		var replaceTokens = function (tokens) {
+		
+			for (var i = 0; i < tokens.length; i++) {
+				var token = tokens[i];
+				//alert("token " + JSON.stringify(token));
+				if ((token.type === "code") || (token.type === "codespan")) {
+					
+					//var mdTokenText = token.text;
+					
+		//			var a = $("code");
+			//		a.html(mdTokenText);               //(2)
+//    				$("code").each(function(i, block) {    
+//    					hljs.highlightBlock(block);    
+//					});
+					
+					//mdTokenText = hljs.highlightAuto(mdTokenText).value;
+					
+					
+						//.replace('&amp;', '&').replace('&lt;', "<").replace('&gt;', ">");
+					
+					
+					//token.text = mdTokenText;
+					
+					
+					//token.raw = mdTokenText;
+					
+					//alert("code " + token.text);
+					//alert("code " + JSON.stringify(hljs.highlightAuto(mdTokenText)));
+					continue;
+				} 
+				if (token.tokens !== undefined) {
+					//alert("tokens " + JSON.stringify(token.tokens));
+					if ((token.tokens.header !== undefined) || (token.tokens.cells !== undefined)) {
+						if (token.tokens.header !== undefined) {
+							for (var headerCol = 0; headerCol < token.tokens.header.length; headerCol++) {
+								replaceTokens(token.tokens.header[headerCol]);	
+							}
+						}
+						//alert("token.tokens.cells " + JSON.stringify(token.tokens.cells));
+						if (token.tokens.cells !== undefined) {
+							for (var cellLine = 0; cellLine < token.tokens.cells.length; cellLine++) {
+								for (var cellCol = 0; cellCol < token.tokens.cells[cellLine].length; cellCol++) {
+									replaceTokens(token.tokens.cells[cellLine][cellCol]);	
+								}
+							}
+						}
+					}
+					else {
+						replaceTokens(token.tokens);
+					}
+				}
+				else if (token.items !== undefined) {
+					replaceTokens(token.items);
+				}
+				else {
+					if (token.text !== undefined) {
+						var mdTokenText = token.text;
+						mdTokenText = emoji.replace_unified(mdTokenText);
+						mdTokenText = emoji.replace_colons(mdTokenText);
+						token.text = mdTokenText;
+					}
+				}
+			}
+		}
+
+		/* Markdown */
+		var createHTML = function () {
+
+			/* Base64 */
+			var mdText = atob(window.mdUI.mdContent);
+			//var mdText = "LS0tCkhlYWRlcgotLS0KPCEtLSBTdGFydCBtZCAtLT4KIyBIZWFkaW5nCioqKkJvbGRJdGFsaWMqKioKKipCb2xkMSAqSXRhbGljMSAqKkJvbGQyKiogSXRhbGljMSogQm9sZDEqKgogICAgICAgICpJdGFsaWMxICAgICAgICAgICBJdGFsaWMxKgpTb21ldGhpbmcKd3d3Lm1kLmNvbQoKKipJbmxpbmUgPCEtLSBIZXJlIGlzIHRoZSBjb21tZW50IC0tPiBjb21tZW50KioKCioqU3RhcnQgY29tbWVudCoqCjwhLS0KVG8gYmUgY29tbWVudGVkCi0tPgoqRW5kIGNvbW1lbnQqCgoqPHAgYWxpZ249ImNlbnRlciI+KipIVE1MKiogcGFydDwvcD4qCgpvbmUgKm9uZSogbm9ybWFsdSBub3JtYWwgKnR3byogdHdvCgorK0hUTUwgYmxvY2s6KysKCjxkaXY+CjwhLS0gQW5vdGhlciBpbnNpZGUgY29tbWVudCAtLT4KSFRNTCBUZXh0CjwvZGl2Pg==";
+			//alert("window.mdContent =  " + mdText);
+
+			/* Encoding */
+			var mdTextEncoding = jschardet.detect(mdText, { minimumThreshold: 0 }).encoding;
+			//alert("mdTextEncoding " + mdTextEncoding);
+
+			/* Transform encoding */
+			mdText = iconv.decode(mdText, mdTextEncoding);
+
+			// replaces \u{1F604} with platform appropriate content
+			//var mdText = emoji.replace_unified(mdText);
+			// replaces 😄 with platform appropriate content
+			//var mdText = emoji.replace_colons(mdText);
+
+			marked.setOptions({
+				baseUrl: window.mdUI.localBaseHref,
+				renderer: new marked.Renderer(),
+				highlight: function (code, language) {
+					//const hljs = require('highlight.js');
+					//var validLanguage = hljs.getLanguage(language) ? language : "plain";
+					//if (validLanguage === "plaintext") {
+					//	return code;
+					//}
+					//return hljs.highlight(validLanguage, code).value;
+					
+					return hljs.highlightAuto(code).value;
+				},
+				pedantic: false,
+				gfm: true,
+				breaks: false,
+				sanitize: false,
+				smartLists: true,
+				smartypants: false,
+				xhtml: false
+			});
+
+// Override function
+//marked.walkTokens = function (token) {
+//  if (token.type === 'heading') {
+//    token.depth += 1;
+//  }
+//				alert("token " + JSON.stringify(token));
+//};
+
+//marked.use({ walkTokens : walkTokens });
+
+
+			var tokens = marked.lexer(mdText);
+			//replaceTokens(tokens);
+			marked.walkTokens(tokens, function (token) {
+				if ((token.type === "text") && (token.text !== undefined)) {
+						var mdTokenText = token.text;
+						mdTokenText = emoji.replace_unified(mdTokenText);
+						mdTokenText = emoji.replace_colons(mdTokenText);
+						token.text = mdTokenText;
+					}
+				
+				//alert("token " + JSON.stringify(token));
+			});
+			
+			return marked.parser(tokens);
+			
+			//var htmlText = marked.parser(tokens);
+			
+
+			/* Markdown */
+			//mdText = marked(mdText);
+			//alert("marked =  " + mdText);
+		}
+
+		/* Markdown */
+		var loadMDContent = function () {
+
+			var mdText = createHTML();
+
+			/* Display */
+			$content.html(mdText);
+
+			$("#content a[href^='http://'],a[href^='https://']").on("click", function (clickEvent) {
+				clickEvent.preventDefault();
+				window.open($(this).attr("href"), "_new");
+			});
+
+
+			/* Code highlight */
+			//hljs.initHighlighting.called = false;
+			//hljs.initHighlighting();
+
+			/* Links list 
+			var linkSelection = $content.find("a[href]").add($content.filter("a[href]"));
+		    var replacementExpWith_TOREPLACE_ = "javascript:window.navigateMdLink('_TOREPLACE_')";
+			linkSelection.each(function (_index, linkElement) {
+		
+				var $linkElement = $(linkElement);
+				var linkUrl = $linkElement.attr("href");
+				if (!linkUrl.startsWith("#")) {
+					var link = replacementExpWith_TOREPLACE_.replace("_TOREPLACE_", linkUrl);
+					$linkElement.attr("href", link);
+				}
+			});
+			
+			 Image src 
+			var imgSelection = $content.find("img[src]").add($content.filter("img[src]"));
+			imgSelection.each(function (_index, imgElement) {
+
+				var $imgElement = $(imgElement);
+				var imgSrc = $imgElement.attr("src");
+				if (!isUrlAbsolute(imgSrc)) {
+					var link = window.mdUI.localBaseHref + imgSrc;
+					$imgElement.attr("src", link);
+				}
+			});
+			*/
+		};
+
+		/* Export Markdown */
+		var exportHTML = function () {
+			
+			//return createHTML();
+			
+			return $content.html();
+		}
+
+		/* CSS */
+		var loadCSS = function (cssName) {
+
+			var styles = document.createElement("link");
+			styles.rel = "stylesheet";
+			styles.type = "text/css";
+			styles.media = "screen";
+			styles.href = "./styles/" + cssName + ".css";
+
+			document.getElementsByTagName("head")[0].appendChild(styles);
+		};
+
+		/* Reload */
+		var reload = function () {
+
+			loadCSS(window.mdUI.cssName);
+			loadCSS(window.mdUI.cssHighlightName);
+			loadMDContent();
+		}
+
+		/* All loaded */
+		/*
+		$(function () {
+			reload();
+		});
+		*/
+
+		/*
+		$("#warning-dialog-ok").on("click", function () {
+			
+			alert("Everything loaded jQuery " + window.sta)
+		});
+		*/
+    </script>
+
+</body>
+</html>
