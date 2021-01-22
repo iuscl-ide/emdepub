@@ -105,24 +105,23 @@ public class R {
 		return resourceImageDescriptorRegistry.get(name);
 	}
 
-	/** Load resource */
-	public static InputStream getResourceAsInputStream(String resourceName) {
-		
-		return Thread.currentThread().getContextClassLoader().getResourceAsStream(resourceName);
-	}
+//	/** Load resource */
+//	public static InputStream getResourceAsInputStream(String resourceName) {
+//		
+//		return Thread.currentThread().getContextClassLoader().getResourceAsStream(resourceName);
+//	}
 
 	/** Load image resource */
 	public static Image getResourceAsImage(String imageResourceName) {
 		
-		InputStream inputStream = getResourceAsInputStream(imageResourceName);
+		InputStream inputStream = F.getResourceAsInputStream(imageResourceName);
 		return new Image(Display.getDefault(), inputStream);
 	}
 
 	/** Load text resource */
 	public static String getTextResourceAsString(String textResourceName) {
 		
-		//return loadFileInString(new File(Thread.currentThread().getContextClassLoader().getResource(textResourceName).getFile()));
-		return F.loadInputStreamInString(getResourceAsInputStream(textResourceName));
+		return F.loadInputStreamInString(F.getResourceAsInputStream(textResourceName));
 	}
 
 	/** For Eclipse forms */

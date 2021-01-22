@@ -2,186 +2,416 @@
 package org.emdepub.activator;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.RandomAccessFile;
-import java.io.Reader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
-import java.util.Properties;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.text.Collator;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-/** File operations */
+/** Streams, files and other operations */
 public class F {
 
-//	private static final JsonFactory jsonFactory = new JsonFactory();
-//	
-//	public void initJson() {
-//		
-//		jsonFactory = new JsonFactory();
-//	}
-//	
-//	public static JsonGenerator createJsonGenerator(String filePathName) {
-//		
-//		JsonGenerator jsonGenerator = null;
-//		try {
-//			jsonGenerator = jsonFactory.createGenerator(new File(filePathName), JsonEncoding.UTF8);
-//			jsonGenerator.useDefaultPrettyPrinter();
-//		} catch (IOException ioException) {
-//			L.e("createJsonGenerator, file: " + filePathName, ioException);
-//		}
-//		
-//		return jsonGenerator;
-//	}
-	
-	/** Loads an entire file in one string */
-	public static String loadFileInString(File file) {
-	
-	    RandomAccessFile randomAccessFile = null;
-	    String content = null;
-	    try {
-	        randomAccessFile = new RandomAccessFile(file, "r");
-	        byte[] buffer = new byte[(int)randomAccessFile.length()];
-	        randomAccessFile.readFully(buffer);
-	        content = new String(buffer, "utf-8");
-	        /* UTF8_BOM */
-	        if (content.startsWith("\uFEFF")) {
-	        	content = content.substring(1);
-	        }
-	    }
-	    catch (FileNotFoundException fileNotFoundException) {
-	        L.e("FileNotFoundException in loadFileInString", fileNotFoundException);
-	    }
-	    catch (IOException ioException) {
-	    	L.e("IOException in loadFileInString" + file, ioException);
-	    }
-	    finally {
-	        try {
-	            if (randomAccessFile != null) {
-	                randomAccessFile.close();
-	            }
-	        }
-	        catch (IOException ioException) {
-	        	L.e("IOException in finally loadFileInString", ioException);
-	        }
-	    }
-	    return content;
+
+	/* Strings */
+
+	/** "\" or "/" */
+	public static String enter() {
+		
+		return System.lineSeparator();
 	}
 
-	/** Load properties file */
-	public static Properties loadPropertiesFile(File file) {
+	
+	/* Streams */
+    
+	/** Loads an entire input stream in one string */
+	public static String loadBufferInString(byte[] buffer, boolean replaceBom) {
 		
-		Properties properties = new Properties();
-		try {
-			FileInputStream fileInputStream = new FileInputStream(file);
-			try {
-				properties.load(fileInputStream);
-			}
-			catch (IOException ioException) {
-				L.e("IOException in loadPropertiesFile", ioException);
-			}
-			finally {
-				try {
-					if (fileInputStream != null) {
-						fileInputStream.close();
-					}
-				}
-				catch (IOException ioException) {
-					L.e("IOException in finally loadPropertiesFile", ioException);
-				}
-			}
+		if (buffer != null ) {
+			String content = new String(buffer, StandardCharsets.UTF_8);
+	        /* UTF8_BOM */
+	        if (replaceBom && content.startsWith("\uFEFF")) {
+	        	content = content.substring(1);
+	        }
+	        return content;
 		}
-		catch (FileNotFoundException fileNotFoundException) {
-			/* Temporary... */
-			L.e("FileNotFoundException in loadPropertiesFile", fileNotFoundException);
+		
+		return null;
+	}
+
+	/** String into buffer */
+	public static byte[] saveStringToBuffer(String source) {
+
+		return source.getBytes(StandardCharsets.UTF_8);
+	}
+	
+	/** Loads an entire input stream in buffer */
+	public static byte[] loadInputStreamInBuffer(InputStream inputStream) {
+		
+		try (inputStream) {
+			return inputStream.readAllBytes();
 		}
-		return properties;
+		catch (IOException ioException) {
+			L.e("loadInputStreamInString", ioException);
+		}
+		
+		return null;
+	}
+	
+	/** Loads an entire input stream in one string */
+	public static String loadInputStreamInString(InputStream inputStream, boolean replaceBom) {
+		
+		byte[] buffer = loadInputStreamInBuffer(inputStream);
+		
+		return loadBufferInString(buffer, replaceBom);
 	}
 
 	/** Loads an entire input stream in one string */
 	public static String loadInputStreamInString(InputStream inputStream) {
-
-		Reader reader = new InputStreamReader(inputStream);
-		StringBuilder sb = new StringBuilder();
-		char buffer[] = new char[16384];  /* read 16k blocks */
-		int len; /* how much content was read? */
-		try {
-			while ((len = reader.read(buffer)) > 0) {
-				sb.append(buffer, 0, len);
-			}
-		}
-		catch (IOException ioException) {
-			L.e("IOException in loadInputStreamInString", ioException);
-		}
-		finally {
-			try {
-				reader.close();
-			}
-			catch (IOException ioException) {
-				L.e("IOException in finally loadInputStreamInString", ioException);
-			}
-		}
-		return sb.toString();
+		
+		return loadInputStreamInString(inputStream, true);
 	}
 
-	/** Saves properties in file */
-	public static void savePropertiesInFile(Properties properties, String comments, File file) {
+	/** Load resource */
+	public static InputStream getResourceAsInputStream(String resourceName) {
 		
-		FileOutputStream fileOutputStream = null;
+		return Thread.currentThread().getContextClassLoader().getResourceAsStream(resourceName);
+	}
+
+	/** Load text resource */
+	public static String getResourceAsText(String textResourceName) {
+		
+		return loadInputStreamInString(getResourceAsInputStream(textResourceName));
+	}
+
+	
+	
+	/* Files */
+	
+	/** File into string */
+	public static byte[] loadFileInBuffer(String fileName) {
+		
 		try {
-			fileOutputStream = new FileOutputStream(file); 
-			properties.store(fileOutputStream, comments);
-		}
-		catch (FileNotFoundException fileNotFoundException) {
-			L.e("FileNotFoundException in savePropertiesInFile", fileNotFoundException);
+			return Files.readAllBytes(Paths.get(fileName));
 		}
 		catch (IOException ioException) {
-			L.e("IOException in savePropertiesInFile", ioException);
+			L.e("loadFileInString => fileName: " + fileName, ioException);
 		}
-		finally {
-			try {
-				fileOutputStream.close();
-			} 
-			catch (IOException ioException) {
-				L.e("IOException in finally savePropertiesInFile", ioException);
-			}
+		
+		return null;
+	}
+
+	/** String into file */
+	public static void saveBufferToFile(byte[] buffer, String fileName) {
+
+		try {
+			Files.write(Paths.get(fileName), buffer);
 		}
+		catch (IOException ioException) {
+			L.e("saveBufferToFile, fileName: " + fileName, ioException);
+			throw new E(ioException);
+		}
+	}
+
+	/** File into string */
+	public static String loadFileInString(String fileName, boolean replaceBom) {
+
+		byte[] buffer = loadFileInBuffer(fileName);
+		
+		return loadBufferInString(buffer, replaceBom);
+	}
+
+	/** File into string */
+	public static String loadFileInString(String fileName) {
+		
+		return loadFileInString(fileName, true);
+	}
+
+	/** String into file */
+	public static void saveStringToFile(String source, String fileName) {
+
+		byte[] buffer = saveStringToBuffer(source);
+		saveBufferToFile(buffer, fileName);
 	}
 	
-	/** Saves an entire input stream in a file */
-    public static void saveInputStreamInFile(InputStream inputStream, File file) {
+	
+	/* File operations */
+	
+	/** "\" or "/" */
+	public static String sep() {
+		
+		return File.separator;
+	}
+	
+	/** Delete folder contents */
+	public static void deleteFolderContentsOnly(String folderName) {
 
-        byte buffer[] = new byte[16384];  /* read 16k blocks */
-        int len; /* how much content was read? */
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            while ((len = inputStream.read(buffer)) > 0) {
-                fileOutputStream.write(buffer, 0, len);
-            }
-            fileOutputStream.flush();
-            fileOutputStream.close();
-        }
-        catch (IOException ioException) {
-            L.e("IOException in saveInputStreamInFile", ioException);
-        }
-    }
+		deleteFolder(folderName, true);
+	}
 
-    /** Delete folder and contents */
-    public static void deleteFolder(File file) {
+	/** Delete folder and contents */
+	public static void deleteFolder(String folderName) {
 
-        if (file.isDirectory()) {
-            for (String child : file.list()) {
-                deleteFolder(new File(file, child));
-            }
-        }
-        try {
-        	//OutputStream outputStream = new FileOutputStream(file); // to test the exception
-			Files.delete(file.toPath());
-		} catch (IOException ioException) {
-			L.e("IOException in deleteFolder", ioException);
+		deleteFolder(folderName, false);
+	}
+
+	/** Delete folder and/only contents */
+	private static void deleteFolder(String folderName, boolean deleteContentsOnly) {
+
+		try {
+			Path rootPath = Paths.get(folderName);
+			if (Files.notExists(rootPath)) {
+				return;
+			}
+			List<Path> pathsToDelete = Files.walk(rootPath).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+			if (deleteContentsOnly) {
+				pathsToDelete.remove(rootPath);
+			}
+			for(Path path : pathsToDelete) {
+			    Files.deleteIfExists(path);
+			}
 		}
-    }
-    
+		catch (IOException ioException) {
+			L.e("deleteFolder => folderName: " + folderName + ", deleteContentsOnly: " + deleteContentsOnly, ioException);
+			throw new E(ioException);
+		}
+	}
+
+	/** Create all folders */
+	public static void createFoldersIfNotExists(String folderName) {
+
+		try {
+			Path catalogBlocksFolderPath = Paths.get(folderName); 
+			if (Files.notExists(catalogBlocksFolderPath)) {
+				Files.createDirectories(catalogBlocksFolderPath);
+			}
+		}
+		catch (IOException ioException) {
+			L.e("createFoldersIfNotExists => folderName: " + folderName, ioException);
+			throw new E(ioException);
+		}
+	}
+
+	/** Create all folders */
+	public static long findFileSizeInBytes(String fileName) {
+
+		long fileSize = -1; 
+		try {
+			fileSize = Files.size(Paths.get(fileName)); 
+		}
+		catch (IOException ioException) {
+			L.e("findFileSizeInBytes => fileName: " + fileName, ioException);
+			throw new E(ioException);
+		}
+		return fileSize;
+	}
+
+    /**
+     * https://stackoverflow.com/questions/6214703/copy-entire-directory-contents-to-another-directory/10068306#10068306
+     */
+	private static class CopyFileVisitor extends SimpleFileVisitor<Path> {
+		
+		private final Path targetPath;
+		private Path sourcePath = null;
+		
+		private final ArrayList<String> ignoredExtensions = new ArrayList<String>();
+
+		public CopyFileVisitor(Path targetPath, String ignoreExtensions) {
+			this.targetPath = targetPath;
+			
+			for (String ignoredExtension : ignoreExtensions.split(";")) {
+				ignoredExtensions.add(ignoredExtension.trim());
+			}
+		}
+
+		@Override
+		public FileVisitResult preVisitDirectory(final Path dir, final BasicFileAttributes attrs) throws IOException {
+			
+			if (sourcePath == null) {
+				sourcePath = dir;
+			}
+			else {
+				Files.createDirectories(targetPath.resolve(sourcePath.relativize(dir)));
+			}
+			return FileVisitResult.CONTINUE;
+		}
+
+		@Override
+		public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
+			
+			String fileExtension = getExtension(file.toString());
+			if (ignoredExtensions.contains(fileExtension)) {
+				return FileVisitResult.CONTINUE;
+			}
+			Files.copy(file, targetPath.resolve(sourcePath.relativize(file)));
+			return FileVisitResult.CONTINUE;
+		}
+	}
+
+	/** Copy folders */
+	public static void copyFolders(Path sourcePath, Path targetPath) throws IOException {
+	
+		Files.walkFileTree(sourcePath, new CopyFileVisitor(targetPath, ""));
+	}
+
+	/** Copy folders */
+	public static void copyFolders(String sourceFolder, String targetFolder, String ignoreForExtensions) {
+		
+		try {
+			Files.walkFileTree(Paths.get(sourceFolder), new CopyFileVisitor(Paths.get(targetFolder), ignoreForExtensions));	
+		}
+		catch (IOException ioException) {
+			L.e("copyFolders => sourceFolder: " + sourceFolder + ", targetFolder: " + targetFolder + ", ignoreForExtensions: " + ignoreForExtensions, ioException);
+			throw new E(ioException);
+		}
+	}
+
+	/** Copy file */
+	public static void copyFile(String sourceFileNameWithPath, String targetFileNameWithPath) {
+	
+		try {
+			Files.copy(Paths.get(sourceFileNameWithPath), Paths.get(targetFileNameWithPath), StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException ioException) {
+			L.e("copyFile, sourceFileNameWithPath: " + sourceFileNameWithPath +
+				", targetFileNameWithPath: " + targetFileNameWithPath, ioException);
+		}
+	}
+
+	/** File path */
+	public static String getFileFolderName(String fileName) {
+		
+		return (Paths.get(fileName)).getParent().toString(); 
+	}
+	
+	/**
+	 * https://stackoverflow.com/questions/3571223/how-do-i-get-the-file-extension-of-a-file-in-java/21974043
+	 */
+	public static String getExtension(String fileName) {
+
+		char ch;
+		int len;
+		if (fileName == null || (len = fileName.length()) == 0 || (ch = fileName.charAt(len - 1)) == '/' || ch == '\\'
+				|| // in the case of a directory
+				ch == '.') // in the case of . or ..
+			return "";
+		int dotInd = fileName.lastIndexOf('.'),
+				sepInd = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
+		if (dotInd <= sepInd)
+			return "";
+		else
+			return fileName.substring(dotInd + 1).toLowerCase();
+	}
+	
+	/** Size */
+	public static long getFileSize(String fileName) {
+
+		File javaFile = new File(fileName);
+		return Long.valueOf(javaFile.length());
+	}
+	
+	/** From IusCL */
+	public static String formatSize(long size) {
+
+		DecimalFormat decimalFormat = new DecimalFormat("#.##");
+		
+		double b = size / (1024 * 1024 * 1024);
+		String suffix = "B";
+		if (b > 1) {
+			suffix = "GB";
+		}
+		else {
+			b = size / (1024 * 1024);
+			if (b > 1) {
+				suffix = "MB";
+			}
+			else {
+				b = size / 1024;
+				if (b > 1) {
+					suffix = "KB";
+				}
+				else {
+					return size + " B";
+				}
+			}
+		}
+		
+		return decimalFormat.format(b) + " " + suffix;
+	};
+
+
+
+	/* Utilities */
+	
+	/** Sort _ before a before A */
+	public static void sortStrings(ArrayList<String> unsorted) {
+
+		Collections.sort(unsorted, Collator.getInstance(Locale.ENGLISH));
+	}
+
+	/** Sort _ before a before A */
+	public static void sortStringsDotAfter(ArrayList<String> unsorted, ArrayList<String> names, ArrayList<String> hiddenNames) {
+
+		/* Sort */
+		for (String name : unsorted) {
+			if (name.startsWith(".")) {
+				hiddenNames.add(name);
+			}
+			else {
+				names.add(name);
+			}
+		}
+		sortStrings(names);
+		sortStrings(hiddenNames);
+	}
+
+	/** \" */
+	public static String escapeQuotes(String source) {
+		
+		return "\"" + source.replaceAll("\"", "\\\\\"") + "\"";
+	}
+
+	public static String[] toArray(Stream<String> stream) {
+		
+		return stream.toArray(String[]::new);
+	}
+
+	public static ArrayList<String> toArrayList(Stream<String> stream) {
+		
+		return stream.collect(Collectors.toCollection(ArrayList<String>::new));
+	}
+
+	public static String[] toArray(ArrayList<String> arrayList) {
+		
+		return toArray(arrayList.stream());
+	}
+
+	public static ArrayList<String> toArrayList(String[] array) {
+		
+		return toArrayList(Arrays.stream(array));
+	}
+	
+	/** Loads an entire input stream in one map */
+	public static void loadInputStreamInHashMap(InputStream inputStream, HashMap<String, String> map, String separator) {
+		
+		String lines = loadInputStreamInString(inputStream);
+		lines.lines().forEachOrdered(line -> {
+			String[] keyValue = line.split(separator);
+			map.put(keyValue[0].toLowerCase(), keyValue[1]);
+		});
+	}
 }

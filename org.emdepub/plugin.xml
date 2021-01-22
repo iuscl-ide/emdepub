@@ -2,9 +2,6 @@
 <?eclipse version="3.4" ?>
 <plugin>
 
-	<extension point="org.eclipse.core.contenttype.contentTypes">
-		<content-type id="org.emdepub.md" name="Markdown" base-type="org.eclipse.core.runtime.text" file-extensions="md, mdown, markdown, markdn"></content-type>
-	</extension>
 	<!--   <extension
          point="org.eclipse.ui.editors">
       <editorContentTypeBinding
@@ -55,6 +52,10 @@
             extensions="md">
       </participant>
    </extension>-->
+
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type id="org.emdepub.md" name="Markdown" base-type="org.eclipse.core.runtime.text" file-extensions="md, mdown, markdown, markdn"></content-type>
+	</extension>
 	<extension point="org.eclipse.ui.editors">
 		<editor class="org.emdepub.ui.editor.md.MarkdownEditor" contributorClass="org.emdepub.ui.editor.md.MarkdownEditorContributor" default="true" extensions="md, mdown, markdown, markdn" icon="icons/editor-md.png" id="org.emdepub.editor.MarkdownEditor" name="Markdown Editor and Viewer">
 			<contentTypeBinding contentTypeId="org.emdepub.md"></contentTypeBinding>
@@ -71,5 +72,16 @@
 		<theme dark="false" default="true" id="org.emdepub.markdown.light.theme" name="Markdown Light" path="code-language/themes/markdown/markdown-light-theme.css"></theme>
 		<themeAssociation scopeName="text.html.markdown" themeId="org.emdepub.markdown.light.theme" whenDark="false"></themeAssociation>
 	</extension>
+ 	<extension point="org.eclipse.ui.exportWizards">
+	 	<wizard 
+	         id="org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard" 
+	         name="Export as Html Wizard" 
+	         class="org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard">
+	         <description> 
+	            Export as Html Wizard description 
+	         </description> 
+	         <selection class="org.eclipse.core.resources.IProject"/> 
+	      </wizard> 
+ 	</extension>
 
 </plugin>
