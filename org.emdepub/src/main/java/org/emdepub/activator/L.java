@@ -1,4 +1,4 @@
-/* Markdown Semantic Eclipse Plug-in - (c) 2017 markdownsemanticep.org */
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.activator;
 
 import java.io.ByteArrayOutputStream;

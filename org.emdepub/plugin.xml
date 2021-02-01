@@ -57,7 +57,7 @@
 		<content-type id="org.emdepub.md" name="Markdown" base-type="org.eclipse.core.runtime.text" file-extensions="md, mdown, markdown, markdn"></content-type>
 	</extension>
 	<extension point="org.eclipse.ui.editors">
-		<editor class="org.emdepub.ui.editor.md.MarkdownEditor" contributorClass="org.emdepub.ui.editor.md.MarkdownEditorContributor" default="true" extensions="md, mdown, markdown, markdn" icon="icons/editor-md.png" id="org.emdepub.editor.MarkdownEditor" name="Markdown Editor and Viewer">
+		<editor class="org.emdepub.ui.editor.md.MarkdownEditor" contributorClass="org.emdepub.ui.editor.md.MarkdownEditorContributor" default="true" extensions="md, mdown, markdown, markdn" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.MarkdownEditor" name="Markdown Editor and Viewer">
 			<contentTypeBinding contentTypeId="org.emdepub.md"></contentTypeBinding>
 		</editor>
 	</extension>

@@ -24,4 +24,6 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  lib/jackson-core-2.12.1.jar,
  lib/jackson-annotations-2.12.1.jar,
- lib/jackson-databind-2.12.1.jar
+ lib/jackson-databind-2.12.1.jar,
+ lib/cssparser-0.9.29.jar,
+ lib/sac.jar

@@ -1,4 +1,4 @@
-/* Markdown Semantic Eclipse Plug-in - (c) 2017 markdownsemanticep.org */
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.activator;
 
 import java.io.File;
@@ -157,24 +157,34 @@ public class F {
 		
 		return File.separator;
 	}
+
+	/** Delete file */
+	public static void deleteFile(String fileNameWithPath) {
+
+		try {
+			Files.deleteIfExists(Paths.get(fileNameWithPath));
+		} catch (IOException ioException) {
+			L.e("deleteFile; fileNameWithPath: " + fileNameWithPath, ioException);
+		}
+	}
 	
 	/** Delete folder contents */
-	public static void deleteFolderContentsOnly(String folderName) {
+	public static void deleteFolderContentsOnly(String folderNameWithPath) {
 
-		deleteFolder(folderName, true);
+		deleteFolder(folderNameWithPath, true);
 	}
 
 	/** Delete folder and contents */
-	public static void deleteFolder(String folderName) {
+	public static void deleteFolder(String folderNameWithPath) {
 
-		deleteFolder(folderName, false);
+		deleteFolder(folderNameWithPath, false);
 	}
 
 	/** Delete folder and/only contents */
-	private static void deleteFolder(String folderName, boolean deleteContentsOnly) {
+	private static void deleteFolder(String folderNameWithPath, boolean deleteContentsOnly) {
 
 		try {
-			Path rootPath = Paths.get(folderName);
+			Path rootPath = Paths.get(folderNameWithPath);
 			if (Files.notExists(rootPath)) {
 				return;
 			}
@@ -187,35 +197,35 @@ public class F {
 			}
 		}
 		catch (IOException ioException) {
-			L.e("deleteFolder => folderName: " + folderName + ", deleteContentsOnly: " + deleteContentsOnly, ioException);
+			L.e("deleteFolder; folderNameWithPath: " + folderNameWithPath + ", deleteContentsOnly: " + deleteContentsOnly, ioException);
 			throw new E(ioException);
 		}
 	}
 
 	/** Create all folders */
-	public static void createFoldersIfNotExists(String folderName) {
+	public static void createFoldersIfNotExists(String folderNameWithPath) {
 
 		try {
-			Path catalogBlocksFolderPath = Paths.get(folderName); 
+			Path catalogBlocksFolderPath = Paths.get(folderNameWithPath); 
 			if (Files.notExists(catalogBlocksFolderPath)) {
 				Files.createDirectories(catalogBlocksFolderPath);
 			}
 		}
 		catch (IOException ioException) {
-			L.e("createFoldersIfNotExists => folderName: " + folderName, ioException);
+			L.e("createFoldersIfNotExists; folderNameWithPath: " + folderNameWithPath, ioException);
 			throw new E(ioException);
 		}
 	}
 
 	/** Create all folders */
-	public static long findFileSizeInBytes(String fileName) {
+	public static long findFileSizeInBytes(String fileNameWithPath) {
 
 		long fileSize = -1; 
 		try {
-			fileSize = Files.size(Paths.get(fileName)); 
+			fileSize = Files.size(Paths.get(fileNameWithPath)); 
 		}
 		catch (IOException ioException) {
-			L.e("findFileSizeInBytes => fileName: " + fileName, ioException);
+			L.e("findFileSizeInBytes; fileNameWithPath: " + fileNameWithPath, ioException);
 			throw new E(ioException);
 		}
 		return fileSize;
@@ -276,7 +286,7 @@ public class F {
 			Files.walkFileTree(Paths.get(sourceFolder), new CopyFileVisitor(Paths.get(targetFolder), ignoreForExtensions));	
 		}
 		catch (IOException ioException) {
-			L.e("copyFolders => sourceFolder: " + sourceFolder + ", targetFolder: " + targetFolder + ", ignoreForExtensions: " + ignoreForExtensions, ioException);
+			L.e("copyFolders; sourceFolder: " + sourceFolder + ", targetFolder: " + targetFolder + ", ignoreForExtensions: " + ignoreForExtensions, ioException);
 			throw new E(ioException);
 		}
 	}
@@ -287,8 +297,7 @@ public class F {
 		try {
 			Files.copy(Paths.get(sourceFileNameWithPath), Paths.get(targetFileNameWithPath), StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException ioException) {
-			L.e("copyFile, sourceFileNameWithPath: " + sourceFileNameWithPath +
-				", targetFileNameWithPath: " + targetFileNameWithPath, ioException);
+			L.e("copyFile, sourceFileNameWithPath: " + sourceFileNameWithPath + ", targetFileNameWithPath: " + targetFileNameWithPath, ioException);
 		}
 	}
 

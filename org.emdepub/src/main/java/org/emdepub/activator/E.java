@@ -1,4 +1,4 @@
-/* Search-able catalog for static generated sites - static-catalog.org 2019 */
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.activator;
 
 /** Break to top exception */

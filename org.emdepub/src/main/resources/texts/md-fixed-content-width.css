@@ -6,10 +6,6 @@
 	padding: 45px;
 }
 
-.markdown-body code {
-	color: initial;
-}
-
 @media ( max-width : 767px) {
 	.markdown-body {
 		padding: 15px;

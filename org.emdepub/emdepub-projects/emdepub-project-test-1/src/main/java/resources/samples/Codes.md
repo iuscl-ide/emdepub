@@ -49,7 +49,7 @@ console.log(foo(5));
 
 ### Markdown
 
-*Highlight.js* fails miserably for Markdown
+*Highlight.js* fails a little for Markdown
 
 ``` markdown
 ---

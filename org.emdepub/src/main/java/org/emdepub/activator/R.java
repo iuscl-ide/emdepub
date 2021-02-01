@@ -1,4 +1,4 @@
-/* Markdown Semantic Eclipse Plug-in - (c) 2017 markdownsemanticep.org */
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.activator;
 
 import java.io.InputStream;
@@ -41,7 +41,10 @@ public class R {
 		
 		/* Images, icons */
 //		loadGifImageResourceToRegistry("md-file-toolbar-nottext");
-		loadGifImageResourceToRegistry("md-action-exportashtml");
+		loadGifImageResourceToRegistry("html");
+		loadGifImageResourceToRegistry("stylesheet");
+		loadGifImageResourceToRegistry("ui_props");
+		loadGifImageResourceToRegistry("PD_Toolbar_source");
 		
 //		loadGifImageResourceToRegistry("md-preference-toolbar-notdefault");
 //		loadGifImageResourceToRegistry("md-preference-toolbar-apply");

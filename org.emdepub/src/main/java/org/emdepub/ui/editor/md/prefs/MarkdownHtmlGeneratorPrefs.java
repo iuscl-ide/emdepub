@@ -1,48 +1,56 @@
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.ui.editor.md.prefs;
 
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
+
+import org.emdepub.activator.F;
+import org.emdepub.activator.P;
 
 public class MarkdownHtmlGeneratorPrefs {
 
-	public static enum FormatStyle { None, GitHub, Google, BitBucket };
-	public static enum FormatOption { FixedContentWidth, JustifiedParagraphs, CenterHeaders };
+	public static enum Pref { FormatStyle, FixedContentWidth, JustifiedParagraphs, CenterHeaders, FormatCodeStyle };
+	
+	public static enum FormatStyle { None, GitHub, GoogleLike, SemanticUILike, Custom };
 	public static enum FormatCodeStyle { None,
 		Agate,
 		Androidstudio,
 		ArduinoLight,
-		Arta,
-		Ascetic,
-		AtelierCaveDark,
-		AtelierCaveLight,
-		AtelierDuneDark,
-		AtelierDuneLight,
-		AtelierEstuaryDark,
-		AtelierEstuaryLight,
-		AtelierForestDark,
-		AtelierForestLight,
-		AtelierHeathDark,
-		AtelierHeathLight,
-		AtelierLakesideDark,
-		AtelierLakesideLight,
-		AtelierPlateauDark,
-		AtelierPlateauLight,
-		AtelierSavannaDark,
-		AtelierSavannaLight,
-		AtelierSeasideDark,
-		AtelierSeasideLight,
-		AtelierSulphurpoolDark,
-		AtelierSulphurpoolLight,
-		AtomOneDark,
-		AtomOneLight,
-		BrownPaper,
-		CodepenEmbed,
-		ColorBrewer,
-		Darcula,
+//		Arta,
+//		Ascetic,
+//		AtelierCaveDark,
+//		AtelierCaveLight,
+//		AtelierDuneDark,
+//		AtelierDuneLight,
+//		AtelierEstuaryDark,
+//		AtelierEstuaryLight,
+//		AtelierForestDark,
+//		AtelierForestLight,
+//		AtelierHeathDark,
+//		AtelierHeathLight,
+//		AtelierLakesideDark,
+//		AtelierLakesideLight,
+//		AtelierPlateauDark,
+//		AtelierPlateauLight,
+//		AtelierSavannaDark,
+//		AtelierSavannaLight,
+//		AtelierSeasideDark,
+//		AtelierSeasideLight,
+//		AtelierSulphurpoolDark,
+//		AtelierSulphurpoolLight,
+//		AtomOneDark,
+//		AtomOneLight,
+//		BrownPaper,
+//		CodepenEmbed,
+//		ColorBrewer,
+//		Darcula,
 		Dark,
-		Darkula,
+//		Darkula,
 		Default,
-		Docco,
-		Dracula,
+//		Docco,
+//		Dracula,
 		Far,
 		Foundation,
 		GithubGist,
@@ -51,109 +59,112 @@ public class MarkdownHtmlGeneratorPrefs {
 		Grayscale,
 		GruvboxDark,
 		GruvboxLight,
-		Hopscotch,
+//		Hopscotch,
 		Hybrid,
 		Idea,
 		IrBlack,
-		KimbieDark,
-		KimbieLight,
+//		KimbieDark,
+//		KimbieLight,
 		Magula,
-		MonoBlue,
-		MonokaiSublime,
-		Monokai,
-		Obsidian,
-		Ocean,
-		ParaisoDark,
-		ParaisoLight,
-		Pojoaque,
+//		MonoBlue,
+//		MonokaiSublime,
+//		Monokai,
+//		Obsidian,
+//		Ocean,
+//		ParaisoDark,
+//		ParaisoLight,
+//		Pojoaque,
 		Purebasic,
-		Qtcreator_dark,
-		Qtcreator_light,
+//		Qtcreator_dark,
+//		Qtcreator_light,
 		Railscasts,
-		Rainbow,
-		Routeros,
-		SchoolBook,
-		SolarizedDark,
-		SolarizedLight,
+//		Rainbow,
+//		Routeros,
+//		SchoolBook,
+//		SolarizedDark,
+//		SolarizedLight,
 		Sunburst,
-		TomorrowNightBlue,
-		TomorrowNightBright,
-		TomorrowNightEighties,
-		TomorrowNight,
-		Tomorrow,
+//		TomorrowNightBlue,
+//		TomorrowNightBright,
+//		TomorrowNightEighties,
+//		TomorrowNight,
+//		Tomorrow,
 		Vs,
 		Vs2015,
 		Xcode,
-		Xt256,
-		Zenburn
+//		Xt256,
+//		Zenburn
+		Custom
 	};
-	
-	
-	
-	
-//	private static final FormatStyle initialFormatStyle = FormatStyle.GitHub;
-//	private static final FormatCodeStyle initialFormatCodeStyle = FormatCodeStyle.GitHub;
-	
-	
-	
-	private FormatStyle formatStyle = FormatStyle.GitHub;
-	
-	private final LinkedHashMap<FormatOption, Boolean> formatOptions = new LinkedHashMap<>();
-	
-	
-	private FormatCodeStyle formatCodeStyle = FormatCodeStyle.Github;
-	
-	
-//	public LinkedHashMap<String , Object> getSerialization() {
-//		
-//		LinkedHashMap<String, Object> ser = new LinkedHashMap<>();
-//		
-//		if (formatStyle != initialFormatStyle) {
-//			ser.put("formatStyle", formatStyle);
-//		}
-//		
-//		return ser;
-//	}
-//
-//	public void setSerialization(LinkedHashMap<String, Object> ser) {
-//		
-//		for (Entry<String, Object> entry : ser.entrySet()) {
-//			
-//			if (entry.getKey().equals("formatStyle")) {
-//				this.formatStyle = (FormatStyle) entry.getValue();
-//			}
-//		}
-//	}
 
-	
-	public MarkdownHtmlGeneratorPrefs() {
-		super();
+	public static final Set<Pref> FormatOption = Set.of( Pref.FixedContentWidth, Pref.JustifiedParagraphs, Pref.CenterHeaders );
+
+	private final LinkedHashMap<Pref, Object> initialPreferences = new LinkedHashMap<>();
+	{
+		initialPreferences.put(Pref.FormatStyle, FormatStyle.GitHub);
 		
-		formatOptions.put(FormatOption.FixedContentWidth, true);
-		formatOptions.put(FormatOption.JustifiedParagraphs, true);
-		formatOptions.put(FormatOption.CenterHeaders, false);
-	}
-
-	
-	public FormatStyle getFormatStyle() {
-		return formatStyle;
-	}
-
-	public void setFormatStyle(FormatStyle formatStyle) {
-		this.formatStyle = formatStyle;
+		initialPreferences.put(Pref.FixedContentWidth, true);
+		initialPreferences.put(Pref.JustifiedParagraphs, true);
+		initialPreferences.put(Pref.CenterHeaders, false);
+		
+		initialPreferences.put(Pref.FormatCodeStyle, FormatCodeStyle.Github);
 	}
 	
-	public LinkedHashMap<FormatOption, Boolean> getFormatOptions() {
-		return formatOptions;
+	private final LinkedHashMap<Pref, Object> preferences = new LinkedHashMap<>(initialPreferences);
+
+	/** Serialization */
+	public LinkedHashMap<Pref, Object> getSerialization() {
+		
+		LinkedHashMap<Pref, Object> serialization = new LinkedHashMap<>();
+		
+		for (Entry<Pref, Object> preference : preferences.entrySet()) {
+			Pref preferenceKey = preference.getKey();
+			Object preferenceValue = preference.getValue();
+			if (!preferenceValue.equals(initialPreferences.get(preferenceKey))) {
+				serialization.put(preferenceKey, preferenceValue);
+			}
+		}
+		
+		return serialization;
 	}
 
-	public FormatCodeStyle getFormatCodeStyle() {
-		return formatCodeStyle;
+	/** Serialization */
+	public void setSerialization(LinkedHashMap<Pref, Object> serialization) {
+		
+		for (Entry<Pref, Object> entry : serialization.entrySet()) {
+			preferences.replace(entry.getKey(), entry.getValue());	
+		}
 	}
 
-	public void setFormatCodeStyle(FormatCodeStyle formatCodeStyle) {
-		this.formatCodeStyle = formatCodeStyle;
+	/** Save */
+	public void saveProperties(String fileNameWithPath) {
+		
+		LinkedHashMap<Pref, Object> modifieds = getSerialization();
+		if (modifieds.size() == 0) {
+			F.deleteFile(fileNameWithPath);
+			return;
+		}
+		
+		Properties properties = new Properties();
+		for (Entry<Pref, Object> entry : modifieds.entrySet()) {
+			properties.put(entry.getKey().name(), entry.getValue().toString());
+		}
+		P.savePropertiesInFile(properties, "Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org", fileNameWithPath);
 	}
 	
 	
+//	public LinkedHashMap<FormatOption, Object> getPreferences() {
+//		return preferences;
+//	}
+
+	@SuppressWarnings("unchecked")
+	public <T> T get(Pref preferenceKey) {
+		
+		return (T) preferences.get(preferenceKey);
+	}
+
+	public void set(Pref preferenceKey, Object preferenceValue) {
+		
+		preferences.replace(preferenceKey, preferenceValue);
+	}
 }

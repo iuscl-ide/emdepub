@@ -1,3 +1,4 @@
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.md.ui.wizards;
 
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -28,7 +29,7 @@ public class MarkdownExportAsHtmlWizard extends Wizard implements IExportWizard 
 	/** Method */
 	public void addPages() {
 		
-		String exportName = markdownEditor.getFilePathAndName();
+		String exportName = markdownEditor.getSourceMarkdownFilePathAndName();
 		exportName = exportName.substring(F.getFileFolderName(exportName).length() + 1);
 		exportName = exportName.substring(0, exportName.length() - (F.getExtension(exportName).length() + 1));
 		

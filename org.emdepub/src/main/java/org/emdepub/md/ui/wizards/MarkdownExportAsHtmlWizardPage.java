@@ -1,3 +1,4 @@
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.md.ui.wizards;
 
 import org.eclipse.jface.wizard.WizardPage;

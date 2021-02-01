@@ -1,4 +1,4 @@
-/* Search-able catalog for static generated sites - static-catalog.org 2019 */ 
+/* Emdepub Eclipse Plugin - emdepub.org */ 
 package org.emdepub.activator;
 
 import org.eclipse.swt.SWT;
@@ -9,7 +9,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-
 
 /** UI over SWT */
 public class UI {
@@ -30,12 +29,6 @@ public class UI {
 		this.display = display;
 	}
 	
-//	/** Load image resource */
-//	public Image getResourceAsImage(String imageResourceName) {
-//		
-//		return new Image(display, S.getResourceAsInputStream(imageResourceName));
-//	}
-
 	/** GridData */
 	public GridData createGridData() {
 		

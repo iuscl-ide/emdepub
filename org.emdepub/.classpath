@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="lib/sac.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/cssparser-0.9.29.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jackson-annotations-2.12.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jackson-databind-2.12.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jackson-core-2.12.1.jar"/>

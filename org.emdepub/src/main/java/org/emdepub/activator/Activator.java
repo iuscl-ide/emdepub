@@ -1,3 +1,4 @@
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.activator;
 
 import java.io.File;

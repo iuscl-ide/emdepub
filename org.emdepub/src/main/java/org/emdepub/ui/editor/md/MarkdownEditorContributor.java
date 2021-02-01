@@ -1,3 +1,4 @@
+/* Emdepub Eclipse Plugin - emdepub.org */
 package org.emdepub.ui.editor.md;
 
 import java.util.LinkedHashMap;
@@ -24,8 +25,8 @@ import org.emdepub.activator.R;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard;
 import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs;
 import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatCodeStyle;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatOption;
 import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatStyle;
+import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.Pref;
 
 public class MarkdownEditorContributor extends MultiPageEditorActionBarContributor {
 
@@ -33,15 +34,16 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	static {
 		formatStyles.put(FormatStyle.None, "None");
 		formatStyles.put(FormatStyle.GitHub, "GitHub");
-		formatStyles.put(FormatStyle.Google, "Google Like");
-		formatStyles.put(FormatStyle.BitBucket, "Bitbucket");
+		formatStyles.put(FormatStyle.GoogleLike, "Google Like");
+		formatStyles.put(FormatStyle.SemanticUILike, "Semantic UI Like");
+		formatStyles.put(FormatStyle.Custom, "Custom");
 	}
 
-	public static final LinkedHashMap<FormatOption, String> formatOptions = new LinkedHashMap<>();
+	public static final LinkedHashMap<Pref, String> formatOptions = new LinkedHashMap<>();
 	static {
-		formatOptions.put(FormatOption.FixedContentWidth, "Fixed Content Width");
-		formatOptions.put(FormatOption.JustifiedParagraphs, "Justified Paragraphs");
-		formatOptions.put(FormatOption.CenterHeaders, "Center Headers");
+		formatOptions.put(Pref.FixedContentWidth, "Fixed Content Width");
+		formatOptions.put(Pref.JustifiedParagraphs, "Justified Paragraphs");
+		formatOptions.put(Pref.CenterHeaders, "Center Headers");
 	}
 
 	public static final LinkedHashMap<FormatCodeStyle, String> formatCodeStyles = new LinkedHashMap<>();
@@ -50,39 +52,39 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		formatCodeStyles.put(FormatCodeStyle.Agate, "Agate");
 		formatCodeStyles.put(FormatCodeStyle.Androidstudio, "Android Studio");
 		formatCodeStyles.put(FormatCodeStyle.ArduinoLight, "Arduino Light");
-		formatCodeStyles.put(FormatCodeStyle.Arta, "Arta");
-		formatCodeStyles.put(FormatCodeStyle.Ascetic, "Ascetic");
-		formatCodeStyles.put(FormatCodeStyle.AtelierCaveDark, "Atelier Cave Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierCaveLight, "Atelier Cave Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierDuneDark, "Atelier Dune Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierDuneLight, "Atelier Dune Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierEstuaryDark, "Atelier Estuary Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierEstuaryLight, "Atelier Estuary Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierForestDark, "Atelier Forest Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierForestLight, "Atelier Forest Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierHeathDark, "Atelier Heath Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierHeathLight, "Atelier Heath Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierLakesideDark, "Atelier Lakeside Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierLakesideLight, "Atelier Lakeside Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierPlateauDark, "Atelier Plateau Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierPlateauLight, "Atelier Plateau Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierSavannaDark, "Atelier Savanna Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierSavannaLight, "Atelier Savanna Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierSeasideDark, "Atelier Seaside Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierSeasideLight, "Atelier Seaside Light");
-		formatCodeStyles.put(FormatCodeStyle.AtelierSulphurpoolDark, "Atelier Sulphurpool Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtelierSulphurpoolLight, "Atelier Sulphurpool Light");
-		formatCodeStyles.put(FormatCodeStyle.AtomOneDark, "Atom One Dark");
-		formatCodeStyles.put(FormatCodeStyle.AtomOneLight, "Atom One Light");
-		formatCodeStyles.put(FormatCodeStyle.BrownPaper, "Brown Paper");
-		formatCodeStyles.put(FormatCodeStyle.CodepenEmbed, "Codepen Embed");
-		formatCodeStyles.put(FormatCodeStyle.ColorBrewer, "Color Brewer");
-		formatCodeStyles.put(FormatCodeStyle.Darcula, "Darcula");
+//		formatCodeStyles.put(FormatCodeStyle.Arta, "Arta");
+//		formatCodeStyles.put(FormatCodeStyle.Ascetic, "Ascetic");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierCaveDark, "Atelier Cave Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierCaveLight, "Atelier Cave Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierDuneDark, "Atelier Dune Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierDuneLight, "Atelier Dune Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierEstuaryDark, "Atelier Estuary Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierEstuaryLight, "Atelier Estuary Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierForestDark, "Atelier Forest Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierForestLight, "Atelier Forest Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierHeathDark, "Atelier Heath Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierHeathLight, "Atelier Heath Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierLakesideDark, "Atelier Lakeside Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierLakesideLight, "Atelier Lakeside Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierPlateauDark, "Atelier Plateau Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierPlateauLight, "Atelier Plateau Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierSavannaDark, "Atelier Savanna Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierSavannaLight, "Atelier Savanna Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierSeasideDark, "Atelier Seaside Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierSeasideLight, "Atelier Seaside Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierSulphurpoolDark, "Atelier Sulphurpool Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtelierSulphurpoolLight, "Atelier Sulphurpool Light");
+//		formatCodeStyles.put(FormatCodeStyle.AtomOneDark, "Atom One Dark");
+//		formatCodeStyles.put(FormatCodeStyle.AtomOneLight, "Atom One Light");
+//		formatCodeStyles.put(FormatCodeStyle.BrownPaper, "Brown Paper");
+//		formatCodeStyles.put(FormatCodeStyle.CodepenEmbed, "Codepen Embed");
+//		formatCodeStyles.put(FormatCodeStyle.ColorBrewer, "Color Brewer");
+//		formatCodeStyles.put(FormatCodeStyle.Darcula, "Darcula");
 		formatCodeStyles.put(FormatCodeStyle.Dark, "Dark");
-		formatCodeStyles.put(FormatCodeStyle.Darkula, "Darkula");
+//		formatCodeStyles.put(FormatCodeStyle.Darkula, "Darkula");
 		formatCodeStyles.put(FormatCodeStyle.Default, "Default");
-		formatCodeStyles.put(FormatCodeStyle.Docco, "Docco");
-		formatCodeStyles.put(FormatCodeStyle.Dracula, "Dracula");
+//		formatCodeStyles.put(FormatCodeStyle.Docco, "Docco");
+//		formatCodeStyles.put(FormatCodeStyle.Dracula, "Dracula");
 		formatCodeStyles.put(FormatCodeStyle.Far, "Far");
 		formatCodeStyles.put(FormatCodeStyle.Foundation, "Foundation");
 		formatCodeStyles.put(FormatCodeStyle.GithubGist, "Github Gist");
@@ -91,41 +93,42 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		formatCodeStyles.put(FormatCodeStyle.Grayscale, "Grayscale");
 		formatCodeStyles.put(FormatCodeStyle.GruvboxDark, "Gruvbox Dark");
 		formatCodeStyles.put(FormatCodeStyle.GruvboxLight, "Gruvbox Light");
-		formatCodeStyles.put(FormatCodeStyle.Hopscotch, "Hopscotch");
+//		formatCodeStyles.put(FormatCodeStyle.Hopscotch, "Hopscotch");
 		formatCodeStyles.put(FormatCodeStyle.Hybrid, "Hybrid");
 		formatCodeStyles.put(FormatCodeStyle.Idea, "Idea");
 		formatCodeStyles.put(FormatCodeStyle.IrBlack, "Ir Black");
-		formatCodeStyles.put(FormatCodeStyle.KimbieDark, "Kimbie.Dark");
-		formatCodeStyles.put(FormatCodeStyle.KimbieLight, "Kimbie.Light");
+//		formatCodeStyles.put(FormatCodeStyle.KimbieDark, "Kimbie.Dark");
+//		formatCodeStyles.put(FormatCodeStyle.KimbieLight, "Kimbie.Light");
 		formatCodeStyles.put(FormatCodeStyle.Magula, "Magula");
-		formatCodeStyles.put(FormatCodeStyle.MonoBlue, "Mono Blue");
-		formatCodeStyles.put(FormatCodeStyle.MonokaiSublime, "Monokai Sublime");
-		formatCodeStyles.put(FormatCodeStyle.Monokai, "Monokai");
-		formatCodeStyles.put(FormatCodeStyle.Obsidian, "Obsidian");
-		formatCodeStyles.put(FormatCodeStyle.Ocean, "Ocean");
-		formatCodeStyles.put(FormatCodeStyle.ParaisoDark, "Paraiso Dark");
-		formatCodeStyles.put(FormatCodeStyle.ParaisoLight, "Paraiso Light");
-		formatCodeStyles.put(FormatCodeStyle.Pojoaque, "Pojoaque");
+//		formatCodeStyles.put(FormatCodeStyle.MonoBlue, "Mono Blue");
+//		formatCodeStyles.put(FormatCodeStyle.MonokaiSublime, "Monokai Sublime");
+//		formatCodeStyles.put(FormatCodeStyle.Monokai, "Monokai");
+//		formatCodeStyles.put(FormatCodeStyle.Obsidian, "Obsidian");
+//		formatCodeStyles.put(FormatCodeStyle.Ocean, "Ocean");
+//		formatCodeStyles.put(FormatCodeStyle.ParaisoDark, "Paraiso Dark");
+//		formatCodeStyles.put(FormatCodeStyle.ParaisoLight, "Paraiso Light");
+//		formatCodeStyles.put(FormatCodeStyle.Pojoaque, "Pojoaque");
 		formatCodeStyles.put(FormatCodeStyle.Purebasic, "Purebasic");
-		formatCodeStyles.put(FormatCodeStyle.Qtcreator_dark, "Qtcreator_dark");
-		formatCodeStyles.put(FormatCodeStyle.Qtcreator_light, "Qtcreator_light");
+//		formatCodeStyles.put(FormatCodeStyle.Qtcreator_dark, "Qtcreator_dark");
+//		formatCodeStyles.put(FormatCodeStyle.Qtcreator_light, "Qtcreator_light");
 		formatCodeStyles.put(FormatCodeStyle.Railscasts, "Railscasts");
-		formatCodeStyles.put(FormatCodeStyle.Rainbow, "Rainbow");
-		formatCodeStyles.put(FormatCodeStyle.Routeros, "Routeros");
-		formatCodeStyles.put(FormatCodeStyle.SchoolBook, "School Book");
-		formatCodeStyles.put(FormatCodeStyle.SolarizedDark, "Solarized Dark");
-		formatCodeStyles.put(FormatCodeStyle.SolarizedLight, "Solarized Light");
+//		formatCodeStyles.put(FormatCodeStyle.Rainbow, "Rainbow");
+//		formatCodeStyles.put(FormatCodeStyle.Routeros, "Routeros");
+//		formatCodeStyles.put(FormatCodeStyle.SchoolBook, "School Book");
+//		formatCodeStyles.put(FormatCodeStyle.SolarizedDark, "Solarized Dark");
+//		formatCodeStyles.put(FormatCodeStyle.SolarizedLight, "Solarized Light");
 		formatCodeStyles.put(FormatCodeStyle.Sunburst, "Sunburst");
-		formatCodeStyles.put(FormatCodeStyle.TomorrowNightBlue, "Tomorrow Night Blue");
-		formatCodeStyles.put(FormatCodeStyle.TomorrowNightBright, "Tomorrow Night Bright");
-		formatCodeStyles.put(FormatCodeStyle.TomorrowNightEighties, "Tomorrow Night Eighties");
-		formatCodeStyles.put(FormatCodeStyle.TomorrowNight, "Tomorrow Night");
-		formatCodeStyles.put(FormatCodeStyle.Tomorrow, "Tomorrow");
+//		formatCodeStyles.put(FormatCodeStyle.TomorrowNightBlue, "Tomorrow Night Blue");
+//		formatCodeStyles.put(FormatCodeStyle.TomorrowNightBright, "Tomorrow Night Bright");
+//		formatCodeStyles.put(FormatCodeStyle.TomorrowNightEighties, "Tomorrow Night Eighties");
+//		formatCodeStyles.put(FormatCodeStyle.TomorrowNight, "Tomorrow Night");
+//		formatCodeStyles.put(FormatCodeStyle.Tomorrow, "Tomorrow");
 		formatCodeStyles.put(FormatCodeStyle.Vs, "Vs");
 		formatCodeStyles.put(FormatCodeStyle.Vs2015, "Vs2015");
 		formatCodeStyles.put(FormatCodeStyle.Xcode, "Xcode");
-		formatCodeStyles.put(FormatCodeStyle.Xt256, "Xt256");
-		formatCodeStyles.put(FormatCodeStyle.Zenburn, "Zenburn");
+//		formatCodeStyles.put(FormatCodeStyle.Xt256, "Xt256");
+//		formatCodeStyles.put(FormatCodeStyle.Zenburn, "Zenburn");
+		formatCodeStyles.put(FormatCodeStyle.Custom, "Custom");
 	}
 	
 	/** Class */
@@ -147,23 +150,26 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		public void run() {
 			super.run();
 			
-			markdownHtmlGeneratorPrefs.setFormatStyle(formatStyle);
-			markdownMultiPageEditor.refresh();
+			if (this.isChecked()) {
+				markdownHtmlGeneratorPrefs.set(Pref.FormatStyle, formatStyle);
+				markdownMultiPageEditor.refresh();
+				savePrefsProperties();
+			}
 		}
 	}
 
 	/** Class */
 	private class FormatOptionAction extends Action {
 		
-		private FormatOption formatOption;
+		private Pref formatOption;
 
-		public FormatOptionAction(String text, FormatOption formatOption) {
+		public FormatOptionAction(String text, Pref formatOption) {
 			super(text, IAction.AS_CHECK_BOX);
 			
 			this.formatOption = formatOption;
 		}
 
-		public FormatOption getFormatOption() {
+		public Pref getFormatOption() {
 			return formatOption;
 		}
 
@@ -171,9 +177,10 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		public void run() {
 			super.run();
 			
-			Boolean value = markdownHtmlGeneratorPrefs.getFormatOptions().get(formatOption);
-			markdownHtmlGeneratorPrefs.getFormatOptions().put(formatOption, !value);
+			Boolean value = markdownHtmlGeneratorPrefs.get(formatOption);
+			markdownHtmlGeneratorPrefs.set(formatOption, !value);
 			markdownMultiPageEditor.refresh();
+			savePrefsProperties();
 		}
 	}
 
@@ -196,13 +203,17 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		public void run() {
 			super.run();
 			
-			markdownHtmlGeneratorPrefs.setFormatCodeStyle(formatCodeStyle);
-			markdownMultiPageEditor.refresh();
+			if (this.isChecked()) {
+				markdownHtmlGeneratorPrefs.set(Pref.FormatCodeStyle, formatCodeStyle);
+				markdownMultiPageEditor.refresh();
+				savePrefsProperties();
+			}
 		}
 	}
 
 	/** The actual editor */
 	private MarkdownEditor markdownMultiPageEditor;
+	private String prefsPropertiesFileNameWithPath;
 	private MarkdownTextEditor markdownSourceTextEditor;
 	private MarkdownHtmlGeneratorPrefs markdownHtmlGeneratorPrefs;
 	
@@ -272,7 +283,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		exportAsHtmlAction.setId(exportAsHtmlActionId);
 		exportAsHtmlAction.setText("Export Markdown as HTML file...");
 		exportAsHtmlAction.setToolTipText("Export Markdown Document as HTML File");
-		exportAsHtmlAction.setImageDescriptor(R.getImageDescriptor("md-action-exportashtml"));
+		exportAsHtmlAction.setImageDescriptor(R.getImageDescriptor("html"));
 
 		
 		formatStyleMenuManager = new MenuManager("Format Style");
@@ -282,9 +293,12 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		};
 		
 		formatOptionMenuManager = new MenuManager("Format Options");
-		for (FormatOption formatOption : FormatOption.values()) {
-			FormatOptionAction action = new FormatOptionAction(formatOptions.get(formatOption), formatOption);
-			formatOptionMenuManager.add(action);
+		
+		for (Pref formatOption : Pref.values()) {
+			if (MarkdownHtmlGeneratorPrefs.FormatOption.contains(formatOption)) {
+				FormatOptionAction action = new FormatOptionAction(formatOptions.get(formatOption), formatOption);
+				formatOptionMenuManager.add(action);
+			}
 		};
 		
 		formatCodeStyleMenuManager = new MenuManager("Format Code Style");
@@ -300,7 +314,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		};
 		formatStyleDropDownMenuAction.setId(formatStyleDropDownMenuActionId);
 		formatStyleDropDownMenuAction.setToolTipText("Format Styles");
-		formatStyleDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("md-action-exportashtml"));
+		formatStyleDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("stylesheet"));
 		
 		formatStyleDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
@@ -337,7 +351,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		};
 		formatOptionDropDownMenuAction.setId(formatOptionDropDownMenuActionId);
 		formatOptionDropDownMenuAction.setToolTipText("Format Options");
-		formatOptionDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("md-action-exportashtml"));
+		formatOptionDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("ui_props"));
 		
 		formatOptionDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
@@ -366,14 +380,14 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 			}
 		});
 
-		formatCodeStyleDropDownMenuAction = new Action("Format CodeStyle", IAction.AS_DROP_DOWN_MENU) {
+		formatCodeStyleDropDownMenuAction = new Action("Format Code Style", IAction.AS_DROP_DOWN_MENU) {
 			public void run() {
 				/* ? */
 			}
 		};
 		formatCodeStyleDropDownMenuAction.setId(formatCodeStyleDropDownMenuActionId);
-		formatCodeStyleDropDownMenuAction.setToolTipText("Format CodeStyles");
-		formatCodeStyleDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("md-action-exportashtml"));
+		formatCodeStyleDropDownMenuAction.setToolTipText("Format Code Styles");
+		formatCodeStyleDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("PD_Toolbar_source"));
 		
 		formatCodeStyleDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
@@ -558,6 +572,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		}
 		
 		markdownMultiPageEditor = (MarkdownEditor) editorPart;
+		prefsPropertiesFileNameWithPath = markdownMultiPageEditor.getSourceMarkdownFilePathAndName() + ".prefs";
 		markdownSourceTextEditor = markdownMultiPageEditor.getMarkdownTextEditor();
 		markdownHtmlGeneratorPrefs = markdownMultiPageEditor.getMarkdownHtmlGeneratorPrefs();
 		
@@ -566,7 +581,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		for (IContributionItem contributionItem : formatStyleMenuManager.getItems()) {
 			ActionContributionItem actionContributionItem = (ActionContributionItem) contributionItem;
 			FormatStyleAction formatStyleAction = (FormatStyleAction) actionContributionItem.getAction();
-			if (formatStyleAction.getFormatStyle() == markdownHtmlGeneratorPrefs.getFormatStyle()) {
+			if (formatStyleAction.getFormatStyle() == markdownHtmlGeneratorPrefs.<FormatStyle>get(Pref.FormatStyle)) {
 				formatStyleAction.setChecked(true);
 			}
 			else {
@@ -577,13 +592,13 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		for (IContributionItem contributionItem : formatOptionMenuManager.getItems()) {
 			ActionContributionItem actionContributionItem = (ActionContributionItem) contributionItem;
 			FormatOptionAction formatOptionAction = (FormatOptionAction) actionContributionItem.getAction();
-			formatOptionAction.setChecked(markdownHtmlGeneratorPrefs.getFormatOptions().get(formatOptionAction.getFormatOption()));
+			formatOptionAction.setChecked(markdownHtmlGeneratorPrefs.<Boolean>get(formatOptionAction.getFormatOption()));
 		}
 
 		for (IContributionItem contributionItem : formatCodeStyleMenuManager.getItems()) {
 			ActionContributionItem actionContributionItem = (ActionContributionItem) contributionItem;
 			FormatCodeStyleAction formatCodeStyleAction = (FormatCodeStyleAction) actionContributionItem.getAction();
-			if (formatCodeStyleAction.getFormatCodeStyle() == markdownHtmlGeneratorPrefs.getFormatCodeStyle()) {
+			if (formatCodeStyleAction.getFormatCodeStyle() == markdownHtmlGeneratorPrefs.<FormatCodeStyle>get(Pref.FormatCodeStyle)) {
 				formatCodeStyleAction.setChecked(true);
 			}
 			else {
@@ -666,6 +681,11 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 
 	}
 
-	
+	/** Save from here */
+	private void savePrefsProperties() {
+		
+		markdownHtmlGeneratorPrefs.saveProperties(prefsPropertiesFileNameWithPath);
+	}
+
 	
 }
