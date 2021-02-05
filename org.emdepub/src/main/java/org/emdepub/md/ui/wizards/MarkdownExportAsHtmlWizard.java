@@ -48,9 +48,7 @@ public class MarkdownExportAsHtmlWizard extends Wizard implements IExportWizard 
 		return true; /* To close the wizard */
 	}
 
-	/** Method */
+	/** ? */
 	@Override
-	public void init(IWorkbench workbench, IStructuredSelection structuredSelection) {
-		/* ILB */
-	}
+	public void init(IWorkbench workbench, IStructuredSelection structuredSelection) { /* ? */ }
 }

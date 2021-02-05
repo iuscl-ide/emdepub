@@ -18,39 +18,8 @@ public class MarkdownHtmlGeneratorPrefs {
 		Agate,
 		Androidstudio,
 		ArduinoLight,
-//		Arta,
-//		Ascetic,
-//		AtelierCaveDark,
-//		AtelierCaveLight,
-//		AtelierDuneDark,
-//		AtelierDuneLight,
-//		AtelierEstuaryDark,
-//		AtelierEstuaryLight,
-//		AtelierForestDark,
-//		AtelierForestLight,
-//		AtelierHeathDark,
-//		AtelierHeathLight,
-//		AtelierLakesideDark,
-//		AtelierLakesideLight,
-//		AtelierPlateauDark,
-//		AtelierPlateauLight,
-//		AtelierSavannaDark,
-//		AtelierSavannaLight,
-//		AtelierSeasideDark,
-//		AtelierSeasideLight,
-//		AtelierSulphurpoolDark,
-//		AtelierSulphurpoolLight,
-//		AtomOneDark,
-//		AtomOneLight,
-//		BrownPaper,
-//		CodepenEmbed,
-//		ColorBrewer,
-//		Darcula,
 		Dark,
-//		Darkula,
 		Default,
-//		Docco,
-//		Dracula,
 		Far,
 		Foundation,
 		GithubGist,
@@ -59,41 +28,16 @@ public class MarkdownHtmlGeneratorPrefs {
 		Grayscale,
 		GruvboxDark,
 		GruvboxLight,
-//		Hopscotch,
 		Hybrid,
 		Idea,
 		IrBlack,
-//		KimbieDark,
-//		KimbieLight,
 		Magula,
-//		MonoBlue,
-//		MonokaiSublime,
-//		Monokai,
-//		Obsidian,
-//		Ocean,
-//		ParaisoDark,
-//		ParaisoLight,
-//		Pojoaque,
 		Purebasic,
-//		Qtcreator_dark,
-//		Qtcreator_light,
 		Railscasts,
-//		Rainbow,
-//		Routeros,
-//		SchoolBook,
-//		SolarizedDark,
-//		SolarizedLight,
 		Sunburst,
-//		TomorrowNightBlue,
-//		TomorrowNightBright,
-//		TomorrowNightEighties,
-//		TomorrowNight,
-//		Tomorrow,
 		Vs,
 		Vs2015,
 		Xcode,
-//		Xt256,
-//		Zenburn
 		Custom
 	};
 
@@ -112,34 +56,34 @@ public class MarkdownHtmlGeneratorPrefs {
 	
 	private final LinkedHashMap<Pref, Object> preferences = new LinkedHashMap<>(initialPreferences);
 
-	/** Serialization */
-	public LinkedHashMap<Pref, Object> getSerialization() {
-		
-		LinkedHashMap<Pref, Object> serialization = new LinkedHashMap<>();
+//	/** Serialization */
+//	private LinkedHashMap<Pref, Object> getSerialization() {
+//		
+//		LinkedHashMap<Pref, Object> serialization = new LinkedHashMap<>();
+//		
+//		for (Entry<Pref, Object> preference : preferences.entrySet()) {
+//			Pref preferenceKey = preference.getKey();
+//			Object preferenceValue = preference.getValue();
+//			if (!preferenceValue.equals(initialPreferences.get(preferenceKey))) {
+//				serialization.put(preferenceKey, preferenceValue);
+//			}
+//		}
+//		
+//		return serialization;
+//	}
+
+	/** Save */
+	public void saveProperties(String fileNameWithPath) {
+
+		LinkedHashMap<Pref, Object> modifieds = new LinkedHashMap<>();
 		
 		for (Entry<Pref, Object> preference : preferences.entrySet()) {
 			Pref preferenceKey = preference.getKey();
 			Object preferenceValue = preference.getValue();
 			if (!preferenceValue.equals(initialPreferences.get(preferenceKey))) {
-				serialization.put(preferenceKey, preferenceValue);
+				modifieds.put(preferenceKey, preferenceValue);
 			}
 		}
-		
-		return serialization;
-	}
-
-	/** Serialization */
-	public void setSerialization(LinkedHashMap<Pref, Object> serialization) {
-		
-		for (Entry<Pref, Object> entry : serialization.entrySet()) {
-			preferences.replace(entry.getKey(), entry.getValue());	
-		}
-	}
-
-	/** Save */
-	public void saveProperties(String fileNameWithPath) {
-		
-		LinkedHashMap<Pref, Object> modifieds = getSerialization();
 		if (modifieds.size() == 0) {
 			F.deleteFile(fileNameWithPath);
 			return;
@@ -152,10 +96,48 @@ public class MarkdownHtmlGeneratorPrefs {
 		P.savePropertiesInFile(properties, "Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org", fileNameWithPath);
 	}
 	
-	
-//	public LinkedHashMap<FormatOption, Object> getPreferences() {
-//		return preferences;
+//	/** Serialization */
+//	private void setSerialization(LinkedHashMap<Pref, Object> serialization) {
+//		
+//		for (Entry<Pref, Object> entry : serialization.entrySet()) {
+//			preferences.replace(entry.getKey(), entry.getValue());	
+//		}
 //	}
+
+	/** Load */
+	public void loadProperties(String fileNameWithPath) {
+		
+		if (!F.fileExists(fileNameWithPath)) {
+			return;
+		}
+
+		LinkedHashMap<Pref, Object> modifieds = new LinkedHashMap<>();
+		Properties properties = P.loadPropertiesFromFile(fileNameWithPath);
+
+		for (Entry<Object, Object> entry : properties.entrySet()) {
+			String propertyKey = (String) entry.getKey();
+			String propertyValue = (String) entry.getValue();
+			
+			Pref pref = Pref.valueOf(propertyKey);
+			switch (pref) {
+			case FormatStyle:
+				modifieds.put(pref, FormatStyle.valueOf(propertyValue));
+				break;
+			case CenterHeaders:
+			case FixedContentWidth:
+			case JustifiedParagraphs:
+				modifieds.put(pref, Boolean.parseBoolean(propertyValue));
+				break;
+			case FormatCodeStyle:
+				modifieds.put(pref, FormatCodeStyle.valueOf(propertyValue));
+				break;
+			}
+		}
+
+		for (Entry<Pref, Object> entry : modifieds.entrySet()) {
+			preferences.replace(entry.getKey(), entry.getValue());	
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public <T> T get(Pref preferenceKey) {

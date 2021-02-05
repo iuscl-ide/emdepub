@@ -10,6 +10,9 @@ import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.TextSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.browser.ProgressEvent;
@@ -31,12 +34,14 @@ import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.activator.UI;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard.MarkdownExportType;
+import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine;
+import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine.SpecialFormattingOptions;
 import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs;
 import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatCodeStyle;
 import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatStyle;
 import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.Pref;
 
-
+/** Markdown multi-page editor */
 public class MarkdownEditor extends FormEditor {
 
 	private static final String s = F.sep();
@@ -64,39 +69,8 @@ public class MarkdownEditor extends FormEditor {
 		formatCodeStylesCss.put(FormatCodeStyle.Agate, "agate");
 		formatCodeStylesCss.put(FormatCodeStyle.Androidstudio, "androidstudio");
 		formatCodeStylesCss.put(FormatCodeStyle.ArduinoLight, "arduino-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.Arta, "arta");
-//		formatCodeStylesCss.put(FormatCodeStyle.Ascetic, "ascetic");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierCaveDark, "atelier-cave-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierCaveLight, "atelier-cave-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierDuneDark, "atelier-dune-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierDuneLight, "atelier-dune-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierEstuaryDark, "atelier-estuary-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierEstuaryLight, "atelier-estuary-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierForestDark, "atelier-forest-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierForestLight, "atelier-forest-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierHeathDark, "atelier-heath-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierHeathLight, "atelier-heath-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierLakesideDark, "atelier-lakeside-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierLakesideLight, "atelier-lakeside-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierPlateauDark, "atelier-plateau-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierPlateauLight, "atelier-plateau-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierSavannaDark, "atelier-savanna-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierSavannaLight, "atelier-savanna-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierSeasideDark, "atelier-seaside-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierSeasideLight, "atelier-seaside-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierSulphurpoolDark, "atelier-sulphurpool-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtelierSulphurpoolLight, "atelier-sulphurpool-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtomOneDark, "atom-one-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.AtomOneLight, "atom-one-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.BrownPaper, "brown-paper");
-//		formatCodeStylesCss.put(FormatCodeStyle.CodepenEmbed, "codepen-embed");
-//		formatCodeStylesCss.put(FormatCodeStyle.ColorBrewer, "color-brewer");
-//		formatCodeStylesCss.put(FormatCodeStyle.Darcula, "darcula");
 		formatCodeStylesCss.put(FormatCodeStyle.Dark, "dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.Darkula, "darkula");
 		formatCodeStylesCss.put(FormatCodeStyle.Default, "default");
-//		formatCodeStylesCss.put(FormatCodeStyle.Docco, "docco");
-//		formatCodeStylesCss.put(FormatCodeStyle.Dracula, "dracula");
 		formatCodeStylesCss.put(FormatCodeStyle.Far, "far");
 		formatCodeStylesCss.put(FormatCodeStyle.Foundation, "foundation");
 		formatCodeStylesCss.put(FormatCodeStyle.GithubGist, "github-gist");
@@ -105,41 +79,16 @@ public class MarkdownEditor extends FormEditor {
 		formatCodeStylesCss.put(FormatCodeStyle.Grayscale, "grayscale");
 		formatCodeStylesCss.put(FormatCodeStyle.GruvboxDark, "gruvbox-dark");
 		formatCodeStylesCss.put(FormatCodeStyle.GruvboxLight, "gruvbox-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.Hopscotch, "hopscotch");
 		formatCodeStylesCss.put(FormatCodeStyle.Hybrid, "hybrid");
 		formatCodeStylesCss.put(FormatCodeStyle.Idea, "idea");
 		formatCodeStylesCss.put(FormatCodeStyle.IrBlack, "ir-black");
-//		formatCodeStylesCss.put(FormatCodeStyle.KimbieDark, "kimbie.dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.KimbieLight, "kimbie.light");
 		formatCodeStylesCss.put(FormatCodeStyle.Magula, "magula");
-//		formatCodeStylesCss.put(FormatCodeStyle.MonoBlue, "mono-blue");
-//		formatCodeStylesCss.put(FormatCodeStyle.MonokaiSublime, "monokai-sublime");
-//		formatCodeStylesCss.put(FormatCodeStyle.Monokai, "monokai");
-//		formatCodeStylesCss.put(FormatCodeStyle.Obsidian, "obsidian");
-//		formatCodeStylesCss.put(FormatCodeStyle.Ocean, "ocean");
-//		formatCodeStylesCss.put(FormatCodeStyle.ParaisoDark, "paraiso-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.ParaisoLight, "paraiso-light");
-//		formatCodeStylesCss.put(FormatCodeStyle.Pojoaque, "pojoaque");
 		formatCodeStylesCss.put(FormatCodeStyle.Purebasic, "purebasic");
-//		formatCodeStylesCss.put(FormatCodeStyle.Qtcreator_dark, "qtcreator_dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.Qtcreator_light, "qtcreator_light");
 		formatCodeStylesCss.put(FormatCodeStyle.Railscasts, "railscasts");
-//		formatCodeStylesCss.put(FormatCodeStyle.Rainbow, "rainbow");
-//		formatCodeStylesCss.put(FormatCodeStyle.Routeros, "routeros");
-//		formatCodeStylesCss.put(FormatCodeStyle.SchoolBook, "school-book");
-//		formatCodeStylesCss.put(FormatCodeStyle.SolarizedDark, "solarized-dark");
-//		formatCodeStylesCss.put(FormatCodeStyle.SolarizedLight, "solarized-light");
 		formatCodeStylesCss.put(FormatCodeStyle.Sunburst, "sunburst");
-//		formatCodeStylesCss.put(FormatCodeStyle.TomorrowNightBlue, "tomorrow-night-blue");
-//		formatCodeStylesCss.put(FormatCodeStyle.TomorrowNightBright, "tomorrow-night-bright");
-//		formatCodeStylesCss.put(FormatCodeStyle.TomorrowNightEighties, "tomorrow-night-eighties");
-//		formatCodeStylesCss.put(FormatCodeStyle.TomorrowNight, "tomorrow-night");
-//		formatCodeStylesCss.put(FormatCodeStyle.Tomorrow, "tomorrow");
 		formatCodeStylesCss.put(FormatCodeStyle.Vs, "vs");
 		formatCodeStylesCss.put(FormatCodeStyle.Vs2015, "vs2015");
 		formatCodeStylesCss.put(FormatCodeStyle.Xcode, "xcode");
-//		formatCodeStylesCss.put(FormatCodeStyle.Xt256, "xt256");
-//		formatCodeStylesCss.put(FormatCodeStyle.Zenburn, "zenburn");
 		formatCodeStylesCss.put(FormatCodeStyle.Custom, "custom");
 	}
 	
@@ -149,38 +98,8 @@ public class MarkdownEditor extends FormEditor {
 		formatCodeStylesPre.put(FormatCodeStyle.Agate, "background: rgb(51, 51, 51);color: white;");
 		formatCodeStylesPre.put(FormatCodeStyle.Androidstudio, "background: rgb(40, 43, 46);color: rgb(169, 183, 198);");
 		formatCodeStylesPre.put(FormatCodeStyle.ArduinoLight, "background: rgb(255, 255, 255);color: rgb(67, 79, 84);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Arta, "background: rgb(34, 34, 34);color: rgb(170, 170, 170);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Ascetic, "background: white;color: black;");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierCaveDark, "background: rgb(25, 23, 28);color: rgb(139, 135, 146);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierCaveLight, "background: rgb(239, 236, 244);color: rgb(88, 82, 96);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierDuneDark, "background: rgb(32, 32, 29);color: rgb(166, 162, 140);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierDuneLight, "background: rgb(254, 251, 236);color: rgb(110, 107, 94);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierEstuaryDark, "background: rgb(34, 34, 27);color: rgb(146, 145, 129);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierEstuaryLight, "background: rgb(244, 243, 236);color: rgb(95, 94, 78);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierForestDark, "background: rgb(27, 25, 24);color: rgb(168, 161, 159);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierForestLight, "background: rgb(241, 239, 238);color: rgb(104, 97, 94);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierHeathDark, "background: rgb(27, 24, 27);color: rgb(171, 155, 171);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierHeathLight, "background: rgb(247, 243, 247);color: rgb(105, 93, 105);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierLakesideDark, "background: rgb(22, 27, 29);color: rgb(126, 162, 180);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierLakesideLight, "background: rgb(235, 248, 255);color: rgb(81, 109, 123);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierPlateauDark, "background: rgb(27, 24, 24);color: rgb(138, 133, 133);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierPlateauLight, "background: rgb(244, 236, 236);color: rgb(88, 80, 80);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierSavannaDark, "background: rgb(23, 28, 25);color: rgb(135, 146, 138);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierSavannaLight, "background: rgb(236, 244, 238);color: rgb(82, 96, 87);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierSeasideDark, "background: rgb(19, 21, 19);color: rgb(140, 166, 140);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierSeasideLight, "background: rgb(244, 251, 244);color: rgb(94, 110, 94);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierSulphurpoolDark, "background: rgb(32, 39, 70);color: rgb(151, 157, 180);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtelierSulphurpoolLight, "background: rgb(245, 247, 255);color: rgb(94, 102, 135);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtomOneDark, "background: rgb(40, 44, 52);color: rgb(171, 178, 191);");
-//		formatCodeStylesPre.put(FormatCodeStyle.AtomOneLight, "background: rgb(250, 250, 250);color: rgb(56, 58, 66);");
-//		formatCodeStylesPre.put(FormatCodeStyle.BrownPaper, "background: rgb(183, 166, 142) url(./brown-papersq.png);color: rgb(54, 60, 105);");
-//		formatCodeStylesPre.put(FormatCodeStyle.CodepenEmbed, "background: rgb(34, 34, 34);color: rgb(255, 255, 255);");
-//		formatCodeStylesPre.put(FormatCodeStyle.ColorBrewer, "background: rgb(255, 255, 255);color: rgb(0, 0, 0);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Darcula, "background: rgb(43, 43, 43);color: rgb(186, 186, 186);");
 		formatCodeStylesPre.put(FormatCodeStyle.Dark, "background: rgb(68, 68, 68);color: rgb(221, 221, 221);");
 		formatCodeStylesPre.put(FormatCodeStyle.Default, "background: rgb(240, 240, 240);color: rgb(68, 68, 68);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Docco, "background: rgb(248, 248, 255);color: rgb(0, 0, 0);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Dracula, "background: rgb(40, 42, 54);color: rgb(248, 248, 242);");
 		formatCodeStylesPre.put(FormatCodeStyle.Far, "background: rgb(0, 0, 128);color: rgb(0, 255, 255);");
 		formatCodeStylesPre.put(FormatCodeStyle.Foundation, "background: rgb(238, 238, 238);color: black;");
 		formatCodeStylesPre.put(FormatCodeStyle.GithubGist, "background: white;color: rgb(51, 51, 51);");
@@ -189,41 +108,16 @@ public class MarkdownEditor extends FormEditor {
 		formatCodeStylesPre.put(FormatCodeStyle.Grayscale, "background: rgb(255, 255, 255);color: rgb(51, 51, 51);");
 		formatCodeStylesPre.put(FormatCodeStyle.GruvboxDark, "background: rgb(40, 40, 40);color: rgb(235, 219, 178);");
 		formatCodeStylesPre.put(FormatCodeStyle.GruvboxLight, "background: rgb(251, 241, 199);color: rgb(60, 56, 54);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Hopscotch, "background: rgb(50, 41, 49);color: rgb(185, 181, 184);");
 		formatCodeStylesPre.put(FormatCodeStyle.Hybrid, "background: rgb(29, 31, 33);color: rgb(197, 200, 198);");
 		formatCodeStylesPre.put(FormatCodeStyle.Idea, "background: rgb(255, 255, 255);color: rgb(0, 0, 0);");
 		formatCodeStylesPre.put(FormatCodeStyle.IrBlack, "background: rgb(0, 0, 0);color: rgb(248, 248, 248);");
-//		formatCodeStylesPre.put(FormatCodeStyle.KimbieDark, "background: rgb(34, 26, 15);color: rgb(211, 175, 134);");
-//		formatCodeStylesPre.put(FormatCodeStyle.KimbieLight, "background: rgb(251, 235, 212);color: rgb(132, 97, 61);");
 		formatCodeStylesPre.put(FormatCodeStyle.Magula, "color: black;");
-//		formatCodeStylesPre.put(FormatCodeStyle.MonoBlue, "background: rgb(234, 238, 243);color: rgb(0, 25, 58);");
-//		formatCodeStylesPre.put(FormatCodeStyle.MonokaiSublime, "background: rgb(35, 36, 31);color: rgb(248, 248, 242);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Monokai, "background: rgb(39, 40, 34);color: rgb(221, 221, 221);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Obsidian, "background: rgb(40, 43, 46);color: rgb(224, 226, 228);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Ocean, "background: rgb(43, 48, 59);color: rgb(192, 197, 206);");
-//		formatCodeStylesPre.put(FormatCodeStyle.ParaisoDark, "background: rgb(47, 30, 46);color: rgb(163, 158, 155);");
-//		formatCodeStylesPre.put(FormatCodeStyle.ParaisoLight, "background: rgb(231, 233, 219);color: rgb(79, 66, 76);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Pojoaque, "background: url(./pojoaque.jpg) repeat scroll left top rgb(24, 25, 20);color: rgb(220, 207, 143);");
 		formatCodeStylesPre.put(FormatCodeStyle.Purebasic, "background: rgb(255, 255, 223);color: rgb(0, 0, 0);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Qtcreator_dark, "background: rgb(0, 0, 0);color: rgb(170, 170, 170);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Qtcreator_light, "background: rgb(255, 255, 255);color: rgb(0, 0, 0);");
 		formatCodeStylesPre.put(FormatCodeStyle.Railscasts, "background: rgb(35, 35, 35);color: rgb(230, 225, 220);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Rainbow, "background: rgb(71, 73, 73);color: rgb(209, 217, 225);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Routeros, "background: rgb(240, 240, 240);color: rgb(68, 68, 68);");
-//		formatCodeStylesPre.put(FormatCodeStyle.SchoolBook, "color: rgb(62, 89, 21);");
-//		formatCodeStylesPre.put(FormatCodeStyle.SolarizedDark, "background: rgb(0, 43, 54);color: rgb(131, 148, 150);");
-//		formatCodeStylesPre.put(FormatCodeStyle.SolarizedLight, "background: rgb(253, 246, 227);color: rgb(101, 123, 131);");
 		formatCodeStylesPre.put(FormatCodeStyle.Sunburst, "background: rgb(0, 0, 0);color: rgb(248, 248, 248);");
-//		formatCodeStylesPre.put(FormatCodeStyle.TomorrowNightBlue, "background: rgb(0, 36, 81);color: white;");
-//		formatCodeStylesPre.put(FormatCodeStyle.TomorrowNightBright, "background: black;color: rgb(234, 234, 234);");
-//		formatCodeStylesPre.put(FormatCodeStyle.TomorrowNightEighties, "background: rgb(45, 45, 45);color: rgb(204, 204, 204);");
-//		formatCodeStylesPre.put(FormatCodeStyle.TomorrowNight, "background: rgb(29, 31, 33);color: rgb(197, 200, 198);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Tomorrow, "background: white;color: rgb(77, 77, 76);");
 		formatCodeStylesPre.put(FormatCodeStyle.Vs, "background: white;color: black;");
 		formatCodeStylesPre.put(FormatCodeStyle.Vs2015, "background: rgb(30, 30, 30);color: rgb(220, 220, 220);");
 		formatCodeStylesPre.put(FormatCodeStyle.Xcode, "background: rgb(255, 255, 255);color: black;");
-//		formatCodeStylesPre.put(FormatCodeStyle.Xt256, "background: rgb(0, 0, 0);color: rgb(234, 234, 234);");
-//		formatCodeStylesPre.put(FormatCodeStyle.Zenburn, "background: rgb(63, 63, 63);color: rgb(220, 220, 220);");
 		formatCodeStylesPre.put(FormatCodeStyle.Custom, "background: white;color: black;");
 	}
 	
@@ -267,18 +161,16 @@ public class MarkdownEditor extends FormEditor {
 		
 		/** Status bar */
 		viewerBrowser.addStatusTextListener(new StatusTextListener() {
-			
 			@Override
 			public void changed(StatusTextEvent statusTextEvent) {
-				//MarkdownSemanticEPEditorContributor.getLinkField().setText(statusTextEvent.text);
+				
+				MarkdownEditorContributor.getStatusLineLinkField().setText(statusTextEvent.text);
 			}
 		});
 
 		/** Progress */
 		viewerBrowser.addProgressListener(new ProgressListener() {
-            public void changed(ProgressEvent progressEvent) {
-            	/* ILB */
-            }
+            public void changed(ProgressEvent progressEvent) { }
             public void completed(ProgressEvent progressEvent) {
             
             	String formatStyleCss = formatStylesCss.get(markdownHtmlGeneratorPrefs.get(Pref.FormatStyle));
@@ -317,6 +209,7 @@ public class MarkdownEditor extends FormEditor {
 		//sourceDocument = markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput());
 		
 		prefsPropertiesFileNameWithPath = getSourceMarkdownFilePathAndName() + ".prefs";
+		markdownHtmlGeneratorPrefs.loadProperties(prefsPropertiesFileNameWithPath);
 	}
 
 	/** Create pages */
@@ -344,11 +237,11 @@ public class MarkdownEditor extends FormEditor {
 		return iFile.getLocation().toOSString();
 	}
 
-	/** Save from here */
-	private void savePrefsProperties() {
-		
-		markdownHtmlGeneratorPrefs.saveProperties(prefsPropertiesFileNameWithPath);
-	}
+//	/** Save from here */
+//	private void savePrefsProperties() {
+//		
+//		markdownHtmlGeneratorPrefs.saveProperties(prefsPropertiesFileNameWithPath);
+//	}
 	
 	/** Export */
 	public void exportAsHtml(MarkdownExportType markdownExportType, String exportName, String exportLocation) {
@@ -419,6 +312,40 @@ public class MarkdownEditor extends FormEditor {
     		
     		openExternalFile(exportFileNameWithPath);
     	}
+	}
+	
+	/** Special formatting */
+	public void doSpecialFormatting(LinkedHashMap<SpecialFormattingOptions, Boolean> formattingOptions) {
+		
+		Document document = (Document) markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput());
+		String enter = document.getDefaultLineDelimiter();
+		TextSelection textSelection = (TextSelection) markdownTextEditor.getSelectionProvider().getSelection();
+		
+		String selection = "";
+		if (formattingOptions.get(SpecialFormattingOptions.ApplyToSelection)) {
+			selection = textSelection.getText();
+		}
+		else {
+			selection = document.get();
+		}
+		if (selection.length() == 0) {
+			return;
+		}
+
+		String formattedSelection = MarkdownEditorEngine.doSpecialFormatting(selection, formattingOptions, enter);
+		
+		if (formattingOptions.get(SpecialFormattingOptions.ApplyToSelection)) {
+			try {
+				document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
+			}
+			catch (BadLocationException badLocationException) {
+				L.e("BadLocationException in doSpecialFormatting", badLocationException);
+			}
+		}
+		else {
+			document.set(formattedSelection);
+		}
+		
 	}
 	
 	/** Get the Markdown as Base64 text */

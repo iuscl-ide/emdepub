@@ -1,0 +1,5 @@
+#Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org
+#Mon Feb 01 19:55:09 EET 2021
+CenterHeaders=true
+FormatStyle=SemanticUILike
+FormatCodeStyle=Vs

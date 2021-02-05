@@ -22,8 +22,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-15
 Automatic-Module-Name: org.emdepub
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
- lib/jackson-core-2.12.1.jar,
- lib/jackson-annotations-2.12.1.jar,
- lib/jackson-databind-2.12.1.jar,
- lib/cssparser-0.9.29.jar,
- lib/sac.jar
+ lib/flexmark-0.20.0.jar,
+ lib/flexmark-formatter-0.20.0.jar,
+ lib/flexmark-util-0.20.0.jar,
+ lib/flexmark-ext-tables-0.20.0.jar

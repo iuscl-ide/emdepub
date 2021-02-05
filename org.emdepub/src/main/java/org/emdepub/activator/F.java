@@ -158,6 +158,12 @@ public class F {
 		return File.separator;
 	}
 
+	/** Exists */
+	public static boolean fileExists(String fileNameWithPath) {
+
+		return Files.exists(Paths.get(fileNameWithPath));
+	}
+	
 	/** Delete file */
 	public static void deleteFile(String fileNameWithPath) {
 
