@@ -36,10 +36,10 @@ import org.emdepub.activator.UI;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard.MarkdownExportType;
 import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine;
 import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine.SpecialFormattingOptions;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatCodeStyle;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatStyle;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.Pref;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatCodeStyles;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatStyles;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.PreferenceNames;
 
 /** Markdown multi-page editor */
 public class MarkdownEditor extends FormEditor {
@@ -47,78 +47,78 @@ public class MarkdownEditor extends FormEditor {
 	private static final String s = F.sep();
 	private static final String e = F.enter();
 	
-	public static final LinkedHashMap<FormatStyle, String> formatStylesCss = new LinkedHashMap<>();
+	public static final LinkedHashMap<DisplayFormatStyles, String> formatStylesCss = new LinkedHashMap<>();
 	static {
-		formatStylesCss.put(FormatStyle.None, null);
-		formatStylesCss.put(FormatStyle.GitHub, "github-markdown");
-		formatStylesCss.put(FormatStyle.GoogleLike, "google-like-markdown");
-		formatStylesCss.put(FormatStyle.SemanticUILike, "semantic-ui-like-markdown");
-		formatStylesCss.put(FormatStyle.Custom, "stylesheet");
+		formatStylesCss.put(DisplayFormatStyles.None, null);
+		formatStylesCss.put(DisplayFormatStyles.GitHub, "github-markdown");
+		formatStylesCss.put(DisplayFormatStyles.GoogleLike, "google-like-markdown");
+		formatStylesCss.put(DisplayFormatStyles.SemanticUILike, "semantic-ui-like-markdown");
+		formatStylesCss.put(DisplayFormatStyles.Custom, "stylesheet");
 	}
 
-	public static final LinkedHashMap<Pref, Boolean> formatOptions = new LinkedHashMap<>();
+	public static final LinkedHashMap<PreferenceNames, Boolean> formatOptions = new LinkedHashMap<>();
 	static {
-		formatOptions.put(Pref.FixedContentWidth, true);
-		formatOptions.put(Pref.JustifiedParagraphs, true);
-		formatOptions.put(Pref.CenterHeaders, false);
+		formatOptions.put(PreferenceNames.DisplayFixedContentWidth, true);
+		formatOptions.put(PreferenceNames.DisplayJustifiedParagraphs, true);
+		formatOptions.put(PreferenceNames.DisplayCenterHeaders, false);
 	}
 
-	public static final LinkedHashMap<FormatCodeStyle, String> formatCodeStylesCss = new LinkedHashMap<>();
+	public static final LinkedHashMap<DisplayFormatCodeStyles, String> formatCodeStylesCss = new LinkedHashMap<>();
 	static {
-		formatCodeStylesCss.put(FormatCodeStyle.None, null);
-		formatCodeStylesCss.put(FormatCodeStyle.Agate, "agate");
-		formatCodeStylesCss.put(FormatCodeStyle.Androidstudio, "androidstudio");
-		formatCodeStylesCss.put(FormatCodeStyle.ArduinoLight, "arduino-light");
-		formatCodeStylesCss.put(FormatCodeStyle.Dark, "dark");
-		formatCodeStylesCss.put(FormatCodeStyle.Default, "default");
-		formatCodeStylesCss.put(FormatCodeStyle.Far, "far");
-		formatCodeStylesCss.put(FormatCodeStyle.Foundation, "foundation");
-		formatCodeStylesCss.put(FormatCodeStyle.GithubGist, "github-gist");
-		formatCodeStylesCss.put(FormatCodeStyle.Github, "github");
-		formatCodeStylesCss.put(FormatCodeStyle.Googlecode, "googlecode");
-		formatCodeStylesCss.put(FormatCodeStyle.Grayscale, "grayscale");
-		formatCodeStylesCss.put(FormatCodeStyle.GruvboxDark, "gruvbox-dark");
-		formatCodeStylesCss.put(FormatCodeStyle.GruvboxLight, "gruvbox-light");
-		formatCodeStylesCss.put(FormatCodeStyle.Hybrid, "hybrid");
-		formatCodeStylesCss.put(FormatCodeStyle.Idea, "idea");
-		formatCodeStylesCss.put(FormatCodeStyle.IrBlack, "ir-black");
-		formatCodeStylesCss.put(FormatCodeStyle.Magula, "magula");
-		formatCodeStylesCss.put(FormatCodeStyle.Purebasic, "purebasic");
-		formatCodeStylesCss.put(FormatCodeStyle.Railscasts, "railscasts");
-		formatCodeStylesCss.put(FormatCodeStyle.Sunburst, "sunburst");
-		formatCodeStylesCss.put(FormatCodeStyle.Vs, "vs");
-		formatCodeStylesCss.put(FormatCodeStyle.Vs2015, "vs2015");
-		formatCodeStylesCss.put(FormatCodeStyle.Xcode, "xcode");
-		formatCodeStylesCss.put(FormatCodeStyle.Custom, "custom");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.None, null);
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Agate, "agate");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Androidstudio, "androidstudio");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.ArduinoLight, "arduino-light");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Dark, "dark");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Default, "default");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Far, "far");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Foundation, "foundation");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.GithubGist, "github-gist");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Github, "github");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Googlecode, "googlecode");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Grayscale, "grayscale");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.GruvboxDark, "gruvbox-dark");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.GruvboxLight, "gruvbox-light");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Hybrid, "hybrid");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Idea, "idea");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.IrBlack, "ir-black");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Magula, "magula");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Purebasic, "purebasic");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Railscasts, "railscasts");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Sunburst, "sunburst");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Vs, "vs");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Vs2015, "vs2015");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Xcode, "xcode");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.Custom, "custom");
 	}
 	
-	public static final LinkedHashMap<FormatCodeStyle, String> formatCodeStylesPre = new LinkedHashMap<>();
+	public static final LinkedHashMap<DisplayFormatCodeStyles, String> formatCodeStylesPre = new LinkedHashMap<>();
 	static {
-		formatCodeStylesPre.put(FormatCodeStyle.None, null);
-		formatCodeStylesPre.put(FormatCodeStyle.Agate, "background: rgb(51, 51, 51);color: white;");
-		formatCodeStylesPre.put(FormatCodeStyle.Androidstudio, "background: rgb(40, 43, 46);color: rgb(169, 183, 198);");
-		formatCodeStylesPre.put(FormatCodeStyle.ArduinoLight, "background: rgb(255, 255, 255);color: rgb(67, 79, 84);");
-		formatCodeStylesPre.put(FormatCodeStyle.Dark, "background: rgb(68, 68, 68);color: rgb(221, 221, 221);");
-		formatCodeStylesPre.put(FormatCodeStyle.Default, "background: rgb(240, 240, 240);color: rgb(68, 68, 68);");
-		formatCodeStylesPre.put(FormatCodeStyle.Far, "background: rgb(0, 0, 128);color: rgb(0, 255, 255);");
-		formatCodeStylesPre.put(FormatCodeStyle.Foundation, "background: rgb(238, 238, 238);color: black;");
-		formatCodeStylesPre.put(FormatCodeStyle.GithubGist, "background: white;color: rgb(51, 51, 51);");
-		formatCodeStylesPre.put(FormatCodeStyle.Github, "background: rgb(248, 248, 248);color: rgb(51, 51, 51);");
-		formatCodeStylesPre.put(FormatCodeStyle.Googlecode, "background: white;color: black;");
-		formatCodeStylesPre.put(FormatCodeStyle.Grayscale, "background: rgb(255, 255, 255);color: rgb(51, 51, 51);");
-		formatCodeStylesPre.put(FormatCodeStyle.GruvboxDark, "background: rgb(40, 40, 40);color: rgb(235, 219, 178);");
-		formatCodeStylesPre.put(FormatCodeStyle.GruvboxLight, "background: rgb(251, 241, 199);color: rgb(60, 56, 54);");
-		formatCodeStylesPre.put(FormatCodeStyle.Hybrid, "background: rgb(29, 31, 33);color: rgb(197, 200, 198);");
-		formatCodeStylesPre.put(FormatCodeStyle.Idea, "background: rgb(255, 255, 255);color: rgb(0, 0, 0);");
-		formatCodeStylesPre.put(FormatCodeStyle.IrBlack, "background: rgb(0, 0, 0);color: rgb(248, 248, 248);");
-		formatCodeStylesPre.put(FormatCodeStyle.Magula, "color: black;");
-		formatCodeStylesPre.put(FormatCodeStyle.Purebasic, "background: rgb(255, 255, 223);color: rgb(0, 0, 0);");
-		formatCodeStylesPre.put(FormatCodeStyle.Railscasts, "background: rgb(35, 35, 35);color: rgb(230, 225, 220);");
-		formatCodeStylesPre.put(FormatCodeStyle.Sunburst, "background: rgb(0, 0, 0);color: rgb(248, 248, 248);");
-		formatCodeStylesPre.put(FormatCodeStyle.Vs, "background: white;color: black;");
-		formatCodeStylesPre.put(FormatCodeStyle.Vs2015, "background: rgb(30, 30, 30);color: rgb(220, 220, 220);");
-		formatCodeStylesPre.put(FormatCodeStyle.Xcode, "background: rgb(255, 255, 255);color: black;");
-		formatCodeStylesPre.put(FormatCodeStyle.Custom, "background: white;color: black;");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.None, null);
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Agate, "background: rgb(51, 51, 51);color: white;");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Androidstudio, "background: rgb(40, 43, 46);color: rgb(169, 183, 198);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.ArduinoLight, "background: rgb(255, 255, 255);color: rgb(67, 79, 84);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Dark, "background: rgb(68, 68, 68);color: rgb(221, 221, 221);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Default, "background: rgb(240, 240, 240);color: rgb(68, 68, 68);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Far, "background: rgb(0, 0, 128);color: rgb(0, 255, 255);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Foundation, "background: rgb(238, 238, 238);color: black;");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.GithubGist, "background: white;color: rgb(51, 51, 51);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Github, "background: rgb(248, 248, 248);color: rgb(51, 51, 51);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Googlecode, "background: white;color: black;");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Grayscale, "background: rgb(255, 255, 255);color: rgb(51, 51, 51);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.GruvboxDark, "background: rgb(40, 40, 40);color: rgb(235, 219, 178);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.GruvboxLight, "background: rgb(251, 241, 199);color: rgb(60, 56, 54);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Hybrid, "background: rgb(29, 31, 33);color: rgb(197, 200, 198);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Idea, "background: rgb(255, 255, 255);color: rgb(0, 0, 0);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.IrBlack, "background: rgb(0, 0, 0);color: rgb(248, 248, 248);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Magula, "color: black;");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Purebasic, "background: rgb(255, 255, 223);color: rgb(0, 0, 0);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Railscasts, "background: rgb(35, 35, 35);color: rgb(230, 225, 220);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Sunburst, "background: rgb(0, 0, 0);color: rgb(248, 248, 248);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Vs, "background: white;color: black;");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Vs2015, "background: rgb(30, 30, 30);color: rgb(220, 220, 220);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Xcode, "background: rgb(255, 255, 255);color: black;");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.Custom, "background: white;color: black;");
 	}
 	
 	private static final String mdExportTemplate = R.getTextResourceAsString("texts/md-export-template.html");
@@ -140,8 +140,8 @@ public class MarkdownEditor extends FormEditor {
 	/** The Markdown editor */
 	private MarkdownTextEditor markdownTextEditor;
 	private int markdownTextEditorPageIndex;
-	private MarkdownHtmlGeneratorPrefs markdownHtmlGeneratorPrefs;
-	private String prefsPropertiesFileNameWithPath;
+	private MarkdownPreferences markdownPreferences;
+	private String markdownPreferencesPropertiesFileNameWithPath;
 
 //	private IEditorPart markdownTextEditorPart;
 //	private IDocument sourceDocument;
@@ -173,8 +173,8 @@ public class MarkdownEditor extends FormEditor {
             public void changed(ProgressEvent progressEvent) { }
             public void completed(ProgressEvent progressEvent) {
             
-            	String formatStyleCss = formatStylesCss.get(markdownHtmlGeneratorPrefs.get(Pref.FormatStyle));
-            	String formatCodeStyleCss = formatCodeStylesCss.get(markdownHtmlGeneratorPrefs.get(Pref.FormatCodeStyle));
+            	String formatStyleCss = formatStylesCss.get(markdownPreferences.get(PreferenceNames.DisplayFormatStyle));
+            	String formatCodeStyleCss = formatCodeStylesCss.get(markdownPreferences.get(PreferenceNames.DisplayFormatCodeStyle));
             	
             	viewerBrowser.execute("window.markdownSettings = {}; " +
         			"window.markdownSettings.markdownText = '" + getBase64MarkdownText() + "'; " +
@@ -193,7 +193,7 @@ public class MarkdownEditor extends FormEditor {
 	/** Creates Markdown text editor page of the forms editor */
 	private void createMarkdownTextEditorPage() {
 
-		markdownHtmlGeneratorPrefs = new MarkdownHtmlGeneratorPrefs();
+		markdownPreferences = new MarkdownPreferences();
 		
 		markdownTextEditor = new MarkdownTextEditor();
 		try {
@@ -208,10 +208,16 @@ public class MarkdownEditor extends FormEditor {
 		//setSourcePage(markdownTextEditor);
 		//sourceDocument = markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput());
 		
-		prefsPropertiesFileNameWithPath = getSourceMarkdownFilePathAndName() + ".prefs";
-		markdownHtmlGeneratorPrefs.loadProperties(prefsPropertiesFileNameWithPath);
+		markdownPreferencesPropertiesFileNameWithPath = getSourceMarkdownFilePathAndName() + ".prefs";
+		markdownPreferences.loadProperties(markdownPreferencesPropertiesFileNameWithPath);
 	}
 
+	/** Save from here */
+	public void saveMarkdownPreferences() {
+		
+		markdownPreferences.saveProperties(markdownPreferencesPropertiesFileNameWithPath);
+	}
+	
 	/** Create pages */
 	@Override
 	protected void addPages() {
@@ -246,8 +252,8 @@ public class MarkdownEditor extends FormEditor {
 	/** Export */
 	public void exportAsHtml(MarkdownExportType markdownExportType, String exportName, String exportLocation) {
 
-		String formatStyleCss = formatStylesCss.get(markdownHtmlGeneratorPrefs.get(Pref.FormatStyle));
-		String formatCodeStyleCss = formatCodeStylesCss.get(markdownHtmlGeneratorPrefs.get(Pref.FormatCodeStyle));
+		String formatStyleCss = formatStylesCss.get(markdownPreferences.get(PreferenceNames.DisplayFormatStyle));
+		String formatCodeStyleCss = formatCodeStylesCss.get(markdownPreferences.get(PreferenceNames.DisplayFormatCodeStyle));
 		
     	String htmlText = (String) viewerBrowser.evaluate("window.markdownSettings = {}; " +
 			"window.markdownSettings.markdownText = '" + getBase64MarkdownText() + "'; " +
@@ -315,37 +321,44 @@ public class MarkdownEditor extends FormEditor {
 	}
 	
 	/** Special formatting */
-	public void doSpecialFormatting(LinkedHashMap<SpecialFormattingOptions, Boolean> formattingOptions) {
+	public void doSpecialFormatting(MarkdownPreferences markdownPreferences) {
 		
 		Document document = (Document) markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput());
-		String enter = document.getDefaultLineDelimiter();
+//		String enter = document.getDefaultLineDelimiter();
 		TextSelection textSelection = (TextSelection) markdownTextEditor.getSelectionProvider().getSelection();
 		
-		String selection = "";
-		if (formattingOptions.get(SpecialFormattingOptions.ApplyToSelection)) {
-			selection = textSelection.getText();
-		}
-		else {
-			selection = document.get();
-		}
+//		String selection = "";
+//		if (formattingOptions.get(SpecialFormattingOptions.ApplyToSelection)) {
+//			selection = textSelection.getText();
+//		}
+//		else {
+//			selection = document.get();
+//		}
+		String selection = textSelection.getText();
 		if (selection.length() == 0) {
 			return;
 		}
 
-		String formattedSelection = MarkdownEditorEngine.doSpecialFormatting(selection, formattingOptions, enter);
-		
-		if (formattingOptions.get(SpecialFormattingOptions.ApplyToSelection)) {
-			try {
-				document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
-			}
-			catch (BadLocationException badLocationException) {
-				L.e("BadLocationException in doSpecialFormatting", badLocationException);
-			}
+		String formattedSelection = MarkdownEditorEngine.formatMarkdown(selection, markdownPreferences);
+
+		try {
+			document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
 		}
-		else {
-			document.set(formattedSelection);
+		catch (BadLocationException badLocationException) {
+			L.e("BadLocationException in doSpecialFormatting", badLocationException);
 		}
-		
+
+//		if (formattingOptions.get(SpecialFormattingOptions.ApplyToSelection)) {
+//			try {
+//				document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
+//			}
+//			catch (BadLocationException badLocationException) {
+//				L.e("BadLocationException in doSpecialFormatting", badLocationException);
+//			}
+//		}
+//		else {
+//			document.set(formattedSelection);
+//		}
 	}
 	
 	/** Get the Markdown as Base64 text */
@@ -362,19 +375,19 @@ public class MarkdownEditor extends FormEditor {
 		String formatOptionsCss = "";
 		String e = F.enter();
 		
-		if (markdownHtmlGeneratorPrefs.<Boolean>get(Pref.FixedContentWidth)) {
+		if (markdownPreferences.<Boolean>get(PreferenceNames.DisplayFixedContentWidth)) {
 			formatOptionsCss = formatOptionsCss + e + mdFixedContentWidthCss;
 		}
 
-		if (markdownHtmlGeneratorPrefs.<Boolean>get(Pref.JustifiedParagraphs)) {
+		if (markdownPreferences.<Boolean>get(PreferenceNames.DisplayJustifiedParagraphs)) {
 			formatOptionsCss = formatOptionsCss + e + mdJustifiedParagraphsCss;
 		}
 
-		if (markdownHtmlGeneratorPrefs.<Boolean>get(Pref.CenterHeaders)) {
+		if (markdownPreferences.<Boolean>get(PreferenceNames.DisplayCenterHeaders)) {
 			formatOptionsCss = formatOptionsCss + e + mdCenterHeadersCss;
 		}
 		
-		String formatCodeStylePre = formatCodeStylesPre.get(markdownHtmlGeneratorPrefs.get(Pref.FormatCodeStyle));
+		String formatCodeStylePre = formatCodeStylesPre.get(markdownPreferences.get(PreferenceNames.DisplayFormatCodeStyle));
 		if (formatCodeStylePre != null) {
 			String formatCodeStylesCssBackground = "article.markdown-body pre {" + e + formatCodeStylePre + e + "}";
 			formatOptionsCss = formatOptionsCss + e + formatCodeStylesCssBackground;
@@ -521,8 +534,8 @@ public class MarkdownEditor extends FormEditor {
 		return true;
 	}
 
-	public MarkdownHtmlGeneratorPrefs getMarkdownHtmlGeneratorPrefs() {
-		return markdownHtmlGeneratorPrefs;
+	public MarkdownPreferences getPreferences() {
+		return markdownPreferences;
 	}
 
 	public MarkdownTextEditor getMarkdownTextEditor() {

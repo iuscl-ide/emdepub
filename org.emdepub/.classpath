@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-tables-0.20.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-0.20.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-formatter-0.20.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-0.20.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-html-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-tables-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-visitor-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-options-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-format-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-collection-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-dependency-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-builder-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-misc-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-sequence-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-ast-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-data-0.62.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-0.62.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-15">
 		<attributes>
 			<attribute name="module" value="true"/>

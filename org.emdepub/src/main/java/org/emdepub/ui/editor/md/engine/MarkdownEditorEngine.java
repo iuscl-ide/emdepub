@@ -3,16 +3,20 @@ package org.emdepub.ui.editor.md.engine;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
 
-import com.vladsch.flexmark.Extension;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.PreferenceNames;
+
 import com.vladsch.flexmark.ext.tables.TablesExtension;
-import com.vladsch.flexmark.formatter.internal.Formatter;
+import com.vladsch.flexmark.formatter.Formatter;
 import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.util.data.MutableDataSet;
+import com.vladsch.flexmark.util.sequence.LineAppendable;
+
 
 public class MarkdownEditorEngine {
 
-	private static final List<Extension> extensions = Arrays.asList(
+//	private static final List<Extension> extensions = Arrays.asList(
 //			AbbreviationExtension.create(),
 //			AsideExtension.create(),
 //			FootnoteExtension.create(),
@@ -22,26 +26,73 @@ public class MarkdownEditorEngine {
 //			InsExtension.create(),
 //			JekyllFrontMatterExtension.create(),
 //			SuperscriptExtension.create(),
-			TablesExtension.create()
+//			TablesExtension.create()
 			//,
 //			TypographicExtension.create(),
 //			TocExtension.create(),
 //			EmojiExtension.create(),
-			);
+//			);
 //			MarkdownSemanticEPRenderExtension.create());
 	
-	/** Markdown parser */
-	private final static Parser parser = Parser.builder().extensions(extensions).build();
-	//private final static Parser parser = Parser.builder().build();
+	/** Parser options */
+	private static MutableDataSet parserOptions = new MutableDataSet();
+	static {
+		parserOptions.set(Parser.EXTENSIONS, Arrays.asList(TablesExtension.create()));	
+	}
 	
-	/** Markdown formatter */
-	private final static Formatter formatter = Formatter.builder().extensions(extensions).build();
-	//private final static Formatter formatter = Formatter.builder().build();
+	/** Markdown parser */
+	private final static Parser parser = Parser.builder(parserOptions).build();
+
+	/** Formatter options */
+	private static MutableDataSet formatterOptions = new MutableDataSet();
+	static {
+		formatterOptions.setFrom(parserOptions);
+		formatterOptions.set(Formatter.FENCED_CODE_SPACE_BEFORE_INFO, Boolean.valueOf(true));
+	}
+	private static int formatFlagsOptions = 0;
+	static {
+		formatFlagsOptions = formatFlagsOptions | LineAppendable.F_TRIM_TRAILING_WHITESPACE;	
+	}
 
 	/** Format */
-	public static String formatMarkdown(String markdownString) {
+	public static String formatMarkdown(String markdownString, MarkdownPreferences markdownPreferences) {
+
+		MutableDataSet formatterCustomOptions = MutableDataSet.merge(formatterOptions);
+
+		int formatFlags = formatFlagsOptions;
+
+		if (markdownPreferences.<Boolean>get(PreferenceNames.SourceFormatCollapseWhitespace)) {
+			formatFlags = formatFlags | LineAppendable.F_COLLAPSE_WHITESPACE;
+		}
+
+		if (formatFlags != 0) {
+			formatterCustomOptions.set(Formatter.FORMAT_FLAGS, formatFlags);	
+		}
+
+		if (markdownPreferences.<Boolean>get(PreferenceNames.SourceFormatRightMarginWrap)) {
+			formatterCustomOptions.set(Formatter.RIGHT_MARGIN, markdownPreferences.<Integer>get(PreferenceNames.SourceFormatRightMarginColumns));
+		}
+
+		Formatter formatter = Formatter.builder(formatterCustomOptions).build();
 		
 		return formatter.render(parser.parse(markdownString));
+
+		
+//		MutableDataSet formatterOptions = new MutableDataSet();
+//		formatterOptions.set(Formatter.FORMAT_FLAGS, LineAppendable.F_COLLAPSE_WHITESPACE);
+//		formatterOptions.set(Formatter.RIGHT_MARGIN, Integer.valueOf(80));
+//		/** Markdown formatter */
+//		Formatter formatter = Formatter.builder(formatterOptions).build();
+
+		
+//		MutableDataSet mutableDataSet = new MutableDataSet();
+//		
+//		mutableDataSet.set(Formatter.FORMAT_FLAGS, Formatter.FORMAT_COLLAPSE_WHITESPACE);
+//		mutableDataSet.set(Formatter.FENCED_CODE_SPACE_BEFORE_INFO, Boolean.valueOf(true));
+//		//CharWidthProvider
+//		//scopedDataSet.getAll().put(Formatter.MAX_BLANK_LINES, 4);
+//		
+//		return formatter.withOptions(mutableDataSet).render(parser.parse(markdownString));
 	}
 	
 	public static enum SpecialFormattingOptions {
@@ -77,32 +128,33 @@ public class MarkdownEditorEngine {
 	}
 
 	/** Special formatting */
-	public static String doSpecialFormatting(String selection, LinkedHashMap<SpecialFormattingOptions, Boolean> formattingOptions, String enter) {
+	public static String doSpecialFormatting(String selection, String enter, MarkdownPreferences markdownPreferences) {
 		
+
 		String formattedSelection = selection;
 
-		if (formattingOptions.get(SpecialFormattingOptions.RepairParagraphs)) {
-			formattedSelection = repairBrokenParagraph(formattedSelection, enter,
-				formattingOptions.get(SpecialFormattingOptions.RepairParagraphsSmart),
-				formattingOptions.get(SpecialFormattingOptions.PutOneEmptyLineBetweenParagraphs));
-		}
-		
-		if (formattingOptions.get(SpecialFormattingOptions.Create80Columns)) {
-			formattedSelection = formatColumns(formattedSelection, enter, 80);
-		}
-		if (formattingOptions.get(SpecialFormattingOptions.Create60Columns)) {
-			formattedSelection = formatColumns(formattedSelection, enter, 60);
-		}
-
-		if (formattingOptions.get(SpecialFormattingOptions.RemoveSpoilerLines)) {
-			formattedSelection = deleteSpoilerLines(formattedSelection, enter);
-		}
-		if (formattingOptions.get(SpecialFormattingOptions.RemoveEmptyLines)) {
-			formattedSelection = deleteEmptyLines(formattedSelection, enter);
-		}
-		if (formattingOptions.get(SpecialFormattingOptions.RemoveSpoilerSpaces)) {
-			formattedSelection = deleteSpoilerSpaces(formattedSelection, enter);
-		}
+//		if (formattingOptions.get(SpecialFormattingOptions.RepairParagraphs)) {
+//			formattedSelection = repairBrokenParagraph(formattedSelection, enter,
+//				formattingOptions.get(SpecialFormattingOptions.RepairParagraphsSmart),
+//				formattingOptions.get(SpecialFormattingOptions.PutOneEmptyLineBetweenParagraphs));
+//		}
+//		
+//		if (formattingOptions.get(SpecialFormattingOptions.Create80Columns)) {
+//			formattedSelection = formatColumns(formattedSelection, enter, 80);
+//		}
+//		if (formattingOptions.get(SpecialFormattingOptions.Create60Columns)) {
+//			formattedSelection = formatColumns(formattedSelection, enter, 60);
+//		}
+//
+//		if (formattingOptions.get(SpecialFormattingOptions.RemoveSpoilerLines)) {
+//			formattedSelection = deleteSpoilerLines(formattedSelection, enter);
+//		}
+//		if (formattingOptions.get(SpecialFormattingOptions.RemoveEmptyLines)) {
+//			formattedSelection = deleteEmptyLines(formattedSelection, enter);
+//		}
+//		if (formattingOptions.get(SpecialFormattingOptions.RemoveSpoilerSpaces)) {
+//			formattedSelection = deleteSpoilerSpaces(formattedSelection, enter);
+//		}
 		
 		return formattedSelection;
 	}
@@ -159,21 +211,20 @@ public class MarkdownEditorEngine {
 		return text;
 	}
 
-	/** Remove spoiler lines */
-	private static String doubleEnter(String text, String enter) {
-		
-		text = deleteSpacesAfterEnter(text, enter);
-		
-		String reference;
-		do {
-			reference = text;
-			text = text.replace(enter + enter + enter, enter + enter);
-		}
-		while (!reference.equals(text));
-		
-		return text;
-	}
-
+//	/** Remove spoiler lines */
+//	private static String doubleEnter(String text, String enter) {
+//		
+//		text = deleteSpacesAfterEnter(text, enter);
+//		
+//		String reference;
+//		do {
+//			reference = text;
+//			text = text.replace(enter + enter + enter, enter + enter);
+//		}
+//		while (!reference.equals(text));
+//		
+//		return text;
+//	}
 	
 	/** Format columns number */
 	private static String formatColumns(String text, String enter, int numberOfColumns) {
@@ -191,7 +242,7 @@ public class MarkdownEditorEngine {
 		while (start < chars.length - 1) {
 		    int charCount = 0;
 		    int lastSpace = 0;
-		    while (charCount < charsWidth) {
+		    while ((charCount < charsWidth) || (lastSpace == 0)) {
 		    	if (chars[charCount + start] == one) {
 		        	lastSpace = charCount;
 		            break;
@@ -207,16 +258,16 @@ public class MarkdownEditorEngine {
 		    }
 		    if (endOfString) {
 		    	end = text.length();
+		    	stringBuffer.append(text.substring(start, end));
+		    	break;
 		    }
-		    else {
-		    	if (lastSpace > 0) {
-		    		end = lastSpace + start;
-		    	}
-		    	else {
-		    		end = charCount + start;
-		    	}
-		    }
-		    stringBuffer.append(text.substring(start, end) + enter);
+	    	if (lastSpace > 0) {
+	    		end = lastSpace + start;
+	    	}
+	    	else {
+	    		end = charCount + start;
+	    	}
+	    	stringBuffer.append(text.substring(start, end) + enter);
 		    start = end;
 		    if (end < chars.length) {
 		    	if ((chars[end] == ' ') || (chars[end] == one)) {

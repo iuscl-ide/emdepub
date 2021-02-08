@@ -46,9 +46,12 @@ public class R {
 		loadGifImageResourceToRegistry("ui_props");
 		loadGifImageResourceToRegistry("PD_Toolbar_source");
 		
+		loadPngImageResourceToRegistry("wordwrap");
+		loadPngImageResourceToRegistry("show_whitespace_chars");
+		
 		loadPngImageResourceToRegistry("markdown-action-format-md");
-		loadPngImageResourceToRegistry("markdown-action-word-wrap");
-		loadPngImageResourceToRegistry("markdown-action-create-80");
+//		loadPngImageResourceToRegistry("markdown-action-word-wrap");
+//		loadPngImageResourceToRegistry("markdown-action-create-80");
 		loadPngImageResourceToRegistry("markdown-action-repair-paragraph");
 		
 		

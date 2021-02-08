@@ -26,76 +26,77 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
+import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard;
 import org.emdepub.md.ui.wizards.MarkdownFormatSourceTextWizard;
 import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatCodeStyle;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.FormatStyle;
-import org.emdepub.ui.editor.md.prefs.MarkdownHtmlGeneratorPrefs.Pref;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatCodeStyles;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatStyles;
+import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.PreferenceNames;
 
 /** Markdown multi-page editor contributor to menu, tool bar, status bar */
 public class MarkdownEditorContributor extends MultiPageEditorActionBarContributor {
 
-	public static final LinkedHashMap<FormatStyle, String> formatStyles = new LinkedHashMap<>();
+	public static final LinkedHashMap<DisplayFormatStyles, String> formatStyles = new LinkedHashMap<>();
 	static {
-		formatStyles.put(FormatStyle.None, "None");
-		formatStyles.put(FormatStyle.GitHub, "GitHub");
-		formatStyles.put(FormatStyle.GoogleLike, "Google Like");
-		formatStyles.put(FormatStyle.SemanticUILike, "Semantic UI Like");
-		formatStyles.put(FormatStyle.Custom, "Custom");
+		formatStyles.put(DisplayFormatStyles.None, "None");
+		formatStyles.put(DisplayFormatStyles.GitHub, "GitHub");
+		formatStyles.put(DisplayFormatStyles.GoogleLike, "Google Like");
+		formatStyles.put(DisplayFormatStyles.SemanticUILike, "Semantic UI Like");
+		formatStyles.put(DisplayFormatStyles.Custom, "Custom");
 	}
 
-	public static final LinkedHashMap<Pref, String> formatOptions = new LinkedHashMap<>();
+	public static final LinkedHashMap<PreferenceNames, String> formatOptions = new LinkedHashMap<>();
 	static {
-		formatOptions.put(Pref.FixedContentWidth, "Fixed Content Width");
-		formatOptions.put(Pref.JustifiedParagraphs, "Justified Paragraphs");
-		formatOptions.put(Pref.CenterHeaders, "Center Headers");
+		formatOptions.put(PreferenceNames.DisplayFixedContentWidth, "Fixed Content Width");
+		formatOptions.put(PreferenceNames.DisplayJustifiedParagraphs, "Justified Paragraphs");
+		formatOptions.put(PreferenceNames.DisplayCenterHeaders, "Center Headers");
 	}
 
-	public static final LinkedHashMap<FormatCodeStyle, String> formatCodeStyles = new LinkedHashMap<>();
+	public static final LinkedHashMap<DisplayFormatCodeStyles, String> formatCodeStyles = new LinkedHashMap<>();
 	static {
-		formatCodeStyles.put(FormatCodeStyle.None, "None");
-		formatCodeStyles.put(FormatCodeStyle.Agate, "Agate");
-		formatCodeStyles.put(FormatCodeStyle.Androidstudio, "Android Studio");
-		formatCodeStyles.put(FormatCodeStyle.ArduinoLight, "Arduino Light");
-		formatCodeStyles.put(FormatCodeStyle.Dark, "Dark");
-		formatCodeStyles.put(FormatCodeStyle.Default, "Default");
-		formatCodeStyles.put(FormatCodeStyle.Far, "Far");
-		formatCodeStyles.put(FormatCodeStyle.Foundation, "Foundation");
-		formatCodeStyles.put(FormatCodeStyle.GithubGist, "Github Gist");
-		formatCodeStyles.put(FormatCodeStyle.Github, "Github");
-		formatCodeStyles.put(FormatCodeStyle.Googlecode, "Googlecode");
-		formatCodeStyles.put(FormatCodeStyle.Grayscale, "Grayscale");
-		formatCodeStyles.put(FormatCodeStyle.GruvboxDark, "Gruvbox Dark");
-		formatCodeStyles.put(FormatCodeStyle.GruvboxLight, "Gruvbox Light");
-		formatCodeStyles.put(FormatCodeStyle.Hybrid, "Hybrid");
-		formatCodeStyles.put(FormatCodeStyle.Idea, "Idea");
-		formatCodeStyles.put(FormatCodeStyle.IrBlack, "Ir Black");
-		formatCodeStyles.put(FormatCodeStyle.Magula, "Magula");
-		formatCodeStyles.put(FormatCodeStyle.Purebasic, "Purebasic");
-		formatCodeStyles.put(FormatCodeStyle.Railscasts, "Railscasts");
-		formatCodeStyles.put(FormatCodeStyle.Sunburst, "Sunburst");
-		formatCodeStyles.put(FormatCodeStyle.Vs, "Vs");
-		formatCodeStyles.put(FormatCodeStyle.Vs2015, "Vs2015");
-		formatCodeStyles.put(FormatCodeStyle.Xcode, "Xcode");
-		formatCodeStyles.put(FormatCodeStyle.Custom, "Custom");
+		formatCodeStyles.put(DisplayFormatCodeStyles.None, "None");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Agate, "Agate");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Androidstudio, "Android Studio");
+		formatCodeStyles.put(DisplayFormatCodeStyles.ArduinoLight, "Arduino Light");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Dark, "Dark");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Default, "Default");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Far, "Far");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Foundation, "Foundation");
+		formatCodeStyles.put(DisplayFormatCodeStyles.GithubGist, "Github Gist");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Github, "Github");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Googlecode, "Googlecode");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Grayscale, "Grayscale");
+		formatCodeStyles.put(DisplayFormatCodeStyles.GruvboxDark, "Gruvbox Dark");
+		formatCodeStyles.put(DisplayFormatCodeStyles.GruvboxLight, "Gruvbox Light");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Hybrid, "Hybrid");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Idea, "Idea");
+		formatCodeStyles.put(DisplayFormatCodeStyles.IrBlack, "Ir Black");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Magula, "Magula");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Purebasic, "Purebasic");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Railscasts, "Railscasts");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Sunburst, "Sunburst");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Vs, "Vs");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Vs2015, "Vs2015");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Xcode, "Xcode");
+		formatCodeStyles.put(DisplayFormatCodeStyles.Custom, "Custom");
 	}
 	
 	/** Class */
 	private class FormatStyleAction extends Action {
 		
-		private FormatStyle formatStyle;
+		private DisplayFormatStyles formatStyle;
 
-		public FormatStyleAction(String text, FormatStyle formatStyle) {
+		public FormatStyleAction(String text, DisplayFormatStyles formatStyle) {
 			super(text, IAction.AS_RADIO_BUTTON);
 			
 			this.formatStyle = formatStyle;
 		}
 
-		public FormatStyle getFormatStyle() {
+		public DisplayFormatStyles getFormatStyle() {
 			return formatStyle;
 		}
 
@@ -104,9 +105,9 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 			super.run();
 			
 			if (this.isChecked()) {
-				markdownHtmlGeneratorPrefs.set(Pref.FormatStyle, formatStyle);
+				markdownPreferences.set(PreferenceNames.DisplayFormatStyle, formatStyle);
 				markdownMultiPageEditor.refresh();
-				savePrefsProperties();
+				markdownMultiPageEditor.saveMarkdownPreferences();
 			}
 		}
 	}
@@ -114,15 +115,15 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	/** Class */
 	private class FormatOptionAction extends Action {
 		
-		private Pref formatOption;
+		private PreferenceNames formatOption;
 
-		public FormatOptionAction(String text, Pref formatOption) {
+		public FormatOptionAction(String text, PreferenceNames formatOption) {
 			super(text, IAction.AS_CHECK_BOX);
 			
 			this.formatOption = formatOption;
 		}
 
-		public Pref getFormatOption() {
+		public PreferenceNames getFormatOption() {
 			return formatOption;
 		}
 
@@ -130,25 +131,25 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		public void run() {
 			super.run();
 			
-			Boolean value = markdownHtmlGeneratorPrefs.get(formatOption);
-			markdownHtmlGeneratorPrefs.set(formatOption, !value);
+			Boolean value = markdownPreferences.get(formatOption);
+			markdownPreferences.set(formatOption, !value);
 			markdownMultiPageEditor.refresh();
-			savePrefsProperties();
+			markdownMultiPageEditor.saveMarkdownPreferences();
 		}
 	}
 
 	/** Class */
 	private class FormatCodeStyleAction extends Action {
 		
-		private FormatCodeStyle formatCodeStyle;
+		private DisplayFormatCodeStyles formatCodeStyle;
 
-		public FormatCodeStyleAction(String text, FormatCodeStyle formatCodeStyle) {
+		public FormatCodeStyleAction(String text, DisplayFormatCodeStyles formatCodeStyle) {
 			super(text, IAction.AS_RADIO_BUTTON);
 			
 			this.formatCodeStyle = formatCodeStyle;
 		}
 
-		public FormatCodeStyle getFormatCodeStyle() {
+		public DisplayFormatCodeStyles getFormatCodeStyle() {
 			return formatCodeStyle;
 		}
 
@@ -157,18 +158,17 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 			super.run();
 			
 			if (this.isChecked()) {
-				markdownHtmlGeneratorPrefs.set(Pref.FormatCodeStyle, formatCodeStyle);
+				markdownPreferences.set(PreferenceNames.DisplayFormatCodeStyle, formatCodeStyle);
 				markdownMultiPageEditor.refresh();
-				savePrefsProperties();
+				markdownMultiPageEditor.saveMarkdownPreferences();
 			}
 		}
 	}
 
 	/** The actual editor */
 	private MarkdownEditor markdownMultiPageEditor;
-	private String prefsPropertiesFileNameWithPath;
 	private MarkdownTextEditor markdownSourceTextEditor;
-	private MarkdownHtmlGeneratorPrefs markdownHtmlGeneratorPrefs;
+	private MarkdownPreferences markdownPreferences;
 	
 	/** Contributed menu */
 	private MenuManager markdownMenuManager;
@@ -198,31 +198,28 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 
 	/** Browser hover link */
 	private static StatusLineContributionItem statusLineLinkField;
-
 	
 	/* Second page */
+	
+	/** Word wrap */
+	private Action wordWrapAction;
+	private String wordWrapActionId;
+
+	/** Show whitespace characters */
+	private Action showWhitespaceCharactersAction;
+	private String showWhitespaceCharactersActionId;
+
+	/** Named separator */
+	private Separator editSeparatorAction = new Separator();
+	private String editSeparatorActionId = "org.emdepub.ui.editor.md.action.editSeparatorAction";
 	
 	/** Format Markdown text */
 	private Action formatMarkdownAction;
 	private String formatMarkdownActionId = "org.emdepub.ui.editor.md.action.formatMarkdownAction";
 
-	/** Show word wrap */
-	private Action showWordWrapAction;
-	private String showWordWrapActionId = "org.emdepub.ui.editor.md.action.showWordWrapAction";
-
-	/** Format text to 80 columns */
-	private Action format80ColumnsAction;
-	private String format80ColumnsActionId = "org.emdepub.ui.editor.md.action.format80ColumnsAction";
-
-	/** Repair broken paragraph */
-	private Action repairPragraphAction;
-	private String repairPragraphActionId = "org.emdepub.ui.editor.md.action.repairPragraphAction";
-
-	
-//	/** First page */
-//	private BrowserViewerPageActionContributor browserViewerPageActionContributor;
-//	/** Second page */
-//	private TextEditorPageActionContributor textEditorPageActionContributor;
+	/** Special Markdown text format */
+	private Action specialFormatAction;
+	private String specialFormatActionId = "org.emdepub.ui.editor.md.action.specialFormatAction";
 	
 	/** Eclipse actions */
 	private void createActions() {
@@ -230,58 +227,34 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		/* Export Markdown Document as HTML */
 		exportAsHtmlAction = new Action() {
 			public void run() {
-				
 				Shell ideShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 				MarkdownExportAsHtmlWizard markdownExportAsHtmlWizard = new MarkdownExportAsHtmlWizard(markdownMultiPageEditor);
-				WizardDialog dialog = new WizardDialog(ideShell, markdownExportAsHtmlWizard);
-				int result = dialog.open();    	
-
-				
-				
-//				ObjectMapper objectMapper = new ObjectMapper();
-//				
-//				IFile iFile = (IFile) markdownEditor.getEditorInput().getAdapter(IFile.class);
-//				String filePathName = iFile.getLocation().toOSString() + ".prefs.json";
-//
-//				
-//				try {
-//					objectMapper.writeValue(new File(filePathName), markdownEditor.getMarkdownHtmlGeneratorPrefs());
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-				//markdownEditor.getJsonGenerator().
-				
-				
-				//multiPageEditor.exportAsHtml();
+				WizardDialog wizardDialog = new WizardDialog(ideShell, markdownExportAsHtmlWizard);
+				wizardDialog.open();
 			}
 		};
-		
 		exportAsHtmlAction.setId(exportAsHtmlActionId);
 		exportAsHtmlAction.setText("Export Markdown as HTML file...");
 		exportAsHtmlAction.setToolTipText("Export Markdown Document as HTML File");
 		exportAsHtmlAction.setImageDescriptor(R.getImageDescriptor("html"));
 		
-		
 		/* First page */
 		
 		/* Format Style */
 		formatStyleMenuManager = new MenuManager("Format Style");
-		for (FormatStyle formatStyle : FormatStyle.values()) {
+		for (DisplayFormatStyles formatStyle : DisplayFormatStyles.values()) {
 			FormatStyleAction action = new FormatStyleAction(formatStyles.get(formatStyle), formatStyle);
 			formatStyleMenuManager.add(action);
 		};
 		formatStyleDropDownMenuAction = new Action("Format Style", IAction.AS_DROP_DOWN_MENU) {
-			public void run() {
-				/* ? */
-			}
+			public void run() { /* ? */ }
 		};
 		formatStyleDropDownMenuAction.setId(formatStyleDropDownMenuActionId);
 		formatStyleDropDownMenuAction.setToolTipText("Format Styles");
 		formatStyleDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("stylesheet"));
 		formatStyleDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
-			public Menu getMenu(Menu arg0) {
+			public Menu getMenu(Menu menu) {
 				/* ? */
 				return null;
 			}
@@ -301,36 +274,31 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 				return formatStyleDropDownMenu;
 			}
 			@Override
-			public void dispose() {
-				/* ? */
-			}
+			public void dispose() { /* ? */ }
 		});
 		
 		/* Format Options */
 		formatOptionMenuManager = new MenuManager("Format Options");
-		for (Pref formatOption : Pref.values()) {
-			if (MarkdownHtmlGeneratorPrefs.FormatOption.contains(formatOption)) {
+		for (PreferenceNames formatOption : PreferenceNames.values()) {
+			if (MarkdownPreferences.DisplayFormatOptions.contains(formatOption)) {
 				FormatOptionAction action = new FormatOptionAction(formatOptions.get(formatOption), formatOption);
 				formatOptionMenuManager.add(action);
 			}
 		};
 		formatOptionDropDownMenuAction = new Action("Format Option", IAction.AS_DROP_DOWN_MENU) {
-			public void run() {
-				/* ? */
-			}
+			public void run() { /* ? */ }
 		};
 		formatOptionDropDownMenuAction.setId(formatOptionDropDownMenuActionId);
 		formatOptionDropDownMenuAction.setToolTipText("Format Options");
 		formatOptionDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("ui_props"));
 		formatOptionDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
-			public Menu getMenu(Menu arg0) {
+			public Menu getMenu(Menu menu) {
 				/* ? */
 				return null;
 			}
 			@Override
 			public Menu getMenu(Control control) {
-				
 				if ((formatOptionDropDownMenu != null) && (!formatOptionDropDownMenu.isDisposed())) {
 					formatOptionDropDownMenu.dispose();
 				}
@@ -344,34 +312,29 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 				return formatOptionDropDownMenu;
 			}
 			@Override
-			public void dispose() {
-				/* ? */
-			}
+			public void dispose() { /* ? */ }
 		});
 		
 		/* Format Code Style */
 		formatCodeStyleMenuManager = new MenuManager("Format Code Style");
-		for (FormatCodeStyle formatCodeStyle : FormatCodeStyle.values()) {
+		for (DisplayFormatCodeStyles formatCodeStyle : DisplayFormatCodeStyles.values()) {
 			FormatCodeStyleAction action = new FormatCodeStyleAction(formatCodeStyles.get(formatCodeStyle), formatCodeStyle);
 			formatCodeStyleMenuManager.add(action);
 		};
 		formatCodeStyleDropDownMenuAction = new Action("Format Code Style", IAction.AS_DROP_DOWN_MENU) {
-			public void run() {
-				/* ? */
-			}
+			public void run() { /* ? */ }
 		};
 		formatCodeStyleDropDownMenuAction.setId(formatCodeStyleDropDownMenuActionId);
 		formatCodeStyleDropDownMenuAction.setToolTipText("Format Code Styles");
 		formatCodeStyleDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("PD_Toolbar_source"));
 		formatCodeStyleDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
-			public Menu getMenu(Menu arg0) {
+			public Menu getMenu(Menu menu) {
 				/* ? */
 				return null;
 			}
 			@Override
 			public Menu getMenu(Control control) {
-				
 				if ((formatCodeStyleDropDownMenu != null) && (!formatCodeStyleDropDownMenu.isDisposed())) {
 					formatCodeStyleDropDownMenu.dispose();
 				}
@@ -385,36 +348,26 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 				return formatCodeStyleDropDownMenu;
 			}
 			@Override
-			public void dispose() {
-				/* ? */
-			}
+			public void dispose() { /* ? */ }
 		});
-
 		
 		/* Second page */
 		
 		/* Format Selected Markdown Source Text */
 		formatMarkdownAction = new Action() {
 			public void run() {
-				
-				Shell ideShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-				MarkdownFormatSourceTextWizard markdownFormatSourceTextWizard = new MarkdownFormatSourceTextWizard(markdownMultiPageEditor);
-				WizardDialog dialog = new WizardDialog(ideShell, markdownFormatSourceTextWizard);
-				int result = dialog.open();    	
-
-				
-//				TextSelection textSelection = (TextSelection) markdownSourceTextEditor.getSelectionProvider().getSelection();
-//				String selection = textSelection.getText();
-////				L.p(selection);
-//				String formattedSelection = MarkdownEditorEngine.formatMarkdown(selection);
-////				L.p(formattedSelection);
-//				IDocument document = markdownSourceTextEditor.getDocumentProvider().getDocument(markdownSourceTextEditor.getEditorInput());
-//				try {
-//					document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
-//				}
-//				catch (BadLocationException badLocationException) {
-//					L.e("BadLocationException in formatMdAction", badLocationException);
-//				}
+				TextSelection textSelection = (TextSelection) markdownSourceTextEditor.getSelectionProvider().getSelection();
+				String selection = textSelection.getText();
+//				L.p(selection);
+				String formattedSelection = MarkdownEditorEngine.formatMarkdown(selection, markdownPreferences);
+//				L.p(formattedSelection);
+				IDocument document = markdownSourceTextEditor.getDocumentProvider().getDocument(markdownSourceTextEditor.getEditorInput());
+				try {
+					document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
+				}
+				catch (BadLocationException badLocationException) {
+					L.e("BadLocationException in formatMarkdownAction", badLocationException);
+				}
 			}
 		};
 		formatMarkdownAction.setId(formatMarkdownActionId);
@@ -422,41 +375,19 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		formatMarkdownAction.setToolTipText("Format selected Markdown source text");
 		formatMarkdownAction.setImageDescriptor(R.getImageDescriptor("markdown-action-format-md"));
 		
-		/** Show word wrap */
-		showWordWrapAction = new Action() {
+		/** Special Markdown format */
+		specialFormatAction = new Action() {
 			public void run() {
-				boolean wordWrapEnabled = markdownSourceTextEditor.isWordWrapEnabled();
-				wordWrapEnabled = !wordWrapEnabled;
-				markdownSourceTextEditor.setWordWrap(wordWrapEnabled);
+				Shell ideShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+				MarkdownFormatSourceTextWizard markdownFormatSourceTextWizard = new MarkdownFormatSourceTextWizard(markdownMultiPageEditor);
+				WizardDialog wizardDialog = new WizardDialog(ideShell, markdownFormatSourceTextWizard);
+				wizardDialog.open();    	
 			}
 		};
-		showWordWrapAction.setChecked(false);
-		showWordWrapAction.setId(showWordWrapActionId);
-		showWordWrapAction.setText("Set text word wrap");
-		showWordWrapAction.setToolTipText("Show text with word wrap");
-		showWordWrapAction.setImageDescriptor(R.getImageDescriptor("markdown-action-word-wrap"));
-
-		/** Format text to 80 columns */
-		format80ColumnsAction = new Action() {
-			public void run() {
-				//markdownSourceTextEditor.format80ParagraphContributor();
-			}
-		};
-		format80ColumnsAction.setId(format80ColumnsActionId);
-		format80ColumnsAction.setText("Format to 80 columns");
-		format80ColumnsAction.setToolTipText("Format selected text to 80 columns");
-		format80ColumnsAction.setImageDescriptor(R.getImageDescriptor("markdown-action-create-80"));
-
-		/** Repair broken paragraph */
-		repairPragraphAction = new Action() {
-			public void run() {
-				//markdownSourceTextEditor.repairBrokenParagraphContributor();
-			}
-		};
-		repairPragraphAction.setId(repairPragraphActionId);
-		repairPragraphAction.setText("Repair broken paragraphs");
-		repairPragraphAction.setToolTipText("Repair broken selected text paragraphs");
-		repairPragraphAction.setImageDescriptor(R.getImageDescriptor("markdown-action-repair-paragraph"));
+		specialFormatAction.setId(specialFormatActionId);
+		specialFormatAction.setText("Markdown format options");
+		specialFormatAction.setToolTipText("Markdown format source text options");
+		specialFormatAction.setImageDescriptor(R.getImageDescriptor("markdown-action-repair-paragraph"));
 	}
 
 	/** Initial, fix contribution */
@@ -514,16 +445,25 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		}
 		
 		markdownMultiPageEditor = (MarkdownEditor) editorPart;
-		prefsPropertiesFileNameWithPath = markdownMultiPageEditor.getSourceMarkdownFilePathAndName() + ".prefs";
 		markdownSourceTextEditor = markdownMultiPageEditor.getMarkdownTextEditor();
-		markdownHtmlGeneratorPrefs = markdownMultiPageEditor.getMarkdownHtmlGeneratorPrefs();
+		markdownPreferences = markdownMultiPageEditor.getPreferences();
+		
+		/** Word wrap */
+		wordWrapAction = (Action) markdownSourceTextEditor.getAction(ITextEditorActionConstants.WORD_WRAP);
+		wordWrapAction.setImageDescriptor(R.getImageDescriptor("wordwrap"));
+		wordWrapActionId = wordWrapAction.getId();
+
+		/** Show whitespace characters */
+		showWhitespaceCharactersAction = (Action) markdownSourceTextEditor.getAction(ITextEditorActionConstants.SHOW_WHITESPACE_CHARACTERS);
+		showWhitespaceCharactersAction.setImageDescriptor(R.getImageDescriptor("show_whitespace_chars"));
+		showWhitespaceCharactersActionId = showWhitespaceCharactersAction.getId();
 		
 		super.setActiveEditor(markdownMultiPageEditor);
 		
 		for (IContributionItem contributionItem : formatStyleMenuManager.getItems()) {
 			ActionContributionItem actionContributionItem = (ActionContributionItem) contributionItem;
 			FormatStyleAction formatStyleAction = (FormatStyleAction) actionContributionItem.getAction();
-			if (formatStyleAction.getFormatStyle() == markdownHtmlGeneratorPrefs.<FormatStyle>get(Pref.FormatStyle)) {
+			if (formatStyleAction.getFormatStyle() == markdownPreferences.<DisplayFormatStyles>get(PreferenceNames.DisplayFormatStyle)) {
 				formatStyleAction.setChecked(true);
 			}
 			else {
@@ -534,13 +474,13 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		for (IContributionItem contributionItem : formatOptionMenuManager.getItems()) {
 			ActionContributionItem actionContributionItem = (ActionContributionItem) contributionItem;
 			FormatOptionAction formatOptionAction = (FormatOptionAction) actionContributionItem.getAction();
-			formatOptionAction.setChecked(markdownHtmlGeneratorPrefs.<Boolean>get(formatOptionAction.getFormatOption()));
+			formatOptionAction.setChecked(markdownPreferences.<Boolean>get(formatOptionAction.getFormatOption()));
 		}
 
 		for (IContributionItem contributionItem : formatCodeStyleMenuManager.getItems()) {
 			ActionContributionItem actionContributionItem = (ActionContributionItem) contributionItem;
 			FormatCodeStyleAction formatCodeStyleAction = (FormatCodeStyleAction) actionContributionItem.getAction();
-			if (formatCodeStyleAction.getFormatCodeStyle() == markdownHtmlGeneratorPrefs.<FormatCodeStyle>get(Pref.FormatCodeStyle)) {
+			if (formatCodeStyleAction.getFormatCodeStyle() == markdownPreferences.<DisplayFormatCodeStyles>get(PreferenceNames.DisplayFormatCodeStyle)) {
 				formatCodeStyleAction.setChecked(true);
 			}
 			else {
@@ -576,17 +516,16 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		markdownMenuManager.remove(formatCodeStyleMenuManager);
 		markdownToolBarManager.remove(formatCodeStyleDropDownMenuActionId);
 
+		markdownToolBarManager.remove(wordWrapActionId);
+		markdownToolBarManager.remove(showWhitespaceCharactersActionId);
+		
+		markdownToolBarManager.remove(editSeparatorActionId);
+
 		markdownMenuManager.remove(formatMarkdownActionId);
 		markdownToolBarManager.remove(formatMarkdownActionId);
-
-		markdownMenuManager.remove(showWordWrapActionId);
-		markdownToolBarManager.remove(showWordWrapActionId);
-
-		markdownMenuManager.remove(format80ColumnsActionId);
-		markdownToolBarManager.remove(format80ColumnsActionId);
-
-		markdownMenuManager.remove(repairPragraphActionId);
-		markdownToolBarManager.remove(repairPragraphActionId);
+		
+		markdownMenuManager.remove(specialFormatActionId);
+		markdownToolBarManager.remove(specialFormatActionId);
 		
 		/* Update */
 		markdownToolBarManager.update(true);
@@ -607,48 +546,20 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		}
 		if (markdownMultiPageEditor.getActivePage() == markdownMultiPageEditor.getMarkdownTextEditorPageIndex()) {
 
+			markdownToolBarManager.add(wordWrapAction);
+			markdownToolBarManager.add(showWhitespaceCharactersAction);
+			
+			markdownToolBarManager.add(editSeparatorAction);
+
 			markdownMenuManager.add(formatMarkdownAction);
 			markdownToolBarManager.add(formatMarkdownAction);
 
-			markdownMenuManager.add(showWordWrapAction);
-			markdownToolBarManager.add(showWordWrapAction);
-
-			markdownMenuManager.add(format80ColumnsAction);
-			markdownToolBarManager.add(format80ColumnsAction);
-
-			markdownMenuManager.add(repairPragraphAction);
-			markdownToolBarManager.add(repairPragraphAction);
-
+			markdownMenuManager.add(specialFormatAction);
+			markdownToolBarManager.add(specialFormatAction);
+			
 			/* Update */
 			markdownToolBarManager.update(true);
 		}
-	
-	
-	
-	
-	//((IContributionManager) ddAction).add(formatStyleMenuManager);
-	
-//		CommandContributionItemParameter commandContributionItemParameter = new 
-//		CommandContributionItem commandContributionItem = new CommandContributionItem(null) 
-//		formatStyleMenuManager.add();
-//		prependToGroup(IWorkbenchActionConstants.MB_ADDITIONS, mdMenuManager);
-//		mdMenuManager.add(exportAsHtmlAction);
-//		mdMenuManager.add(new Separator());
-
-		
-		//markdownTextEditor = (MarkdownTextEditor) editorPart;
-		
-		// TODO Auto-generated method stub
-
-//		textEditorPageActionContributor.contributeToMenu(bars.getMenuManager());
-//		textEditorPageActionContributor.contributeToToolBar(bars.getToolBarManager());
-
-	}
-
-	/** Save from here */
-	private void savePrefsProperties() {
-		
-		markdownHtmlGeneratorPrefs.saveProperties(prefsPropertiesFileNameWithPath);
 	}
 
 	public static StatusLineContributionItem getStatusLineLinkField() {
