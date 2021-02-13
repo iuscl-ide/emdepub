@@ -27,6 +27,7 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
+import org.eclipse.ui.views.navigator.CollapseAllAction;
 import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard;
@@ -422,18 +423,6 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		
 		statusLineLinkField = new StatusLineContributionItem("statusLineLinkField", 120);
 		statusLineLinkField.setText("");
-		
-//		browserViewerPageActionContributor = new BrowserViewerPageActionContributor();
-//		textEditorPageActionContributor = new TextEditorPageActionContributor();
-//		
-//		linkField = new StatusLineContributionItem("linkField", 120);
-//		linkField.setText("");
-//
-//		positionField = new StatusLineContributionItem("positionField", 16);
-//		positionField.setText("0");
-
-//		spellCheckStatusField = new StatusLineContributionItem("spellCheckStatusField", 50);
-//		spellCheckStatusField.setText("s");
 	}
 	
 	/** The editor class is available here */

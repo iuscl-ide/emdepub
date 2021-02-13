@@ -2,8 +2,9 @@
 
 Transcribed from the 1889 J. W. Arrowsmith edition by David Price, email ccx074@pglaf.org  Second proof by Margaret Price.
 <!-- # <p align="center">THREE MEN IN A BOAT<br>*(to say nothing of the dog).*</p> -->
-# THREE MEN IN A BOAT<br>*(to say nothing of the dog).*
 
+# THREE MEN IN A BOAT<br>*(to say nothing of the dog).*
+a
 by
 JEROME K. JEROME
 

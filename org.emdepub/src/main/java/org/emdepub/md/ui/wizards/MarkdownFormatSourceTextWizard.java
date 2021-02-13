@@ -9,7 +9,7 @@ import org.eclipse.ui.IWorkbench;
 import org.emdepub.ui.editor.md.MarkdownEditor;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
 
-/** Special Markdown source format */
+/** Markdown format source text wizard */
 public class MarkdownFormatSourceTextWizard extends Wizard implements IExportWizard {
 
 	private MarkdownEditor markdownMultiPageEditor;

@@ -9,6 +9,7 @@ import java.util.Set;
 import org.emdepub.activator.F;
 import org.emdepub.activator.P;
 
+/** Markdown preferences */
 public class MarkdownPreferences {
 
 	public static enum PreferenceNames {

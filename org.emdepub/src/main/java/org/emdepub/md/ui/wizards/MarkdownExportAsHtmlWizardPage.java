@@ -18,6 +18,7 @@ import org.emdepub.activator.F;
 import org.emdepub.activator.UI;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard.MarkdownExportType;
 
+/** Markdown export as HTML wizard page */
 public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 	/* Data */

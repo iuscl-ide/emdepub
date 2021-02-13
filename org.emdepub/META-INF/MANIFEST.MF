@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.emdepub;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.emdepub.activator.Activator
 Bundle-Vendor: emdepub.org
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: 
+ org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface.text,
  org.eclipse.ui.editors,
@@ -17,7 +18,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.tm4e.languageconfiguration,
  org.eclipse.tm4e.ui,
  org.eclipse.ui.ide,
- org.eclipse.core.filesystem
+ org.eclipse.core.filesystem,
+ org.eclipse.lsp4e,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.views
 Bundle-RequiredExecutionEnvironment: JavaSE-15
 Automatic-Module-Name: org.emdepub
 Bundle-ActivationPolicy: lazy
@@ -34,5 +38,7 @@ Bundle-ClassPath: .,
  lib/flexmark-util-format-0.62.2.jar,
  lib/flexmark-util-options-0.62.2.jar,
  lib/flexmark-util-visitor-0.62.2.jar,
+ lib/flexmark-util-html-0.62.2.jar,
  lib/flexmark-ext-tables-0.62.2.jar,
- lib/flexmark-util-html-0.62.2.jar
+ lib/flexmark-ext-gfm-tasklist-0.62.2.jar,
+ lib/jsoup-1.13.1.jar

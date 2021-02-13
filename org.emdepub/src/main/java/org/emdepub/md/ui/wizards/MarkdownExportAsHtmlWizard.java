@@ -9,6 +9,7 @@ import org.eclipse.ui.IWorkbench;
 import org.emdepub.activator.F;
 import org.emdepub.ui.editor.md.MarkdownEditor;
 
+/** Markdown export as HTML wizard */
 public class MarkdownExportAsHtmlWizard extends Wizard implements IExportWizard {
 
 	public static enum MarkdownExportType { ExportAssetsFolder, ExportFileOnly };

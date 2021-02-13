@@ -54,6 +54,8 @@ public class R {
 //		loadPngImageResourceToRegistry("markdown-action-create-80");
 		loadPngImageResourceToRegistry("markdown-action-repair-paragraph");
 		
+		loadPngImageResourceToRegistry("markdown-header");
+		
 		
 //		loadGifImageResourceToRegistry("md-preference-toolbar-notdefault");
 //		loadGifImageResourceToRegistry("md-preference-toolbar-apply");

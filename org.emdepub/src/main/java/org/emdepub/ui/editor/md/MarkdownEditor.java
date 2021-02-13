@@ -2,6 +2,8 @@
 package org.emdepub.ui.editor.md;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.util.Base64;
 import java.util.LinkedHashMap;
 
@@ -21,6 +23,7 @@ import org.eclipse.swt.browser.StatusTextEvent;
 import org.eclipse.swt.browser.StatusTextListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -29,13 +32,15 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.ide.FileStoreEditorInput;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.emdepub.activator.F;
 import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.activator.UI;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard.MarkdownExportType;
 import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine;
-import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine.SpecialFormattingOptions;
+import org.emdepub.ui.editor.md.language.MarkdownOutlinePage;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatCodeStyles;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatStyles;
@@ -142,7 +147,7 @@ public class MarkdownEditor extends FormEditor {
 	private int markdownTextEditorPageIndex;
 	private MarkdownPreferences markdownPreferences;
 	private String markdownPreferencesPropertiesFileNameWithPath;
-
+	private MarkdownOutlinePage markdownOutlinePage;
 //	private IEditorPart markdownTextEditorPart;
 //	private IDocument sourceDocument;
 
@@ -210,6 +215,13 @@ public class MarkdownEditor extends FormEditor {
 		
 		markdownPreferencesPropertiesFileNameWithPath = getSourceMarkdownFilePathAndName() + ".prefs";
 		markdownPreferences.loadProperties(markdownPreferencesPropertiesFileNameWithPath);
+		
+		markdownOutlinePage = new MarkdownOutlinePage(this);
+
+//		if (getEditorInput() != null)
+//				markdownOutlinePage.setInput(getEditorInput());
+//		}
+
 	}
 
 	/** Save from here */
@@ -229,25 +241,47 @@ public class MarkdownEditor extends FormEditor {
 	/** LocalBaseHref */
 	private String findLocalBaseHref() {
 		
-		IFile iFile = (IFile) markdownTextEditor.getEditorInput().getAdapter(IFile.class);
-		File file = iFile.getLocation().toFile();
-		String rootPath = file.getPath().substring(0, file.getPath().length() - file.getName().length()).replace("\\", "/");
+		IEditorInput editorInput = markdownTextEditor.getEditorInput();
 		
-		return "file:///" + rootPath;
+		if (editorInput instanceof FileEditorInput) {
+			IFile iFile = (IFile) editorInput.getAdapter(IFile.class);
+			File file = iFile.getLocation().toFile();
+			String rootPath = file.getPath().substring(0, file.getPath().length() - file.getName().length()).replace("\\", "/");
+			
+			return "file:///" + rootPath;
+		}
+		else if (editorInput instanceof FileStoreEditorInput) {
+			
+			String rootPath = ((FileStoreEditorInput) editorInput).getURI().toString();
+			rootPath = rootPath.substring(0, rootPath.length() - editorInput.getName().length()).replace("file:/", "file:///");
+			return rootPath;
+		}
+		
+		return editorInput.getName();
 	}
 
 	/** Source Markdown file path and name */
 	public String getSourceMarkdownFilePathAndName() {
-		
-		IFile iFile = (IFile) markdownTextEditor.getEditorInput().getAdapter(IFile.class);
-		return iFile.getLocation().toOSString();
-	}
 
-//	/** Save from here */
-//	private void savePrefsProperties() {
-//		
-//		markdownHtmlGeneratorPrefs.saveProperties(prefsPropertiesFileNameWithPath);
-//	}
+		IEditorInput editorInput = markdownTextEditor.getEditorInput();
+		
+		if (editorInput instanceof FileEditorInput) {
+			
+			IFile iFile = (IFile) editorInput.getAdapter(IFile.class);
+			return iFile.getLocation().toOSString();
+		}
+		else if (editorInput instanceof FileStoreEditorInput) {
+		
+			URI urlPath = ((FileStoreEditorInput) editorInput).getURI();
+			try {
+				return new File(urlPath.toURL().getPath()).getAbsolutePath();
+			} catch (MalformedURLException malformedURLException) {
+				L.e("getSourceMarkdownFilePathAndName", malformedURLException);
+			}
+		}
+		
+		return editorInput.getName();
+	}
 	
 	/** Export */
 	public void exportAsHtml(MarkdownExportType markdownExportType, String exportName, String exportLocation) {
@@ -519,6 +553,29 @@ public class MarkdownEditor extends FormEditor {
 		this.setPartName(markdownTextEditor.getTitle());
 		setInput(markdownTextEditor.getEditorInput());
 	}
+
+	/** Select and reveal Markdown text editor page */
+	public void activateMarkdownTextEditorPage() {
+		if (this.getActivePage() != markdownTextEditorPageIndex) {
+			this.setActiveEditor(getEditor(markdownTextEditorPageIndex));
+		}
+	}
+
+	@Override
+	public <T> T getAdapter(Class<T> adapter) {
+		
+		if (IContentOutlinePage.class.equals(adapter)) {
+			
+//			if (markdownOutlinePage == null) {
+//				markdownOutlinePage= new MarkdownOutlinePage(markdownTextEditor.getDocumentProvider(), this);
+//				if (getEditorInput() != null)
+//					markdownOutlinePage.setInput(getEditorInput());
+//			}
+			return (T) markdownOutlinePage;
+		}
+		return super.getAdapter(adapter);
+	}
+
 	
 //	/** Saves the multi-page editor's document as another file */
 //	public void doSaveAs() {
@@ -530,7 +587,6 @@ public class MarkdownEditor extends FormEditor {
 	/** Saves the forms editor's document */
 	@Override
 	public boolean isSaveAsAllowed() {
-
 		return true;
 	}
 
@@ -550,6 +606,10 @@ public class MarkdownEditor extends FormEditor {
 		return markdownTextEditorPageIndex;
 	}
 
+	public MarkdownOutlinePage getMarkdownOutlinePage() {
+		return markdownOutlinePage;
+	}
+
 //	/**
 //	 * @param sourcePage The sourcePage to set.
 //	 */
@@ -557,7 +617,4 @@ public class MarkdownEditor extends FormEditor {
 //		this.markdownTextEditor = sourcePage;
 //		this.sourcePageIndex = pages.indexOf(sourcePage);
 //	}
-
-	
-	
 }

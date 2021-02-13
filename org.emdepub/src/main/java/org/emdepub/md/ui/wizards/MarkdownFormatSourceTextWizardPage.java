@@ -17,12 +17,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.emdepub.activator.F;
 import org.emdepub.activator.UI;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.PreferenceNames;
 
-/** Special Markdown source format options */
+/** Markdown format source text wizard page */
 public class MarkdownFormatSourceTextWizardPage extends WizardPage {
 
 	/** Tuple */
@@ -101,11 +100,11 @@ public class MarkdownFormatSourceTextWizardPage extends WizardPage {
 			});
 		}
 
-		public void setEnabled(boolean enabled) {
-			checkBox.setEnabled(enabled);
-			label.setEnabled(enabled);
-			text.setEnabled(enabled);
-		}
+//		public void setEnabled(boolean enabled) {
+//			checkBox.setEnabled(enabled);
+//			label.setEnabled(enabled);
+//			text.setEnabled(enabled);
+//		}
 
 		public void setSelection(boolean isSelected) {
 			label.setText(isSelected ? descriptionChecked : descriptionUnchecked);
@@ -201,109 +200,6 @@ public class MarkdownFormatSourceTextWizardPage extends WizardPage {
 			}
 		});
 		
-		//.getCheckBox().pack();
-		
-//		new CheckBoxAndLabel(SpecialFormattingOptions.ApplyToSelection,
-//			"Apply to selection",
-//			"Apply formatting only to the selected text", "Apply formatting to the whole document!");
-//
-//		final CheckBoxAndLabel repairParagraphsCheckBoxAndLabel = new CheckBoxAndLabel(SpecialFormattingOptions.RepairParagraphs,
-//			"Repair broken paragraphs",
-//			"Replace single enter with space", "");
-//		
-//		final CheckBoxAndLabel repairParagraphsSmartCheckBoxAndLabel = new CheckBoxAndLabel(SpecialFormattingOptions.RepairParagraphsSmart,
-//			"Smart repair paragraphs",
-//			"Try to re-create the paragraphs original structure", "", true);
-//
-//		final CheckBoxAndLabel putOneEmptyLineBetweenParagraphsCheckBoxAndLabel = new CheckBoxAndLabel(SpecialFormattingOptions.PutOneEmptyLineBetweenParagraphs,
-//			"Empty line between paragraphs",
-//			"Put one empty line between paragraphs", "No line between paragraphs", false, true);
-//
-//		boolean repairParagraphsSelected = repairParagraphsCheckBoxAndLabel.getCheckBox().getSelection();
-//		repairParagraphsSmartCheckBoxAndLabel.setEnabled(repairParagraphsSelected);
-//		if (repairParagraphsSelected) {
-//			boolean repairParagraphsSmartSelected = repairParagraphsSmartCheckBoxAndLabel.getCheckBox().getSelection();
-//			putOneEmptyLineBetweenParagraphsCheckBoxAndLabel.setEnabled(repairParagraphsSmartSelected);
-//		}
-//		else {
-//			putOneEmptyLineBetweenParagraphsCheckBoxAndLabel.setEnabled(false);
-//		}
-//		repairParagraphsCheckBoxAndLabel.getCheckBox().addSelectionListener(new SelectionListener() {
-//			@Override
-//			public void widgetSelected(SelectionEvent selectionEvent) {
-//				boolean repairParagraphsSelected = repairParagraphsCheckBoxAndLabel.getCheckBox().getSelection();
-//				repairParagraphsSmartCheckBoxAndLabel.setEnabled(repairParagraphsSelected);
-//				if (repairParagraphsSelected) {
-//					boolean repairParagraphsSmartSelected = repairParagraphsSmartCheckBoxAndLabel.getCheckBox().getSelection();
-//					putOneEmptyLineBetweenParagraphsCheckBoxAndLabel.setEnabled(repairParagraphsSmartSelected);
-//				}
-//				else {
-//					putOneEmptyLineBetweenParagraphsCheckBoxAndLabel.setEnabled(false);
-//				}
-//			}
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent selectionEvent) { }
-//		});
-//		repairParagraphsSmartCheckBoxAndLabel.getCheckBox().addSelectionListener(new SelectionListener() {
-//			@Override
-//			public void widgetSelected(SelectionEvent selectionEvent) {
-//				boolean repairParagraphsSmartSelected = repairParagraphsSmartCheckBoxAndLabel.getCheckBox().getSelection();
-//				putOneEmptyLineBetweenParagraphsCheckBoxAndLabel.setEnabled(repairParagraphsSmartSelected);
-//			}
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent selectionEvent) { }
-//		});
-//		
-////		createCheckBoxAndDescription(MarkdownFormatSourceTextWizardOptions.PutTwoSpacesBeforeSentence,
-////			"Two spaces before sentence",
-////			"Put two spaces between a period and the start of a sentence", "Do not change space between a period and the start of a sentence");
-//
-//		final CheckBoxAndLabel create80ColumnsCheckBoxAndLabel = new CheckBoxAndLabel(SpecialFormattingOptions.Create80Columns,
-//			"80 columns",
-//			"Re-flow the text to fit in 80 columns", "");
-//
-//		final CheckBoxAndLabel create60ColumnsCheckBoxAndLabel = new CheckBoxAndLabel(SpecialFormattingOptions.Create60Columns,
-//			"60 columns",
-//			"Re-flow the text to fit in 60 columns", "");
-//
-//		create80ColumnsCheckBoxAndLabel.getCheckBox().addSelectionListener(new SelectionListener() {
-//			@Override
-//			public void widgetSelected(SelectionEvent selectionEvent) {
-//				boolean isSelected = create80ColumnsCheckBoxAndLabel.getCheckBox().getSelection();
-//				if (isSelected) {
-//					create60ColumnsCheckBoxAndLabel.getCheckBox().setSelection(false);
-//					create60ColumnsCheckBoxAndLabel.setSelection(false);
-//				}
-//			}
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent selectionEvent) { }
-//		});
-//		create60ColumnsCheckBoxAndLabel.getCheckBox().addSelectionListener(new SelectionListener() {
-//			@Override
-//			public void widgetSelected(SelectionEvent selectionEvent) {
-//				boolean isSelected = create60ColumnsCheckBoxAndLabel.getCheckBox().getSelection();
-//				if (isSelected) {
-//					create80ColumnsCheckBoxAndLabel.getCheckBox().setSelection(false);
-//					create80ColumnsCheckBoxAndLabel.setSelection(false);
-//				}
-//			}
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent selectionEvent) { }
-//		});
-//
-//		
-//		new CheckBoxAndLabel(SpecialFormattingOptions.RemoveSpoilerLines,
-//			"Remove spoiler lines",
-//			"Reduce multiple consecutive empty lines to one empty line", "");
-//		
-//		new CheckBoxAndLabel(SpecialFormattingOptions.RemoveEmptyLines,
-//			"Remove empty lines",
-//			"Remove all empty lines", "");
-//
-//		new CheckBoxAndLabel(SpecialFormattingOptions.RemoveSpoilerSpaces,
-//			"Remove spoiler spaces",
-//			"Reduce multiple consecutive spaces to one space", "");
-		
 		dialogChanged();
 		setControl(container);
 	}
@@ -336,8 +232,4 @@ public class MarkdownFormatSourceTextWizardPage extends WizardPage {
 		setErrorMessage(message);
 		setPageComplete(message == null);
 	}
-
-//	public LinkedHashMap<SpecialFormattingOptions, Boolean> getWizardOptions() {
-//		return wizardOptions;
-//	}
 }
