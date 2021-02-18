@@ -46,6 +46,11 @@ public class R {
 		loadGifImageResourceToRegistry("ui_props");
 		loadGifImageResourceToRegistry("PD_Toolbar_source");
 		
+		loadGifImageResourceToRegistry("PD_Toolbar_bold");
+		loadGifImageResourceToRegistry("PD_Toolbar_bold_disabled");
+		loadGifImageResourceToRegistry("PD_Toolbar_italic");
+		loadGifImageResourceToRegistry("PD_Toolbar_italic_disabled");
+		
 		loadPngImageResourceToRegistry("wordwrap");
 		loadPngImageResourceToRegistry("show_whitespace_chars");
 		
@@ -55,6 +60,9 @@ public class R {
 		loadPngImageResourceToRegistry("markdown-action-repair-paragraph");
 		
 		loadPngImageResourceToRegistry("markdown-header");
+		loadPngImageResourceToRegistry("markdown-content-assist-proposal");
+		
+		loadPngImageResourceToRegistry("message_warning");
 		
 		
 //		loadGifImageResourceToRegistry("md-preference-toolbar-notdefault");

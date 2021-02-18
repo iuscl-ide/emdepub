@@ -56,7 +56,7 @@ public class MarkdownOutlineEngine {
 		ArrayList<MarkdownOutlineNode> createdOutlineNodes = new ArrayList<>();
 
 		/* Parse document in a node */
-		Node documentNode = MarkdownEditorEngine.getParser().parse(markdownString);
+		Node documentNode = MarkdownFormatterEngine.getParser().parse(markdownString);
 		MarkdownOutlineNode documentOutlineNode = viewOutlineNode.addChildNode();
 //			documentOutlineNode.setStart(0);
 //			documentOutlineNode.setLength(0);
@@ -91,6 +91,7 @@ public class MarkdownOutlineEngine {
 			int offset = heading.getStartOffset();
 			headingOutlineNode.setStart(offset);
 			headingOutlineNode.setLength(heading.getEndOffset() - offset);
+			//headingOutlineNode.setLength(0);
 			createdOutlineNodes.add(headingOutlineNode);
 		}
 		

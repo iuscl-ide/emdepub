@@ -14,6 +14,8 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.MultiPageEditorPart;
+import org.eclipse.ui.texteditor.ITextEditor;
 import org.emdepub.ui.editor.md.MarkdownEditor;
 import org.emdepub.ui.editor.md.MarkdownTextEditor;
 
@@ -71,4 +73,20 @@ public class MarkdownOutlineReconcilerStrategy implements IReconcilingStrategy, 
 
     @Override
     public void setProgressMonitor(IProgressMonitor monitor) { /* no progress monitor used */ }
+    
+    /* LSPEclipseUtils, how Eclipse is doing it */
+    public static ITextEditor getActiveTextEditor() {
+	
+    	IEditorPart editorPart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if(editorPart instanceof ITextEditor) {
+			return (ITextEditor) editorPart;
+		} else if (editorPart instanceof MultiPageEditorPart) {
+			MultiPageEditorPart multiPageEditorPart = (MultiPageEditorPart) editorPart;
+			Object page = multiPageEditorPart.getSelectedPage();
+			if (page instanceof ITextEditor) {
+				return (ITextEditor) page;
+			}
+		}
+		return null;
+	}
 }

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4" ?>
 <plugin>
-
-
-
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type id="org.emdepub.md" name="Markdown" base-type="org.eclipse.core.runtime.text" file-extensions="md, mdown, markdown, markdn"></content-type>
 	</extension>
@@ -14,22 +11,28 @@
 		</editor>
 	</extension>
 
-	<extension point="org.eclipse.ui.genericeditor.reconcilers">
-      <reconciler class="org.emdepub.ui.editor.md.language.MarkdownOutlineReconciler" contentType="org.emdepub.md"></reconciler>
-   	</extension>
-	<extension point="org.eclipse.ui.genericeditor.foldingReconcilers">
-		<foldingReconciler class="org.emdepub.ui.editor.md.language.MarkdownFoldingReconciler" contentType="org.emdepub.md"></foldingReconciler>
-	</extension>
-
 	<extension point="org.eclipse.tm4e.registry.grammars">
-		<grammar path="code-language/syntaxes/markdown/markdown.tmLanguage" scopeName="text.html.markdown"></grammar>
+		<grammar path="code-language/markdown/syntaxes/markdown.tmLanguage" scopeName="text.html.markdown"></grammar>
 		<scopeNameContentTypeBinding contentTypeId="org.emdepub.md" scopeName="text.html.markdown"></scopeNameContentTypeBinding>
 	</extension>
 	<extension point="org.eclipse.tm4e.languageconfiguration.languageConfigurations">
-		<languageConfiguration contentTypeId="org.emdepub.md" path="code-language/language-configurations/markdown/language-configuration.json"></languageConfiguration>
+		<languageConfiguration contentTypeId="org.emdepub.md" path="code-language/markdown/language-configurations/language-configuration.json"></languageConfiguration>
 	</extension>
 	<extension point="org.eclipse.tm4e.ui.themes">
-		<theme dark="false" default="true" id="org.emdepub.markdown.light.theme" name="Markdown Light" path="code-language/themes/markdown/markdown-light-theme.css"></theme>
+		<theme dark="false" default="true" id="org.emdepub.markdown.light.theme" name="Markdown Light" path="code-language/markdown/themes/markdown-light-theme.css"></theme>
 		<themeAssociation scopeName="text.html.markdown" themeId="org.emdepub.markdown.light.theme" whenDark="false"></themeAssociation>
+	</extension>
+	<extension point="org.eclipse.tm4e.ui.snippets">
+		<snippet name="org.emdepub.snippet1" path="code-language/markdown/snippets/markdown.code-snippets" scopeName="text.html.markdown"></snippet>
+	</extension>
+
+	<extension point="org.eclipse.ui.genericeditor.reconcilers">
+		<reconciler class="org.emdepub.ui.editor.md.language.MarkdownOutlineReconciler" contentType="org.emdepub.md"></reconciler>
+	</extension>
+	<extension point="org.eclipse.ui.genericeditor.foldingReconcilers">
+		<foldingReconciler class="org.emdepub.ui.editor.md.language.MarkdownFoldingReconciler" contentType="org.emdepub.md"></foldingReconciler>
+	</extension>
+	<extension point="org.eclipse.ui.genericeditor.contentAssistProcessors">
+		<contentAssistProcessor class="org.emdepub.ui.editor.md.language.MarkdownContentAssistProcessor" contentType="org.emdepub.md"></contentAssistProcessor>
 	</extension>
 </plugin>

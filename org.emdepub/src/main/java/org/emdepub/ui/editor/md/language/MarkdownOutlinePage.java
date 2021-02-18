@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.emdepub.ui.editor.md.MarkdownEditor;
 import org.emdepub.ui.editor.md.MarkdownTextEditor;
-import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine;
+import org.emdepub.ui.editor.md.engine.MarkdownFormatterEngine;
 
 /** The outline view with its tree view */
 public class MarkdownOutlinePage extends ContentOutlinePage {
@@ -72,7 +72,7 @@ public class MarkdownOutlinePage extends ContentOutlinePage {
 	/** Parse and visit */
 	private MarkdownOutlineNode createOutlineFromDocument() {
 		
-		return MarkdownEditorEngine.updateDocumentOutline(document.get());
+		return MarkdownFormatterEngine.updateDocumentOutline(document.get());
 	}
 	
 	/** Customize the content */

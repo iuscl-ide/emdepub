@@ -39,7 +39,7 @@ import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.activator.UI;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard.MarkdownExportType;
-import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine;
+import org.emdepub.ui.editor.md.engine.MarkdownFormatterEngine;
 import org.emdepub.ui.editor.md.language.MarkdownOutlinePage;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatCodeStyles;
@@ -93,6 +93,7 @@ public class MarkdownEditor extends FormEditor {
 		formatCodeStylesCss.put(DisplayFormatCodeStyles.Sunburst, "sunburst");
 		formatCodeStylesCss.put(DisplayFormatCodeStyles.Vs, "vs");
 		formatCodeStylesCss.put(DisplayFormatCodeStyles.Vs2015, "vs2015");
+		formatCodeStylesCss.put(DisplayFormatCodeStyles.VSCode, "vscode");
 		formatCodeStylesCss.put(DisplayFormatCodeStyles.Xcode, "xcode");
 		formatCodeStylesCss.put(DisplayFormatCodeStyles.Custom, "custom");
 	}
@@ -122,6 +123,7 @@ public class MarkdownEditor extends FormEditor {
 		formatCodeStylesPre.put(DisplayFormatCodeStyles.Sunburst, "background: rgb(0, 0, 0);color: rgb(248, 248, 248);");
 		formatCodeStylesPre.put(DisplayFormatCodeStyles.Vs, "background: white;color: black;");
 		formatCodeStylesPre.put(DisplayFormatCodeStyles.Vs2015, "background: rgb(30, 30, 30);color: rgb(220, 220, 220);");
+		formatCodeStylesPre.put(DisplayFormatCodeStyles.VSCode, "background: black; color: lemonchiffon;");
 		formatCodeStylesPre.put(DisplayFormatCodeStyles.Xcode, "background: rgb(255, 255, 255);color: black;");
 		formatCodeStylesPre.put(DisplayFormatCodeStyles.Custom, "background: white;color: black;");
 	}
@@ -373,7 +375,7 @@ public class MarkdownEditor extends FormEditor {
 			return;
 		}
 
-		String formattedSelection = MarkdownEditorEngine.formatMarkdown(selection, markdownPreferences);
+		String formattedSelection = MarkdownFormatterEngine.formatMarkdown(selection, markdownPreferences);
 
 		try {
 			document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
@@ -561,6 +563,7 @@ public class MarkdownEditor extends FormEditor {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getAdapter(Class<T> adapter) {
 		

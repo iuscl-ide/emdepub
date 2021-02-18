@@ -15,7 +15,7 @@ import com.vladsch.flexmark.util.data.MutableDataSet;
 import com.vladsch.flexmark.util.sequence.LineAppendable;
 
 /** Flexmark stuff Markdown editor engine */
-public class MarkdownEditorEngine {
+public class MarkdownFormatterEngine {
 	
 	/** Parser options */
 	private static MutableDataSet parserOptions = new MutableDataSet();

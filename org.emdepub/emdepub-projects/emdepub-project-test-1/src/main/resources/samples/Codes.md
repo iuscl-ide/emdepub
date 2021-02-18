@@ -1,11 +1,12 @@
 ## Codes
 
-1. First
-   line
+1. First line
 2. Second
-3. Default flexmark-java pegdown emulation uses less strict HTML block parsing which interrupts an HTML block on a blank line. Pegdown only interrupts an HTML block on a blank line if all tags in the HTML block are closed.
-   To get closer to original pegdown HTML block parsing behavior use the method which takes a boolean strictHtml argument:
-
+3. Default flexmark-java pegdown emulation uses less strict HTML block parsing
+   which interrupts an HTML block on a blank line. Pegdown only interrupts an
+   HTML block on a blank line if all tags in the HTML block are closed. To get
+   closer to original pegdown HTML block parsing behavior use the method which
+   takes a boolean strictHtml argument:
 
 ### Java
 

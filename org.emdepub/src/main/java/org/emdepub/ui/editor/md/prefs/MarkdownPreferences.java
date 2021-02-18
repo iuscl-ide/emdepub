@@ -47,6 +47,7 @@ public class MarkdownPreferences {
 		Sunburst,
 		Vs,
 		Vs2015,
+		VSCode,
 		Xcode,
 		Custom
 	};

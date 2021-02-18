@@ -14,7 +14,6 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.StatusLineContributionItem;
-import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextSelection;
@@ -22,17 +21,17 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
-import org.eclipse.ui.views.navigator.CollapseAllAction;
 import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard;
 import org.emdepub.md.ui.wizards.MarkdownFormatSourceTextWizard;
-import org.emdepub.ui.editor.md.engine.MarkdownEditorEngine;
+import org.emdepub.ui.editor.md.engine.MarkdownFormatterEngine;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatCodeStyles;
 import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatStyles;
@@ -82,8 +81,29 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		formatCodeStyles.put(DisplayFormatCodeStyles.Sunburst, "Sunburst");
 		formatCodeStyles.put(DisplayFormatCodeStyles.Vs, "Vs");
 		formatCodeStyles.put(DisplayFormatCodeStyles.Vs2015, "Vs2015");
+		formatCodeStyles.put(DisplayFormatCodeStyles.VSCode, "VSCode");
 		formatCodeStyles.put(DisplayFormatCodeStyles.Xcode, "Xcode");
 		formatCodeStyles.put(DisplayFormatCodeStyles.Custom, "Custom");
+	}
+
+	/** Replace document selection */
+	private abstract class ReplaceDocumentSelection {
+
+		public ReplaceDocumentSelection() {
+			super();
+
+			TextSelection textSelection = (TextSelection) markdownSourceTextEditor.getSelectionProvider().getSelection();
+			String replacedSelection = replace(textSelection.getText());
+			IDocument document = markdownSourceTextEditor.getDocumentProvider().getDocument(markdownSourceTextEditor.getEditorInput());
+			try {
+				document.replace(textSelection.getOffset(), textSelection.getLength(), replacedSelection);
+			}
+			catch (BadLocationException badLocationException) {
+				L.e("BadLocationException in ReplaceDocumentSelection", badLocationException);
+			}
+		}
+		
+		public abstract String replace(String selection);
 	}
 	
 	/** Class */
@@ -172,9 +192,12 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	private MarkdownPreferences markdownPreferences;
 	
 	/** Contributed menu */
-	private MenuManager markdownMenuManager;
+	private IMenuManager markdownMenuManager;
 	/** Contributed tool bar */
-	private ToolBarManager markdownToolBarManager;
+	private IToolBarManager markdownToolBarManager;
+	/** Contributed status line */
+	private IStatusLineManager markdownStatusLineManager;
+	
 
 	/** Export as one HTML file */
 	private Action exportAsHtmlAction;
@@ -199,7 +222,10 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 
 	/** Browser hover link */
 	private static StatusLineContributionItem statusLineLinkField;
-	
+
+	/** Source position */
+	private static StatusLineContributionItem statusLinePositionField;
+
 	/* Second page */
 	
 	/** Word wrap */
@@ -221,7 +247,19 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	/** Special Markdown text format */
 	private Action specialFormatAction;
 	private String specialFormatActionId = "org.emdepub.ui.editor.md.action.specialFormatAction";
-	
+
+	/** Named separator */
+	private Separator formatSeparatorAction = new Separator();
+	private String formatSeparatorActionId = "org.emdepub.ui.editor.md.action.formatSeparatorAction";
+
+	/** Bold Markdown text format */
+	private Action boldFormatAction;
+	private String boldFormatActionId = "org.emdepub.ui.editor.md.action.boldFormatAction";
+
+	/** Italic Markdown text format */
+	private Action italicFormatAction;
+	private String italicFormatActionId = "org.emdepub.ui.editor.md.action.italicFormatAction";
+
 	/** Eclipse actions */
 	private void createActions() {
 		
@@ -357,25 +395,19 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		/* Format Selected Markdown Source Text */
 		formatMarkdownAction = new Action() {
 			public void run() {
-				TextSelection textSelection = (TextSelection) markdownSourceTextEditor.getSelectionProvider().getSelection();
-				String selection = textSelection.getText();
-//				L.p(selection);
-				String formattedSelection = MarkdownEditorEngine.formatMarkdown(selection, markdownPreferences);
-//				L.p(formattedSelection);
-				IDocument document = markdownSourceTextEditor.getDocumentProvider().getDocument(markdownSourceTextEditor.getEditorInput());
-				try {
-					document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
-				}
-				catch (BadLocationException badLocationException) {
-					L.e("BadLocationException in formatMarkdownAction", badLocationException);
-				}
+				new ReplaceDocumentSelection() {
+					@Override
+					public String replace(String selection) {
+						return MarkdownFormatterEngine.formatMarkdown(selection, markdownPreferences);
+					}
+				};
 			}
 		};
 		formatMarkdownAction.setId(formatMarkdownActionId);
 		formatMarkdownAction.setText("Format Markdown source");
 		formatMarkdownAction.setToolTipText("Format selected Markdown source text");
 		formatMarkdownAction.setImageDescriptor(R.getImageDescriptor("markdown-action-format-md"));
-		
+
 		/** Special Markdown format */
 		specialFormatAction = new Action() {
 			public void run() {
@@ -389,6 +421,54 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		specialFormatAction.setText("Markdown format options");
 		specialFormatAction.setToolTipText("Markdown format source text options");
 		specialFormatAction.setImageDescriptor(R.getImageDescriptor("markdown-action-repair-paragraph"));
+
+		/** Bold Markdown format */
+		boldFormatAction = new Action() {
+			public void run() {
+				new ReplaceDocumentSelection() {
+					@Override
+					public String replace(String selection) {
+						String selectionTrim = selection.trim();
+						if (selectionTrim.startsWith("**") && selectionTrim.endsWith("**")) {
+							int startPos = selection.indexOf("**");
+							int endPos = selection.lastIndexOf("**");
+							if (startPos < endPos) {
+								return selection.substring(0, startPos) + selection.substring(startPos + 2,  endPos) + selection.substring(endPos + 2);
+							}
+						}
+						return "**" + selection + "**";
+					}
+				};
+			}
+		};
+		boldFormatAction.setId(boldFormatActionId);
+		boldFormatAction.setText("Bold format selected text");
+		boldFormatAction.setToolTipText("Markdown Bold format selected text");
+		boldFormatAction.setImageDescriptor(R.getImageDescriptor("PD_Toolbar_bold"));
+		
+		/** Italic Markdown format */
+		italicFormatAction = new Action() {
+			public void run() {
+				new ReplaceDocumentSelection() {
+					@Override
+					public String replace(String selection) {
+						String selectionTrim = selection.trim();
+						if (selectionTrim.startsWith("*") && selectionTrim.endsWith("*")) {
+							int startPos = selection.indexOf("*");
+							int endPos = selection.lastIndexOf("*");
+							if (startPos < endPos) {
+								return selection.substring(0, startPos) + selection.substring(startPos + 1,  endPos) + selection.substring(endPos + 1);
+							}
+						}
+						return "*" + selection + "*";
+					}
+				};
+			}
+		};
+		italicFormatAction.setId(italicFormatActionId);
+		italicFormatAction.setText("Italic format selected text");
+		italicFormatAction.setToolTipText("Markdown Italic format selected text");
+		italicFormatAction.setImageDescriptor(R.getImageDescriptor("PD_Toolbar_italic"));
 	}
 
 	/** Initial, fix contribution */
@@ -403,7 +483,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	/** Initial, fix contribution */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		markdownToolBarManager = (ToolBarManager) toolBarManager;
+		markdownToolBarManager = toolBarManager;
 		markdownToolBarManager.add(exportAsHtmlAction);
 		markdownToolBarManager.add(new Separator());
 	}
@@ -411,7 +491,8 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	/** Initial, fix contribution */
 	@Override
 	public void contributeToStatusLine(IStatusLineManager statusLineManager) {
-		statusLineManager.add(statusLineLinkField);
+		markdownStatusLineManager = statusLineManager;
+		//statusLineManager.add(statusLineLinkField);
 		super.contributeToStatusLine(statusLineManager);
 	}
 
@@ -423,6 +504,9 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		
 		statusLineLinkField = new StatusLineContributionItem("statusLineLinkField", 120);
 		statusLineLinkField.setText("");
+		
+		statusLinePositionField = new StatusLineContributionItem("statusLinePositionField", 120);
+		statusLinePositionField.setText("0");
 	}
 	
 	/** The editor class is available here */
@@ -492,7 +576,8 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	@Override
 	public void setActivePage(IEditorPart editorPart) {
 		
-		if (markdownMultiPageEditor == null) {
+		IActionBars actionBars = getActionBars();
+		if ((markdownMultiPageEditor == null) || (actionBars == null)) {
 			return;
 		}
 
@@ -515,6 +600,15 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		
 		markdownMenuManager.remove(specialFormatActionId);
 		markdownToolBarManager.remove(specialFormatActionId);
+
+		markdownToolBarManager.remove(formatSeparatorActionId);
+		
+		markdownToolBarManager.remove(boldFormatActionId);
+		markdownToolBarManager.remove(italicFormatActionId);
+
+		/* Status line */
+		markdownStatusLineManager.remove(statusLineLinkField);
+		markdownStatusLineManager.remove(statusLinePositionField);
 		
 		/* Update */
 		markdownToolBarManager.update(true);
@@ -529,9 +623,12 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 			
 			markdownMenuManager.add(formatCodeStyleMenuManager);
 			markdownToolBarManager.add(formatCodeStyleDropDownMenuAction);
-			
+
+			markdownStatusLineManager.add(statusLineLinkField);
+
 			/* Update */
 			markdownToolBarManager.update(true);
+			markdownStatusLineManager.update(true);
 		}
 		if (markdownMultiPageEditor.getActivePage() == markdownMultiPageEditor.getMarkdownTextEditorPageIndex()) {
 
@@ -545,13 +642,26 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 
 			markdownMenuManager.add(specialFormatAction);
 			markdownToolBarManager.add(specialFormatAction);
+
+			markdownToolBarManager.add(formatSeparatorAction);
+
+			markdownToolBarManager.add(boldFormatAction);
+			markdownToolBarManager.add(italicFormatAction);
 			
+			markdownStatusLineManager.add(statusLinePositionField);
+
+			statusLinePositionField.setText(markdownSourceTextEditor.getCursorPositionString());
 			/* Update */
 			markdownToolBarManager.update(true);
+			markdownStatusLineManager.update(true);
 		}
 	}
 
 	public static StatusLineContributionItem getStatusLineLinkField() {
 		return statusLineLinkField;
+	}
+	
+	public static StatusLineContributionItem getStatusLinePositionField() {
+		return statusLinePositionField;
 	}
 }

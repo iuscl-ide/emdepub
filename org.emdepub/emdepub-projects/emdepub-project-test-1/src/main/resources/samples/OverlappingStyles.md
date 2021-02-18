@@ -8,6 +8,12 @@ Header
 
 # Heading
 
+*Emphasis*
+**Strong Emphasis**
+*Emphasis1 **Strong Emphasis** Emphasis2*
+**Strong *Emphasis* Emphasis**
+
+
 ***BoldItalic***
 **Bold1 *Italic1 **Bold2** Italic1* Bold1**
 *Italic1           Italic1*
@@ -22,7 +28,7 @@ www.md.com
 To be commented
 -->
 
-*End comment*
+*End `inline` comment*
 
 *<p align="center">**HTML** part</p>*
 
