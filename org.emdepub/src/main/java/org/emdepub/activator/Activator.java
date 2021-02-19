@@ -25,7 +25,7 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 	
 	/** Plug-in root folder */
-	private File pluginFolder;
+	private static String pluginFolderPathName;
 	
 	/**
 	 * The constructor
@@ -37,17 +37,17 @@ public class Activator extends AbstractUIPlugin {
 		/* Plug-in root folder */
 		URL pluginRootURL = FileLocator.find(Platform.getBundle(PLUGIN_ID), new Path("/"), null);
 		try {
-			pluginFolder = (new File(FileLocator.resolve(pluginRootURL).toURI())).getCanonicalFile();
+			pluginFolderPathName = (new File(FileLocator.resolve(pluginRootURL).toURI())).getCanonicalFile().getCanonicalPath();
 		}
 		catch (IOException ioException) {
-			L.e("IOException in MarkdownSemanticEPActivator", ioException);
+			L.e("IOException in Activator", ioException);
 		}
 		catch (URISyntaxException uriSyntaxException) {
-			L.e("URISyntaxException in MarkdownSemanticEPActivator", uriSyntaxException);
+			L.e("URISyntaxException in Activator", uriSyntaxException);
 		}
 
 		/* Log */
-		File logFile = new File(pluginFolder, "log/emdepub.log");
+		File logFile = new File(pluginFolderPathName, "log/emdepub.log");
 		L.initLog(logFile);
 	}
 
@@ -78,7 +78,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/** Returns plug-in root folder */
-	public File getPluginFolder() {
-		return pluginFolder;
+	public static String getPluginFolder() {
+		return pluginFolderPathName;
 	}
 }

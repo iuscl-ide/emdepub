@@ -34,6 +34,7 @@ import org.eclipse.ui.ide.FileStoreEditorInput;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+import org.emdepub.activator.Activator;
 import org.emdepub.activator.F;
 import org.emdepub.activator.L;
 import org.emdepub.activator.R;
@@ -134,7 +135,7 @@ public class MarkdownEditor extends FormEditor {
 	private static final String markdownCenterHeadersCss = R.getTextResourceAsString("texts/markdown-center-headers.css"); 
 	
 	
-	private static final String markdownViewerFolderNameWithPath = "C:/Iustin/Programming/_emdepub/repositories/emdepub/org.emdepub/viewers/markdown";
+	private static final String markdownViewerFolderNameWithPath = Activator.getPluginFolder().replace("\\", "/") + "/viewers/markdown";
 	private static final String markdownViewerUrl = "file://" + markdownViewerFolderNameWithPath + "/index-markdown.html";
 	
 	
