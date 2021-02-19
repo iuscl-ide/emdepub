@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.md.ui.wizards;
+package org.emdepub.markdown.editor.wizard;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.emdepub.activator.F;
 import org.emdepub.activator.UI;
-import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard.MarkdownExportType;
+import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExportType;
 
 /** Markdown export as HTML wizard page */
 public class MarkdownExportAsHtmlWizardPage extends WizardPage {

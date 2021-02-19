@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md.language;
+package org.emdepub.markdown.editor.language;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md.language;
+package org.emdepub.markdown.editor.language;
 
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.ITextViewer;
@@ -7,7 +7,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
-import org.emdepub.ui.editor.md.engine.MarkdownContentAssistEngine;
+import org.emdepub.markdown.editor.engine.MarkdownContentAssistEngine;
 
 /** Markdown content assist processor */
 public class MarkdownContentAssistProcessor implements IContentAssistProcessor {

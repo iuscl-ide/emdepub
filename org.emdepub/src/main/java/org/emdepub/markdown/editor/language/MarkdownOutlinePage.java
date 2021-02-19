@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md.language;
+package org.emdepub.markdown.editor.language;
 
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -12,9 +12,9 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
-import org.emdepub.ui.editor.md.MarkdownEditor;
-import org.emdepub.ui.editor.md.MarkdownTextEditor;
-import org.emdepub.ui.editor.md.engine.MarkdownFormatterEngine;
+import org.emdepub.markdown.editor.MarkdownEditor;
+import org.emdepub.markdown.editor.MarkdownTextEditor;
+import org.emdepub.markdown.editor.engine.MarkdownFormatterEngine;
 
 /** The outline view with its tree view */
 public class MarkdownOutlinePage extends ContentOutlinePage {

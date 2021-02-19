@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md.engine;
+package org.emdepub.markdown.editor.engine;
 
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;

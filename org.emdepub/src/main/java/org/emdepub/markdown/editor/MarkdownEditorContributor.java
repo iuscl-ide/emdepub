@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md;
+package org.emdepub.markdown.editor;
 
 import java.util.LinkedHashMap;
 
@@ -29,13 +29,13 @@ import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.emdepub.activator.L;
 import org.emdepub.activator.R;
-import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard;
-import org.emdepub.md.ui.wizards.MarkdownFormatSourceTextWizard;
-import org.emdepub.ui.editor.md.engine.MarkdownFormatterEngine;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatCodeStyles;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatStyles;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.PreferenceNames;
+import org.emdepub.markdown.editor.engine.MarkdownFormatterEngine;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.DisplayFormatCodeStyles;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.DisplayFormatStyles;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
+import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard;
+import org.emdepub.markdown.editor.wizard.MarkdownFormatSourceTextWizard;
 
 /** Markdown multi-page editor contributor to menu, tool bar, status bar */
 public class MarkdownEditorContributor extends MultiPageEditorActionBarContributor {

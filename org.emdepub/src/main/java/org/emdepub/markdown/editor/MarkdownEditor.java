@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md;
+package org.emdepub.markdown.editor;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -38,13 +38,13 @@ import org.emdepub.activator.F;
 import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.activator.UI;
-import org.emdepub.md.ui.wizards.MarkdownExportAsHtmlWizard.MarkdownExportType;
-import org.emdepub.ui.editor.md.engine.MarkdownFormatterEngine;
-import org.emdepub.ui.editor.md.language.MarkdownOutlinePage;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatCodeStyles;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.DisplayFormatStyles;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.PreferenceNames;
+import org.emdepub.markdown.editor.engine.MarkdownFormatterEngine;
+import org.emdepub.markdown.editor.language.MarkdownOutlinePage;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.DisplayFormatCodeStyles;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.DisplayFormatStyles;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
+import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExportType;
 
 /** Markdown multi-page editor */
 public class MarkdownEditor extends FormEditor {
@@ -135,15 +135,12 @@ public class MarkdownEditor extends FormEditor {
 	
 	
 	private static final String markdownViewerFolderNameWithPath = "C:/Iustin/Programming/_emdepub/repositories/emdepub/org.emdepub/viewers/markdown";
-	private static final String markdownViewerUrl = "file://" + markdownViewerFolderNameWithPath + "/index-md.html";
+	private static final String markdownViewerUrl = "file://" + markdownViewerFolderNameWithPath + "/index-markdown.html";
 	
 	
 	/** The browser will display the Markdown HTML */
 	private Browser viewerBrowser;
 	private int markdownViewerBrowserPageIndex;
-
-	//private ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-
 	
 	/** The Markdown editor */
 	private MarkdownTextEditor markdownTextEditor;
@@ -151,8 +148,6 @@ public class MarkdownEditor extends FormEditor {
 	private MarkdownPreferences markdownPreferences;
 	private String markdownPreferencesPropertiesFileNameWithPath;
 	private MarkdownOutlinePage markdownOutlinePage;
-//	private IEditorPart markdownTextEditorPart;
-//	private IDocument sourceDocument;
 
 	/** Creates the viewer page of the forms editor */
 	private void createBrowserViewerPage() {
@@ -213,18 +208,11 @@ public class MarkdownEditor extends FormEditor {
 		this.setPartName(markdownTextEditor.getTitle());
 		
 		setPageText(markdownTextEditorPageIndex, "Markdown Editor");
-		//setSourcePage(markdownTextEditor);
-		//sourceDocument = markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput());
 		
 		markdownPreferencesPropertiesFileNameWithPath = getSourceMarkdownFilePathAndName() + ".prefs";
 		markdownPreferences.loadProperties(markdownPreferencesPropertiesFileNameWithPath);
 		
 		markdownOutlinePage = new MarkdownOutlinePage(this);
-
-//		if (getEditorInput() != null)
-//				markdownOutlinePage.setInput(getEditorInput());
-//		}
-
 	}
 
 	/** Save from here */
@@ -361,16 +349,8 @@ public class MarkdownEditor extends FormEditor {
 	public void doSpecialFormatting(MarkdownPreferences markdownPreferences) {
 		
 		Document document = (Document) markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput());
-//		String enter = document.getDefaultLineDelimiter();
 		TextSelection textSelection = (TextSelection) markdownTextEditor.getSelectionProvider().getSelection();
 		
-//		String selection = "";
-//		if (formattingOptions.get(SpecialFormattingOptions.ApplyToSelection)) {
-//			selection = textSelection.getText();
-//		}
-//		else {
-//			selection = document.get();
-//		}
 		String selection = textSelection.getText();
 		if (selection.length() == 0) {
 			return;
@@ -384,18 +364,6 @@ public class MarkdownEditor extends FormEditor {
 		catch (BadLocationException badLocationException) {
 			L.e("BadLocationException in doSpecialFormatting", badLocationException);
 		}
-
-//		if (formattingOptions.get(SpecialFormattingOptions.ApplyToSelection)) {
-//			try {
-//				document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
-//			}
-//			catch (BadLocationException badLocationException) {
-//				L.e("BadLocationException in doSpecialFormatting", badLocationException);
-//			}
-//		}
-//		else {
-//			document.set(formattedSelection);
-//		}
 	}
 	
 	/** Get the Markdown as Base64 text */
@@ -487,7 +455,6 @@ public class MarkdownEditor extends FormEditor {
 	private void openExternalFile(String fileNameWithPath) {
 
 		IFileStore fileStore = EFS.getLocalFileSystem().getStore(new Path(fileNameWithPath));
-		// fileStore = fileStore.getChild(names[i]);
 		if (!fileStore.fetchInfo().isDirectory() && fileStore.fetchInfo().exists()) {
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			try {
@@ -517,8 +484,6 @@ public class MarkdownEditor extends FormEditor {
 					/* ILB */
 				}
 			}
-//			System.out.println(java.nio.file.Path.of(editorReference.getEditorInput().getAdapter(FileStoreEditorInput.class).getURI()));
-//			System.out.println(editorReference);
 		};
 	}
 
@@ -535,9 +500,6 @@ public class MarkdownEditor extends FormEditor {
 		if (newPageIndex == markdownViewerBrowserPageIndex) {
 			refresh();
 		}
-//		if (newPageIndex == preferencesPageIndex) {
-//			preferencesUI.setInitialFocus();
-//		}
 	}
 
 	/** Saves the forms editor's document */
@@ -568,24 +530,10 @@ public class MarkdownEditor extends FormEditor {
 	public <T> T getAdapter(Class<T> adapter) {
 		
 		if (IContentOutlinePage.class.equals(adapter)) {
-			
-//			if (markdownOutlinePage == null) {
-//				markdownOutlinePage= new MarkdownOutlinePage(markdownTextEditor.getDocumentProvider(), this);
-//				if (getEditorInput() != null)
-//					markdownOutlinePage.setInput(getEditorInput());
-//			}
 			return (T) markdownOutlinePage;
 		}
 		return super.getAdapter(adapter);
 	}
-
-	
-//	/** Saves the multi-page editor's document as another file */
-//	public void doSaveAs() {
-//		textEditorPart.doSaveAs();
-//		setPageText(textEditorPageIndex, textEditorPart.getTitle());
-//		setInput(textEditorPart.getEditorInput());
-//	}
 	
 	/** Saves the forms editor's document */
 	@Override
@@ -612,12 +560,4 @@ public class MarkdownEditor extends FormEditor {
 	public MarkdownOutlinePage getMarkdownOutlinePage() {
 		return markdownOutlinePage;
 	}
-
-//	/**
-//	 * @param sourcePage The sourcePage to set.
-//	 */
-//	public void setSourcePage(ITextEditor sourcePage) {
-//		this.markdownTextEditor = sourcePage;
-//		this.sourcePageIndex = pages.indexOf(sourcePage);
-//	}
 }

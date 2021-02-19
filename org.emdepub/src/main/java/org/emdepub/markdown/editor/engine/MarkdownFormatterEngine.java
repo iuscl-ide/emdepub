@@ -1,11 +1,11 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md.engine;
+package org.emdepub.markdown.editor.engine;
 
 import java.util.Arrays;
 
-import org.emdepub.ui.editor.md.language.MarkdownOutlineNode;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.PreferenceNames;
+import org.emdepub.markdown.editor.language.MarkdownOutlineNode;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
 
 import com.vladsch.flexmark.ext.gfm.tasklist.TaskListExtension;
 import com.vladsch.flexmark.ext.tables.TablesExtension;

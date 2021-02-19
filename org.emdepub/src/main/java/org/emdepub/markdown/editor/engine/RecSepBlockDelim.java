@@ -1,5 +1,5 @@
 /* Record Separator Block Delimiter */
-package org.emdepub.ui.editor.md.engine;
+package org.emdepub.markdown.editor.engine;
 
 import java.util.ArrayList;
 import java.util.Collections;

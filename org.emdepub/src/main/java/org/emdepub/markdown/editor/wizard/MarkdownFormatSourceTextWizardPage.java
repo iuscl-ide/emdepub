@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.md.ui.wizards;
+package org.emdepub.markdown.editor.wizard;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -18,8 +18,8 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.emdepub.activator.UI;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences.PreferenceNames;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
 
 /** Markdown format source text wizard page */
 public class MarkdownFormatSourceTextWizardPage extends WizardPage {

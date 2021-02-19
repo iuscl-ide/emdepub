@@ -1,13 +1,13 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.md.ui.wizards;
+package org.emdepub.markdown.editor.wizard;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
-import org.emdepub.ui.editor.md.MarkdownEditor;
-import org.emdepub.ui.editor.md.prefs.MarkdownPreferences;
+import org.emdepub.markdown.editor.MarkdownEditor;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
 
 /** Markdown format source text wizard */
 public class MarkdownFormatSourceTextWizard extends Wizard implements IExportWizard {

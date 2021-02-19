@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md.language;
+package org.emdepub.markdown.editor.language;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.projection.ProjectionAnnotation;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
-import org.emdepub.ui.editor.md.engine.MarkdownFoldingEngine;
+import org.emdepub.markdown.editor.engine.MarkdownFoldingEngine;
 
 /** Markdown folding reconciler strategy */
 public class MarkdownFoldingReconcilerStrategy implements IReconcilingStrategy, IReconcilingStrategyExtension {

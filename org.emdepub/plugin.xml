@@ -6,7 +6,7 @@
 	</extension>
 
 	<extension point="org.eclipse.ui.editors">
-		<editor class="org.emdepub.ui.editor.md.MarkdownEditor" contributorClass="org.emdepub.ui.editor.md.MarkdownEditorContributor" default="true" extensions="md, mdown, markdown, markdn" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.MarkdownEditor" name="Markdown Editor and Viewer">
+		<editor class="org.emdepub.markdown.editor.MarkdownEditor" contributorClass="org.emdepub.markdown.editor.MarkdownEditorContributor" default="true" extensions="md, mdown, markdown, markdn" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.MarkdownEditor" name="Markdown Editor and Viewer">
 			<contentTypeBinding contentTypeId="org.emdepub.md"></contentTypeBinding>
 		</editor>
 	</extension>
@@ -27,12 +27,12 @@
 	</extension>
 
 	<extension point="org.eclipse.ui.genericeditor.reconcilers">
-		<reconciler class="org.emdepub.ui.editor.md.language.MarkdownOutlineReconciler" contentType="org.emdepub.md"></reconciler>
+		<reconciler class="org.emdepub.markdown.editor.language.MarkdownOutlineReconciler" contentType="org.emdepub.md"></reconciler>
 	</extension>
 	<extension point="org.eclipse.ui.genericeditor.foldingReconcilers">
-		<foldingReconciler class="org.emdepub.ui.editor.md.language.MarkdownFoldingReconciler" contentType="org.emdepub.md"></foldingReconciler>
+		<foldingReconciler class="org.emdepub.markdown.editor.language.MarkdownFoldingReconciler" contentType="org.emdepub.md"></foldingReconciler>
 	</extension>
 	<extension point="org.eclipse.ui.genericeditor.contentAssistProcessors">
-		<contentAssistProcessor class="org.emdepub.ui.editor.md.language.MarkdownContentAssistProcessor" contentType="org.emdepub.md"></contentAssistProcessor>
+		<contentAssistProcessor class="org.emdepub.markdown.editor.language.MarkdownContentAssistProcessor" contentType="org.emdepub.md"></contentAssistProcessor>
 	</extension>
 </plugin>

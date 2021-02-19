@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md.prefs;
+package org.emdepub.markdown.editor.preferences;
 
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;

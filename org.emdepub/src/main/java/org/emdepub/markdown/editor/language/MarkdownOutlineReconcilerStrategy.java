@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md.language;
+package org.emdepub.markdown.editor.language;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.text.Document;
@@ -16,8 +16,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.texteditor.ITextEditor;
-import org.emdepub.ui.editor.md.MarkdownEditor;
-import org.emdepub.ui.editor.md.MarkdownTextEditor;
+import org.emdepub.markdown.editor.MarkdownEditor;
+import org.emdepub.markdown.editor.MarkdownTextEditor;
 
 /** Markdown outline strategy */
 public class MarkdownOutlineReconcilerStrategy implements IReconcilingStrategy, IReconcilingStrategyExtension {

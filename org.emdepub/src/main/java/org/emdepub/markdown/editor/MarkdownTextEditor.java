@@ -1,5 +1,5 @@
 /* Emdepub Eclipse Plugin - emdepub.org */
-package org.emdepub.ui.editor.md;
+package org.emdepub.markdown.editor;
 
 import org.eclipse.ui.internal.genericeditor.ExtensionBasedTextEditor;
 
