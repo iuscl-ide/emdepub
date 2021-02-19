@@ -74,14 +74,14 @@ public class MarkdownOutlineEngine {
 
 			int parentIndex = createdOutlineNodes.size() - 1;
 			MarkdownOutlineNode parentOutlineNode = createdOutlineNodes.get(parentIndex);
-			int mdHeadingLevel = heading.getLevel();
-			while (Integer.parseInt(parentOutlineNode.getSubType()) >= mdHeadingLevel) {
+			int markdownHeadingLevel = heading.getLevel();
+			while (Integer.parseInt(parentOutlineNode.getSubType()) >= markdownHeadingLevel) {
 				parentIndex--;
 				parentOutlineNode = createdOutlineNodes.get(parentIndex);
 			}
 			
 			MarkdownOutlineNode headingOutlineNode = parentOutlineNode.addChildNode();
-			String level = "" + mdHeadingLevel;
+			String level = "" + markdownHeadingLevel;
 			headingOutlineNode.setType("Heading");
 			headingOutlineNode.setSubType(level);
 			headingOutlineNode.setImage(R.getImage("markdown-header"));

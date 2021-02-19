@@ -201,23 +201,23 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 
 	/** Export as one HTML file */
 	private Action exportAsHtmlAction;
-	private final static String exportAsHtmlActionId = "org.emdepub.ui.editor.md.action.exportAsHtml";
+	private final static String exportAsHtmlActionId = "org.emdepub.ui.editor.markdown.action.exportAsHtml";
 
 	/* First page */
 	
 	private MenuManager formatStyleMenuManager;
 	private Action formatStyleDropDownMenuAction;
-	private final static String formatStyleDropDownMenuActionId = "org.emdepub.ui.editor.md.action.formatStyleDropDownMenu";
+	private final static String formatStyleDropDownMenuActionId = "org.emdepub.ui.editor.markdown.action.formatStyleDropDownMenu";
 	private Menu formatStyleDropDownMenu;
 
 	private MenuManager formatOptionMenuManager;
 	private Action formatOptionDropDownMenuAction;
-	private final static String formatOptionDropDownMenuActionId = "org.emdepub.ui.editor.md.action.formatOptionDropDownMenu";
+	private final static String formatOptionDropDownMenuActionId = "org.emdepub.ui.editor.markdown.action.formatOptionDropDownMenu";
 	private Menu formatOptionDropDownMenu;
 
 	private MenuManager formatCodeStyleMenuManager;
 	private Action formatCodeStyleDropDownMenuAction;
-	private final static String formatCodeStyleDropDownMenuActionId = "org.emdepub.ui.editor.md.action.formatCodeStyleDropDownMenu";
+	private final static String formatCodeStyleDropDownMenuActionId = "org.emdepub.ui.editor.markdown.action.formatCodeStyleDropDownMenu";
 	private Menu formatCodeStyleDropDownMenu;
 
 	/** Browser hover link */
@@ -238,27 +238,27 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 
 	/** Named separator */
 	private Separator editSeparatorAction = new Separator();
-	private String editSeparatorActionId = "org.emdepub.ui.editor.md.action.editSeparatorAction";
+	private String editSeparatorActionId = "org.emdepub.ui.editor.markdown.action.editSeparatorAction";
 	
 	/** Format Markdown text */
 	private Action formatMarkdownAction;
-	private String formatMarkdownActionId = "org.emdepub.ui.editor.md.action.formatMarkdownAction";
+	private String formatMarkdownActionId = "org.emdepub.ui.editor.markdown.action.formatMarkdownAction";
 
 	/** Special Markdown text format */
 	private Action specialFormatAction;
-	private String specialFormatActionId = "org.emdepub.ui.editor.md.action.specialFormatAction";
+	private String specialFormatActionId = "org.emdepub.ui.editor.markdown.action.specialFormatAction";
 
 	/** Named separator */
 	private Separator formatSeparatorAction = new Separator();
-	private String formatSeparatorActionId = "org.emdepub.ui.editor.md.action.formatSeparatorAction";
+	private String formatSeparatorActionId = "org.emdepub.ui.editor.markdown.action.formatSeparatorAction";
 
 	/** Bold Markdown text format */
 	private Action boldFormatAction;
-	private String boldFormatActionId = "org.emdepub.ui.editor.md.action.boldFormatAction";
+	private String boldFormatActionId = "org.emdepub.ui.editor.markdown.action.boldFormatAction";
 
 	/** Italic Markdown text format */
 	private Action italicFormatAction;
-	private String italicFormatActionId = "org.emdepub.ui.editor.md.action.italicFormatAction";
+	private String italicFormatActionId = "org.emdepub.ui.editor.markdown.action.italicFormatAction";
 
 	/** Eclipse actions */
 	private void createActions() {
@@ -613,7 +613,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		/* Update */
 		markdownToolBarManager.update(true);
 
-		if (markdownMultiPageEditor.getActivePage() == markdownMultiPageEditor.getBrowserViewerPageIndex()) {
+		if (markdownMultiPageEditor.getActivePage() == markdownMultiPageEditor.getMarkdownViewerBrowserPageIndex()) {
 			
 			markdownMenuManager.add(formatStyleMenuManager);
 			markdownToolBarManager.add(formatStyleDropDownMenuAction);

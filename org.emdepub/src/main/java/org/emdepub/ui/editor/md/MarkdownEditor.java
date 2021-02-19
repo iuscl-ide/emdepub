@@ -128,18 +128,19 @@ public class MarkdownEditor extends FormEditor {
 		formatCodeStylesPre.put(DisplayFormatCodeStyles.Custom, "background: white;color: black;");
 	}
 	
-	private static final String mdExportTemplate = R.getTextResourceAsString("texts/md-export-template.html");
-	private static final String mdFixedContentWidthCss = R.getTextResourceAsString("texts/md-fixed-content-width.css"); 
-	private static final String mdJustifiedParagraphsCss = R.getTextResourceAsString("texts/md-justified-paragraphs.css"); 
-	private static final String mdCenterHeadersCss = R.getTextResourceAsString("texts/md-center-headers.css"); 
+	private static final String markdownExportTemplate = R.getTextResourceAsString("texts/markdown-export-template.html");
+	private static final String markdownFixedContentWidthCss = R.getTextResourceAsString("texts/markdown-fixed-content-width.css"); 
+	private static final String markdownJustifiedParagraphsCss = R.getTextResourceAsString("texts/markdown-justified-paragraphs.css"); 
+	private static final String markdownCenterHeadersCss = R.getTextResourceAsString("texts/markdown-center-headers.css"); 
 	
 	
-	private static final String mdViewerFolderNameWithPath = "C:/Iustin/Programming/_emdepub/repositories/emdepub/org.emdepub/code-language/viewers/markdown";
-
+	private static final String markdownViewerFolderNameWithPath = "C:/Iustin/Programming/_emdepub/repositories/emdepub/org.emdepub/viewers/markdown";
+	private static final String markdownViewerUrl = "file://" + markdownViewerFolderNameWithPath + "/index-md.html";
+	
 	
 	/** The browser will display the Markdown HTML */
 	private Browser viewerBrowser;
-	private int browserViewerPageIndex;
+	private int markdownViewerBrowserPageIndex;
 
 	//private ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
@@ -193,8 +194,8 @@ public class MarkdownEditor extends FormEditor {
             }
         });
 		
-		browserViewerPageIndex = addPage(viewerPageComposite);
-		setPageText(browserViewerPageIndex, "Display");
+		markdownViewerBrowserPageIndex = addPage(viewerPageComposite);
+		setPageText(markdownViewerBrowserPageIndex, "Display");
 	}
 
 	/** Creates Markdown text editor page of the forms editor */
@@ -314,7 +315,7 @@ public class MarkdownEditor extends FormEditor {
     		F.deleteFolder(exportFolderNameWithPath);
     		F.createFoldersIfNotExists(exportFolderNameWithPath);
     		
-    		String markdownExport = mdExportTemplate;
+    		String markdownExport = markdownExportTemplate;
     		markdownExport = markdownExport.replace("{{export-content}}", htmlText);
     		markdownExport = markdownExport.replace("{{export-title}}", exportName);
 
@@ -325,7 +326,7 @@ public class MarkdownEditor extends FormEditor {
     			String exportCssFolderNameWithPath = exportFolderNameWithPath + s + "css";
     			F.createFoldersIfNotExists(exportCssFolderNameWithPath);
         		String exportFormatStylesCss = formatStyleCss + ".css";
-        		F.copyFile(mdViewerFolderNameWithPath + s + "styles" + s + exportFormatStylesCss,
+        		F.copyFile(markdownViewerFolderNameWithPath + s + "styles" + s + exportFormatStylesCss,
         			exportCssFolderNameWithPath + s + exportFormatStylesCss);
         		exportCss = exportCss + e + "<link rel=\"stylesheet\" href=\"css/" + exportFormatStylesCss + "\">" + e;
     		}
@@ -335,7 +336,7 @@ public class MarkdownEditor extends FormEditor {
         		String exportCssHighlightFolderNameWithPath = exportFolderNameWithPath + s + "css" + s + "highlight";
     			F.createFoldersIfNotExists(exportCssHighlightFolderNameWithPath);
         		String exportFormatCodeStylesCss = formatCodeStyleCss + ".css";
-        		F.copyFile(mdViewerFolderNameWithPath + s + "styles/highlight" + s + exportFormatCodeStylesCss,
+        		F.copyFile(markdownViewerFolderNameWithPath + s + "styles/highlight" + s + exportFormatCodeStylesCss,
        				exportCssHighlightFolderNameWithPath + s + exportFormatCodeStylesCss);
         		exportCss = exportCss + e + "<link rel=\"stylesheet\" href=\"css/highlight/" + exportFormatCodeStylesCss + "\">" + e;
     		}
@@ -400,9 +401,9 @@ public class MarkdownEditor extends FormEditor {
 	/** Get the Markdown as Base64 text */
 	public String getBase64MarkdownText() {
 		
-		String mdText = markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput()).get();
+		String markdownText = markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput()).get();
 		
-		return new String(Base64.getEncoder().encode(mdText.getBytes()));
+		return new String(Base64.getEncoder().encode(markdownText.getBytes()));
 	}
 
 	/** Get the options CSSs */
@@ -412,15 +413,15 @@ public class MarkdownEditor extends FormEditor {
 		String e = F.enter();
 		
 		if (markdownPreferences.<Boolean>get(PreferenceNames.DisplayFixedContentWidth)) {
-			formatOptionsCss = formatOptionsCss + e + mdFixedContentWidthCss;
+			formatOptionsCss = formatOptionsCss + e + markdownFixedContentWidthCss;
 		}
 
 		if (markdownPreferences.<Boolean>get(PreferenceNames.DisplayJustifiedParagraphs)) {
-			formatOptionsCss = formatOptionsCss + e + mdJustifiedParagraphsCss;
+			formatOptionsCss = formatOptionsCss + e + markdownJustifiedParagraphsCss;
 		}
 
 		if (markdownPreferences.<Boolean>get(PreferenceNames.DisplayCenterHeaders)) {
-			formatOptionsCss = formatOptionsCss + e + mdCenterHeadersCss;
+			formatOptionsCss = formatOptionsCss + e + markdownCenterHeadersCss;
 		}
 		
 		String formatCodeStylePre = formatCodeStylesPre.get(markdownPreferences.get(PreferenceNames.DisplayFormatCodeStyle));
@@ -523,16 +524,15 @@ public class MarkdownEditor extends FormEditor {
 
 	/** Put in browser what is in editor */
 	public void refresh() {
-		//System.out.println("refresh " + getMarkdownText());
-		// TODO where is the index
-		viewerBrowser.setUrl("file://C:/Iustin/Programming/_emdepub/repositories/emdepub/org.emdepub/code-language/viewers/markdown/index-md.html");
+		
+		viewerBrowser.setUrl(markdownViewerUrl);
 	}
 
 	/** Refreshes contents of viewer page when it is activated */
 	protected void pageChange(int newPageIndex) {
 		super.pageChange(newPageIndex);
 		
-		if (newPageIndex == browserViewerPageIndex) {
+		if (newPageIndex == markdownViewerBrowserPageIndex) {
 			refresh();
 		}
 //		if (newPageIndex == preferencesPageIndex) {
@@ -601,8 +601,8 @@ public class MarkdownEditor extends FormEditor {
 		return markdownTextEditor;
 	}
 
-	public int getBrowserViewerPageIndex() {
-		return browserViewerPageIndex;
+	public int getMarkdownViewerBrowserPageIndex() {
+		return markdownViewerBrowserPageIndex;
 	}
 
 	public int getMarkdownTextEditorPageIndex() {
