@@ -8,6 +8,14 @@
    closer to original pegdown HTML block parsing behavior use the method which
    takes a boolean strictHtml argument:
 
+- First line
+- Second
+- Default flexmark-java pegdown emulation uses less strict HTML block parsing
+  which interrupts an HTML block on a blank line. Pegdown only interrupts an
+  HTML block on a blank line if all tags in the HTML block are closed. To get
+  closer to original pegdown HTML block parsing behavior use the method which
+  takes a boolean strictHtml argument:
+
 ### Java
 
 ``` java
@@ -90,3 +98,56 @@ one *one* normalu normal *two* two
 HTML Text
 </div>
 ```
+
+###### Indented
+
+	/** Headings outline */
+	public ArrayList<Position> runFolding(String markdownString, int lineDelimiterLength) {
+		
+		ArrayList<Position> headerPositions = new ArrayList<>();
+		
+		/* Parse document in a node */
+		Node documentNode = MarkdownFormatterEngine.getParser().parse(markdownString);
+		linearHeadings.clear();
+		linearFencedCodeBlocks.clear();
+		nodeVisitor.visitChildren(documentNode);
+
+		int headingsSize = linearHeadings.size();
+    	for (int i = 0; i < headingsSize - 1; i++) {
+    		
+    		Heading headingStart = linearHeadings.get(i);
+    		int positionStart = headingStart.getStartOffset();
+    		int levelStart = headingStart.getLevel();
+    		boolean found = false;
+        	for (int j = i + 1; j < headingsSize; j++) {
+        		Heading headingEnd = linearHeadings.get(j);
+        		int positionEnd = headingEnd.getStartOffset();
+        		if (headingEnd.getLevel() <= levelStart) {
+        			headerPositions.add(new Position(positionStart, positionEnd - positionStart));
+        			found = true;
+        			break;
+        		}
+        	}
+        	if (!found) {
+        		headerPositions.add(new Position(positionStart, markdownString.length() - (positionStart)));	
+        	}
+    	}
+    	int lastHeadingStart = linearHeadings.get(headingsSize - 1).getStartOffset();
+    	headerPositions.add(new Position(lastHeadingStart, markdownString.length() - lastHeadingStart));
+
+    	for (FencedCodeBlock fencedCodeBlock : linearFencedCodeBlocks) {
+    		
+    		int fencedCodeBlockStart = fencedCodeBlock.getStartOffset();
+    		headerPositions.add(new Position(fencedCodeBlockStart, fencedCodeBlock.getEndOffset() - (fencedCodeBlockStart - lineDelimiterLength)));
+    	}
+    	
+		return headerPositions;
+	}
+
+###### Indented JS
+
+	(function foo() {
+	  var x = 7;
+	  console.log("val " + eval("x + 2"));
+	})(); // shows val 9.
+

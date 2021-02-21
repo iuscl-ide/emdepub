@@ -3,36 +3,44 @@
 
 ### Progress
 
+
 |                      Feature                      | Status |                                                            Implementation                                                             |
-|---------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------|
-| **Display (HTML Rerendering)**                    |        |                                                                                                                                       |
-| [Render](#render)                                 | YES    | [marked.js](https://marked.js.org/ "Marked Documentation")                                                                            |
-| [Render style](#render-style)                     | YES    | [github-markdown.css](https://github.com/sindresorhus/github-markdown-css) and some variations                                        |
-| [Code highlight](#code-highlight)                 | YES    | [highlight.js](https://highlightjs.org/)                                                                                              |
-| [Code highlight style](#code-highlight-style)     |        | Some *highlight.js* themes                                                                                                            |
+|---------------------------------------------------|:------:|---------------------------------------------------------------------------------------------------------------------------------------|
+| **Display (HTML Rendering)**                      |        |                                                                                                                                       |
+| [Render](#render)                                 |  YES   | [marked.js](https://marked.js.org/ "Marked Documentation")                                                                            |
+| [Render style](#render-style)                     |  YES   | [github-markdown.css](https://github.com/sindresorhus/github-markdown-css) and some variations                                        |
+| [Code highlight](#code-highlight)                 |  YES   | [highlight.js](https://highlightjs.org/)                                                                                              |
+| [Code highlight style](#code-highlight-style)     |  YES   | Some *highlight.js* themes                                                                                                            |
 | **Source (Markdown Editor)**                      |        |                                                                                                                                       |
-| [Formatting](#formatting) (including tables!)     | YES    | [Flexmark](https://github.com/vsch/flexmark-java)                                                                                     |
-| [Syntax](#syntax)                                 |        | markdown.tmLanguage                                                                                                                   |
-| [Theme](#theme)                                   |        | Markdown Light                                                                                                                        |
-| [Language configuration](#language-configuration) | YES    | [language-configuration.json](https://github.com/microsoft/vscode/blob/master/extensions/markdown-basics/language-configuration.json) |
-| [Folding](#folding)                               | YES    | *Flexmark*                                                                                                                            |
-| [Outline](#Outline)                               | YES    | *Flexmark*                                                                                                                            |
-| [Spell check](#spell-check)                       | NO     | Not enough information, it appears sometimes                                                                                          |
-| [Auto edit](#auto-edit)                           | YES    | done with the new [language configuration](#language-configuration)                                                                   |
-| [Content assist](#content-assist)                 | YES    | CTRL + SPACE, *Flexmark*                                                                                                              |
-| [Hover](#hover)                                   | NO     | Hover to show what?                                                                                                                   |
-| [Presentation](#presentation)                     | NO     | Eclipse's way to color the code, now done the modern way                                                                              |
-| [Validator](#validator)                           | NO     | Put errors and warnings, maybe in the future, for MD elements in HTML blocks or in code inline/blocks                                 |
-| [Formatter](#formatter)                           |        | Mine                                                                                                                                  |
+| [Formatting](#formatting) (including tables!)     |  YES   | [Flexmark](https://github.com/vsch/flexmark-java)                                                                                     |
+| [Syntax](#syntax)                                 |  YES   | [markdown.tmLanguage](https://github.com/microsoft/vscode-markdown-tm-grammar/blob/main/syntaxes/markdown.tmLanguage)                 |
+| [Theme](#theme)                                   |  YES   | Markdown Light                                                                                                                        |
+| [Language configuration](#language-configuration) |  YES   | [language-configuration.json](https://github.com/microsoft/vscode/blob/master/extensions/markdown-basics/language-configuration.json) |
+| [Folding](#folding)                               |  YES   | *Flexmark*                                                                                                                            |
+| [Outline](#Outline)                               |  YES   | *Flexmark*                                                                                                                            |
+| [Spell check](#spell-check)                       |   NO   | Not enough information, it appears sometimes                                                                                          |
+| [Auto edit](#auto-edit)                           |  YES   | done with the new [language configuration](#language-configuration)                                                                   |
+| [Content assist](#content-assist)                 |  YES   | CTRL + SPACE, *Flexmark*                                                                                                              |
+| [Hover](#hover)                                   |   NO   | Hover to show what?                                                                                                                   |
+| [Presentation](#presentation)                     |   NO   | Eclipse's way to color the code, now done the modern way                                                                              |
+| [Validator](#validator)                           |   NO   | Put errors and warnings, maybe in the future, for MD elements in HTML blocks or in code inline/blocks                                 |
+| [Additional Formatting](#additional-formatting)   |  YES   | Bold and italic toolbar commands                                                                                                      |
 
 ----------
 
+
+
 ### Bugs
 
-|                      Bug                      | Status |   Implementation    |
-|-----------------------------------------------|--------|---------------------|
-| Undo / Redo not working                   |        | Sometimes it works? |
-| Justified paragraphs is not working for lists |        |                     |
+
+
+|                        Bug                        | Status |                   Implementation                    |
+|---------------------------------------------------|--------|-----------------------------------------------------|
+| Undo / Redo not working                           |        | Sometimes it works?                                 |
+| ~~Justified paragraphs is not working for lists~~ |        |                                                     |
+| *Spell check* not working                         |        | Sometimes it works, if opened as text and re-opened |
+
+
 
 ----------
 
@@ -106,7 +114,7 @@ From VSCode: brackets, auto closing pairs, surrounding pairs, the folding is not
 
 ### <a name="folding"></a>Folding
 
-Done in *Flexmark* with parse and visit headings
+Done in *Flexmark* with parse and visit headings, fenced code blocks and indented code blocks
 
 Unable to find a way to activate the Folding menu for Generic Editor left margin
 
@@ -177,9 +185,9 @@ Put errors and warnings, maybe in the future, for MD elements in HTML blocks or 
 
 ----------
 
-### <a name="formatter"></a>Formatter
+### <a name="additional-formatting"></a>Additional formatting
 
-Mine
+Bold and italic commands, on/off for text selection
 
 ----------
 
