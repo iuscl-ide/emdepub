@@ -1,3 +1,7 @@
+---
+Entete
+---
+
 Text paragraph
 
 **bold text**
@@ -8,7 +12,15 @@ Text paragraph
 
 ~~strikethrough text~~
 
+
+
 > quoted text
+> quoted text 2
+>> quoted text 3
+>> quoted text 4
+>>> quoted text 5
+>>> quoted text 6
+ 
 
 `inline code`
 
@@ -40,15 +52,35 @@ Ordered list
 2. second
 3. third
 
-Definition list
-term
-: definition
+<!-- HTML comment block -->
+
+
+``` html
+<div class=""></div>
+```
+
+
+
+foze  erpjge gjeipgje <div class="" style="">
+flg  rkborbor 
+</div>
+
+<p>
+
+</p>
+
+
+<script src="./javascripts/beautify-html.min.js"></script>
+
+<p class="">par</p>
+
+A paragraph <pre>written</pre> with lines.
 
 Link
 [link text](https://link_address "Link info (tooltip)")
 
 Image
-![image alt (tooltip)](https://image_address)
+![image alt (if not found)](https://image_address)
 
 Horizontal rule
 

@@ -15,6 +15,10 @@ repository:
     - {include: '#raw_block'}
     - {include: '#link-def'}
     - {include: '#html'}
+    - {include: '#html_tag_open_attr'}
+    - {include: '#html_tag_open'}
+    - {include: '#html_tag_close'}
+    - {include: '#horizontal_line'}
     - {include: '#paragraph'}
   blockquote:
     begin: (^|\G)[ ]{0,3}(>) ?
@@ -115,6 +119,25 @@ repository:
       patterns:
       - {include: text.html.derivative}
       while: ^(?!\s*$)
+  html_tag_open_attr:
+    captures:
+      '2': {name: tag.html}
+      '4': {name: attr.tag.html}
+    match: (.*)(<(a|abbr|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|data|datalist|dd|del|details|dfn|dialog|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1| to h6|head|header|hr|html|i|iframe|img|input|ins|kbd|label|legend|li|link|main|map|mark|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr|track|tt|u|ul|var|video|wbr)\s+(.*?)>)
+    name: tags.html
+  html_tag_open:
+    captures:
+      '2': {name: tag.html}
+    match: (.*)(<(a|abbr|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|data|datalist|dd|del|details|dfn|dialog|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1| to h6|head|header|hr|html|i|iframe|img|input|ins|kbd|label|legend|li|link|main|map|mark|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr|track|tt|u|ul|var|video|wbr)>)
+    name: tags.html
+  html_tag_close:
+    captures:
+      '2': {name: tag.html}
+    match: (.*)(</(a|abbr|address|applet|area|article|aside|audio|b|base|basefont|bdi|bdo|big|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|data|datalist|dd|del|details|dfn|dialog|div|dl|dt|em|embed|fieldset|figcaption|figure|font|footer|form|frame|frameset|h1| to h6|head|header|hr|html|i|iframe|img|input|ins|kbd|label|legend|li|link|main|map|mark|meta|meter|nav|noframes|noscript|object|ol|optgroup|option|output|p|param|picture|pre|progress|q|rp|rt|ruby|s|samp|script|section|select|small|source|span|strike|strong|style|sub|summary|sup|svg|table|tbody|td|template|textarea|tfoot|th|thead|time|title|tr|track|tt|u|ul|var|video|wbr)>)
+    name: tags.html
+  horizontal_line:
+    match: ----------
+    name: markup.horizontal.line.markdown
   link-def:
     captures:
       '1': {name: punctuation.definition.constant.markdown}
@@ -197,6 +220,8 @@ repository:
     patterns:
     - {include: '#ampersand'}
     - {include: '#bracket'}
+    - {include: '#strikethrough'}
+    - {include: '#bold_italic'}
     - {include: '#bold'}
     - {include: '#italic'}
     - {include: '#raw'}
@@ -213,6 +238,74 @@ repository:
     comment: "Markdown will convert this for us. We match it so that the HTML grammar will not mark it up as invalid."
     match: '&(?!([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+);)'
     name: meta.other.valid-ampersand.markdown
+  strikethrough:
+    begin: >
+      (?x)
+      (?<open>(~~(?=\w)|(?<!\w)~~))(?=\S)
+      (?=
+        (
+          <[^>]*+>              # HTML tags
+          | (?<raw>`+)([^`]|(?!(?<!`)\k<raw>(?!`))`)*+\k<raw>
+                            # Raw
+          | \\[\\`*_{}\[\]()#.!+\->]?+      # Escapes
+          | \[
+          (
+              (?<square>          # Named group
+                [^\[\]\\]        # Match most chars
+                | \\.            # Escaped chars
+                | \[ \g<square>*+ \]    # Nested brackets
+              )*+
+            \]
+            (
+              (              # Reference Link
+                [ ]?          # Optional space
+                \[[^\]]*+\]        # Ref name
+              )
+              | (              # Inline Link
+                \(            # Opening paren
+                  [ \t]*+        # Optional whitespace
+                  <?(.*?)>?      # URL
+                  [ \t]*+        # Optional whitespace
+                  (          # Optional Title
+                    (?<title>['"])
+                    (.*?)
+                    \k<title>
+                  )?
+                \)
+              )
+            )
+          )
+          | (?!(?<=\S)\k<open>).            # Everything besides
+                            # style closer
+        )++
+        (?<=\S)(?=~~)\k<open>                # Close
+      )
+    captures:
+      '1': {name: punctuation.definition.strikethrough.markdown}
+    end: (?<=\S)(\1)
+    name: markup.strikethrough.markdown
+    patterns:
+    - applyEndPatternLast: 1
+      begin: (?=<[^>]*?>)
+      end: (?<=>)
+      patterns:
+      - {include: text.html.derivative}
+    - {include: '#escape'}
+    - {include: '#ampersand'}
+    - {include: '#bracket'}
+    - {include: '#raw'}
+    - {include: '#strikethrough'}
+    - {include: '#bold_italic'}
+    - {include: '#bold'}
+    - {include: '#italic'}
+    - {include: '#image-inline'}
+    - {include: '#link-inline'}
+    - {include: '#link-inet'}
+    - {include: '#link-email'}
+    - {include: '#image-ref'}
+    - {include: '#link-ref-literal'}
+    - {include: '#link-ref'}
+    - {include: '#link-ref-shortcut'}
   bold:
     begin: >
       (?x)
@@ -269,6 +362,76 @@ repository:
     - {include: '#ampersand'}
     - {include: '#bracket'}
     - {include: '#raw'}
+    - {include: '#strikethrough'}
+    - {include: '#bold_italic'}
+    - {include: '#bold'}
+    - {include: '#italic'}
+    - {include: '#image-inline'}
+    - {include: '#link-inline'}
+    - {include: '#link-inet'}
+    - {include: '#link-email'}
+    - {include: '#image-ref'}
+    - {include: '#link-ref-literal'}
+    - {include: '#link-ref'}
+    - {include: '#link-ref-shortcut'}
+  bold_italic:
+    begin: >
+      (?x)
+      (?<open>(\*\*\*(?=\w)|(?<!\w)\*\*\*|(?<!\w)\b___))(?=\S)
+      (?=
+        (
+          <[^>]*+>              # HTML tags
+          | (?<raw>`+)([^`]|(?!(?<!`)\k<raw>(?!`))`)*+\k<raw>
+                            # Raw
+          | \\[\\`*_{}\[\]()#.!+\->]?+      # Escapes
+          | \[
+          (
+              (?<square>          # Named group
+                [^\[\]\\]        # Match most chars
+                | \\.            # Escaped chars
+                | \[ \g<square>*+ \]    # Nested brackets
+              )*+
+            \]
+            (
+              (              # Reference Link
+                [ ]?          # Optional space
+                \[[^\]]*+\]        # Ref name
+              )
+              | (              # Inline Link
+                \(            # Opening paren
+                  [ \t]*+        # Optional whitespace
+                  <?(.*?)>?      # URL
+                  [ \t]*+        # Optional whitespace
+                  (          # Optional Title
+                    (?<title>['"])
+                    (.*?)
+                    \k<title>
+                  )?
+                \)
+              )
+            )
+          )
+          | (?!(?<=\S)\k<open>).            # Everything besides
+                            # style closer
+        )++
+        (?<=\S)(?=___\b|\*\*\*)\k<open>                # Close
+      )
+    captures:
+      '1': {name: punctuation.definition.bold_italic.markdown}
+    end: (?<=\S)(\1)
+    name: markup.bold_italic.markdown
+    patterns:
+    - applyEndPatternLast: 1
+      begin: (?=<[^>]*?>)
+      end: (?<=>)
+      patterns:
+      - {include: text.html.derivative}
+    - {include: '#escape'}
+    - {include: '#ampersand'}
+    - {include: '#bracket'}
+    - {include: '#raw'}
+    - {include: '#strikethrough'}
+    - {include: '#bold_italic'}
     - {include: '#bold'}
     - {include: '#italic'}
     - {include: '#image-inline'}
@@ -385,6 +548,8 @@ repository:
     - {include: '#ampersand'}
     - {include: '#bracket'}
     - {include: '#raw'}
+    - {include: '#strikethrough'}
+    - {include: '#bold_italic'}
     - {include: '#bold'}
     - {include: '#image-inline'}
     - {include: '#link-inline'}

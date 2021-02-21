@@ -1,3 +1,151 @@
+.markup.bold_italic {
+	font-weight: bold;
+	font-style: italic;
+	color: rgba(0, 0, 0, 1);
+}
+.punctuation.definition.bold_italic {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);	
+}
+
+.markup.bold {
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1);	
+}
+.punctuation.definition.bold {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);	
+}
+
+.markup.italic {
+	font-style: italic;
+	color: rgba(0, 0, 0, 1);
+}
+.punctuation.definition.italic {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);	
+}
+
+.markup.strikethrough {
+	text-decoration: line-through;
+	color: rgba(0, 0, 0, 1);
+}
+.punctuation.definition.strikethrough {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);	
+}
+
+.markup.quote {
+	background-color: rgba(255, 253, 231, 1);
+	color: rgba(0, 0, 0, 1);
+}
+.punctuation.definition.quote.begin {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);	
+}
+
+.punctuation.definition {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);
+}
+.fenced_code.block.language {
+	color: rgba(0, 0, 128, 1);
+}
+
+.markup.inline.raw {
+	font-weight: bold;
+	color: rgba(25, 25, 25, 1);
+}
+.punctuation.definition.raw {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);
+}
+
+.markup.heading {
+	font-weight: bold;
+	color: rgba(25, 25, 25, 1);
+}
+.punctuation.definition.heading {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);
+}
+
+.markup.underline.link.image {
+	color: rgba(0, 0, 128, 1);
+}
+.markup.underline.link {
+	color: rgba(0, 0, 128, 1);
+}
+.string.other.link.description {
+	font-weight: bold;
+	color: rgba(25, 25, 25, 1);
+}
+.string.other.link.description.title {
+	font-weight: bold;
+	color: rgba(25, 25, 25, 1);
+}
+.string.other.link.title {
+	text-decoration: underline;
+	color: rgba(0, 0, 0, 1);
+}
+
+.comment.block.html {
+	color: rgba(0, 128, 0, 1);
+}
+
+.tag.html {
+	color: rgba(128, 0, 0, 1);
+}
+.attr.tag.html {
+	color: rgba(0, 0, 128, 1);
+}
+
+.markup.horizontal.line {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);
+}
+
+.punctuation.definition.list.begin {
+	font-weight: bold;
+	color: rgba(0, 128, 128, 1);	
+}
+
+.no.entity.name.tag.html {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);
+}
+.no.punctuation.definition.tag.begin.html {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);
+}
+.no.punctuation.definition.tag.end.html {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);
+}
+.no.text.html {
+	font-weight: bold;
+	color: rgba(0, 255, 255, 1);
+}
+
+.no.markup.inline.raw.string  {
+	font-weight: bold;
+	color: rgba(0, 128, 0, 1);	
+}
+.no.punctuation.separator.key-value {
+	font-weight: bold;
+	color: rgba(128, 0, 0, 1);
+}
+
+.markup.inserted {
+	color: rgba(9, 136, 90, 1);
+}
+.markup.deleted {
+	color: rgba(163, 21, 21, 1);
+}
+.markup.changed {
+	color: rgba(4, 81, 165, 1);
+}
+
 .emphasis {
 	font-style: italic;
 }
@@ -54,48 +202,6 @@
 	color: rgba(205, 49, 49, 1);
 }
 
-.markup.underline {
-	text-decoration: underline;
-}
-
-.markup.bold {
-	font-weight: bold;
-	color: rgba(0, 0, 128, 1);
-}
-
-.markup.heading {
-	font-weight: bold;
-	color: rgba(128, 0, 0, 1);
-}
-
-.markup.italic {
-	font-style: italic;
-	color: rgba(0, 0, 128, 1);
-}
-
-.markup.inserted {
-	color: rgba(9, 136, 90, 1);
-}
-
-.markup.deleted {
-	color: rgba(163, 21, 21, 1);
-}
-
-.markup.changed {
-	color: rgba(4, 81, 165, 1);
-}
-
-.markup.punctuation.quote.beginning {
-	color: rgba(4, 81, 165, 1);
-}
-
-.markup.punctuation.list.beginning {
-	color: rgba(4, 81, 165, 1);
-}
-
-.markup.inline.raw {
-	color: rgba(128, 0, 0, 1);
-}
 
 .meta.selector {
 	color: rgba(128, 0, 0, 1);
@@ -291,4 +397,4 @@
 
 .editor { background-color: rgba(255, 255, 255, 1); color: rgba(0, 0, 0, 1); }
 .editor.lineHighlight  {background-color:  rgba(238, 238, 238, 1); }
-.editor.selection {}
+.editor.selection { }

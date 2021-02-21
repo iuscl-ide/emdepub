@@ -3,8 +3,8 @@
 Transcribed from the 1889 J. W. Arrowsmith edition by David Price, email ccx074@pglaf.org  Second proof by Margaret Price.
 <!-- # <p align="center">THREE MEN IN A BOAT<br>*(to say nothing of the dog).*</p> -->
 
-# THREE MEN IN A BOAT<br>*(to say nothing of the dog).*
-a
+# THREE MEN IN A BOAT<br>*(to say nothing of the dog)*.
+
 by
 JEROME K. JEROME
 
@@ -21,6 +21,7 @@ Illustrations by A. Frederics.
 London, August, 1889.
 
 ## CHAPTER I.
+
 There were four of us—George, and William Samuel Harris, and myself, and Montmorency.  We were sitting in my room, smoking, and talking about how bad we were—bad from a medical point of view I mean, of course.
 
 We were all feeling seedy, and we were getting quite nervous about it.  Harris said he felt such extraordinary fits of giddiness come over him at times, that he hardly knew what he was doing; and then George said that he had fits of giddiness too, and hardly knew what he was doing.  With me, it was my liver that was out of order.  I knew it was my liver that was out of order, because I had just been reading a patent liver-pill circular, in which were detailed the various symptoms by which a man could tell when his liver was out of order.  I had them all.

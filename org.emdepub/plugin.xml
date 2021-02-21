@@ -12,7 +12,7 @@
 	</extension>
 
 	<extension point="org.eclipse.tm4e.registry.grammars">
-		<grammar path="code-language/markdown/syntaxes/markdown.tmLanguage" scopeName="text.html.markdown"></grammar>
+		<grammar path="code-language/markdown/grammars/markdown.tmLanguage" scopeName="text.html.markdown"></grammar>
 		<scopeNameContentTypeBinding contentTypeId="org.emdepub.md" scopeName="text.html.markdown"></scopeNameContentTypeBinding>
 	</extension>
 	<extension point="org.eclipse.tm4e.languageconfiguration.languageConfigurations">
