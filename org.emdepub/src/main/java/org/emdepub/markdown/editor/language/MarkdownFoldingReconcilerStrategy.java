@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.Position;
@@ -85,7 +86,7 @@ public class MarkdownFoldingReconcilerStrategy implements IReconcilingStrategy, 
 
 		MarkdownFoldingEngine markdownFoldingEngine = new MarkdownFoldingEngine();
 
-		return markdownFoldingEngine.runFolding(document.get());
+		return markdownFoldingEngine.runFolding(document.get(), ((Document) document).getDefaultLineDelimiter().length());
 	}
 
 	@Override
