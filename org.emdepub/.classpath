@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="lib/jackson/stax2-api-4.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-annotations-2.12.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-core-2.12.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-databind-2.12.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-dataformat-xml-2.12.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-module-jaxb-annotations-2.12.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson/woodstox-core-6.2.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-0.62.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-ext-gfm-tasklist-0.62.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-ext-tables-0.62.2.jar"/>

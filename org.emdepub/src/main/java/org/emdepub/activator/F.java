@@ -99,7 +99,19 @@ public class F {
 		return loadInputStreamInString(getResourceAsInputStream(textResourceName));
 	}
 
-	
+	/** Not null and not void */
+	public static boolean isEmpty(String text) {
+		
+		if (text == null) {
+			return true;
+		}
+
+		if (text.trim().strip().length() == 0) {
+			return true;
+		}
+
+		return false;
+	}
 	
 	/* Files */
 	

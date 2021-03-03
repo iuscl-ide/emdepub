@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -32,7 +33,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Activator() {
 		/* Resources */
-		R.loadResourceRegistry();
+		R.load(new UI(false, Display.getDefault()));
 		
 		/* Plug-in root folder */
 		URL pluginRootURL = FileLocator.find(Platform.getBundle(PLUGIN_ID), new Path("/"), null);

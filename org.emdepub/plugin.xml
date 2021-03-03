@@ -3,11 +3,15 @@
 <plugin>
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type id="org.emdepub.md" name="Markdown" base-type="org.eclipse.core.runtime.text" file-extensions="md, mdown, markdown, markdn"></content-type>
+		<content-type id="org.emdepub.epub_project" name="ePub Project" base-type="org.eclipse.core.runtime.text" file-extensions="epub-project"></content-type>
 	</extension>
 
 	<extension point="org.eclipse.ui.editors">
 		<editor class="org.emdepub.markdown.editor.MarkdownEditor" contributorClass="org.emdepub.markdown.editor.MarkdownEditorContributor" default="true" extensions="md, mdown, markdown, markdn" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.MarkdownEditor" name="Markdown Editor and Viewer">
 			<contentTypeBinding contentTypeId="org.emdepub.md"></contentTypeBinding>
+		</editor>
+		<editor class="org.emdepub.epub_project.editor.EPubProjectEditor" contributorClass="org.emdepub.epub_project.editor.EPubProjectEditorContributor" default="true" extensions="epub-project" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.EPubProject" name="ePub Project Editor">
+			<contentTypeBinding contentTypeId="org.emdepub.epub_project"></contentTypeBinding>
 		</editor>
 	</extension>
 

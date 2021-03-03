@@ -1,0 +1,1407 @@
+{
+  "rootFolderNameWithFullPath" : "C:\\Iustin\\Programming\\_emdepub\\tools\\ePubRoots\\sj",
+  "targetFolderNameWithFullPath" : "C:\\Iustin\\Programming\\_ePubViewer",
+  "opfFileNameWithRelativePath" : "C:\\Iustin\\Programming\\_mpc-hd\\tools\\c.opf",
+  "manifestIDGuid" : false,
+  "manifestIDCounter" : true,
+  "manifestIDPrefix" : "id-",
+  "metadata_identifier" : null,
+  "metadata_title" : null,
+  "metadata_authors" : null,
+  "metadata_cover" : null,
+  "metadata_description" : null,
+  "manifestItems" : [ {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_000.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00062",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_001.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00063",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_002.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00064",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_003.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00065",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_004.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00066",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_005.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00067",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_006.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00068",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_007.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00069",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_008.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00070",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_009.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00071",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_010.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00072",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_011.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00073",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_012.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00074",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_013.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00075",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_014.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00076",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_015.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00077",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_016.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00078",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_017.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00079",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_018.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00080",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_019.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00081",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_020.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00082",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_021.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00083",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_022.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00084",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_023.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00085",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_024.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00086",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_025.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00087",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_026.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00088",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_027.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00089",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_028.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00090",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_029.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00091",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_030.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00092",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_031.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00093",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_032.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00094",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_033.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00095",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_034.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00096",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_035.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00097",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_036.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00098",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_037.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00099",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_038.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00100",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_039.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00101",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_040.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00102",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_041.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00103",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_042.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00104",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_043.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00105",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_044.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00106",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_045.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00107",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_046.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00108",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_047.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00109",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_048.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00110",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_049.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00111",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_050.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00112",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_051.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00113",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_052.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00114",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_053.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00115",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_054.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00116",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_055.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00117",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_056.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00118",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_057.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00119",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_058.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00120",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_059.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00121",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_060.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00122",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_061.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00123",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_062.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00124",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_063.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00125",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_064.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00126",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_065.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00127",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_066.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00128",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_067.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00129",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_068.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00130",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_069.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00131",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_070.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00132",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_071.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00133",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_072.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00134",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_073.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00135",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_074.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00136",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_075.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00137",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_076.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00138",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_077.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00139",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_078.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00140",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_079.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00141",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_080.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00142",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_081.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00143",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_082.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00144",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_083.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00145",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_084.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00146",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_085.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00147",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_086.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00148",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_087.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00149",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_088.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00150",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_089.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00151",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_090.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00152",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_091.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00153",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_092.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00154",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_093.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00155",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_094.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00156",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_095.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00157",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_096.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00158",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_097.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00159",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_098.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00160",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_099.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00161",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_100.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00162",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_101.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00163",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_102.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00164",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_103.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00165",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_104.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00166",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_105.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00167",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_106.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00168",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_107.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00169",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_108.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00170",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_109.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00171",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_110.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00172",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_111.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00173",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_112.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00174",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_113.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00175",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_114.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00176",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_115.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00177",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_116.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00178",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_117.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00179",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_118.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00180",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_119.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00181",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_120.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00182",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_121.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00183",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_122.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00184",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_123.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00185",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_124.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00186",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_125.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00187",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_126.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00188",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_127.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00189",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_128.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00190",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_129.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00191",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_130.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00192",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_131.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00193",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_132.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00194",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "CR!BJHPA831ES3B3F7WSRKZ17DMGSM7_split_133.html",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "id-00195",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00001.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00001",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00002.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00002",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00014.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00003",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00015.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00004",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00016.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00005",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00017.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00006",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00018.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00007",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00019.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00008",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00020.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00009",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00021.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00010",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00022.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00011",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00023.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00012",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00024.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00013",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00025.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00014",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00026.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00015",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00027.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00016",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00028.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00017",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00029.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00018",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00030.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00019",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00031.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00020",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00032.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00021",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00033.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00022",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00034.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00023",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00035.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00024",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00036.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00025",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00037.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00026",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00038.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00027",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00039.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00028",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00040.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00029",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00041.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00030",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00042.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00031",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00043.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00032",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00044.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00033",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00045.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00034",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00046.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00035",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00047.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00036",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00048.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00037",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00049.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00038",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00050.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00039",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00051.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00040",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00052.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00041",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00053.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00042",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00054.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00043",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00055.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00044",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00056.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00045",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00057.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00046",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00058.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00047",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00059.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00048",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00060.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00049",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00061.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00050",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00062.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00051",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00063.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00052",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00064.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00053",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00065.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00054",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00066.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00055",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00067.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00056",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00068.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00057",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00069.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00058",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00070.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00059",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00071.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00060",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "00072.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00061",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "calibre_cover.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "cover",
+    "itemFileManualId" : "cover",
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "stylesheet.css",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "css",
+    "itemFileManualId" : "css",
+    "itemFileMediaType" : "text/css",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "titlepage.xhtml",
+    "itemFileRelativePath" : "",
+    "itemFileId" : "titlepage",
+    "itemFileManualId" : "titlepage",
+    "itemFileMediaType" : "application/xhtml+xml",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "New Text File.txt",
+    "itemFileRelativePath" : "_folder1\\_folder2",
+    "itemFileId" : "id-00196",
+    "itemFileManualId" : "",
+    "itemFileMediaType" : "text/plain",
+    "itemFileProperties" : ""
+  } ]
+}

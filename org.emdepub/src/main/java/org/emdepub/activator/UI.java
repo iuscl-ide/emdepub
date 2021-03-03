@@ -2,6 +2,8 @@
 package org.emdepub.activator;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
@@ -89,7 +91,18 @@ public class UI {
 	    
 	    return gridData;
 	}
-	
+
+	/** GridData width */
+	public GridData createWidthFillVerticalGridData(int width) {
+		
+		GridData gridData = createGridData();
+	    gridData.widthHint = width;
+	    gridData.verticalAlignment = SWT.FILL;
+	    gridData.grabExcessVerticalSpace = true;
+	    
+	    return gridData;
+	}
+
 	/** GridLayout */
 	public GridLayout createGridLayout() {
 		
@@ -137,6 +150,16 @@ public class UI {
 	}
 
 	/** GridLayout */
+	public GridLayout createMarginsColumnsSpacingGridLayout(int margin, int numColumns, int horizontalSpacing) {
+		
+		GridLayout gridLayout = createMarginsGridLayout(margin);
+		gridLayout.numColumns = numColumns;
+		gridLayout.horizontalSpacing = horizontalSpacing;
+		
+		return gridLayout;
+	}
+
+	/** GridLayout */
 	public GridLayout createVerticalSpacingGridLayout(int verticalSpacing) {
 		
 		GridLayout gridLayout = createGridLayout();
@@ -145,6 +168,15 @@ public class UI {
 		return gridLayout;
 	}
 
+	/** GridLayout */
+	public GridLayout createMarginTopVerticalSpacingGridLayout(int marginTop, int verticalSpacing) {
+		
+		GridLayout gridLayout = createGridLayout();
+		gridLayout.marginTop = marginTop;
+		gridLayout.verticalSpacing = verticalSpacing;
+		
+		return gridLayout;
+	}
 	
 	/** GridLayout */
 	public GridLayout createMarginsVerticalSpacingGridLayout(int margin, int verticalSpacing) {
@@ -167,6 +199,13 @@ public class UI {
 		return gridLayout;
 	}
 
+	/** Helper */
+	public interface OnResize extends ControlListener {
+		@Override
+		default
+		void controlMoved(ControlEvent controlEvent) { };
+	}
+	
 	/** Random color component */
 	public int random255() {
 		
@@ -205,5 +244,10 @@ public class UI {
 		if (isDebug) {
 			composite.setBackground(randomColor());
 		}
+	}
+
+	/** Display */
+	public Display getDisplay() {
+		return display;
 	}
 }

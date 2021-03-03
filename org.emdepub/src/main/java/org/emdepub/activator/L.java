@@ -13,6 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.swt.widgets.Display;
+
 /** Common desktop-model-apk log, standard JRE */
 public class L {
 
@@ -129,9 +134,11 @@ public class L {
     }
 
     /** Log.e replacement, for jUnits */
-    public static void e(String message, Throwable throwable) {
+	public static void e(String message, Throwable throwable) {
         logger.log(Level.SEVERE, logTextLines(message, throwable));
+        
+        Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, message, throwable);
+        ErrorDialog.openError(Display.getCurrent().getActiveShell(), "Programming Error",
+        	"A not taken into account error happened, see the log for more information", errorStatus);
     }
-
-
 }
