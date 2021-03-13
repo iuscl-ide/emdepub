@@ -65,7 +65,11 @@ public class R {
 		loadGifImageResourceToRegistry("unknown");
 		loadGifImageResourceToRegistry("tag-image");
 		loadGifImageResourceToRegistry("show_properties_view");
+		loadGifImageResourceToRegistry("run");
 		
+		loadGifImageResourceToRegistry("XSDIdentityConstraintDefinitionKey");
+		
+		loadGifImageResourceToRegistry("XML_file");
 		
 		
 		loadPngImageResourceToRegistry("wordwrap");
@@ -84,9 +88,17 @@ public class R {
 		
 		loadPngImageResourceToRegistry("classf_generate");
 		loadPngImageResourceToRegistry("fileType_filter");
-		loadPngImageResourceToRegistry("refresh_nav");
+		loadPngImageResourceToRegistry("refresh");
 		
 		loadPngImageResourceToRegistry("project");
+		
+		loadPngImageResourceToRegistry("add");
+		loadPngImageResourceToRegistry("remove");
+		loadPngImageResourceToRegistry("move-up");
+		loadPngImageResourceToRegistry("move-down");
+		
+		loadPngImageResourceToRegistry("asterisk");
+		loadPngImageResourceToRegistry("edit_template");
 		
 //		loadGifImageResourceToRegistry("md-preference-toolbar-notdefault");
 //		loadGifImageResourceToRegistry("md-preference-toolbar-apply");

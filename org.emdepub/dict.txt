@@ -4,3 +4,6 @@ markdown
 multi
 emdepub
 flexmark
+mimetype
+dc
+toc

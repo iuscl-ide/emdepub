@@ -56,27 +56,29 @@ public class MarkdownFoldingEngine {
 		nodeVisitor.visitChildren(documentNode);
 
 		int headingsSize = linearHeadings.size();
-    	for (int i = 0; i < headingsSize - 1; i++) {
-    		
-    		Heading headingStart = linearHeadings.get(i);
-    		int positionStart = headingStart.getStartOffset();
-    		int levelStart = headingStart.getLevel();
-    		boolean found = false;
-        	for (int j = i + 1; j < headingsSize; j++) {
-        		Heading headingEnd = linearHeadings.get(j);
-        		int positionEnd = headingEnd.getStartOffset();
-        		if (headingEnd.getLevel() <= levelStart) {
-        			positions.add(new Position(positionStart, positionEnd - positionStart));
-        			found = true;
-        			break;
-        		}
-        	}
-        	if (!found) {
-        		positions.add(new Position(positionStart, markdownString.length() - (positionStart)));	
-        	}
-    	}
-    	int lastHeadingStart = linearHeadings.get(headingsSize - 1).getStartOffset();
-    	positions.add(new Position(lastHeadingStart, markdownString.length() - lastHeadingStart));
+		if (headingsSize > 0) {
+	    	for (int i = 0; i < headingsSize - 1; i++) {
+	    		
+	    		Heading headingStart = linearHeadings.get(i);
+	    		int positionStart = headingStart.getStartOffset();
+	    		int levelStart = headingStart.getLevel();
+	    		boolean found = false;
+	        	for (int j = i + 1; j < headingsSize; j++) {
+	        		Heading headingEnd = linearHeadings.get(j);
+	        		int positionEnd = headingEnd.getStartOffset();
+	        		if (headingEnd.getLevel() <= levelStart) {
+	        			positions.add(new Position(positionStart, positionEnd - positionStart));
+	        			found = true;
+	        			break;
+	        		}
+	        	}
+	        	if (!found) {
+	        		positions.add(new Position(positionStart, markdownString.length() - (positionStart)));	
+	        	}
+	    	}
+	    	int lastHeadingStart = linearHeadings.get(headingsSize - 1).getStartOffset();
+	    	positions.add(new Position(lastHeadingStart, markdownString.length() - lastHeadingStart));
+		}
 
     	for (FencedCodeBlock fencedCodeBlock : linearFencedCodeBlocks) {
     		int fencedCodeBlockStart = fencedCodeBlock.getStartOffset();

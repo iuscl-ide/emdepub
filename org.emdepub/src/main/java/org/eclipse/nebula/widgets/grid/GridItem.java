@@ -28,7 +28,6 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.TypedListener;
-import org.emdepub.activator.L;
 
 /**
  * <p>
@@ -1521,7 +1520,7 @@ public class GridItem extends Item {
 		checkWidget();
 		
 		/* RANGE */
-		L.p("SET " + newHeight + " - " + this.getText(0)); 
+		//L.p("SET " + newHeight + " - " + this.getText(0)); 
 		newHeight = getHeight();
 		
 		if (newHeight < 1)

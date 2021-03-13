@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.emdepub.activator.F;
 import org.emdepub.activator.P;
+import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExportType;
 
 /** Markdown preferences */
 public class MarkdownPreferences {
@@ -18,6 +19,10 @@ public class MarkdownPreferences {
 		DisplayJustifiedParagraphs,
 		DisplayCenterHeaders,
 		DisplayFormatCodeStyle,
+		ExportType,
+		ExportCssReference,
+		ExportName,
+		ExportLocation,
 		SourceFormatRightMarginWrap,
 		SourceFormatRightMarginColumns,
 		SourceFormatCollapseWhitespace
@@ -63,6 +68,11 @@ public class MarkdownPreferences {
 		initialPreferences.put(PreferenceNames.DisplayCenterHeaders, Boolean.valueOf(false));
 		
 		initialPreferences.put(PreferenceNames.DisplayFormatCodeStyle, DisplayFormatCodeStyles.Github);
+		
+		initialPreferences.put(PreferenceNames.ExportType, MarkdownExportType.ExportAssetsFolder);
+		initialPreferences.put(PreferenceNames.ExportCssReference, "../css/stylesheet.css");
+		initialPreferences.put(PreferenceNames.ExportName, "");
+		initialPreferences.put(PreferenceNames.ExportLocation, "");
 
 		initialPreferences.put(PreferenceNames.SourceFormatRightMarginWrap, Boolean.valueOf(false));
 		initialPreferences.put(PreferenceNames.SourceFormatRightMarginColumns, Integer.valueOf(80));
@@ -123,6 +133,15 @@ public class MarkdownPreferences {
 				modifieds.put(pref, DisplayFormatCodeStyles.valueOf(propertyValue));
 				break;
 
+			case ExportType:
+				modifieds.put(pref, MarkdownExportType.valueOf(propertyValue));
+				break;
+			case ExportCssReference:
+			case ExportName:
+			case ExportLocation:
+				modifieds.put(pref, propertyValue);
+				break;
+				
 			case SourceFormatRightMarginWrap:
 			case SourceFormatCollapseWhitespace:
 				modifieds.put(pref, Boolean.parseBoolean(propertyValue));

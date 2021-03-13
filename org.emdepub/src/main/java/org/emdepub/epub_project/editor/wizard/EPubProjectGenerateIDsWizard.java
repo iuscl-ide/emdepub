@@ -25,7 +25,7 @@ public class EPubProjectGenerateIDsWizard extends Wizard implements IExportWizar
 		super();
 
 		this.ePubProjectEditor = ePubProjectEditor;
-		project_ePub = ePubProjectEditor.getProject_ePub();
+		project_ePub = ePubProjectEditor.getEPubProject();
 
 		manifestIDGuid = project_ePub.manifestIDGuid;
 		manifestIDCounter = project_ePub.manifestIDCounter;

@@ -1,9 +1,15 @@
 /* Emdepub Eclipse Plugin - emdepub.org */ 
 package org.emdepub.activator;
 
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
@@ -55,13 +61,40 @@ public class UI {
 		return gridData;
 	}
 
+	/** GridData */
+	public GridData createTopAlignedGridData() {
+		
+		GridData gridData = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
+		/* TODO ? */
+		return gridData;
+	}
+
+	/** GridData */
+	public GridData createWidthTopAlignedGridData(int width) {
+		
+		GridData gridData = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
+		gridData.widthHint = width;
+		
+		return gridData;
+	}
+
 	/** GridData fill horizontal */
 	public GridData createFillHorizontalGridData() {
 		
 		GridData gridData = createGridData();
 	    gridData.horizontalAlignment = SWT.FILL;
 	    gridData.grabExcessHorizontalSpace = true;
+	    
+	    return gridData;
+	}
 
+	/** GridData fill horizontal */
+	public GridData createTopAlignedFillHorizontalGridData() {
+		
+		GridData gridData = createTopAlignedGridData();
+	    gridData.horizontalAlignment = SWT.FILL;
+	    gridData.grabExcessHorizontalSpace = true;
+	    
 	    return gridData;
 	}
 
@@ -199,13 +232,6 @@ public class UI {
 		return gridLayout;
 	}
 
-	/** Helper */
-	public interface OnResize extends ControlListener {
-		@Override
-		default
-		void controlMoved(ControlEvent controlEvent) { };
-	}
-	
 	/** Random color component */
 	public int random255() {
 		
@@ -250,4 +276,65 @@ public class UI {
 	public Display getDisplay() {
 		return display;
 	}
+	
+	
+	/** Helper */
+	public interface OnMouseDown extends MouseListener {
+		@Override
+		default
+		void mouseDoubleClick(MouseEvent mouseEvent) { };
+		@Override
+		default
+		void mouseUp(MouseEvent mouseEvent) { };
+	}
+
+	/** Helper */
+	public interface OnMouseDoubleClick extends MouseListener {
+		@Override
+		default
+		void mouseDown(MouseEvent mouseEvent) { };
+		@Override
+		default
+		void mouseUp(MouseEvent mouseEvent) { };
+	}
+
+	/** Helper */
+	public interface OnResize extends ControlListener {
+		@Override
+		default
+		void controlMoved(ControlEvent controlEvent) { };
+	}
+	
+	/** Helper */
+	public interface OnSelection extends SelectionListener {
+		@Override
+		default
+		void widgetDefaultSelected(SelectionEvent selectionEvent) { }
+	}
+
+	/** Helper */
+	public interface IRunFunction {
+		public void run();
+	}
+
+	/** Helper */
+	public static class ActionFactory {
+		
+		public static Action create(String id, String text, String toolTipText, ImageDescriptor imageDescriptor, IRunFunction runFunction) {
+		
+			Action action = new Action() {
+				public void run() {
+					runFunction.run();
+				}
+			};
+			action.setId(id);
+			action.setText(text);
+			action.setToolTipText(toolTipText);
+			action.setImageDescriptor(imageDescriptor);
+			
+			return action;
+		}
+	}
+	
+	
 }

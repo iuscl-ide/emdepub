@@ -1,0 +1,808 @@
+{
+  "rootFolderNameWithFullPath" : "C:\\Iustin\\Programming\\_emdepub\\repositories\\emdepub\\org.emdepub\\emdepub-projects\\emdepub-project-test-1\\src\\main\\resources\\ePub-samples\\THREE_MEN_IN_A_BOAT\\manifest",
+  "targetFolderNameWithFullPath" : "C:\\Iustin\\Programming\\_emdepub\\repositories\\emdepub\\org.emdepub\\emdepub-projects\\emdepub-project-test-1\\src\\main\\resources\\ePub-samples\\THREE_MEN_IN_A_BOAT\\target",
+  "opfFileNameWithRelativePath" : "content.opf",
+  "splitStartExpression" : "abcdefg",
+  "splitSourceFileNameWithFullPath" : "C:\\Iustin\\Programming\\_emdepub\\repositories\\emdepub\\org.emdepub\\emdepub-projects\\emdepub-project-test-1\\src\\main\\resources\\ePub-samples\\THREE_MEN_IN_A_BOAT\\source\\downloads\\txt02.txt",
+  "splitTargetFileNamesWithFullPath" : "C:\\Iustin\\Programming\\_emdepub\\repositories\\emdepub\\org.emdepub\\emdepub-projects\\emdepub-project-test-1\\src\\main\\resources\\ePub-samples\\THREE_MEN_IN_A_BOAT\\source\\md\\chapter*.md",
+  "manifestIDGuid" : false,
+  "manifestIDCounter" : true,
+  "manifestIDPrefix" : "id-",
+  "metadata_identifier" : "urn:uuid:afc8547d-367a-4d75-9fa8-9be3222c3fa7",
+  "metadata_title" : "Three Men in a Boat (to say nothing of the dog)",
+  "metadata_authors" : "Jerome K. Jerome",
+  "metadata_cover" : "cover-img",
+  "metadata_description" : "Three Men in a Boat (To Say Nothing of the Dog), published in 1889, is a humorous account by English writer Jerome K. Jerome of a two-week boating holiday on the Thames from Kingston upon Thames to Oxford and back to Kingston. The book was initially intended to be a serious travel guide, with accounts of local history along the route, but the humorous elements took over to the point where the serious and somewhat sentimental passages seem a distraction to the comic novel. One of the most praised things about Three Men in a Boat is how undated it appears to modern readers – the jokes have been praised as fresh and witty.\r\nhttps://en.wikipedia.org/wiki/Three_Men_in_a_Boat",
+  "manifestItems" : [ {
+    "itemFileName" : "stylesheet.css",
+    "itemFileRelativePath" : "css",
+    "itemFileId" : "stylesheet",
+    "itemFileManualId" : "stylesheet",
+    "itemFileMediaType" : "text/css",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter01.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00001",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter02.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00002",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter03.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00003",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter04.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00004",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter05.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00005",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter06.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00006",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter07.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00007",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter08.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00008",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter09.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00009",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter10.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00010",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter11.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00011",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter12.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00012",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter13.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00013",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter14.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00014",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter15.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00015",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter16.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00016",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter17.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00017",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter18.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00018",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "chapter19.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "id-00019",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "cover.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "cover",
+    "itemFileManualId" : "cover",
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "intro.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "intro",
+    "itemFileManualId" : "intro",
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "license.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "license",
+    "itemFileManualId" : "license",
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "preface.html",
+    "itemFileRelativePath" : "html",
+    "itemFileId" : "preface",
+    "itemFileManualId" : "preface",
+    "itemFileMediaType" : "text/html",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "cover.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "cover-img",
+    "itemFileManualId" : "cover-img",
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p0s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00020",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p101.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00021",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p105.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00022",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p107.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00023",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p115s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00024",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p128s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00025",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p130s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00026",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p134s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00027",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p135s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00028",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p13s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00029",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p140s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00030",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p147s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00031",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p151s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00032",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p156s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00033",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p167s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00034",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p171s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00035",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p17s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00036",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p185s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00037",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p196s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00038",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p197s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00039",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p1s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00040",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p20.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00041",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p201s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00042",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p203s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00043",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p206s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00044",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p214s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00045",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p219s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00046",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p223s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00047",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p22s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00048",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p230s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00049",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p240s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00050",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p243s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00051",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p255s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00052",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p257s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00053",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p261.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00054",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p270s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00055",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p273s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00056",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p281s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00057",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p290s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00058",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p295s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00059",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p298as.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00060",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p298bs.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00061",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p299as.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00062",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p299bs.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00063",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p29s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00064",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p2s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00065",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p300as.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00066",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p300bs.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00067",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p301s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00068",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p305s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00069",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p311s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00070",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p315s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00071",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p31s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00072",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p32s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00073",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p35s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00074",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p39s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00075",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p40s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00076",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p49s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00077",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p57s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00078",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p5s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00079",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p61s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00080",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p62s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00081",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p63s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00082",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p65.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00083",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p71s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00084",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p86s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00085",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p90s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00086",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  }, {
+    "itemFileName" : "p98s.jpg",
+    "itemFileRelativePath" : "images",
+    "itemFileId" : "id-00087",
+    "itemFileManualId" : null,
+    "itemFileMediaType" : "image/jpeg",
+    "itemFileProperties" : ""
+  } ],
+  "spineItems" : [ {
+    "itemManifestItemFileId" : "intro",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "cover",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "preface",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00001",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00002",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00003",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00004",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00005",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00006",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00007",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00008",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00009",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00010",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00011",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00012",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00013",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00014",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00015",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00016",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00017",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00018",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "id-00019",
+    "itemLinear" : "yes"
+  }, {
+    "itemManifestItemFileId" : "license",
+    "itemLinear" : "yes"
+  } ],
+  "tocItems" : [ {
+    "itemText" : "Gutenberg",
+    "itemSrc" : "html/intro.html"
+  }, {
+    "itemText" : "Cover",
+    "itemSrc" : "html/cover.html"
+  }, {
+    "itemText" : "PREFACE",
+    "itemSrc" : "html/preface.html"
+  }, {
+    "itemText" : "Chapter I.",
+    "itemSrc" : "html/chapter01.html"
+  }, {
+    "itemText" : "Chapter II.",
+    "itemSrc" : "html/chapter02.html"
+  }, {
+    "itemText" : "Chapter III.",
+    "itemSrc" : "html/chapter03.html"
+  }, {
+    "itemText" : "Chapter IV.",
+    "itemSrc" : "html/chapter04.html"
+  }, {
+    "itemText" : "Chapter V.",
+    "itemSrc" : "html/chapter05.html"
+  }, {
+    "itemText" : "Chapter VI.",
+    "itemSrc" : "html/chapter06.html"
+  }, {
+    "itemText" : "Chapter VII.",
+    "itemSrc" : "html/chapter07.html"
+  }, {
+    "itemText" : "Chapter VIII.",
+    "itemSrc" : "html/chapter08.html"
+  }, {
+    "itemText" : "Chapter IX.",
+    "itemSrc" : "html/chapter09.html"
+  }, {
+    "itemText" : "Chapter X.",
+    "itemSrc" : "html/chapter10.html"
+  }, {
+    "itemText" : "Chapter XI.",
+    "itemSrc" : "html/chapter11.html"
+  }, {
+    "itemText" : "Chapter XII.",
+    "itemSrc" : "html/chapter12.html"
+  }, {
+    "itemText" : "Chapter XIII.",
+    "itemSrc" : "html/chapter13.html"
+  }, {
+    "itemText" : "Chapter XIV.",
+    "itemSrc" : "html/chapter14.html"
+  }, {
+    "itemText" : "Chapter XV.",
+    "itemSrc" : "html/chapter15.html"
+  }, {
+    "itemText" : "Chapter XVI.",
+    "itemSrc" : "html/chapter16.html"
+  }, {
+    "itemText" : "Chapter XVII.",
+    "itemSrc" : "html/chapter17.html"
+  }, {
+    "itemText" : "Chapter XVIII.",
+    "itemSrc" : "html/chapter18.html"
+  }, {
+    "itemText" : "Chapter XIX.",
+    "itemSrc" : "html/chapter19.html"
+  }, {
+    "itemText" : "License",
+    "itemSrc" : "html/license.html"
+  } ]
+}

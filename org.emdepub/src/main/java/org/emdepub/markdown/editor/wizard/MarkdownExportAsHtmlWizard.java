@@ -8,15 +8,17 @@ import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 import org.emdepub.activator.F;
 import org.emdepub.markdown.editor.MarkdownEditor;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
 
 /** Markdown export as HTML wizard */
 public class MarkdownExportAsHtmlWizard extends Wizard implements IExportWizard {
 
-	public static enum MarkdownExportType { ExportAssetsFolder, ExportFileOnly };
+	public static enum MarkdownExportType { ExportAssetsFolder, ExportFileOnlyWithCssReference, ExportFileOnly };
 	
 	private MarkdownExportAsHtmlWizardPage markdownExportAsHtmlWizardPage;
 	private MarkdownEditor markdownEditor;
-
+	
 	/** Method */
 	public MarkdownExportAsHtmlWizard(MarkdownEditor markdownEditor) {
 		super();
@@ -29,22 +31,36 @@ public class MarkdownExportAsHtmlWizard extends Wizard implements IExportWizard 
 
 	/** Method */
 	public void addPages() {
+
+		MarkdownPreferences preferences = markdownEditor.getPreferences();
+
+		String exportName = preferences.get(PreferenceNames.ExportName);
+		if (F.isEmpty(exportName)) {
+			exportName = F.getFileNameWithoutExtension(markdownEditor.getSourceMarkdownFilePathAndName());
+		}
 		
-		String exportName = markdownEditor.getSourceMarkdownFilePathAndName();
-		exportName = exportName.substring(F.getFileFolderName(exportName).length() + 1);
-		exportName = exportName.substring(0, exportName.length() - (F.getExtension(exportName).length() + 1));
-		
-		markdownExportAsHtmlWizardPage = new MarkdownExportAsHtmlWizardPage(MarkdownExportType.ExportAssetsFolder,
-				exportName, "C:\\Iustin\\Programming\\_emdepub\\tools\\exports");
+		markdownExportAsHtmlWizardPage = new MarkdownExportAsHtmlWizardPage(preferences.get(PreferenceNames.ExportType),
+			preferences.get(PreferenceNames.ExportCssReference), exportName, preferences.get(PreferenceNames.ExportLocation));
 		addPage(markdownExportAsHtmlWizardPage);
 	}
 
 	/** Method */
 	@Override
 	public boolean performFinish() {
+
+		MarkdownExportType markdownExportType = markdownExportAsHtmlWizardPage.getMarkdownExportType();
+		String exportCssReference = markdownExportAsHtmlWizardPage.getExportCssReference();
+		String exportName = markdownExportAsHtmlWizardPage.getExportName();
+		String exportLocation = markdownExportAsHtmlWizardPage.getExportLocation();
+
+		MarkdownPreferences preferences = markdownEditor.getPreferences();
+		preferences.set(PreferenceNames.ExportType, markdownExportType);
+		preferences.set(PreferenceNames.ExportCssReference, exportCssReference);
+		preferences.set(PreferenceNames.ExportName, exportName);
+		preferences.set(PreferenceNames.ExportLocation, exportLocation);
+		markdownEditor.saveMarkdownPreferences();
 		
-		markdownEditor.exportAsHtml(markdownExportAsHtmlWizardPage.getMarkdownExportType(),
-				markdownExportAsHtmlWizardPage.getExportName(), markdownExportAsHtmlWizardPage.getExportLocation());
+		markdownEditor.exportAsHtml(markdownExportType, exportCssReference, exportName, exportLocation);
 		
 		return true; /* To close the wizard */
 	}

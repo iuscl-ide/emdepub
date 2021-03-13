@@ -1,0 +1,8 @@
+#Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org
+#Sat Mar 13 13:47:57 EET 2021
+DisplayFormatCodeStyle=None
+DisplayCenterHeaders=true
+ExportType=ExportFileOnlyWithCssReference
+ExportName=chapter16
+DisplayFixedContentWidth=false
+ExportLocation=C\:\\Iustin\\Programming\\_emdepub\\repositories\\emdepub\\org.emdepub\\emdepub-projects\\emdepub-project-test-1\\src\\main\\resources\\ePub-samples\\THREE_MEN_IN_A_BOAT\\manifest\\html

@@ -12,7 +12,4 @@ public class EPUB_project_manifest_item {
 	public String itemFileMediaType;
 	
 	public String itemFileProperties;
-
-
-	
 }

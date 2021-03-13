@@ -8,7 +8,6 @@ import java.util.LinkedHashSet;
 
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.swt.graphics.Image;
-import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 
 import com.vladsch.flexmark.ast.Code;
@@ -55,7 +54,7 @@ public class MarkdownContentAssistEngine {
 		new RecSepBlockDelim(R.getTextResourceAsString("texts/markdown-content-assist-proposals.txt")) {
 			@Override
 			public void loadFields(ArrayList<String> fields) {
-				L.p(fields.toString());
+				//L.p(fields.toString());
 				defaultProposals.put(MarkdownProposal.values()[proposalIndex[0]], 
 					new MarkdownCompletionProposal(
 						fields.get(0),
@@ -164,7 +163,7 @@ public class MarkdownContentAssistEngine {
 		linearNodes.clear();
 		cursor[0] = offset;
 		nodeVisitor.visitChildren(documentNode);
-		L.p(linearNodes.toString());
+		//L.p(linearNodes.toString());
 
 		MarkdownCompletionProposal[] completionProposals;
 

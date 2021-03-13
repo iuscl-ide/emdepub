@@ -4,6 +4,7 @@ package org.emdepub.markdown.editor;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.util.Base64;
 import java.util.LinkedHashMap;
 
@@ -50,8 +51,8 @@ import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExp
 /** Markdown multi-page editor */
 public class MarkdownEditor extends FormEditor {
 
-	private static final String s = F.sep();
-	private static final String e = F.enter();
+	private static final String s = F.s;
+	private static final String e = F.e;
 	
 	public static final LinkedHashMap<DisplayFormatStyles, String> formatStylesCss = new LinkedHashMap<>();
 	static {
@@ -276,7 +277,7 @@ public class MarkdownEditor extends FormEditor {
 	}
 	
 	/** Export */
-	public void exportAsHtml(MarkdownExportType markdownExportType, String exportName, String exportLocation) {
+	public void exportAsHtml(MarkdownExportType markdownExportType, String exportCssReference, String exportName, String exportLocation) {
 
 		String formatStyleCss = formatStylesCss.get(markdownPreferences.get(PreferenceNames.DisplayFormatStyle));
 		String formatCodeStyleCss = formatCodeStylesCss.get(markdownPreferences.get(PreferenceNames.DisplayFormatCodeStyle));
@@ -293,6 +294,26 @@ public class MarkdownEditor extends FormEditor {
     		closeExternalFile(exportFileNameWithPath);
     		
     		F.saveStringToFile(htmlText, exportFileNameWithPath);
+    		openExternalFile(exportFileNameWithPath);
+    	}
+    	else if (markdownExportType == MarkdownExportType.ExportFileOnlyWithCssReference) {
+    		String exportFileNameWithPath = exportLocation + s + exportName + ".html";
+    		
+    		closeExternalFile(exportFileNameWithPath);
+    		
+    		String markdownExport = markdownExportTemplate;
+    		markdownExport = markdownExport.replace("{{export-content}}", htmlText);
+    		markdownExport = markdownExport.replace("{{export-title}}", exportName);
+    		
+    		String exportCss = "<link rel=\"stylesheet\" href=\"" + exportCssReference + "\">";
+    		String formatOptionsCss = getFormatOptionsCss();
+    		if (formatOptionsCss.trim().length() > 0) {
+    			formatOptionsCss = "\t<style>" + formatOptionsCss + e + "\t</style>";
+    			exportCss = exportCss + e + formatOptionsCss;
+    		}
+    		markdownExport = markdownExport.replace("{{export-css}}", exportCss);
+    		
+    		F.saveStringToFile(markdownExport, exportFileNameWithPath);
     		openExternalFile(exportFileNameWithPath);
     	}
     	else {
@@ -333,7 +354,7 @@ public class MarkdownEditor extends FormEditor {
     		/* CSS options */
     		String formatOptionsCss = getFormatOptionsCss();
     		if (formatOptionsCss.trim().length() > 0) {
-    			formatOptionsCss = e + "<style>" + formatOptionsCss + e + "</style>" + e;
+    			formatOptionsCss = "<\tstyle>" + formatOptionsCss + e + "\t</style>";
     			exportCss = exportCss + e + formatOptionsCss + e;
     		}
     		
@@ -372,14 +393,13 @@ public class MarkdownEditor extends FormEditor {
 		
 		String markdownText = markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput()).get();
 		
-		return new String(Base64.getEncoder().encode(markdownText.getBytes()));
+		return new String(Base64.getEncoder().encode(markdownText.getBytes(Charset.forName("UTF-8"))));
 	}
 
 	/** Get the options CSSs */
 	public String getFormatOptionsCss() {
 		
 		String formatOptionsCss = "";
-		String e = F.enter();
 		
 		if (markdownPreferences.<Boolean>get(PreferenceNames.DisplayFixedContentWidth)) {
 			formatOptionsCss = formatOptionsCss + e + markdownFixedContentWidthCss;
@@ -469,7 +489,7 @@ public class MarkdownEditor extends FormEditor {
 	/** Close external file opened in IDE */
 	private void closeExternalFile(String fileNameWithPath) {
 
-		String fileName = fileNameWithPath.substring(F.getFileFolderName(fileNameWithPath).length() + 1);
+		String fileName = fileNameWithPath.substring(F.getFileFolder(fileNameWithPath).length() + 1);
 		
 		IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		IWorkbenchPage workbenchPage = workbenchWindow.getActivePage();

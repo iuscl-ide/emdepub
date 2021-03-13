@@ -8,5 +8,5 @@ public class OPF_package_spine_itemref {
 	public String idref;
 
 	@JacksonXmlProperty(isAttribute = true)
-	public String linear;
+	public String linear = "yes";
 }

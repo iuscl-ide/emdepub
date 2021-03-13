@@ -13,12 +13,12 @@ public class OPF_package {
 	public String xmlns = "http://www.idpf.org/2007/opf";
 	
 	@JacksonXmlProperty(isAttribute = true, localName = "unique-identifier")
-	public String uniqueIdentifier;
+	public String uniqueIdentifier = "uid";
 
 	@JacksonXmlProperty(isAttribute = true)
-	public String version;
+	public String version = "2.0.1";
 
-	public OPF_package_metadata metadata= new OPF_package_metadata();
+	public OPF_package_metadata metadata = new OPF_package_metadata();
 	
 	@JacksonXmlElementWrapper(useWrapping = true, localName = "manifest")
 	public List<OPF_package_manifest_item> item;

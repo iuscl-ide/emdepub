@@ -1,0 +1,69 @@
+Decorative graphic|p0s
+Graphic of three men in a rowing boat|p1s
+Man reading book|p2s
+Man with walking stick|p5s
+Man feeling ill|p13s
+Montmorency|p17s
+River scene|p20
+Mermaid|p22s
+Whisky glass|p29s
+Candle|p31s
+Nails etc|p32s
+Uncle Podger admiring his work|p35s
+Tent|p39s
+Sea-side scene|p40s
+Railway carriage|p49s
+Boot|p57s
+Luggage with dog on top|p61s
+Mrs Poppets|p62s
+George snoring|p63s
+Two dogs and umbrella|p65
+The luggage|p71s
+China dog|p86s
+People at Hampton Maze|p90s
+Young lady|p98s
+Washing up|p101
+Graves|p105
+Harris|p115s
+George and the banjo|p128s
+Dog wrapped in tow-line|p130s
+Hat in the water|p134s
+
+Two people towing, boat adrift|p135s
+Lady pinning up frock|p140s
+People in rowing boat|p147s
+Watching and waiting|p151s
+Smoking pipes|p156s
+George and the policeman|p167s
+In the Thames|p171s
+River scene|p185s
+Flattened tin|p196s
+River scene|p197s
+The boat|p201s
+Bisham Abbey|p203s
+Cat|p206s
+The bring of the provisions|p214s
+The dog|p219s
+Rescuing the pie|p223s
+Montmorency and the kettle|p230s
+Swans|p240s
+Woman at housework|p243s
+Two novices in a boat|p255s
+Man and pole|p257s
+Bathing|p261
+
+Woman in the water|p270s
+Washing line|p273s
+The trout|p281s
+The photograph|p290s
+River scene|p295s
+Man at the lock|p298as
+Man at the lock|p298bs
+Dog running|p299as
+Dogs fighting|p299bs
+Dog running|p300as
+Dog|p300bs
+The Pride of the Thames|p301s
+The boat in the rain|p305s
+Lady in skirt|p311s
+Neptune drinking a toast|p315s

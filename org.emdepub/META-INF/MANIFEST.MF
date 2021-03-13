@@ -21,8 +21,7 @@ Require-Bundle:
  org.eclipse.core.filesystem,
  org.eclipse.lsp4e,
  org.eclipse.ui.workbench.texteditor,
- org.eclipse.ui.views,
- com.google.guava
+ org.eclipse.ui.views
 Bundle-RequiredExecutionEnvironment: JavaSE-15
 Automatic-Module-Name: org.emdepub
 Bundle-ActivationPolicy: lazy
@@ -48,4 +47,5 @@ Bundle-ClassPath: .,
  lib/jackson/jackson-dataformat-xml-2.12.1.jar,
  lib/jackson/jackson-module-jaxb-annotations-2.12.1.jar,
  lib/jackson/stax2-api-4.2.1.jar,
- lib/jackson/woodstox-core-6.2.3.jar
+ lib/jackson/woodstox-core-6.2.3.jar,
+ lib/zip4j/zip4j-2.7.0.jar

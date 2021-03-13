@@ -30,12 +30,8 @@ public class F {
 
 	/* Strings */
 
-	/** "\" or "/" */
-	public static String enter() {
-		
-		return System.lineSeparator();
-	}
-
+	/** CR, LF, etc. */
+	public static final String e = System.lineSeparator(); 
 	
 	/* Streams */
     
@@ -165,10 +161,7 @@ public class F {
 	/* File operations */
 	
 	/** "\" or "/" */
-	public static String sep() {
-		
-		return File.separator;
-	}
+	public static final String s = File.separator; 
 
 	/** Exists */
 	public static boolean fileExists(String fileNameWithPath) {
@@ -220,6 +213,56 @@ public class F {
 		}
 	}
 
+	/* https://stackoverflow.com/questions/20281835/how-to-delete-a-folder-with-files-using-java */
+	public static void deleteFolderAndItsContent(final Path folder) throws IOException {
+	    
+		Files.walkFileTree(folder, new SimpleFileVisitor<Path>() {
+	        @Override
+	        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+	            Files.delete(file);
+	            return FileVisitResult.CONTINUE;
+	        }
+	        @Override
+	        public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+	            if (exc != null) {
+	                throw exc;
+	            }
+	            Files.delete(dir);
+	            return FileVisitResult.CONTINUE;
+	        }
+	    });
+	}
+
+	/** Modern */
+	public static void deleteFolderAndItsContents(String folderNameWithPath) {
+	    
+		try {
+			Path rootPath = Paths.get(folderNameWithPath);
+			if (Files.notExists(rootPath)) {
+				return;
+			}
+			Files.walkFileTree(rootPath, new SimpleFileVisitor<Path>() {
+			    @Override
+			    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+			        Files.delete(file);
+			        return FileVisitResult.CONTINUE;
+			    }
+			    @Override
+			    public FileVisitResult postVisitDirectory(Path folder, IOException ioException) throws IOException {
+			        if (ioException != null) {
+			            throw ioException;
+			        }
+			        Files.delete(folder);
+			        return FileVisitResult.CONTINUE;
+			    }
+			});
+		}
+		catch (IOException ioException) {
+			L.e("deleteFolderAndItsContents; folderNameWithPath: " + folderNameWithPath, ioException);
+		}
+	}
+
+	
 	/** Create all folders */
 	public static void createFoldersIfNotExists(String folderNameWithPath) {
 
@@ -298,6 +341,17 @@ public class F {
 	}
 
 	/** Copy folders */
+	public static void copyFileOrFolderIntoFolder(String sourceFileOrFolder, String targetFolder) {
+	
+		try {
+			Files.walkFileTree(Paths.get(sourceFileOrFolder), new CopyFileVisitor(Paths.get(targetFolder), ""));
+		}
+		catch (IOException ioException) {
+			L.e("copyFileOrFolderIntoFolder; source: " + sourceFileOrFolder + ", target: " + targetFolder, ioException);
+		}
+	}
+	
+	/** Copy folders */
 	public static void copyFolders(String sourceFolder, String targetFolder, String ignoreForExtensions) {
 		
 		try {
@@ -319,12 +373,28 @@ public class F {
 		}
 	}
 
-	/** File path */
-	public static String getFileFolderName(String fileName) {
+	/** File / folder path */
+	public static String getFileFolder(String fileName) {
 		
-		return (Paths.get(fileName)).getParent().toString(); 
+		Path parentPath = Paths.get(fileName).getParent(); 
+		return parentPath == null ? "" : parentPath.toString(); 
 	}
-	
+
+	/** File / folder name */
+	public static String getFileName(String fileName) {
+		
+		int fileFolderLength = getFileFolder(fileName).length();
+		return fileFolderLength == 0 ? fileName : fileName.substring(fileFolderLength + s.length()); 
+	}
+
+	/** File / folder just name */
+	public static String getFileNameWithoutExtension(String fileName) {
+		
+		String fileNameWithExtension = getFileName(fileName);
+		String fileExtension = getExtension(fileName);
+		return fileNameWithExtension.substring(0, fileNameWithExtension.length() - (fileExtension.length() + 1)); 
+	}
+
 	/**
 	 * https://stackoverflow.com/questions/3571223/how-do-i-get-the-file-extension-of-a-file-in-java/21974043
 	 */
