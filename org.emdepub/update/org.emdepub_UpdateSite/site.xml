@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Eclipse Markdown ePub Plugin Update Site" url="http://emdepub.org/update">
+      Eclipse Markdown ePub Plugin Update Site - http://emdepub.org/update
+   </description>
+   <feature url="features/org.emdepub_1.0.0.202103221325.jar" id="org.emdepub" version="1.0.0.202103221325">
+      <category name="org.emdepub.updatesite.category"/>
+   </feature>
+   <category-def name="org.emdepub.updatesite.category" label="Eclipse Markdown ePub Plugin Distribution">
+      <description>
+         Eclipse Markdown ePub Plugin Distribution - http://emdepub.org/update; This software is distributed under the terms of: Eclipse Public License v1.0 - http://www.eclipse.org/org/documents/epl-v10.html
+      </description>
+   </category-def>
+</site>

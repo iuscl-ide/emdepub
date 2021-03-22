@@ -1,8 +1,13 @@
+<!--
+---
+Eclipse Markdown ePub Plugin - 2021 emdepub.org
+---
+-->
 
-----------
 
-### Progress
+# Progress
 
+### | [Home](index.html) || [Progress](progress.html) || [Code](https://github.com/iuscl-ide/emdepub) |
 
 |                      Feature                      | Status |                                                            Implementation                                                             |
 |---------------------------------------------------|:------:|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -191,3 +196,4 @@ Bold and italic commands, on/off for text selection
 
 ----------
 
+### Website hosted by [GitHub](https://github.com/iuscl-ide/emdepub) || 2021 [emdepub.org](https://emdepub.org)

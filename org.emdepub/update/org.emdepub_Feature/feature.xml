@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.emdepub"
+      label="Eclipse Markdown ePub Plugin"
+      version="1.0.0.qualifier"
+      provider-name="emdepub.org"
+      plugin="org.emdepub">
+
+   <description url="http://emdepub.org">
+      Eclipse Markdown ePub Plugin
+   </description>
+
+   <copyright>
+      Copyright 2021 emdepub.org - http://emdepub.org
+   </copyright>
+
+   <license url="">
+      This software is distributed under the terms of:
+Eclipse Public License v1.0 - http://www.eclipse.org/org/documents/epl-v10.html
+http://www.eclipse.org/legal/eplfaq.php
+
+Two small things to keep in mind:
+1/ This software is provided &quot;AS IS&quot; without warranty of any kind
+2/ You CANNOT modify this software and then distribute the modified version without making available the modified source
+   </license>
+
+   <url>
+      <update label="Eclipse Markdown ePub Plugin Update Site" url="http://emdepub.org/update"/>
+   </url>
+
+   <plugin
+         id="org.emdepub"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>

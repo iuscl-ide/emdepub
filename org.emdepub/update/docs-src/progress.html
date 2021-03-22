@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!--<base href="" />-->
+    <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="css/stylesheet.css">
+	<style>
+		.markdown-body {
+			box-sizing: border-box;
+			min-width: 200px;
+			max-width: 980px;
+			margin: 0 auto;
+			padding: 45px;
+		}
+		@media ( max-width : 767px) {
+			.markdown-body {
+				padding: 15px;
+			}
+		}
+		p {
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		li {
+			text-align: justify;
+			text-justify: inter-word;
+		}
+		h1, h2, h3, h4, h5, h6 {
+			text-align: center;
+		}
+article.markdown-body pre {
+background: rgb(248, 248, 248);color: rgb(51, 51, 51);
+}
+	</style>
+    <title>progress</title>
+</head>
+<body>
+<article class="markdown-body">
+<!--
+---
+Eclipse Markdown ePub Plugin - 2021 emdepub.org
+---
+-->
+
+
+<h1 id="progress">Progress</h1>
+<h3 id="-home--progress--code-">| <a href="index.html">Home</a> || <a href="progress.html">Progress</a> || <a href="https://github.com/iuscl-ide/emdepub">Code</a> |</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th align="center">Status</th>
+            <th>Implementation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Display (HTML Rendering)</strong></td>
+            <td align="center"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><a href="#render">Render</a></td>
+            <td align="center">YES</td>
+            <td><a href="https://marked.js.org/" title="Marked Documentation">marked.js</a></td>
+        </tr>
+        <tr>
+            <td><a href="#render-style">Render style</a></td>
+            <td align="center">YES</td>
+            <td><a href="https://github.com/sindresorhus/github-markdown-css">github-markdown.css</a> and some variations</td>
+        </tr>
+        <tr>
+            <td><a href="#code-highlight">Code highlight</a></td>
+            <td align="center">YES</td>
+            <td><a href="https://highlightjs.org/">highlight.js</a></td>
+        </tr>
+        <tr>
+            <td><a href="#code-highlight-style">Code highlight style</a></td>
+            <td align="center">YES</td>
+            <td>Some <em>highlight.js</em> themes</td>
+        </tr>
+        <tr>
+            <td><strong>Source (Markdown Editor)</strong></td>
+            <td align="center"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><a href="#formatting">Formatting</a> (including tables!)</td>
+            <td align="center">YES</td>
+            <td><a href="https://github.com/vsch/flexmark-java">Flexmark</a></td>
+        </tr>
+        <tr>
+            <td><a href="#syntax">Syntax</a></td>
+            <td align="center">YES</td>
+            <td><a href="https://github.com/microsoft/vscode-markdown-tm-grammar/blob/main/syntaxes/markdown.tmLanguage">markdown.tmLanguage</a></td>
+        </tr>
+        <tr>
+            <td><a href="#theme">Theme</a></td>
+            <td align="center">YES</td>
+            <td>Markdown Light</td>
+        </tr>
+        <tr>
+            <td><a href="#language-configuration">Language configuration</a></td>
+            <td align="center">YES</td>
+            <td><a href="https://github.com/microsoft/vscode/blob/master/extensions/markdown-basics/language-configuration.json">language-configuration.json</a></td>
+        </tr>
+        <tr>
+            <td><a href="#folding">Folding</a></td>
+            <td align="center">YES</td>
+            <td><em>Flexmark</em></td>
+        </tr>
+        <tr>
+            <td><a href="#Outline">Outline</a></td>
+            <td align="center">YES</td>
+            <td><em>Flexmark</em></td>
+        </tr>
+        <tr>
+            <td><a href="#spell-check">Spell check</a></td>
+            <td align="center">NO</td>
+            <td>Not enough information, it appears sometimes</td>
+        </tr>
+        <tr>
+            <td><a href="#auto-edit">Auto edit</a></td>
+            <td align="center">YES</td>
+            <td>done with the new <a href="#language-configuration">language configuration</a></td>
+        </tr>
+        <tr>
+            <td><a href="#content-assist">Content assist</a></td>
+            <td align="center">YES</td>
+            <td>CTRL + SPACE, <em>Flexmark</em></td>
+        </tr>
+        <tr>
+            <td><a href="#hover">Hover</a></td>
+            <td align="center">NO</td>
+            <td>Hover to show what?</td>
+        </tr>
+        <tr>
+            <td><a href="#presentation">Presentation</a></td>
+            <td align="center">NO</td>
+            <td>Eclipse&#39;s way to color the code, now done the modern way</td>
+        </tr>
+        <tr>
+            <td><a href="#validator">Validator</a></td>
+            <td align="center">NO</td>
+            <td>Put errors and warnings, maybe in the future, for MD elements in HTML blocks or in code inline/blocks</td>
+        </tr>
+        <tr>
+            <td><a href="#additional-formatting">Additional Formatting</a></td>
+            <td align="center">YES</td>
+            <td>Bold and italic toolbar commands</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3 id="bugs">Bugs</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Bug</th>
+            <th>Status</th>
+            <th>Implementation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Undo / Redo not working</td>
+            <td></td>
+            <td>Sometimes it works?</td>
+        </tr>
+        <tr>
+            <td><del>Justified paragraphs is not working for lists</del></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><em>Spell check</em> not working</td>
+            <td></td>
+            <td>Sometimes it works, if opened as text and re-opened</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3 id="render"><a name="render"></a>Render</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Implementation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Detect Markdown text encoding</td>
+            <td><a href="https://github.com/aadsm/jschardet">jschardet.js</a></td>
+        </tr>
+        <tr>
+            <td>Transform text encoding</td>
+            <td><a href="https://www.npmjs.com/package/iconv-lite">iconv.js</a></td>
+        </tr>
+        <tr>
+            <td>Emoji</td>
+            <td><a href="https://www.npmjs.com/package/emoji-js">emoji.js</a></td>
+        </tr>
+        <tr>
+            <td>Arrange generated HTML</td>
+            <td><a href="https://github.com/beautify-web/js-beautify">beautify-html.js</a></td>
+        </tr>
+        <tr>
+            <td>JQuery</td>
+            <td><a href="https://jquery.com/">jquery</a></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3 id="render-style"><a name="render-style"></a>Render style</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Style</th>
+            <th>Implementation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Github</td>
+            <td><a href="https://github.com/sindresorhus/github-markdown-css">github-markdown.css</a></td>
+        </tr>
+        <tr>
+            <td>Google-like</td>
+            <td>google-like-markdown.css</td>
+        </tr>
+        <tr>
+            <td>SemanticUI-like</td>
+            <td>semantic-ui-like-markdown.css</td>
+        </tr>
+        <tr>
+            <td>Custom</td>
+            <td>stylesheet.css</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3 id="code-highlight"><a name="code-highlight"></a>Code highlight</h3>
+<p>All done by <a href="https://highlightjs.org/">highlight.js</a></p>
+<hr>
+<h3 id="code-highlight-style"><a name="code-highlight-style"></a>Code highlight style</h3>
+<p>Some <em>highlight.js</em> themes</p>
+<hr>
+<h3 id="formatting"><a name="formatting"></a>Formatting</h3>
+<p>Done in <em>Flexmark</em> with parse and visit headings</p>
+<p><em>Flexmark</em> extensions used for source formatting</p>
+<table>
+    <thead>
+        <tr>
+            <th>Extension</th>
+            <th>Implemented</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>tables</td>
+            <td>YES</td>
+        </tr>
+        <tr>
+            <td>tasklist</td>
+            <td>YES</td>
+        </tr>
+    </tbody>
+</table>
+<p>Unable to find a way to activate Format command for Generic Editor Source menu</p>
+<hr>
+<h3 id="syntax"><a name="syntax"></a>Syntax</h3>
+<p>TextMate grammar from VSCode</p>
+<hr>
+<h3 id="theme"><a name="theme"></a>Theme</h3>
+<p>Extended from Eclipse Generic Editor Theme &quot;Light&quot;</p>
+<hr>
+<h3 id="language-configuration"><a name="language-configuration"></a>Language configuration</h3>
+<p>From VSCode: brackets, auto closing pairs, surrounding pairs, the folding is not implemented in Eclipse</p>
+<hr>
+<h3 id="folding"><a name="folding"></a>Folding</h3>
+<p>Done in <em>Flexmark</em> with parse and visit headings, fenced code blocks and indented code blocks</p>
+<p>Unable to find a way to activate the Folding menu for Generic Editor left margin</p>
+<hr>
+<h3 id="outline"><a name="outline"></a>Outline</h3>
+<p>Done in <em>Flexmark</em> with parse and visit headings</p>
+<hr>
+<h3 id="spell-check"><a name="spell-check"></a>Spell check</h3>
+<p>Unable to find a way to activate spell check for Generic Editor</p>
+<hr>
+<h3 id="auto-edit"><a name="auto-edit"></a>Auto edit</h3>
+<p>Auto close some pairs, done with the new <a href="#language-configuration">language configuration</a></p>
+<hr>
+<h3 id="content-assist"><a name="content-assist"></a>Content assist</h3>
+<p>CTRL + SPACE, insert (by context)</p>
+<table>
+    <thead>
+        <tr>
+            <th>Insert</th>
+            <th>Text</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Bold text</td>
+            <td><code>**bold text**</code></td>
+        </tr>
+        <tr>
+            <td>Italic text</td>
+            <td><code>*italic text*</code></td>
+        </tr>
+        <tr>
+            <td>Bold italic text</td>
+            <td><code>***bold italic text***</code></td>
+        </tr>
+        <tr>
+            <td>Strikethrough text</td>
+            <td><code>~~strikethrough text~~</code></td>
+        </tr>
+        <tr>
+            <td>Quoted text</td>
+            <td><code>&gt; quoted text</code></td>
+        </tr>
+        <tr>
+            <td>Inline code</td>
+            <td><code>`inline code`</code></td>
+        </tr>
+        <tr>
+            <td>Fenced code block</td>
+            <td><code>``` language</code> <strong><code>ENTER</code></strong> <code>fenced code</code> <strong><code>ENTER</code></strong> <code>```</code></td>
+        </tr>
+        <tr>
+            <td>Indented code block</td>
+            <td><strong><code>TAB</code></strong> indented code</td>
+        </tr>
+        <tr>
+            <td>Heading level 1</td>
+            <td><code># Heading level 1</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 2</td>
+            <td><code>## Heading level 2</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 3</td>
+            <td><code>### Heading level 3</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 4</td>
+            <td><code>#### Heading level 4</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 5</td>
+            <td><code>##### Heading level 5</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 6</td>
+            <td><code>###### Heading level 6</code></td>
+        </tr>
+        <tr>
+            <td>Unordered list</td>
+            <td><code>- first</code> <strong><code>ENTER</code></strong> <code>- second</code> <strong><code>ENTER</code></strong> <code>- third</code></td>
+        </tr>
+        <tr>
+            <td>Ordered list</td>
+            <td><code>1. first</code> <strong><code>ENTER</code></strong> <code>2. second</code> <strong><code>ENTER</code></strong> <code>3. third</code></td>
+        </tr>
+        <tr>
+            <td>Definition list</td>
+            <td><code>term</code> <strong><code>ENTER</code></strong> <code>: definition</code></td>
+        </tr>
+        <tr>
+            <td>Link</td>
+            <td><code>[link text](https://link_address &quot;Link info (tooltip)&quot;)</code></td>
+        </tr>
+        <tr>
+            <td>Image</td>
+            <td><code>![image alt (tooltip)](https://image_address)</code></td>
+        </tr>
+        <tr>
+            <td>Horizontal rule</td>
+            <td><code>----------</code></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3 id="hover"><a name="hover"></a>Hover</h3>
+<p>Hover to show what?</p>
+<hr>
+<h3 id="presentation"><a name="presentation"></a>Presentation</h3>
+<p>Eclipse&#39;s way to color the code, now done the new way</p>
+<hr>
+<h3 id="validator"><a name="validator"></a>Validator</h3>
+<p>Put errors and warnings, maybe in the future, for MD elements in HTML blocks or in code inline/blocks</p>
+<hr>
+<h3 id="additional-formatting"><a name="additional-formatting"></a>Additional formatting</h3>
+<p>Bold and italic commands, on/off for text selection</p>
+<hr>
+<h3 id="website-hosted-by-github--2021-emdepuborg">Website hosted by <a href="https://github.com/iuscl-ide/emdepub">GitHub</a> || 2021 <a href="https://emdepub.org">emdepub.org</a></h3>
+</article>
+</body>
+</html>
