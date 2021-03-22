@@ -16,4 +16,4 @@ Install as a normal Eclipse plugin:
 Help -> Install new software...
 ```    
     
-And then add the site `http://emdepub.org/update`
+And then add the site `https://emdepub.org/update`
