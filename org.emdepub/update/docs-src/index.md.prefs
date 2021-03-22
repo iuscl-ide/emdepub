@@ -1,5 +1,5 @@
 #Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org
-#Mon Mar 22 15:15:53 EET 2021
+#Mon Mar 22 16:09:57 EET 2021
 ExportCssReference=css/stylesheet.css
 DisplayCenterHeaders=true
 ExportType=ExportFileOnlyWithCssReference
