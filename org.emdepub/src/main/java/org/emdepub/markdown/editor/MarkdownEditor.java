@@ -2,8 +2,10 @@
 package org.emdepub.markdown.editor;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.util.Base64;
 import java.util.LinkedHashMap;
@@ -30,10 +32,12 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.editors.text.IStorageDocumentProvider;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.ide.FileStoreEditorInput;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.emdepub.activator.Activator;
 import org.emdepub.activator.F;
@@ -207,6 +211,14 @@ public class MarkdownEditor extends FormEditor {
 			L.e("createMarkdownTextEditorPage", partInitException);
 		}
 		
+		IDocumentProvider documentProvider = markdownTextEditor.getDocumentProvider();
+		if (documentProvider instanceof IStorageDocumentProvider) {
+			IStorageDocumentProvider storageDocumentProvider = (IStorageDocumentProvider) documentProvider;
+			/* Make sure the file is seen as UTF-8. */
+			storageDocumentProvider.setEncoding(markdownTextEditor.getEditorInput(), "utf-8");
+			markdownTextEditor.doRevertToSaved();
+		}
+		
 		this.setPartName(markdownTextEditor.getTitle());
 		
 		setPageText(markdownTextEditorPageIndex, "Markdown Editor");
@@ -267,9 +279,11 @@ public class MarkdownEditor extends FormEditor {
 		
 			URI urlPath = ((FileStoreEditorInput) editorInput).getURI();
 			try {
-				return new File(urlPath.toURL().getPath()).getAbsolutePath();
+				return new File(URLDecoder.decode(urlPath.toURL().getPath(), "UTF-8")).getAbsolutePath();
 			} catch (MalformedURLException malformedURLException) {
 				L.e("getSourceMarkdownFilePathAndName", malformedURLException);
+			} catch (UnsupportedEncodingException unsupportedEncodingException) {
+				L.e("getSourceMarkdownFilePathAndName", unsupportedEncodingException);
 			}
 		}
 		
