@@ -49,6 +49,7 @@ public class Activator extends AbstractUIPlugin {
 
 		/* Log */
 		File logFile = new File(pluginFolderPathName, "log/emdepub.log");
+		F.createFoldersIfNotExists(pluginFolderPathName + "/log");
 		L.initLog(logFile);
 	}
 
