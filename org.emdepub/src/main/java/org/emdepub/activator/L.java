@@ -90,7 +90,9 @@ public class L {
         	logText = logText + "\n";
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             PrintStream printStream = new PrintStream(byteArrayOutputStream, true);
+            
             throwable.printStackTrace(printStream);
+            
             logText = logText + byteArrayOutputStream.toString();
         }
         String[] lines = logText.replace("\r", "").split("\n");
@@ -137,7 +139,8 @@ public class L {
 	public static void e(String message, Throwable throwable) {
         logger.log(Level.SEVERE, logTextLines(message, throwable));
         
-        Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, message, throwable);
+        Status errorStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+        		message + "; " + throwable.getClass().getSimpleName() + ": " + throwable.getMessage(), throwable);
         ErrorDialog.openError(Display.getCurrent().getActiveShell(), "Programming Error",
         	"A not taken into account error happened, see the log for more information", errorStatus);
     }

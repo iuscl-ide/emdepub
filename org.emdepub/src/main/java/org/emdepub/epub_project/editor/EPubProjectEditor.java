@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URI;
+import java.net.URLDecoder;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -863,7 +864,7 @@ public class EPubProjectEditor extends FormEditor {
 		else if (editorInput instanceof FileStoreEditorInput) {
 		
 			URI urlPath = ((FileStoreEditorInput) editorInput).getURI();
-			return r(() -> new File(urlPath.toURL().getPath()).getAbsolutePath());
+			return r(() -> new File(URLDecoder.decode(urlPath.toURL().getPath(), "UTF-8")).getAbsolutePath());
 		}
 		
 		return editorInput.getName();

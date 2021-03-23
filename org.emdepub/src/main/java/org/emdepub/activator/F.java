@@ -118,7 +118,7 @@ public class F {
 			return Files.readAllBytes(Paths.get(fileName));
 		}
 		catch (IOException ioException) {
-			L.e("loadFileInString => fileName: " + fileName, ioException);
+			L.e("loadFileInBuffer, fileName: " + fileName, ioException);
 		}
 		
 		return null;
