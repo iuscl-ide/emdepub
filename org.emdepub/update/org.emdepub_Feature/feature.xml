@@ -2,7 +2,7 @@
 <feature
       id="org.emdepub"
       label="Eclipse Markdown ePub Plugin"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="emdepub.org"
       plugin="org.emdepub">
 
@@ -32,6 +32,6 @@ Two small things to keep in mind:
          id="org.emdepub"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"/>
+         version="1.0.1.qualifier"/>
 
 </feature>

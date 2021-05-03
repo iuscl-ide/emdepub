@@ -2,8 +2,8 @@
 
 <project name="emdepub_create_distribution" default="create">
 
-	<property name="release.timestamp" value="202103232351"/>
-	<property name="release.version" value="1.0.0.${release.timestamp}"/>
+	<property name="release.timestamp" value="202105032050"/>
+	<property name="release.version" value="1.0.1.${release.timestamp}"/>
 	<property name="home.folder" value="${REPLACED_FROM_ANT_RUN}"/>
 
 	<target name="create">
