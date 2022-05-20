@@ -4,6 +4,7 @@
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type id="org.emdepub.md" name="Markdown" base-type="org.eclipse.core.runtime.text" file-extensions="md, mdown, markdown, markdn"></content-type>
 		<content-type id="org.emdepub.epub_project" name="ePub Project" base-type="org.eclipse.core.runtime.text" file-extensions="epub-project"></content-type>
+		<content-type id="org.emdepub.toml" name="TOML" base-type="org.eclipse.core.runtime.text" file-extensions="toml"></content-type>
 	</extension>
 
 	<extension point="org.eclipse.ui.editors">
@@ -18,16 +19,25 @@
 	<extension point="org.eclipse.tm4e.registry.grammars">
 		<grammar path="code-language/markdown/grammars/markdown.tmLanguage" scopeName="text.html.markdown"></grammar>
 		<scopeNameContentTypeBinding contentTypeId="org.emdepub.md" scopeName="text.html.markdown"></scopeNameContentTypeBinding>
+		
+		<grammar path="code-language/toml/grammars/toml.tmLanguage.json" scopeName="source.toml"></grammar>
+		<scopeNameContentTypeBinding contentTypeId="org.emdepub.toml" scopeName="source.toml"></scopeNameContentTypeBinding>
 	</extension>
+	
 	<extension point="org.eclipse.tm4e.languageconfiguration.languageConfigurations">
 		<languageConfiguration contentTypeId="org.emdepub.md" path="code-language/markdown/language-configurations/language-configuration.json"></languageConfiguration>
+		<languageConfiguration contentTypeId="org.emdepub.toml" path="code-language/toml/language-configurations/language-configuration.json"></languageConfiguration>
 	</extension>
+	
 	<extension point="org.eclipse.tm4e.ui.themes">
 		<theme dark="false" default="true" id="org.emdepub.markdown.light.theme" name="Markdown Light" path="code-language/markdown/themes/markdown-light-theme.css"></theme>
 		<themeAssociation scopeName="text.html.markdown" themeId="org.emdepub.markdown.light.theme" whenDark="false"></themeAssociation>
+		<theme dark="false" default="true" id="org.emdepub.toml.light.theme" name="TOML Light" path="code-language/toml/themes/toml-light-theme.css"></theme>
+		<themeAssociation scopeName="source.toml" themeId="org.emdepub.toml.light.theme" whenDark="false"></themeAssociation>
 	</extension>
 	<extension point="org.eclipse.tm4e.ui.snippets">
 		<snippet name="org.emdepub.snippet1" path="code-language/markdown/snippets/markdown.code-snippets" scopeName="text.html.markdown"></snippet>
+		<snippet name="org.emdepub.snippet2" path="code-language/markdown/snippets/markdown.code-snippets" scopeName="source.toml"></snippet>
 	</extension>
 
 	<extension point="org.eclipse.ui.genericeditor.reconcilers">

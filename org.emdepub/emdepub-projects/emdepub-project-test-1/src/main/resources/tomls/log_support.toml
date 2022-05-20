@@ -1,0 +1,932 @@
+# This is a full-line comment
+
+d."a" =  1;
+
+
+
+a."!" = n
+
+a.b = e 
+
+key = "value" # This is a comment at the end of a line
+
+key = "value" # This is a comment at the end of a line
+another = "# This is not a comment"
+
+a = b
+
+
+# Special Characters
+
+specialCharacters1 = [1, 2, 3] # Special Characters 1
+	
+specialCharacters2 = [   [ 1, 2, 3, 6]	]
+	
+specialCharacters = [
+
+["\u0000a", "NUL", "Null"],
+["\u0001", "SOH", "Start of Header"],
+["\u0002", "STX", "Start of Text"],
+["\u0003", "ETX", "End of Text"],
+["\u0004", "EOT", "End of Transmission"],
+["\u0005", "ENQ", "Enquiry"],
+["\u0006", "ACK", "Acknowledge"],
+["\u0007", "BEL", "Bell"],
+["\u0008", "BS", "Backspace"],
+["\u0009", "HTAB", "Horizontal Tab"],
+["\n", "LF", "Line Feed"],
+["\u000B", "VT", "Vertical Tab"],
+["\u000C", "FF", "Form Feed"],
+["\r", "CR", "Carriage Return"],
+["\u000E", "SO", "Shift Out"],
+["\u000F", "SI", "Shift In"],
+["\u0010", "DLE", "Data Link Escape"],
+["\u0011", "DC1", "Device Control 1"],
+["\u0012", "DC2", "Device Control 2"],
+["\u0013", "DC3", "Device Control 3"],
+["\u0014", "DC4", "Device Control 4"],
+["\u0015", "NAK", "Negative Acknowledge"],
+["\u0016", "SYN", "Synchronize"],
+["\u0017", "ETB", "End of Transmission Block"],
+["\u0018", "CAN", "Cancel"],
+["\u0019", "EM", "End of Medium"],
+["\u001A", "SUB", "Substitute"],
+["\u001B", "ESC", "Escape"],
+["\u001C", "FS", "File Separator"],
+["\u001D", "GS", "Group Separator"],
+["\u001E", "RS", "Record Separator"],
+["\u001F", "US", "Unit Separator"]
+
+]
+
+# Rule assistance REGEX
+
+regexAssist = [
+
+["\\\\", "2", "\\\\", "Backslash",
+"""
+Backslash"""],
+
+["\\0", "2", "\\0nnn", "Octal character code",
+"""
+Octal character code
+
+Examples:
+\\011 (tabulator)
+\\0112 (character J)"""],
+
+["\\x", "2", "\\xhh", "Hex character code",
+"""
+Hexadecimal character code
+
+Examples:
+\\x09 (tabulator)
+\\x4A or \\x4a (character J)"""],
+
+["\\u", "2", "\\\u0075hhhh", "Hex code for Unicode character",
+"""
+Hexadecimal code for Unicode character
+
+Examples:
+\\\u0075004A (character J)
+\\\u007503B2 (lowercase Greek letter beta: \u03B2)"""],
+
+["\\t", "2", "\\t", "Tab",
+"""
+Tabulator (\\x09, decimal: 9)"""],
+
+["\\R", "2", "\\R", "Line delimiter (platform independent)",
+"""
+Line delimiter (platform independent)
+
+This pattern matches any form of line delimiter, i.e.
+- Windows (\\r\\n)
+- Unix (\\n)
+- Mac OS 9 (\\r)
+
+Note that this pattern does not work inside []."""],
+
+["\\n", "2", "\\n", "Newline",
+"""
+Newline (\\x0A, decimal: 10)
+
+WARNING: \\n only finds newline characters. This can lead to unexpected results when the actual document uses different line delimiters.
+
+RECOMMENDATION: use \\R to find a line delimiter."""],
+
+["\\r", "2", "\\r", "CR",
+"""
+Carriage Return (\\x0D, decimal: 13)
+
+WARNING: \\r only finds carriage return characters. This can lead to unexpected results when the actual document uses different line delimiters.
+
+RECOMMENDATION: use \\R to find a line delimiter."""],
+
+["\\f", "2", "\\f", "FF",
+"""
+Form Feed (\\x0C, decimal: 12)"""],
+
+["\\a", "2", "\\a", "Beep",
+"""
+Beep, Bell, Alert (\\x07, decimal: 7)"""],
+
+["\\e", "2", "\\e", "Esc",
+"""
+Escape (\\x1B, decimal: 27)"""],
+
+["\\c", "2", "\\cC", "Control character",
+"""
+Control character for C
+
+Example:
+\\cC (Ctrl+C, \\x03, decimal: 3)"""],
+
+[".", "1", ".", "Any character",
+"""
+The dot matches any character except line terminators.
+
+To make the dot match line terminators as well, 
+start the expression with the embedded flag expression 
+(?s)" (without quotes)."""],
+
+["\\d", "2", "\\d", "A digit",
+"""
+A digit: [0-9]"""],
+
+["\\D", "2", "\\D", "Not a digit",
+"""
+Not a digit: [^0-9]"""],
+
+["\\s", "2", "\\s", "A whitespace",
+"""
+A whitespace: [ \\t\\n\\x0B\\f\\r]"""],
+
+["\\S", "2", "\\S", "Not a whitespace",
+"""
+Not a whitespace: [^\\s]"""],
+
+["\\w", "2", "\\w", "An alphanumeric (word character)",
+"""
+An alphanumeric (a word character): [a-zA-Z_0-9]"""],
+
+["\\W", "2", "\\W", "Not an alphanumeric",
+"""
+Not an alphanumeric (not a word character): [^\\w]"""],
+
+["^", "1", "^", "Line start",
+"""
+Line start (positional match)
+
+Example:
+The expression ^Eclipse" matches the term "Eclipse"
+only on the second line of text
+"The Eclipse Project
+Eclipse Platform"."""],
+
+["$", "1", "$", "Line end",
+"""
+Line end (positional match)
+
+Example:
+The expression Eclipse$" matches the term "Eclipse"
+only on the second line of text
+"- Install the Eclipse Platform
+- Run Eclipse"."""],
+
+["\\b", "2", "\\b", "Word beginning or end",
+"""
+Word beginning or end (positional match)
+
+Example:
+The expression s\\b" matches only the last "s" of "glasses" in text
+"I lost my glasses"."""],
+
+["\\B", "2", "\\B", "Not a word beginning or end",
+"""
+Not a word beginning or end (positional match)
+
+Example:
+The expression \\BS" matches only "S" of "printString" in text
+"void print(String printString)"."""],
+
+["\\A", "2", "\\A", "Start of input",
+"""
+Start of input (positional match)
+
+Example:
+The expression \\ABC" matches only "BC" of "BCD" in text
+"BCD ABC
+BCDEF"."""],
+
+["\\G", "2", "\\G", "Previous match's end",
+"""
+Previous match's end (positional match)
+
+Example:
+The expression \\Ga" matches the first and then the second "a" in text
+"aardvark" (when starting from the beginning)."""],
+
+["\\Z", "2", "\\Z", "End of input, does not consider last line terminator",
+"""
+End of input, does not consider last line terminator (positional match)
+
+The expression matches at the end of the file, except for when the
+file ends in a line terminator, in which case it matches before that
+line terminator.
+
+Example:
+The expression ing\\Z" matches "ing" in text
+"testing", as well as in text
+"testing", but doesn't match in text
+"testing"."""],
+
+["\\z", "2", "\\z", "End of input",
+"""
+End of input (positional match)
+
+Example:
+The expression ing\\z" matches "ing" in text
+"testing", but doesn't match in text
+"testing"."""],
+
+["?", "1", "?", "Greedy match 0 or 1 times",
+"""
+Greedy match 0 or 1 times.
+
+First tries to match the preceding token.
+Falls back to not matching if this choice made a full match impossible.
+
+Example:
+The expression fo?" matches "f", "fo", and "fo" in text
+"f fo foo"."""],
+
+["*", "1", "*", "Greedy match 0 or more times",
+"""
+Greedy match 0 or more times.
+
+First tries to match the preceding token as many times as possible.
+Falls back to matching it less often if this choice made a full match impossible.
+
+Examples:
+- The expression fo*" matches "f", "fo", and "foo" in text
+"f fo foo".
+- The expression "fo*o\\d" matches all three words in text
+"fo1 foo2 fooo3".
+- The expression "<.*>" matches the whole text
+"<p><b>bold</b>"."""],
+
+["+", "1", "+", "Greedy match 1 or more times",
+"""
+Greedy match 1 or more times
+
+First tries to match the preceding token as many times as possible.
+Falls back to matching it less often if this choice made a full match impossible.
+
+Examples:
+- The expression fo+" matches "fo" and "foo" in text
+"f fo foo".
+- The expression "fo+o\\d" matches "foo2" and "fooo3" in text
+"fo1 foo2 fooo3".
+- The expression "<.+>" matches the whole text
+"<p><b>bold</b>", but does not match anywhere in "<>"."""],
+
+["{}", "1", "{n}", "Greedy match exactly n times",
+"""
+Greedy match exactly n times.
+
+Examples:
+- The expression \\\\0[0-3][0-7]{2}" matches all three-digit octal character tokens.
+- The expression "\\b\\w{4}\\b" matches all four-letter-words
+such as "Java", "cool", or "food" (but not "dog")."""],
+
+["{,}", "1", "{n,}", "Greedy match >= n times",
+"""
+Greedy match >= n times.
+
+First tries to match the preceding token as many times as possible.
+Falls back to matching it less often (but at least n times,
+if this choice made a full match impossible.
+
+Examples:
+- The expression fo{2,}" matches "foo" and "fooo" in text
+"f fo foo fooo".
+- The expression "fo{2,}o\\d" matches "fooo3" and "foooo4" in text
+"fo1 foo2 fooo3 foooo4".
+- The expression "10{3,}[^0]" matches all powers of ten that are larger than one thousand.
+
+Note: The expressions "{0,}" and "*" are equivalent;
+likewise, "{1,}" is equivalent to "+"."""],
+
+["{,}", "1", "{n,m}", "Greedy match >= n times but <= m times",
+"""
+Greedy match >= n times but <= m times.
+
+First tries to match the preceding token m times.
+Falls back to matching it less often (but at least n times,
+if this choice made a full match impossible.
+
+Examples:
+- The expression fo{1,2}" matches "fo", "foo", and "foo" in text
+"f fo foo fooo".
+- The expression "fo{1,2}o\\d" matches "foo2" and "fooo3" in text
+"fo1 foo2 fooo3 foooo4".
+- The expression "^.{70,80}$" matches all the lines that contain
+between 70 and 80 characters (inclusive)."""],
+
+["??", "1", "??", "Lazy match 0 or 1 times",
+"""
+Lazy match 0 or 1 times.
+
+First tries to not match the preceding token.
+Falls back to matching it if this choice made a full match impossible.
+
+Example:
+The expression fo??" matches "f", "f", and "f" in text
+"f fo foo"."""],
+
+["*?", "1", "*?", "Lazy match 0 or more times",
+"""
+Lazy match 0 or more times.
+
+First tries to not match the preceding token.
+Falls back to matching it more often if this choice made a full match impossible.
+
+Examples:
+- The expression fo*?" matches "f", "f", and "f" in text
+"f fo foo".
+- The expression "fo*?o\\d" matches all three words in text
+"fo1 foo2 fooo3".
+- The expression "<.*?>" matches "<p>", "<b>", and "</b>" in text
+"<p><b>bold</b>". Note: a more performant expression for finding
+xml tags is "<[^>]*>", which avoids backtracking."""],
+
+["+?", "1", "+?", "Lazy match 1 or more times",
+"""
+Lazy match 1 or more times
+
+First tries to match the preceding token once.
+Falls back to matching it more often if this choice made a full match impossible.
+
+Examples:
+- The expression fo+?" matches "fo" and "fo" in text
+"f fo foo".
+- The expression "fo+?o\\d" matches "foo2" and "fooo3" in text
+"fo1 foo2 fooo3".
+- The expression "<.+?>" matches "<p>", "<b>", and "</b>" in text
+"<p><b>bold</b>". Note: a more performant expression for finding
+xml tags is "<[^>]*>", which avoids backtracking."""],
+
+["{}?", "1", "{n}?", "Lazy match exactly n times",
+"""
+Lazy match exactly n times.
+
+This expression is equivalent to the expression
+{n} - Greedy match exactly n times."""],
+
+["{,}?", "1", "{n,}?", "Lazy match >= n times",
+"""
+Lazy match >= n times.
+
+First tries to match the preceding token n times. Falls back to
+matching it more often, if this choice made a full match impossible.
+
+Examples:
+- The expression fo{2,}?" matches "foo" and "foo" in text
+"f fo foo fooo".
+- The expression "fo{2,}?o\\d" matches "fooo3" and "foooo4" in text
+"fo1 foo2 fooo3 foooo4".
+- The expression "10{3,}?[^0]" matches all powers of ten that are larger than one thousand.
+
+Note: The expressions "{0,}?" and "*?" are equivalent;
+likewise, "{1,}?" is equivalent to "+?"."""],
+
+["{,}?", "1", "{n,m}?", "Lazy match >= n times but <= m times",
+"""
+Lazy match >= n times but <= m times.
+
+First tries to match the preceding token n times.
+Falls back to matching it more often (but at most m times,
+if this choice made a full match impossible.
+
+Examples:
+- The expression fo{1,2}?" matches "fo", "fo", and "fo" in text
+"f fo foo fooo".
+- The expression "fo{1,2}?o\\d" matches "foo2" and "fooo3" in text
+"fo1 foo2 fooo3 foooo4"."""],
+
+["?+", "1", "?+", "Possessive match 0 or 1 times (no backtracking)",
+"""
+Possessive match 0 or 1 times.
+
+Matches the preceding token if possible. Never backtracks,
+even if this choice renders a full match impossible.
+
+Example:
+The expression fo?+o\\d" matches the first, but not the second line in text
+"foo1
+fo1"."""],
+
+["*+", "1", "*+", "Possessive match 0 or more times (no backtracking)",
+"""
+Possessive match 0 or more times.
+
+Tries to match the preceding token as many times as possible. Never backtracks,
+even if this choice renders a full match impossible.
+
+Examples:
+- The expression fo*+" matches "f", "fo" and "foo" in text
+"f fo foo".
+- The expression "fo*+o\\d" matches nowhere in text
+"fo1 foo2 fooo3".
+- The expression "<.*+>" matches nowhere in text
+"<p><b>bold</b>"."""],
+
+["++", "1", "++", "Possessive match 1 or more times (no backtracking)",
+"""
+Possessive match 1 or more times.
+
+Tries to match the preceding token as many times as possible. Never backtracks,
+even if this choice renders a full match impossible.
+
+Examples:
+- The expression fo++" matches "fo" and "foo" in text
+"f fo foo".
+- The expression "fo++o\\d" matches nowhere in text
+"fo1 foo2 fooo3".
+- The expression "<.++>" matches nowhere in text
+"<p><b>bold</b>"."""],
+
+["{}+", "1", "{n}+", "Possessive match exactly n times (no backtracking)",
+"""
+Possessive match exactly n times.
+
+This expression is equivalent to the expression
+{n} - Greedy match exactly n times."""],
+
+["{,}+", "1", "{n,}+", "Possessive match >= n times (no backtracking)",
+"""
+Possessive match >= n times.
+
+Tries to match the preceding token as many times as possible, but at least n times.
+Never backtracks, even if this choice renders a full match impossible.
+
+Examples:
+- The expression fo{2,}+" matches "foo" and "fooo" in text
+"f fo foo fooo".
+- The expression "fo{2,}?o\\d" matches nowhere in text
+"fo1 foo2 fooo3 foooo4".
+Note: The expressions "{0,}?" and "*?" are equivalent;
+likewise, "{1,}?" is equivalent to "+?"."""],
+
+["{,}+", "1", "{n,m}+", "Possessive match >= n times but <= m times (no backtracking)",
+"""
+Possessive match >= n times but <= m times.
+
+Tries to match the preceding token as many times as possible, 
+at least n times and at most m times.
+Never backtracks, even if this choice renders a full match impossible.
+
+Examples:
+- The expression fo{1,2}+" matches "fo", "foo", and "foo" in text
+"f fo foo fooo".
+- The expression "fo{1,2}+o\\d" matches only "fooo3" in text
+"fo1 foo2 fooo3 foooo4".
+- The expression "^.{70,80}+$" matches all the lines that contain
+between 70 and 80 characters (inclusive)."""],
+
+["|", "1", "U|V", "Alternation: U or V",
+"""
+Alternation.
+
+First tries to match subexpression U. Falls back and tries to match V if U didn't match.
+
+Examples:
+- The expression A|B" applied to text "BA" first matches "B", then "A".
+- The expression "AB|BC|CD" applied to text "ABC BC DAB" matches, in sequence:
+"AB" in the first word, the second word "BC", "AB" at the very end."""],
+
+["()", "1", "(Expr)", "Mark Expr as capturing group",
+"""
+Mark Expr as capturing group.
+
+Capturing groups are numbered by counting their opening parentheses from left to right.
+In the expression ((A)(B(C)))", for example, there are four such groups:
+1   ((A)(B(C)))
+2   (A)
+3   (B(C))
+4   (C)
+
+Group zero always stands for the entire expression. During a match,
+each subsequence of the input sequence that matches such a group is saved.
+The captured subsequence i may be used later in the expression, via a back reference "\\i",
+and may also be used in the replace string via "$i".
+
+Note: Groups beginning with (? are pure, non-capturing groups that
+do not capture text and do not count towards the group total."""],
+
+["\\", "1", "\\i", "Match of the capturing group i",
+"""
+Match of the capturing group i.
+
+\\i matches the subsequence that has already been saved as capturing group i.
+\\0 is not a valid group number in the regular expression.
+
+Example:
+The expression (\\d+)\\+\\1" matches "10+10" in text "9+10+10+11".
+
+Note: in the replace string, $i stands for the capturing group i.
+"""],
+
+["\\", "1", "\\", "Quote next character",
+"""
+Quote next character
+
+Example:
+The expression \\{\\n\\}" matches the text "{n}"."""],
+
+["\\Q", "2", "\\Q", "Start quoting",
+"""
+Start quoting
+
+All characters between \\Q and the next \\E are taken literally and are not interpreted.
+
+Example:
+The expression \\Qnew int[] {42}\\E;" matches text "new int[] {42}"."""],
+
+["\\E", "2", "\\E", "End quoting",
+"""
+End quoting
+
+All characters between \\Q and the next \\E are taken literally and are not interpreted.
+
+Example:
+The expression \\Qnew int[] {42}\\E;" matches text "new int[] {42}"."""],
+
+["[]", "1", "[ecl]", "Character set",
+"""
+Character set
+
+Matches a single character out of the set.
+
+Example:
+The expression [ecl]" matches "c" and "l" in text "cold"."""],
+
+["[^]", "2", "[^ecl]", "Excluded character set",
+"""
+Excluded character set
+
+Matches a single character that is not one of the excluded characters.
+
+Examples:
+The expression [^ecl]" matches "o" and "d" in text "cold".
+The expression "[a-z&&[^ecl]]" matches any character from a to z, excluding e, c, and l."""],
+
+["[-]", "1", "[c-l]", "Character range",
+"""
+Character range
+
+Matches a single character out of the range from 'c' to 'l'.
+
+Examples:
+The expression [c-l]" matches "c", "l", and "d" in text "cold".
+The expression "[a-z&&[^ecl]]" matches any character from a to z, excluding e, c, and l."""],
+
+["&&", "2", "&&", "Intersection of character sets",
+"""
+Intersection of character sets
+
+Matches a character that is in both of the given sets.
+
+Example:
+The expression [a-z&&[^ecl]]" matches any character from a to z, excluding e, c, and l."""],
+
+["\\p{}", "3", "\\p{Class}", "POSIX or Unicode character class",
+"""
+POSIX or Unicode character class
+
+Matches a character from the given character class 'Class'.
+Valid classes are:
+
+- POSIX character classes (US-ASCII only):
+    Lower, Upper, ASCII, Alpha, Digit, Alnum, Punct,
+    Graph, Print, Blank, Cntrl, XDigit, and Space.
+
+- Unicode blocks (with the prefix 'In', e.g.:
+    InBasicLatin
+    InLatin-1Supplement
+    InGreek
+
+- Unicode categories, e.g.:
+    Lu: Uppercase Letter
+    Ll: Lowercase Letter
+    L:  Letter
+    N:  Number
+    Z:  Separator
+    LD: Letter or Digit
+    L1: Latin-1"""],
+
+["\\P{}", "3", "\\P{Class}", "Excluded POSIX or Unicode character class",
+"""
+Excluded POSIX or Unicode character class
+
+Negation of character set \\p{Class}. Example:
+\\P{ASCII} is equivalent to [^\\p{ASCII}] and matches all non-ASCII characters.
+
+Valid classes are:
+
+- POSIX character classes (US-ASCII only):
+    Lower, Upper, ASCII, Alpha, Digit, Alnum, Punct,
+    Graph, Print, Blank, Cntrl, XDigit, and Space.
+
+- Unicode blocks (with the prefix 'In', e.g.:
+    InBasicLatin
+    InLatin-1Supplement
+    InGreek
+
+- Unicode categories, e.g.:
+    Lu: Uppercase Letter
+    Ll: Lowercase Letter
+    L:  Letter
+    N:  Number
+    Z:  Separator
+    LD: Letter or Digit
+    L1: Latin-1"""],
+
+["(?)", "2", "(?ismduU-ismduU)", "Turn flags on or off",
+"""
+Turn flags on and off for the rest of the matching process.
+
+Flags before the dash are turned on; those after the dash are turned off.
+The following flags are supported:
+- i: case-insensitive matching
+
+- s: single-line, or dotall matching mode:
+        The expression . matches any character, including a line terminator.
+
+- m: multiline matching mode:
+        The expressions ^ and $ match just after or just before,
+        respectively, a line terminator or the end of the input sequence.
+        When multiline matching is turned off, these expressions only
+        match at the beginning and the end of the entire input sequence.
+        This flag is ON by default.
+
+- d: Unix lines matching mode:
+        Only the '\\n' line terminator
+        is recognized in the behavior of ., ^, and $
+
+- u: unicode-aware case folding:
+        Case-insensitive matching, when enabled, is done in a manner consistent
+        with the Unicode Standard. By default, case-insensitive matching
+        assumes that only characters in the US-ASCII charset are being matched.
+
+- U: unicode-aware character classes:
+        Enables the Unicode version of Predefined character classes and POSIX character classes.
+        This flag implies the 'u' flag."""],
+
+["(?:)", "3", "(?ismdu-ismdu:Expr)", "Turn flags on or off in Expr",
+"""
+Turn flags on and off in Expr.
+
+Flags before the dash are turned on; those after the dash are turned off.
+The following flags are supported:
+- i: case-insensitive matching
+
+- s: single-line, or dotall matching mode:
+        The expression . matches any character, including a line terminator.
+
+- m: multiline matching mode:
+        The expressions ^ and $ match just after or just before,
+        respectively, a line terminator or the end of the input sequence.
+        When multiline matching is turned off, these expressions only
+        match at the beginning and the end of the entire input sequence.
+        This flag is ON by default.
+
+- d: Unix lines matching mode:
+        Only the '\\n' line terminator
+        is recognized in the behavior of ., ^, and $
+
+- u: unicode-aware case folding:
+        Case-insensitive matching, when enabled, is done in a manner consistent
+        with the Unicode Standard. By default, case-insensitive matching
+        assumes that only characters in the US-ASCII charset are being matched."""],
+
+["(?:)", "3", "(?:Expr)", "Non-capturing group",
+"""
+Non-capturing group of regular expression Expr.
+
+The group is not saved in a back reference.
+
+Example:
+The expression (?:\\w+) (\\d+)" matches "bug 42" in text "It's bug 42.".
+A back reference "$1" in the replace string will be replaced by "42"."""],
+
+["(?>)", "3", "(?>Expr)", "Non-capturing atomic group",
+"""
+Non-capturing atomic group of regular expression Expr.
+
+Matches the regular expression Expr once, but does not backtrack into the expression
+again if the first match did not prove to be successful later on.
+The group is not saved in a back reference."""],
+
+["(?=)", "3", "(?=Expr)", "Zero-width positive lookahead",
+"""
+Expr, via zero-width positive lookahead.
+
+Matches a position (zero-width: does not consume the matched characters,
+where the next characters (-> lookahead)
+do match (-> positive) the embedded expression Expr.
+
+Examples:
+- The expression var(?==)" matches only the first "var" in text "var=17; other=var;".
+- The expression "\\b(?=\\w{7}\\b)\\w*clip\\w*\\b" matches any
+seven-letter-word that contains "clip". It matches "Eclipse", but not "paperclip"."""],
+
+["(?!)", "3", "(?!Expr)", "Zero-width negative lookahead",
+"""
+Expr, via zero-width negative lookahead.
+
+Matches a position (zero-width: does not consume the matched characters,
+where the next characters (-> lookahead)
+do not match (-> negative) the embedded expression Expr.
+
+Examples:
+- The expression var(?!=)" matches only the second "var" in text "var=17; other=var;".
+- The expression "\\b(?!\\w{5,7}\\b)\\w*clip\\w*\\b" matches any
+word that contains "clip" and consists of less than 5 or more than 7 characters.
+It matches "clip" and "paperclip", but not "Eclipse"."""],
+
+["(?<=)", "4", "(?<=Expr)", "Zero-width positive lookbehind",
+"""
+Expr, via zero-width positive lookbehind.
+
+Matches a position (zero-width: does not consume the matched characters,
+where the previous characters (-> lookbehind)
+do match (-> positive) the embedded expression Expr.
+
+Example:
+- The expression \\w{5,}+(?<=as)\\b" matches "alias" and "bananas",
+but does not match "peas", "apples", or "Alaska"."""],
+
+["(?<!)", "4", "(?<!Expr)", "Zero-width negative lookbehind",
+"""
+Expr, via zero-width negative lookbehind.
+
+Matches a position (zero-width: does not consume the matched characters,
+where the previous characters (-> lookbehind)
+do not match (-> negative) the embedded expression Expr.
+
+Example:
+- The expression \\w{5,}+(?<!as)\\b" matches "Eclipse" and "apples",
+but does not match "peas" or "bananas"."""]
+]
+
+# Rule variables
+
+[[variables.LEVELS]]
+"\oname" = "LINE"
+description = """
+Each single log text line (only lines can be used to find the levels)"""
+
+[[variables.RECORDS]]
+name = "LINE"
+description = """
+Each single log text line (only lines can be used to find the records)"""
+
+[[variables.FIELDS]]
+name = "RECORD"
+description = """
+Each log record of one or more lines (only records can be used to extract the fields)"""
+
+[[variables.MAP_FIELDS]]
+name = "RECORD"
+description = """
+Each log record of one or more lines (only records can be used to extract map fields)"""
+
+[[variables.FILTER_LINES]]
+name = "LINE"
+description = """
+Each single log text line (this filter will be used in "Lines" view)"""
+  
+[[variables.FILTER_RECORDS]]
+name = "RECORD"
+description = """
+Each found record of one or more lines (this filter will be used in "Records" view)"""
+  
+[[variables.FILTER_FIELDS]]
+name = "RECORD"
+description = """
+Each found record of one or more lines (this filter will be used in "Fields" view)"""
+
+
+# Rule snippets REGEX
+
+[[snippets.LEVEL_INFO_REGEX]]
+text = """
+some code LEVEL_INFO_REGEX"""
+description = """
+Description LEVEL_INFO_REGEX"""
+
+[[snippets.LEVEL_WARNING_REGEX]]
+text = """
+some code LEVEL_WARNING_REGEX"""
+description = """
+Description LEVEL_WARNING_REGEX"""
+  
+[[snippets.LEVEL_ERROR_REGEX]]
+text = """
+some code LEVEL_ERROR_REGEX"""
+description = """
+Description LEVEL_ERROR_REGEX"""
+
+[[snippets.LEVEL_DEBUG_REGEX]]
+text = """
+some code LEVEL_DEBUG_REGEX"""
+description = """
+Description LEVEL_DEBUG_REGEX"""
+  
+[[snippets.RECORD_REGEX]]
+text = """
+some code RECORD_REGEX"""
+description = """
+Description RECORD_REGEX"""
+        
+[[snippets.FILTER_LINES_REGEX]]
+text = """
+some code FILTER_LINES_REGEX"""
+description = """
+Description FILTER_LINES_REGEX"""
+
+[[snippets.FILTER_RECORDS_REGEX]]
+text = """
+some code FILTER_RECORDS_REGEX"""
+description = """
+Description FILTER_RECORDS_REGEX"""
+
+[[snippets.FILTER_FIELDS_REGEX]]
+text = """
+some code FILTER_FIELDS_REGEX"""
+description = """
+Description FILTER_FIELDS_REGEX"""
+
+
+# Rule snippets SPEL
+        
+[[snippets.LEVEL_INFO_SPEL]]
+"text" = """
+some code LEVEL_INFO_SPEL"""
+description = """
+Description LEVEL_INFO_SPEL"""
+
+[[snippets.LEVEL_WARNING_SPEL]]
+text = """
+some code LEVEL_WARNING_SPEL"""
+description = """
+Description LEVEL_WARNING_SPEL"""
+  
+[[snippets.LEVEL_ERROR_SPEL]]
+text = """
+some code LEVEL_ERROR_SPEL"""
+description = """
+Description LEVEL_ERROR_SPEL"""
+
+[[snippets.LEVEL_DEBUG_SPEL]]
+text = """
+some code LEVEL_DEBUG_SPEL"""
+description = """
+Description LEVEL_DEBUG_SPEL"""
+  
+[[snippets.RECORD_SPEL]]
+text = """
+some code RECORD_SPEL"""
+description = """
+Description RECORD_SPEL"""
+        
+[[snippets.FIELD_SPEL]]
+text = """
+some code FIELD_SPEL"""
+description = """
+Description FIELD_SPEL"""
+
+[[snippets.MAP_FIELD_SPEL]]
+text = """
+some code MAP_FIELD_SPEL"""
+description = """
+Description MAP_FIELD_SPEL"""
+
+[[snippets.FILTER_LINES_SPEL]]
+text = """
+some code FILTER_LINES_SPEL"""
+description = """
+Description FILTER_LINES_SPEL"""
+
+[[snippets.FILTER_RECORDS_SPEL]]
+text = """
+some code FILTER_RECORDS_SPEL"""
+description = """
+Description FILTER_RECORDS_SPEL"""
+
+[[snippets.FILTER_FIELDS_SPEL]]
+text = """
+some code FILTER_FIELDS_SPEL"""
+description = """
+Description FILTER_FIELDS_SPEL"""

@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry exported="true" kind="lib" path="lib/zip4j/zip4j-2.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson/stax2-api-4.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-annotations-2.12.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-core-2.12.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-databind-2.12.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-dataformat-xml-2.12.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson/jackson-module-jaxb-annotations-2.12.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson/woodstox-core-6.2.3.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-ext-gfm-tasklist-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-ext-tables-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-ast-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-builder-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-collection-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-data-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-dependency-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-format-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-html-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-misc-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-options-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-sequence-0.62.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark/flexmark-util-visitor-0.62.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-15">
+	<classpathentry exported="true" kind="lib" path="lib/annotations-15.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-gfm-tasklist-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-tables-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-ast-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-builder-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-collection-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-data-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-dependency-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-format-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-html-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-misc-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-options-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-sequence-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-visitor-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-annotations-2.13.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-core-2.13.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-databind-2.13.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-dataformat-xml-2.13.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/stax2-api-4.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/woodstox-core-6.2.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/zip4j-2.10.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
