@@ -1,6 +1,67 @@
 # This is a full-line comment
 
-d."a" =  1;
+int int = -0 # fjfin
+int = +0
+int = 0
+int = -9223372036854775808 23
+int = -92233720368547758080
+
+int5 = 1_000
+int6 = -5_349_221
+int7 = 53_49_221  # Indian number system grouping
+int8 = 1_2_3_4_5  # VALID but discouraged
+
+
+str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocation\tSF." "
+
+str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocation\tSF."
+
+a = """
+ s\n \
+ 
+ 
+fzsef    \
+\u0010
+
+"""
+
+
+
+
+regex2 = '''I [dw]on't need \d{2} 
+
+winpath  = 'C:\Users\nodejs\templates'
+
+apples'''
+
+winpath  = 'C:\Users\nodejs\templates'
+winpath  = '''C:\Users\nodejs\templates'''
+
+lines  = '''
+The first newline is
+trimmed in \u00E9 \U00E900E9 raw strings.
+   All other whitespace
+   is preserved.
+'''
+
+
+str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocation\tSF."
+
+# What you see is what you get.
+winpath  = 'C:\Users\nodejs\templates'
+winpath2 = '\\ServerX\admin$\system32\'
+quoted   = 'Tom "Dubs" Preston-Werner'
+regex    = '<\i\c*\s*>'
+
+
+
+str = "I'm a string. \"You can quote me\". Name\tJos\u00AA\nLocation\tSF."
+
+
+
+"nume 'eu tata lor'".post-fix = "1f fe  errg " # dfdsvs
+
+d."a".'d e "d"' =  1;
 
 
 

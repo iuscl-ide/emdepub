@@ -1,26 +1,32 @@
 .red1 {
+	text-decoration: underline;
 	color: rgba(255, 0, 0, 1);
 }
 
 .red2 {
+	text-decoration: underline;
 	color: rgba(127, 0, 0, 1);
 }
 
 
 .green1 {
-	color: rgba(0, 255, 0, 1);
+	text-decoration: underline;
+	color: rgba(0, 192, 100, 1);
 }
 
 .green2 {
+	text-decoration: underline;
 	color: rgba(0, 127, 0, 1);
 }
 
 
 .blue1 {
+	text-decoration: underline;
 	color: rgba(0, 0, 255, 1);
 }
 
 .blue2 {
+	text-decoration: underline;
 	color: rgba(0, 0, 127, 1);
 }
 
