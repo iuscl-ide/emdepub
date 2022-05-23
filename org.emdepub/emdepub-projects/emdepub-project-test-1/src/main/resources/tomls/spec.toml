@@ -3,15 +3,15 @@ key = "value"  # This is a comment at the end of a line
 another = "# This is not a comment"
 
 
-key = "value"
+key1 = "value"
 
-key = # INVALID
+key2 = # INVALID
 
 first = "Tom" last = "Preston-Werner" # INVALID
 
-key = "value"
+key3 = "value"
 bare_key = "value"
-bare-key = "value"
+bare-key1 = "value"
 1234 = "value"
 
 "127.0.0.1" = "value"
