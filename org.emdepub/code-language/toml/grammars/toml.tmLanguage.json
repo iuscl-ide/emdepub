@@ -12,37 +12,24 @@
 	],
 	"patterns": [
 		{
-			"include": "#all-line-comment"
+			"include": "#comment-line"
 		},
 		{
-			"include": "#key-value-pair"
+			"include": "#key-equals-value-comment"
 		}
 	],
 	"repository": {
-		"all-line-comment": {
-			"match": "^\\s*(#)\\s+(.*)",
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.comment.toml"
-				},
-				"2": {
-					"name": "comment.toml"
+		"comment-line": {
+			"begin": "^\\s*(?=#\\s)",
+			"end": "$",
+			"patterns": [
+				{
+					"include": "#comment"
 				}
-			}
-		},
-		"comment-at-the-end-of-line": {
-			"match": "\\s*(#)\\s+(.*)",
-			"captures": {
-				"1": {
-					"name": "punctuation.definition.comment.toml"
-				},
-				"2": {
-					"name": "comment.toml"
-				}
-			}
+			]
 		},
 		"comment": {
-			"match": "(#)\\s+(.*)",
+			"match": "(#)\\s+(.*)$",
 			"captures": {
 				"1": {
 					"name": "punctuation.definition.comment.toml"
@@ -53,52 +40,61 @@
 			}
 		},		
 		
-		"key-value-pair": {
+		"key-equals-value-comment": {
 			"patterns": [
 				{
 					"include": "#key"
 				},
 				{
-					"include": "#value"
+					"include": "#equals"
+				},
+				{
+					"include": "#value1"
+				},
+				{
+					"include": "#comment"
 				}
 			]
 		},
 		
 		"key": {
-			"match": "^\\s*([^=]+?)\\s*(=)",
-			"captures": {
-				"1": {
-					"patterns": [
-						{
-							"include": "#key-bare-or-quote"
-						},
-						{
-							"include": "#dot-key-bare-or-quote"
-						}
-					]
-				},
-				"2": {
-					"name": "punctuation.equals.toml"
+			"begin": "^\\s*(?=[\"'A-Za-z0-9_-](.*)\\s*=)",
+			"beginCaptures": {
+				"0": {
+					"name": "red2"
 				}
-			}
+			},
+			"end": "\\s*(?==)",
+			"endCaptures": {
+				"0": {
+					"name": "green2"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#key-bare-or-quote"
+				},
+				{
+					"include": "#dot-key-bare-or-quote"
+				}
+			]
 		},		
 		"dot-key-bare-or-quote": {
-			"match": "(?<!\\.)(\\.)(.+)",
-			"captures": {
+			"begin": "(\\.)(?!\\s*[.=])",
+			"beginCaptures": {
 				"1": {
 					"name": "blue1"
-				},
-				"2": {
-					"patterns": [
-						{
-							"include": "#key-bare-or-quote"
-						},
-						{
-							"include": "#dot-key-bare-or-quote"
-						}
-					]
 				}
-			}
+			},
+			"end": "(?=\\s*=)",
+			"patterns": [
+				{
+					"include": "#key-bare-or-quote"
+				},
+				{
+					"include": "#dot-key-bare-or-quote"
+				}
+			]
 		},
 		"key-bare-or-quote": {
 			"patterns": [
@@ -111,7 +107,7 @@
 			]
 		},
 		"key-bare": {
-			"match": "[A-Za-z0-9_-]+?",
+			"match": "[A-Za-z0-9_-]+",
 			"name": "red1"
 		},
 		"key-quote": {
@@ -125,7 +121,7 @@
 			]
 		},
 		"key-single-quote": {
-			"match": "(')([^']+)(')",
+			"match": "(')(.*?)(')",
 			"captures": {
 				"1": {
 					"name": "green1"
@@ -139,7 +135,7 @@
 			}
 		},
 		"key-double-quote": {
-			"match": "(\")([^\"]+)(\")",
+			"match": "(\")(.*?)(\")",
 			"captures": {
 				"1": {
 					"name": "green1"
@@ -151,6 +147,11 @@
 					"name": "green2"
 				}
 			}
+		},
+		
+		"equals": {
+			"match": "=",
+			"name": "punctuation.equals.toml"
 		},
 		
 		"value": {

@@ -14,6 +14,9 @@
 		<editor class="org.emdepub.epub_project.editor.EPubProjectEditor" contributorClass="org.emdepub.epub_project.editor.EPubProjectEditorContributor" default="true" extensions="epub-project" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.EPubProject" name="ePub Project Editor">
 			<contentTypeBinding contentTypeId="org.emdepub.epub_project"></contentTypeBinding>
 		</editor>
+		<editor class="org.emdepub.toml.editor.TomlExtensionBasedEditor" contributorClass="org.emdepub.toml.editor.TomlExtensionBasedEditorContributor" default="true" extensions="toml" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.TomlExtensionBasedEditor" name="TOML Editor">
+			<contentTypeBinding contentTypeId="org.emdepub.toml"></contentTypeBinding>
+		</editor>
 	</extension>
 
 	<extension point="org.eclipse.tm4e.registry.grammars">
