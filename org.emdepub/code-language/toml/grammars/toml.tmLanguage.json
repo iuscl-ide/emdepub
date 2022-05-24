@@ -49,10 +49,7 @@
 					"include": "#equals"
 				},
 				{
-					"include": "#value1"
-				},
-				{
-					"include": "#comment"
+					"include": "#value-comment"
 				}
 			]
 		},
@@ -154,22 +151,22 @@
 			"name": "punctuation.equals.toml"
 		},
 		
-		"value": {
+		"value-comment": {
 			"patterns": [
 				{
-					"include": "#value-single-line"
+					"include": "#value-single-line-comment"
 				},
 				{
-					"include": "#value-multi-line1"
+					"include": "#value-multi-line-comment"
 				}
 			]
 		},
-		"value-single-line": {
+		"value-single-line-comment": {
 			"begin": "(?<==)\\s*",
 			"end": "$",
 			"patterns": [
 				{
-					"include": "#value-integer"
+					"include": "#value-integer-comment"
 				}
 			]
 		},
@@ -333,46 +330,75 @@
 			}
 		},
 		
-		"value-integer": {
+		"value-integer-comment": {
 			"patterns": [
 				{
-					"include": "#value-integer-zero"
+					"include": "#value-integer-zero-comment"
 				},
 				{
-					"include": "#value-integer-no-separators1"
+					"include": "#value-integer-no-separators-comment"
 				},
 				{
-					"include": "#value-integer-separators1"
-				},
-				{
-					"include": "#value-triple-single-quote-string1"
+					"include": "#value-integer-separators-comment"
 				}
 			]
 		},
-		"value-integer-zero": {
-			"match": "\\G([+-]{0,1}[0]{1}).*",
+		"value-integer-zero-comment": {
+			"match": "\\G([+-]{0,1}[0]{1})\\s*?(.*$)",
 			"captures": {
 				"1": {
 					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
 				}
 			}
 		},
-		"value-integer-no-separators": {
-			"match": "(?<=[=\\s])([+-]{0,1}(?=[1-9]{1})[0-9]{1,19}).*",
+		"value-integer-no-separators-comment": {
+			"match": "\\G([+-]{0,1}(?=[1-9]{1})[0-9]{1,19}(?=\\s+?#|\\s*?$))\\s*?(.*$)",
 			"captures": {
 				"1": {
-					"name": "blue1"
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
 				}
 			}
 		},
-		"value-integer-separators": {
-			"match": "(?<=[=\\s])([+-]{0,1}(?=[1-9]{1})([0-9]|(?<=[0-9])_(?=[0-9])){1,36}).*",
+		"value-integer-separators-comment": {
+			"match": "\\G(([+-]{0,1})(?=[1-9]{1})(?=.*?_.*?#|.*?_.*?$)((?:[0-9]|(?<=[0-9])_(?=[0-9])){1,38}(?=\\s+?#|\\s*?$)))\\s*?(.*$)",
 			"captures": {
-				"1": {
-					"name": "blue1"
+				"2": {
+					"name": "green2"
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "[0-9]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
 				}
 			}
 		}
-		
 	}
 }

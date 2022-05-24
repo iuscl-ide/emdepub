@@ -1,6 +1,8 @@
 # This is a full-line comment
 
- key1 = 0
+k1 = "v # 1" # com"m # d
+
+ key1 = 0 # This is a comment
 key2 = 0
   key3  = 0
   
@@ -21,7 +23,9 @@ k = 5
 int int = -0 # fjfin
 "int" = +0
 'int int 4.' = 0
+qq = 1234567890123456789
 int.a = -9223372036854775808 23
+ _int = -9223372036854775808 # This is a comment
 int = -92233720368547758080
 
 int5 = 1_000
