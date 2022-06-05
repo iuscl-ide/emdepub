@@ -33,19 +33,136 @@ int6 = -5_349_221
 int7 = 53_49_221  # Indian number system grouping
 int8 = 1_2_3_4_5  # VALID but discouraged
 
+int8 = 12345  # VALID but discouraged 1_2
 
-str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocation\tSF." "
+# hexadecimal with prefix `0x`
+hex1 = 0xDEADBEEF  # epic
+hex2 = 0xdeadbeef
+hex3 = 0xdead_beef
+
+# octal with prefix `0o`
+oct1 = 0o01234567
+oct2 = 0o755 # useful for Unix file permissions
+
+# binary with prefix `0b`
+bin1 = 0b11010110
+bin2 = 0b11010110_11010110
+
+f00 = 0.0 # fjfin
+f01 = -0.0 # fjfin
+f02 = +0.0 # fjfin
+
+f03 = 0.000000000001 # fjfin
+
+# fractional
+flt1 = +1.0
+flt2 = 3.1415 # fjfin
+flt3 = -0.01
+
+# exponent
+flt4 = 5e+22
+flt5 = 1e06 # fjfin
+flt6 = -2E-2
+
+flt61 = 0E0000000000001000000000000
+
+# both
+flt7 = 6.626e-34
+
+# INVALID FLOATS
+invalid_float_1 = .7
+invalid_float_2 = 7.
+invalid_float_3 = 3.e+20
+
+
+valid_float_31 = 3.0e+2
+valid_float_32 = 3.0e+20
+
+
+flt8 = 224_617.445_991_228
+flt81 = 2_2_4_6_1_7.4_4_5 # 1_0 c
+
+flt82 = 2_2_4_6_1_7e010_00 # c
+
+flt83 = 224617e000_01 # 1 c
+
+flt83 = 1_0_0.0e0_00_01_0 # 1 c
+
+
+# infinity
+sf1 = inf  # positive infinity
+sf2 = +inf # positive infinity
+sf3 = -inf # negative infinity
+
+# not a number
+sf4 = nan  # actual sNaN/qNaN encoding is implementation-specific
+sf5 = +nan # same as `nan`
+sf6 = -nan # valid, actual encoding is implementation-specific
+
+
+bool1 = true
+bool2 = false
+
+bool3 = true # fjfin
+bool4 = false # fjfin
+
+
+# Offset Date-Time
+
+odt0 = 0000-12-31T23:59:59Z
+odt01 = 0000-12-31T23:59:59.000123Z
+odt02 = 0000-12-31T23:59:59.123Z
+odt02 = 0000-12-31T23:59:59.1234Z
+odt02 = 0000-12-31T23:59:59.12345Z
+odt02 = 0000-12-31T23:59:59.123456Z
+odt02 = 0000-12-31T23:59:59.123456+23:59
+
+odt1 = 1979-05-27T07:32:00Z
+odt2 = 1979-05-27T00:32:00-07:00
+odt3 = 1979-05-27T00:32:00.999999-07:00
+
+odt4 = 1979-05-27 07:32:00Z
+
+odt4 = 1979-05-27 07:32:00-12:00
+odt4 = 1979-05-27 07:32:00-12:30
+odt4 = 1979-05-27 07:32:00-14:45
+
+
+# Local Date-Time
+
+ldt1 = 1979-05-27T07:32:00
+ldt2 = 1979-05-27T00:32:00.999999
+
+# Local Date
+
+ld1 = 1979-05-27
+
+# Local Time
+
+lt1 = 07:32:00
+lt2 = 00:32:00.999999
+
+
+
+a = """ a """ # fjfin
+
+b = "a '''''' "
+str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocation\tSF." " # epic
 
 str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocation\tSF."
 
 a = """
  s\n \
- 
+
+\r\n 
+\b\t\n\f\r\"\\ 
  
 fzsef    \
 \u0010
 
-"""
+\u0010\u0010
+
+""" # fjfin
 
 
 
@@ -71,7 +188,7 @@ str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocat
 
 # What you see is what you get.
 winpath  = 'C:\Users\nodejs\templates'
-winpath2 = '\\ServerX\admin$\system32\'
+winpath2 = '\\ServerX\admin$\system32\' # epic
 quoted   = 'Tom "Dubs" Preston-Werner'
 regex    = '<\i\c*\s*>'
 

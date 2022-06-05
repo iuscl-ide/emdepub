@@ -1,52 +1,93 @@
-punctuation.whitespace.comment.leading.toml
-punctuation.definition.comment.toml
-comment.line.number-sign.toml
-punctuation.definition.section.begin.toml
-entity.name.section.toml
-punctuation.definition.section.begin.toml
-meta.group.toml
-punctuation.definition.section.begin.toml
-entity.name.section.toml
-punctuation.definition.section.begin.toml
-meta.group.double.toml
-invalid.illegal.not-allowed-here.toml
-variable.other.key.toml
-punctuation.separator.key-value.toml
-variable.other.key.toml
-punctuation.definition.variable.begin.toml
-constant.character.escape.toml
-invalid.illegal.escape.toml
-invalid.illegal.not-allowed-here.toml
-punctuation.definition.variable.end.toml
-punctuation.separator.key-value.toml
-variable.other.key.toml
-punctuation.definition.variable.begin.toml
-punctuation.definition.variable.end.toml
-punctuation.separator.key-value.toml
-punctuation.definition.string.quoted.triple.double.begin.toml
-punctuation.definition.string.quoted.triple.double.end.toml
-string.quoted.triple.double.toml
-constant.character.escape.toml
-invalid.illegal.escape.toml
-punctuation.definition.string.quoted.double.begin.toml
-punctuation.definition.string.quoted.double.end.toml
-string.quoted.double.toml
-constant.character.escape.toml
-invalid.illegal.escape.toml
-punctuation.definition.string.quoted.triple.single.begin.toml
-punctuation.definition.string.quoted.triple.single.end.toml
-string.quoted.triple.single.toml
-punctuation.definition.string.quoted.single.begin.toml
-punctuation.definition.string.quoted.single.end.toml
-string.quoted.single.toml
-constant.other.date.toml
-constant.language.boolean.toml
-constant.numeric.toml
-punctuation.definition.array.begin.toml
-punctuation.definition.array.end.toml
-meta.array.toml
-punctuation.separator.array.toml
-punctuation.definition.inline-table.begin.toml
-punctuation.definition.inline-table.end.toml
-meta.inline-table.toml
-punctuation.separator.inline-table.toml
+	include: #comment-line
+	include: #key-equals-value-comment
+-----------------------------------------------------------------------	comment
+comment-line
+	include: #comment
+comment
+----------------------------------------------------------------------- key equals value
+key-equals-value-comment
+	include: #key
+	include: #equals
+	include: #value-comment
+-----------------------------------------------------------------------	key
+key
+	include: #key-bare-or-quote
+	include: #dot-key-bare-or-quote
+dot-key-bare-or-quote
+	include: #key-bare-or-quote
+	include: #dot-key-bare-or-quote
+key-bare-or-quote
+	include: #key-bare
+	include: #key-quote
+key-bare
+key-quote
+	include: #key-single-quote
+	include: #key-double-quote
+key-single-quote
+key-double-quote
+----------------------------------------------------------------------- equals
+equals
+----------------------------------------------------------------------- value
+value-comment
+	include: #value-single-line-comment
+	include: #value-multi-line-comment
+value-single-line-comment
+	include: #value-integer-comment
+	include: #value-one-double-quote-string-comment
+	include: #value-one-single-quote-string-comment
+
+?
+value-multi-line
+	include: #value-string1
+	include: #value-integer1
+?
+value-string
+	include: #value-one-double-quote-string
+	include: #value-one-single-quote-string
+	include: #value-triple-double-quote-string
+	include: #value-triple-single-quote-string
+?
+
+----------------------------------------------------------------------- single line string
+value-one-double-quote-string-comment
+	include: #value-string-escape-sequence
+	include: #comment
+value-one-single-quote-string-comment
+	include: #comment
+	
+?	
+value-triple-double-quote-string
+	include: #value-string-escape-sequence
+value-triple-single-quote-string
+?
+
+----------------------------------------------------------------------- escape
+value-string-escape-sequence
+	include: #value-string-escape-sequence-four-unicode
+	include: #value-string-escape-sequence-eight-unicode
+	include: #value-string-escape-sequence-one-character-compact
+value-string-escape-sequence-one-character-compact
+value-string-escape-sequence-four-unicode
+value-string-escape-sequence-eight-unicode
+
+----------------------------------------------------------------------- integer
+value-integer-comment
+	include: #value-integer-zero-comment
+	include: #value-integer-no-separators-comment
+	include: #value-integer-separators-comment
+	include: #value-hexadecimal-integer-separators-comment
+	include: #value-octal-integer-separators-comment
+	include: #value-binary-integer-separators-comment
+value-integer-zero-comment
+	include: #comment
+value-integer-no-separators-comment
+	include: #comment
+value-integer-separators-comment
+	include: #comment
+value-hexadecimal-integer-separators-comment
+	include: #comment
+value-octal-integer-separators-comment
+	include: #comment
+value-binary-integer-separators-comment
+	include: #comment
+-----------------------------------------------------------------------

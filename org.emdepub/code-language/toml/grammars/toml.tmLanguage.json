@@ -154,10 +154,20 @@
 		"value-comment": {
 			"patterns": [
 				{
-					"include": "#value-single-line-comment"
+					"include": "#value-multi-line-comment"
 				},
 				{
-					"include": "#value-multi-line-comment"
+					"include": "#value-single-line-comment"
+				}
+			]
+		},
+		"value-multi-line-comment": {
+			"patterns": [
+				{
+					"include": "#value-triple-double-quote-string-comment"
+				},
+				{
+					"include": "#value-triple-single-quote-string-comment"
 				}
 			]
 		},
@@ -166,72 +176,44 @@
 			"end": "$",
 			"patterns": [
 				{
+					"include": "#value-one-double-quote-string-comment"
+				},
+				{
+					"include": "#value-one-single-quote-string-comment"
+				},
+				{
 					"include": "#value-integer-comment"
-				}
+				},
+				{
+					"include": "#value-float-comment"
+				},
+				{
+					"include": "#value-boolean-comment"
+				},
+				{
+					"include": "#value-date-time-comment"
+				}				
 			]
 		},
-		"value-multi-line": {
-			"begin": "(?<==)\\s*",
-			"end": "\\Z",
-			"patterns": [
-				{
-					"include": "#value-string1"
-				},
-				{
-					"include": "#value-integer1"
-				},
-				{
-					"include": "#comment-at-the-end-of-line1"
-				}
-			]
-		},
-		
-		"value-string": {
-			"patterns": [
-				{
-					"include": "#value-one-double-quote-string"
-				},
-				{
-					"include": "#value-one-single-quote-string"
-				},
-				{
-					"include": "#value-triple-double-quote-string"
-				},
-				{
-					"include": "#value-triple-single-quote-string"
-				}
-			]
-		},
-		"value-one-double-quote-string": {
-			"match": "\\G(\")([^\"].+?[^\"^\\\\])(\")",
-			"captures": {
-				"1": {
-					"name": "green1"
-				},
-				"2": {
-					"patterns": [
-						{
-							"include": "#value-string-escape-sequence"
-						}
-					],
-					"name": "red2"
-				},
-				"3": {
-					"name": "green2"
-				}
-			}
-		},
-		"value-triple-double-quote-string": {
-			"begin": "\\G\"\"\"",
+
+		"value-triple-double-quote-string-comment": {
+			"begin": "(?<==)\\s*\"\"\"",
 			"beginCaptures": {
 				"0": {
 					"name": "green1"
 				}
 			},
-			"end": "(\"\"\")\\s*$",
+			"end": "(\"\"\")(?=\\s+?#|\\s*?$)\\s*?(.*$)",
 			"endCaptures": {
 				"1": {
 					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
 				}
 			},
 			"patterns": [
@@ -243,31 +225,72 @@
 				}
 			]
 		},
-		"value-one-single-quote-string": {
-			"match": "\\G(')([^']+)(')",
-			"captures": {
-				"1": {
-					"name": "green1"
-				},
-				"2": {
-					"name": "red2"
-				},
-				"3": {
-					"name": "green2"
-				}
-			}
-		},
-		"value-triple-single-quote-string": {
-			"begin": "\\G'''",
+		"value-triple-single-quote-string-comment": {
+			"begin": "(?<==)\\s*'''",
 			"beginCaptures": {
 				"0": {
 					"name": "green1"
 				}
 			},
-			"end": "(''')\\s*$",
+			"end": "(''')(?=\\s+?#|\\s*?$)\\s*?(.*$)",
 			"endCaptures": {
 				"1": {
 					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		
+		"value-one-double-quote-string-comment": {
+			"match": "\\G(\")(?!\")(.*?)(\"(?<!\\\\\"))(.*?)(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "red2"
+				},
+				"2": {
+					"name": "red1",
+					"patterns": [
+						{
+							"include": "#value-string-escape-sequence"
+						}
+					]
+				},
+				"3": {
+					"name": "red2"
+				},
+				"5": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-one-single-quote-string-comment": {
+			"match": "\\G(')(?!')(.*)(')(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "red2"
+				},
+				"2": {
+					"name": "red1"
+				},
+				"3": {
+					"name": "red2"
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
 				}
 			}
 		},
@@ -286,7 +309,7 @@
 			]
 		},
 		"value-string-escape-sequence-one-character-compact": {
-			"match": "(\\\\)([btnfr\\\"\\\\]{1}+)",
+			"match": "(\\\\)([btnfr\\\"\\\\]{1})",
 			"captures": {
 				"1": {
 					"name": "blue1"
@@ -340,11 +363,20 @@
 				},
 				{
 					"include": "#value-integer-separators-comment"
+				},
+				{
+					"include": "#value-hexadecimal-integer-separators-comment"
+				},
+				{
+					"include": "#value-octal-integer-separators-comment"
+				},
+				{
+					"include": "#value-binary-integer-separators-comment"
 				}
 			]
 		},
 		"value-integer-zero-comment": {
-			"match": "\\G([+-]{0,1}[0]{1})\\s*?(.*$)",
+			"match": "\\G([+-]{0,1}[0]{1}(?=\\s+?#|\\s*?$))\\s*?(.*$)",
 			"captures": {
 				"1": {
 					"name": "blue1"
@@ -374,7 +406,7 @@
 			}
 		},
 		"value-integer-separators-comment": {
-			"match": "\\G(([+-]{0,1})(?=[1-9]{1})(?=.*?_.*?#|.*?_.*?$)((?:[0-9]|(?<=[0-9])_(?=[0-9])){1,38}(?=\\s+?#|\\s*?$)))\\s*?(.*$)",
+			"match": "\\G(([+-]{0,1})(?=[1-9]{1})((?:[0-9]|(?<=[0-9])_(?=[0-9])){1,38}(?=\\s+?#|\\s*?$)))\\s*?(.*$)",
 			"captures": {
 				"2": {
 					"name": "green2"
@@ -399,6 +431,356 @@
 					]
 				}
 			}
+		},
+		"value-hexadecimal-integer-separators-comment": {
+			"match": "\\G((0x)(?=[0-9a-fA-F]{1})((?:[0-9a-fA-F]|(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])){1,}(?=\\s+?#|\\s*?$)))\\s*?(.*$)",
+			"captures": {
+				"2": {
+					"name": "green2"
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "[0-9a-fA-F]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-octal-integer-separators-comment": {
+			"match": "\\G((0o)(?=[0-7]{1})((?:[0-7]|(?<=[0-7])_(?=[0-7])){1,}(?=\\s+?#|\\s*?$)))\\s*?(.*$)",
+			"captures": {
+				"2": {
+					"name": "green2"
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "[0-7]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-binary-integer-separators-comment": {
+			"match": "\\G((0b)(?=[0-1]{1})((?:[0-1]|(?<=[0-7])_(?=[0-7])){1,}(?=\\s+?#|\\s*?$)))\\s*?(.*$)",
+			"captures": {
+				"2": {
+					"name": "green2"
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "[0-7]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+
+		"value-float-comment": {
+			"patterns": [
+				{
+					"include": "#value-float-decimal-no-separators-comment"
+				},
+				{
+					"include": "#value-float-exponent-no-separators-comment"
+				},
+				{
+					"include": "#value-float-decimal-exponent-no-separators-comment"
+				},
+				{
+					"include": "#value-float-decimal-separators-comment"
+				},
+				{
+					"include": "#value-float-exponent-separators-comment"
+				},
+				{
+					"include": "#value-float-decimal-exponent-separators-comment"
+				},
+				{
+					"include": "#value-float-inf-comment"
+				},
+				{
+					"include": "#value-float-nan-comment"
+				}
+			]
+		},
+		"value-float-decimal-no-separators-comment": {
+			"match": "\\G([+-]{0,1}(?:(?=[1-9]{1})[0-9]+?|[0]{1})\\.(?:[0-9]*?[1-9]{1}|[0]{1})(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-float-exponent-no-separators-comment": {
+			"match": "\\G([+-]{0,1}(?:(?=[1-9]{1})[0-9]+?|[0]{1})[eE][+-]{0,1}[0-9]*?[1-9]{1}[0-9]*?(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-float-decimal-exponent-no-separators-comment": {
+			"match": "\\G([+-]{0,1}(?:(?=[1-9]{1})[0-9]+?|[0]{1})\\.(?:[0-9]*?[1-9]{1}|[0]{1})[eE][+-]{0,1}[0-9]*?[1-9]{1}[0-9]*?(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-float-decimal-separators-comment": {
+			"match": "\\G([+-]{0,1}(?:(?=[1-9]{1})[0-9]+?|[0]{1})(?:(?:[0-9]|(?<=[0-9])_(?=[0-9]))+?|[0]{1})\\.(?:(?:[0-9]|(?<=[0-9])_(?=[0-9]))+?|[0]{1})(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"match": "[0-9]",
+							"name": "green2"
+						},
+						{
+							"match": "\\.",
+							"name": "green1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-float-exponent-separators-comment": {
+			"match": "\\G([+-]{0,1}(?:(?=[1-9]{1})[0-9]+?|[0]{1})(?:(?:[0-9]|(?<=[0-9])_(?=[0-9]))+?|[0]{1})[eE][+-]{0,1}(?=.*?[1-9].*?#|[^#]*?[1-9][^#]*?$)(?:[0-9]|(?<=[0-9])_(?=[0-9]))+?(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"match": "[0-9]",
+							"name": "green2"
+						},
+						{
+							"match": "[eE]",
+							"name": "green1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-float-decimal-exponent-separators-comment": {
+			"match": "\\G([+-]{0,1}(?:(?=[1-9]{1})[0-9]+?|[0]{1})(?:(?:[0-9]|(?<=[0-9])_(?=[0-9]))+?|[0]{1})\\.(?:(?:[0-9]|(?<=[0-9])_(?=[0-9]))+?|[0]{1})[eE][+-]{0,1}(?=.*?[1-9].*?#|[^#]*?[1-9][^#]*?$)(?:[0-9]|(?<=[0-9])_(?=[0-9]))+?(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"match": "[0-9]",
+							"name": "green2"
+						},
+						{
+							"match": "\\.",
+							"name": "green1"
+						},
+						{
+							"match": "[eE]",
+							"name": "green1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-float-inf-comment": {
+			"match": "\\G([+-]{0,1}inf(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-float-nan-comment": {
+			"match": "\\G([+-]{0,1}nan(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+
+		"value-boolean-comment": {
+			"match": "\\G((?:true|false)(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "red2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},		
+		
+		"value-date-time-comment": {
+			"patterns": [
+				{
+					"include": "#value-date-time-offset-comment"
+				},
+				{
+					"include": "#value-local-date-comment"
+				},
+				{
+					"include": "#value-local-time-comment"
+				}
+			]
+		},
+		"value-date-time-offset-comment": {
+			"match": "\\G([0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31)[T ](?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1}(?:Z|[+-]{1}(?:0[0-9]|1[0-4]):(?:00|30|45)){0,1}(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-local-date-comment": {
+			"match": "\\G([0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31)(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"value-local-time-comment": {
+			"match": "\\G((?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1}(?=\\s+?#|\\s*?$))\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
 		}
+
+		
 	}
 }
