@@ -1,4 +1,17 @@
 # This is a full-line comment
 
 int = -0
-int = +0
+int1 = +0
+
+arr2 = [
+	'1' # gkgk,g,
+	, # gkgk,g,
+	'2', # gkgk,g,
+	'2' # rgrgerg,
+	, # rgr
+	['a' , 'b', 'c'],
+	['a', 'b', 'c'],
+	['a', 'b', 'c'],
+	['a', ['a', 'b', 'c'], 'c'],
+	'5'] # arrc2,
+
