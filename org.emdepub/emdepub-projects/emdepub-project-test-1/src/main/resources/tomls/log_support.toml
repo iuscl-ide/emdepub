@@ -40,17 +40,27 @@ hex1 = 0xDEADBEEF  # epic
 hex2 = 0xdeadbeef
 hex3 = 0xdead_beef
 
+hex4 = 0x0000 # Two bytes
+
 # octal with prefix `0o`
 oct1 = 0o01234567
 oct2 = 0o755 # useful for Unix file permissions
+
+oct3 = 0o000 # useful for Unix file permissions
 
 # binary with prefix `0b`
 bin1 = 0b11010110
 bin2 = 0b11010110_11010110
 
+bin3 = 0b00000000
+
+bin4 = 0b0000_0000
+
 f00 = 0.0 # fjfin
 f01 = -0.0 # fjfin
 f02 = +0.0 # fjfin
+
+f = 1_5.1_2
 
 f03 = 0.000000000001 # fjfin
 
@@ -74,6 +84,7 @@ invalid_float_1 = .7
 invalid_float_2 = 7.
 invalid_float_3 = 3.e+20
 
+invalid_float_4 = 3.1e+0 # fjfin 
 
 valid_float_31 = 3.0e+2
 valid_float_32 = 3.0e+20
@@ -115,7 +126,7 @@ odt02 = 0000-12-31T23:59:59.123Z
 odt02 = 0000-12-31T23:59:59.1234Z
 odt02 = 0000-12-31T23:59:59.12345Z
 odt02 = 0000-12-31T23:59:59.123456Z
-odt02 = 0000-12-31T23:59:59.123456+23:59
+odt02 = 0000-12-31T23:59:59.123456+21:59
 
 odt1 = 1979-05-27T07:32:00Z
 odt2 = 1979-05-27T00:32:00-07:00
@@ -147,6 +158,9 @@ lt2 = 00:32:00.999999
 a = """ a """ # fjfin
 
 b = "a '''''' "
+
+b1 = "ab" # dddd
+
 str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocation\tSF." " # epic
 
 str = "I'm a string. \"You can quote me\". Name\nJos \u00E9 \U00E900E9   \nLocation\tSF."
@@ -194,7 +208,7 @@ regex    = '<\i\c*\s*>'
 
 
 
-str = "I'm a string. \"You can quote me\". Name\tJos\u00AA\nLocation\tSF."
+str = "I'm a string. \"You can quote me\". Name\tJos\u00AA\nLocation\tSF." ee
 
 
 
@@ -217,6 +231,30 @@ a = b
 
 
 # Special Characters
+
+arr1 = [
+	"a" # arrc1,
+	["a", "b", "c"] # arrc2,
+	["a", "b", "c"]
+	# arrc2,
+	["a", "b", "c"],
+	["a", ["a", "b", "c"], "c"],
+	
+] # arrc2,
+
+arr2 = [
+	'1' # gkgk,g,
+	, # gkgk,g,
+	'2', # gkgk,g,
+	'2' # rgrgerg,
+	, # rgr
+	['a' , 'b', 'c'],
+	['a', 'b', 'c'],
+	['a', 'b', 'c'],
+	['a', ['a', 'b', 'c'], 'c'],
+	'5'] # arrc2,
+
+specialCharacters0 = ['1', '2', '3', ['1', '2', '3', ]] # Special Characters 0
 
 specialCharacters1 = [1, 2, 3] # Special Characters 1
 	
@@ -265,7 +303,7 @@ regexAssist = [
 
 ["\\\\", "2", "\\\\", "Backslash",
 """
-Backslash"""],
+,Backslash"""],
 
 ["\\0", "2", "\\0nnn", "Octal character code",
 """
