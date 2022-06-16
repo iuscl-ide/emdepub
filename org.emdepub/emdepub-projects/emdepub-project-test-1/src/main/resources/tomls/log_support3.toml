@@ -6,11 +6,11 @@
 
 a b c = 1
 
-k1 = "uuuu" # com"m # d
-k11 = 'uuuuuuuuuuu' # com"m # d
-'uuuuuuuuuu  uuuuu u' = 'μμμμμμμμμμμμμ  μμμμμ μ' # com"m # d
+k1 = "μμμμμ" # com"m # d
+k11 = 'μ' # com"m # d
+
 [k1]
-k2." e " = "v # 1d df" # comm # d
+k2." € " = "v # 1d df" # comm # d
 
 
 
@@ -28,7 +28,7 @@ key6 . key7 = 0
 
 "key !' key3" . 'key !" key4' = 0
 
-d.d.gh = 5
+# ..gh = 5
 
 k = 5
 
@@ -1261,10 +1261,10 @@ Description FILTER_FIELDS_SPEL"""
 
 
 
-[table.e." z E "]
+[table.e." z € "]
 key1-1 = "some string"
 key2 = 123
 
-[[table-2.F]]
+[table-2]
 key1 = "another string"
 key2 = 456	

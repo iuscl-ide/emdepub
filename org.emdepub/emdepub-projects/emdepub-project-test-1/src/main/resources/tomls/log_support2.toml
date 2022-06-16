@@ -1,7 +1,59 @@
 # This is a full-line comment
 
-int = -0
+it." e " = {it1 = 1, it2 = 2
+}
+
+
+s = """ # com"m # d
+a"""
+
+c = 1
+
+k1 = "uuuu" # com"m # d
+k11 = 'uuuuuuuuuuu' # com"m # d
+'uuuuuuuuuu  uuuuu u' = 'μμμμμμμμμμμμμ  μμμμμ μ' # com"m # d
+
+[k2]
+
+k2." e " = "v # 1d df" # comm # d
+
+
+
+
+# This is a full-line comment
+
+[table]
+key1-1 = "some string"
+key2 = 123
+
+[table-2]
+key1 = "another string"
+key2 = 456	
+	
+[table-3." E "]
+key1 = "another string"
+key2 = 456	
+	
+int-1 = -0
 int1 = +0
+
+# Special Characters
+
+arr1 = [
+	"a" # arrc1,
+	, # gkgk,g,
+	["a", "b", "c"] # arrc2,
+	, # gkgk,g,
+	["a", "b", "c"], # arrc2,
+	["a", "b", "c"],
+	# arrc2,
+	
+	["a", "b",  # gkgk,g,
+	 "c"]
+	, # arrc2,
+	["a", ["a", "b", "c"], "c"],
+	
+] # arrc2,
 
 arr2 = [
 	'1' # gkgk,g,
@@ -12,6 +64,100 @@ arr2 = [
 	['a' , 'b', 'c'],
 	['a', 'b', 'c'],
 	['a', 'b', 'c'],
-	['a', ['a', 'b', 'c'], 'c'],
+	['a', ['a', # rgr,
+	 'b', 'c'], 'c'], # rgr,
 	'5'] # arrc2,
 
+specialCharactersm1 = [ "alt", [0, 0.0, -0.0, -0, 123_456.789_012E000_001_000,] ]
+
+specialCharactersm2 = [ "alt", [
+	0x0000_0000 # c,
+	,
+	0o0000_0000 # c,
+	,
+	0b0000_0000 # c,
+	,
+	0.0, -0.0, -0, 123_456.789_012E000_001_000,] ]
+
+specialCharactersm3 = [ "alt", [
+	inf # c,
+	,
+	nan # c,
+	,  # c,
+	false # c,
+	,
+	1979-05-27T00:32:00.999999-07:00,
+	# Local Date-Time
+	1979-05-27T07:32:00, # c,
+	1979-05-27T00:32:00.999999,
+	# Local Date
+	1979-05-27,
+	# Local Time
+	07:32:00,
+	00:32:00.999999,
+
+	-0.0, -0, 123_456.789_012E000_001_000,] ]
+
+
+specialCharacters0 = ['1', '2', '3', ['1', '2', '3'] # Special Characters,
+] # Special Characters 0
+
+specialCharacters1 = [1, 2, 3] # Special Characters 1
+	
+specialCharacters2 = [   [ 1, 2, 3, 6]	]
+	
+specialCharacters3 = [ # c,
+""" a """ # c,
+,
+""" # c,
+a
+b
+""" # c,
+,"""
+a \
+b
+""",
+
+
+
+[ # c,
+	1, 2, 3, 6]  # c,	
+] # c,	
+	
+specialCharacters4 = [ # c,
+''' a ''' # c,
+,
+''' # c,
+a
+b
+''' # c,
+,'''
+a \
+b
+''',
+
+
+
+[ # c,
+	1, 2, 3, 6]  # c,	
+] # c,	
+	
+[table.e." z E "]
+key1-1 = "some string"
+key2 = 123
+
+[table-2.1]
+key1 = "another string"
+key2 = 456	
+	
+[[products]]
+name = "Hammer"
+sku = 738594937
+
+[[products]] # empty table within the array
+
+[[products]]
+name = "Nail"
+sku = 284758393
+
+color = "gray"	

@@ -5,9 +5,11 @@ import java.io.IOException;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.action.StatusLineContributionItem;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
@@ -17,15 +19,18 @@ import org.emdepub.activator.R;
 
 import com.fasterxml.jackson.dataformat.toml.TomlMapper;
 
-/** Markdown multi-page editor contributor to menu, tool bar, status bar */
+/** TOML editor contributor to menu, tool bar, status bar */
 public class TomlExtensionBasedEditorContributor extends EditorActionBarContributor {
 
-	/** Contributed menu */
-	private IMenuManager tomlMenuManager;
-	/** Contributed tool bar */
-	private IToolBarManager tomlToolBarManager;
+//	/** Contributed menu */
+//	private IMenuManager tomlMenuManager;
+//	/** Contributed tool bar */
+//	private IToolBarManager tomlToolBarManager;
 //	/** Contributed status line */
 //	private IStatusLineManager tomlStatusLineManager;
+	
+	/** Source position */
+	private static StatusLineContributionItem statusLinePositionField;
 	
 	TomlExtensionBasedEditor tomlSourceTextEditor;
 	
@@ -37,12 +42,15 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 		super();
 		
 		createActions();
+		
+		statusLinePositionField = new StatusLineContributionItem("statusLinePositionField", 120);
+		statusLinePositionField.setText("0");
 	}
 
 	/** Initial, fix contribution */
 	@Override
 	public void contributeToMenu(IMenuManager menuManager) {
-		tomlMenuManager = new MenuManager("TOML");
+		IMenuManager tomlMenuManager = new MenuManager("TOML");
 		menuManager.prependToGroup(IWorkbenchActionConstants.MB_ADDITIONS, tomlMenuManager);
 		tomlMenuManager.add(verifyTomlAction);
 		tomlMenuManager.add(new Separator());
@@ -51,9 +59,17 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 	/** Initial, fix contribution */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
-		tomlToolBarManager = toolBarManager;
-		tomlToolBarManager.add(verifyTomlAction);
-		tomlToolBarManager.add(new Separator());
+//		tomlToolBarManager = toolBarManager;
+		toolBarManager.add(verifyTomlAction);
+		toolBarManager.add(new Separator());
+	}
+	
+	/** Initial, fix contribution */
+	@Override
+	public void contributeToStatusLine(IStatusLineManager statusLineManager) {
+//		tomlStatusLineManager = statusLineManager;
+		statusLineManager.add(statusLinePositionField);
+		super.contributeToStatusLine(statusLineManager);
 	}
 	
 	@Override
@@ -69,7 +85,7 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 	/** Eclipse actions */
 	private void createActions() {
 		
-		/* Export Markdown Document as HTML */
+		/* Try to load TOML */
 		verifyTomlAction = new Action() {
 			public void run() {
 				/* Rule fields */
@@ -89,5 +105,9 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 		verifyTomlAction.setText("verifyTomlActionId file");
 		verifyTomlAction.setToolTipText("verifyTomlActionId");
 		verifyTomlAction.setImageDescriptor(R.getImageDescriptor("html"));
+	}
+	
+	public static StatusLineContributionItem getStatusLinePositionField() {
+		return statusLinePositionField;
 	}
 }

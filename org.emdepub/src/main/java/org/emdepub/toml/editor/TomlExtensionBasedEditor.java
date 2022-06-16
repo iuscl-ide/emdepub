@@ -1,9 +1,9 @@
-/* Emdepub Eclipse Plugin - emdepub.org */
+/* EMDEPUB Eclipse Plugin - emdepub.org */
 package org.emdepub.toml.editor;
 
 import org.eclipse.ui.internal.genericeditor.ExtensionBasedTextEditor;
 
-/** Markdown text editor based on the new generic editor */
+/** TOML editor based on the new generic editor */
 @SuppressWarnings("restriction")
 public class TomlExtensionBasedEditor extends ExtensionBasedTextEditor {
 
@@ -15,5 +15,14 @@ public class TomlExtensionBasedEditor extends ExtensionBasedTextEditor {
 	public String getCursorPositionString() {
 		
 		return this.getCursorPosition();
+	}
+	
+	/** For status bar */
+	@Override
+	protected void handleCursorPositionChanged() {
+		
+		TomlExtensionBasedEditorContributor.getStatusLinePositionField().setText(this.getCursorPositionString());
+
+		super.handleCursorPositionChanged();
 	}
 }

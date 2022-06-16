@@ -1,0 +1,1283 @@
+{
+	"information_for_contributors": [
+		"emdepub.org"
+	],
+	"version": "emdepub.org",
+	"scopeName": "source.toml",
+	"name": "TOML",
+	"fileTypes": [
+		"toml"
+	],
+	"patterns": [
+		{
+			"include": "#comment-line"
+		},
+		{
+			"include": "#array-of-tables"
+		},
+		{
+			"include": "#table"
+		},
+		{
+			"include": "#key-equals-pair-value-comment"
+		}
+	],
+	"repository": {
+		"comment-line": {
+			"match": "^\\s*(?=#\\s)(.*)$",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#comment"		
+						}	
+					]
+				}
+			}
+		},
+		"comment": {
+			"match": "(#)\\s+(.*)$",
+			"captures": {
+				"1": {
+					"name": "punctuation.definition.comment.toml"
+				},
+				"2": {
+					"name": "comment.toml"
+				}
+			}
+		},		
+		
+		"key-equals-pair-value-comment": {
+			"patterns": [
+				{
+					"include": "#key-equals"
+				},
+				{
+					"include": "#equals-pair-value-comment"
+				}
+			]
+		},
+
+		"key-table": {
+			"match": "(?<=^\\s*?\\[\\s*.)(.*?)(?=\\s*?\\]\\s*?$)",
+			"patterns": [
+				{
+					"include": "#key-bare-or-quote"
+				},
+				{
+					"include": "#dot-key-bare-or-quote"
+				}
+			]
+		},		
+		"key-equals": {
+			"match": "^\\s*?(.*?)\\s*?(?==)",
+			"captures" : {
+				"1": {
+					"patterns": [
+						{
+							"include": "#key-bare-or-quote"
+						},
+						{
+							"include": "#dot-key-bare-or-quote"
+						}
+					]
+				}
+			}
+		},		
+		"dot-key-bare-or-quote": {
+			"match": "(\\.)(?!\\s*[.=])(.*?)(?=\\s*?=)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#key-bare-or-quote"
+						},
+						{
+							"include": "#dot-key-bare-or-quote"
+						}
+					]
+				}
+			}
+		},
+		"key-bare-or-quote": {
+			"patterns": [
+				{
+					"include": "#key-bare"
+				},
+				{
+					"include": "#key-quote"
+				}
+			]
+		},
+		"key-bare": {
+			"match": "[A-Za-z0-9_-]+(?=\\s*?(?:\\.|$))",
+			"name": "red1"
+		},
+		"key-quote": {
+			"patterns": [
+				{
+					"include": "#key-single-quote"
+				},
+				{
+					"include": "#key-double-quote"
+				}
+			]
+		},
+		"key-single-quote": {
+			"match": "(')(.*?)(')",
+			"captures": {
+				"1": {
+					"name": "green1"
+				},
+				"20": {
+					"name": "red2"
+				},
+				"2": {
+					"name": "red1"
+				}
+			}
+		},
+		"key-double-quote": {
+			"match": "(\")(.*?)(\")",
+			"captures": {
+				"1": {
+					"name": "green1"
+				},
+				"2": {
+					"name": "red2"
+				},
+				"3": {
+					"name": "green2"
+				}
+			}
+		},
+		
+		"equals-pair-value-comment": {
+			"patterns": [
+				{
+					"include": "#equals-pair-value-triple-double-quote-string-comment"
+				},
+				{
+					"include": "#equals-pair-value-triple-single-quote-string-comment"
+				},
+				{
+					"include": "#equals-pair-value-array-comment"
+				},
+				{
+					"include": "#equals-pair-value-inline-table-comment"
+				},
+				{
+					"include": "#equals-pair-value-single-line-comment"
+				}
+			]
+		},
+
+		"equals-pair-value-single-line-comment": {
+			"begin": "(=)\\s*",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.equals.toml"
+				}
+			},
+			"end": "(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"endCaptures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#pair-value-single-line"
+				}		
+			]
+		},
+		"pair-value-single-line": {
+			"patterns": [
+				{
+					"include": "#pair-value-one-double-quote-string"
+				},
+				{
+					"include": "#pair-value-one-single-quote-string"
+				},
+				{
+					"include": "#pair-value-float-inf-nan"
+				},
+				{
+					"include": "#pair-value-boolean"
+				},
+				{
+					"include": "#pair-value-integer-hexadecimal-with-separators"
+				},
+				{
+					"include": "#pair-value-integer-octal-with-separators"
+				},
+				{
+					"include": "#pair-value-integer-binary-with-separators"
+				},
+				{
+					"include": "#pair-value-date-time-offset"
+				},
+				{
+					"include": "#pair-value-local-date"
+				},
+				{
+					"include": "#pair-value-local-time"
+				},
+				{
+					"include": "#pair-value-integer-float-decimal-exponent-with-separators"
+				}				
+			]
+		},
+
+		"equals-pair-value-triple-double-quote-string-comment": {
+			"begin": "(=)\\s*(?=\"\"\")",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.equals.toml"
+				}
+			},
+			"end": "(?<=\"\"\")(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"endCaptures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#pair-value-triple-double-quote-string"
+				}
+			]
+		},
+		"pair-value-triple-double-quote-string": {
+			"begin": "\"\"\"",
+			"beginCaptures": {
+				"0": {
+					"name": "green1"
+				}
+			},
+			"end": "\"\"\"(?=\\s|$)",
+			"endCaptures": {
+				"0": {
+					"name": "green2"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#value-string-escape-sequence"
+				},
+				{
+					"include": "#value-triple-double-quote-string-line-ending-backslash"
+				}
+			]
+		},
+		"equals-pair-value-triple-single-quote-string-comment": {
+			"begin": "(=)\\s*(?=''')",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.equals.toml"
+				}
+			},
+			"end": "(?<=''')(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"endCaptures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#pair-value-triple-single-quote-string"
+				}
+			]
+		},
+		"pair-value-triple-single-quote-string": {
+			"begin": "'''",
+			"beginCaptures": {
+				"0": {
+					"name": "green1"
+				}
+			},
+			"end": "'''(?=\\s|$)",
+			"endCaptures": {
+				"0": {
+					"name": "green2"
+				}
+			}
+		},
+
+		"equals-pair-value-inline-table-comment": {
+			"begin": "(=)\\s*(\\{)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.equals.toml"
+				},
+				"2": {
+					"name": "green1"
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(\\})(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"endCaptures": {
+				"1": {
+					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#inline-table-key-equals-pair-value-comma-or-last-element"
+				}
+			]
+		},
+		"inline-table-key-equals-pair-value-comma-or-last-element": {
+			"patterns": [
+				{
+					"include": "#key-equals"
+				},
+				{
+					"include": "#equals-pair-value-comma-or-last-element"
+				}
+			]
+		},
+		
+		"equals-pair-value-array-comment": {
+			"begin": "(=)\\s*(\\[)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.equals.toml"
+				},
+				"2": {
+					"name": "green1"
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(\\])(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"endCaptures": {
+				"1": {
+					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#array-value-comma-comment-or-last-element"
+				}
+			]
+		},
+		"array-value-comma-comment-or-last-element": {
+			"patterns": [
+				{
+					"include": "#comment-line"
+				},
+				{
+					"include": "#inner-array"
+				},
+				{
+					"include": "#array-value-triple-double-quote-string"
+				},
+				{
+					"include": "#array-value-triple-single-quote-string"
+				},
+				{
+					"include": "#array-value-one-double-quote-string"
+				},
+				{
+					"include": "#array-value-one-single-quote-string"
+				},
+				{
+					"include": "#array-value-float-inf-nan"
+				},
+				{
+					"include": "#array-value-boolean"
+				},
+				{
+					"include": "#array-value-integer-hexadecimal-with-separators"
+				},
+				{
+					"include": "#array-value-integer-octal-with-separators"
+				},
+				{
+					"include": "#array-value-integer-binary-with-separators"
+				},
+				{
+					"include": "#array-value-date-time-offset"
+				},
+				{
+					"include": "#array-value-local-date"
+				},
+				{
+					"include": "#array-value-local-time"
+				},
+				{
+					"include": "#array-value-integer-float-decimal-exponent-with-separators"
+				}				
+			]
+		},
+		
+		"inner-array": {
+			"begin": "(?=\\[)",
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#inner-array-comment"
+				}
+			]
+		},
+		"inner-array-comment": {
+			"begin": "\\G(\\[)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(\\])(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"endCaptures": {
+				"1": {
+					"name": "red2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#array-value-comma-comment-or-last-element"
+				}
+			]
+		},
+		
+		"array-value-triple-double-quote-string": {
+			"begin": "(?=\"\"\")",
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#array-value-triple-double-quote-string-comment"
+				}
+			]
+		},
+		"array-value-triple-double-quote-string-comment": {
+			"begin": "\\G(\"\"\")",
+			"beginCaptures": {
+				"1": {
+					"name": "green1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"contentName": "blue1",
+			"end": "(\"\"\")(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"endCaptures": {
+				"1": {
+					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#value-string-escape-sequence"
+				},
+				{
+					"include": "#value-triple-double-quote-string-line-ending-backslash"
+				}
+			]
+		},
+		"array-value-triple-single-quote-string": {
+			"begin": "(?=''')",
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"patterns": [
+				{
+					"include": "#array-value-triple-single-quote-string-comment"
+				}
+			]
+		},
+		"array-value-triple-single-quote-string-comment": {
+			"begin": "\\G(''')",
+			"beginCaptures": {
+				"1": {
+					"name": "green1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"contentName": "blue1",
+			"end": "(''')(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"endCaptures": {
+				"1": {
+					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+
+		"array-value-one-double-quote-string": {
+			"begin": "(\")(?!\")(.*?)((?<![^\\\\]\\\\)\")(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "green1"
+				},
+				"2": {
+					"name": "blue1",
+					"patterns": [
+						{
+							"include": "#value-string-escape-sequence"
+						}
+					]
+				},
+				"3": {
+					"name": "green1"
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"array-value-one-single-quote-string": {
+			"begin": "(')(?!')([^']*?)(')(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "green1"
+				},
+				"2": {
+					"name": "blue1"
+				},
+				"3": {
+					"name": "green1"
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		
+		"array-value-float-inf-nan": {
+			"begin": "([+-]{0,1}(?:inf|nan))(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"array-value-boolean": {
+			"begin": "((?:true|false))(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+
+		"array-value-integer-hexadecimal-with-separators": {
+			"begin": "(?:(0x)((?:[0-9a-fA-F]|(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])){1,}))(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"match": "[0-9a-fA-F]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"array-value-integer-octal-with-separators": {
+			"begin": "(?:(0o)((?:[0-7]|(?<=[0-7])_(?=[0-7])){1,}))(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"match": "[0-7]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"array-value-integer-binary-with-separators": {
+			"begin": "(?:(0b)((?:[0-1]|(?<=[0-1])_(?=[0-1])){1,}))(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "green2"
+				},
+				"2": {
+					"patterns": [
+						{
+							"match": "[0-1]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"3": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		
+		"array-value-date-time-offset": {
+			"begin": "([0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31)[T ](?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1}(?:Z|[+-]{1}(?:0[0-9]|1[0-4]):(?:00|30|45)){0,1})(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"array-value-local-date": {
+			"begin": "([0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31))(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		"array-value-local-time": {
+			"begin": "((?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1})(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+
+		"array-value-integer-float-decimal-exponent-with-separators": {
+			"begin": "(([+-]{0,1}(([1-9]{1}(([0-9]|(?<=[0-9])_(?=[0-9])){0,37}))|[0]{1}))(\\.(((([0-9]|(?<=[0-9])_(?=[0-9])){0,37}[1-9]{1}))|[0]{1})){0,1}([eE][+-]{0,1}(?=[0-9_]*?[1-9][0-9_]*?)((([0-9]|(?<=[0-9])_(?=[0-9])){0,37}))){0,1})(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?)",
+			"beginCaptures": {
+				"1": {
+					"patterns": [
+						{
+							"match": "[0-9+-]",
+							"name": "blue1"
+						},
+						{
+							"match": "\\.",
+							"name": "green1"
+						},
+						{
+							"match": "[eE]",
+							"name": "green1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			},
+			"end": "(?:(,)(?:(?:(?=\\s+?#)\\s*?(.*$))|\\s*?))|(?=\\])",
+			"endCaptures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		
+		"pair-value-one-double-quote-string": {
+			"match": "\\G(\")(?!\")(.*?)((?<![^\\\\]\\\\)\")(?=\\s|$)",
+			"captures": {
+				"1": {
+					"name": "green1"
+				},
+				"2": {
+					"name": "blue1",
+					"patterns": [
+						{
+							"include": "#value-string-escape-sequence"
+						}
+					]
+				},
+				"3": {
+					"name": "green2"
+				}
+			}
+		},
+		"pair-value-one-single-quote-string": {
+			"match": "\\G(')(?!')([^']*?)(')(?=\\s|$)",
+			"captures": {
+				"1": {
+					"name": "green1"
+				},
+				"2": {
+					"name": "blue1"
+				},
+				"3": {
+					"name": "red1"
+				}
+			}
+		},
+		
+		"value-string-escape-sequence": {
+			"patterns": [
+				{
+					"include": "#value-string-escape-sequence-four-unicode"
+				},
+				{
+					"include": "#value-string-escape-sequence-eight-unicode"
+				},
+				{
+					"include": "#value-string-escape-sequence-one-character-compact"
+				}
+			]
+		},
+		"value-string-escape-sequence-one-character-compact": {
+			"match": "(\\\\)([btnfr\\\"\\\\]{1})",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"name": "blue2"
+				}
+			}
+		},
+		"value-string-escape-sequence-four-unicode": {
+			"match": "(\\\\u)([0-9A-F][0-9A-F][0-9A-F][0-9A-F])",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"name": "blue2"
+				}
+			}
+		},
+		"value-string-escape-sequence-eight-unicode": {
+			"match": "(\\\\U)([0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F][0-9A-F])",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				},
+				"2": {
+					"name": "blue2"
+				}
+			}
+		},
+		"value-triple-double-quote-string-line-ending-backslash": {
+			"match": "(\\s*?)([\\\\])\\s*?$",
+			"captures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"name": "red2"
+				}
+			}
+		},
+		
+		"pair-value-float-inf-nan": {
+			"match": "\\G([+-]{0,1}(?:inf|nan))(?=\\s|$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				}
+			}
+		},
+
+		"pair-value-boolean": {
+			"match": "\\G((?:true|false))(?=\\s|$)",
+			"captures": {
+				"1": {
+					"name": "red2"
+				}
+			}
+		},		
+
+		"pair-value-integer-hexadecimal-with-separators": {
+			"match": "\\G((0x)((?:[0-9a-fA-F]|(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])){1,}))(?=\\s|$)",
+			"captures": {
+				"2": {
+					"name": "green2"
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "[0-9a-fA-F]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				}
+			}
+		},
+		"pair-value-integer-octal-with-separators": {
+			"match": "\\G((0o)((?:[0-7]|(?<=[0-7])_(?=[0-7])){1,}))(?=\\s|$)",
+			"captures": {
+				"2": {
+					"name": "green2"
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "[0-7]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				}
+			}
+		},
+		"pair-value-integer-binary-with-separators": {
+			"match": "\\G((0b)((?:[0-1]|(?<=[0-1])_(?=[0-1])){1,}))(?=\\s|$)",
+			"captures": {
+				"2": {
+					"name": "green2"
+				},
+				"3": {
+					"patterns": [
+						{
+							"match": "[0-1]",
+							"name": "blue1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				}
+			}
+		},
+		
+		"pair-value-date-time-offset": {
+			"match": "\\G([0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31)[T ](?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1}(?:Z|[+-]{1}(?:0[0-9]|1[0-4]):(?:00|30|45)){0,1})(?=\\s|$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				}
+			}
+		},
+		"pair-value-local-date": {
+			"match": "\\G([0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31))(?=\\s|$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				}
+			}
+		},
+		"pair-value-local-time": {
+			"match": "\\G((?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1})(?=\\s|$)",
+			"captures": {
+				"1": {
+					"name": "blue1"
+				}
+			}
+		},
+
+		"pair-value-integer-float-decimal-exponent-with-separators": {
+			"match": "\\G([+-]{0,1}(([1-9]{1}(([0-9]|(?<=[0-9])_(?=[0-9])){0,37}))|[0]{1}))(\\.(((([0-9]|(?<=[0-9])_(?=[0-9])){0,37}[1-9]{1}))|[0]{1})){0,1}([eE][+-]{0,1}(?=[0-9_]*?[1-9][0-9_]*?)((([0-9]|(?<=[0-9])_(?=[0-9])){0,37}))){0,1}(?=\\s|$)",
+			"captures": {
+				"0": {
+					"patterns": [
+						{
+							"match": "[0-9+-]",
+							"name": "blue1"
+						},
+						{
+							"match": "\\.",
+							"name": "green1"
+						},
+						{
+							"match": "[eE]",
+							"name": "green1"
+						},
+						{
+							"match": "_",
+							"name": "red1"
+						}
+					]
+				}
+			}
+		},
+
+		"array-of-tables": {
+			"match": "^\\s*?(\\[\\[)(.*?)\\s*?(\\]\\])(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "green1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#key-bare-or-quote"
+						},
+						{
+							"include": "#dot-key-bare-or-quote"
+						}
+					]
+				},
+				"3": {
+					"name": "green2"
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		},
+		
+		"table": {
+			"match": "^\\s*?(\\[)(.*?)\\s*?(\\])(?=\\s+?#|\\s*?$)\\s*?(.*$)",
+			"captures": {
+				"1": {
+					"name": "red1"
+				},
+				"2": {
+					"patterns": [
+						{
+							"include": "#key-bare-or-quote"
+						},
+						{
+							"include": "#dot-key-bare-or-quote"
+						}
+					]
+				},
+				"3": {
+					"name": "red2"
+				},
+				"4": {
+					"patterns": [
+						{
+							"include": "#comment"
+						}
+					]
+				}
+			}
+		}
+		
+	}
+}

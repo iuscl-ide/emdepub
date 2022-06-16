@@ -1,8 +1,6 @@
 {
 	"information_for_contributors": [
-		"This file has been converted from https://github.com/atom/language-css/blob/master/grammars/css.cson",
-		"If you want to provide a fix or improvement, please create a pull request against the original repository.",
-		"Once accepted there, we are happy to receive an update request."
+		"emdepub.org"
 	],
 	"version": "emdepub.org",
 	"scopeName": "source.toml",
@@ -15,19 +13,10 @@
 			"include": "#comment-line"
 		},
 		{
-			"include": "#key-equals-pair-value-comment"
+			"include": "#key-equals-value"
 		}
 	],
 	"repository": {
-		"comment-line": {
-			"begin": "^\\s*(?=#\\s)",
-			"end": "$",
-			"patterns": [
-				{
-					"include": "#comment"
-				}
-			]
-		},
 		"comment": {
 			"match": "(#)\\s+(.*)$",
 			"captures": {
@@ -38,712 +27,200 @@
 					"name": "comment.toml"
 				}
 			}
-		},		
-		
-		"key-equals-pair-value-comment": {
-			"patterns": [
-				{
-					"include": "#key"
-				},
-				{
-					"include": "#equals-pair-value-comment"
-				}
-			]
 		},
 		
-		"key": {
-			"begin": "^\\s*(?=[\"'A-Za-z0-9_-](.*)\\s*=)",
-			"beginCaptures": {
-				"0": {
-					"name": "red2"
-				}
-			},
-			"end": "\\s*(?==)",
-			"endCaptures": {
-				"0": {
-					"name": "green2"
-				}
-			},
+		"line-key-equals-value1": {
+			"begin": "^\\s*?",
+			"end": "\\s*?$",
 			"patterns": [
 				{
-					"include": "#key-bare-or-quote"
-				},
-				{
-					"include": "#dot-key-bare-or-quote"
-				}
-			]
-		},		
-		"dot-key-bare-or-quote": {
-			"begin": "(\\.)(?!\\s*[.=])",
-			"beginCaptures": {
-				"1": {
-					"name": "blue1"
-				}
-			},
-			"end": "(?=\\s*=)",
-			"patterns": [
-				{
-					"include": "#key-bare-or-quote"
-				},
-				{
-					"include": "#dot-key-bare-or-quote"
-				}
-			]
-		},
-		"key-bare-or-quote": {
-			"patterns": [
-				{
-					"include": "#key-bare"
-				},
-				{
-					"include": "#key-quote"
-				}
-			]
-		},
-		"key-bare": {
-			"match": "[A-Za-z0-9_-]+",
-			"name": "red1"
-		},
-		"key-quote": {
-			"patterns": [
-				{
-					"include": "#key-single-quote"
-				},
-				{
-					"include": "#key-double-quote"
-				}
-			]
-		},
-		"key-single-quote": {
-			"match": "(')(.*?)(')",
-			"captures": {
-				"1": {
-					"name": "green1"
-				},
-				"2": {
-					"name": "red2"
-				},
-				"3": {
-					"name": "green2"
-				}
-			}
-		},
-		"key-double-quote": {
-			"match": "(\")(.*?)(\")",
-			"captures": {
-				"1": {
-					"name": "green1"
-				},
-				"2": {
-					"name": "red2"
-				},
-				"3": {
-					"name": "green2"
-				}
-			}
-		},
-		
-		"equals-pair-value-comment": {
-			"patterns": [
-				{
-					"include": "#equals-pair-value-triple-double-quote-string-comment"
-				},
-				{
-					"include": "#equals-pair-value-triple-single-quote-string-comment"
-				},
-				{
-					"include": "#equals-pair-value-array-comment"
-				},
-				{
-					"include": "#equals-pair-value-single-line-comment"
-				}
-			]
-		},
-
-		"equals-pair-value-single-line-comment": {
-			"begin": "(=)\\s*",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.equals.toml"
-				}
-			},
-			"end": "(?=\\s+?#|\\s*?$)\\s*?(.*$)",
-			"endCaptures": {
-				"1": {
-					"patterns": [
-						{
-							"include": "#comment"
-						}
-					]
-				}
-			},
-			"patterns": [
-				{
-					"include": "#pair-value-single-line"
-				}		
-			]
-		},
-		"pair-value-single-line": {
-			"patterns": [
-				{
-					"include": "#pair-value-one-double-quote-string"
-				},
-				{
-					"include": "#pair-value-one-single-quote-string"
-				},
-				{
-					"include": "#pair-value-integer-float-decimal-exponent-with-separators"
-				},
-				{
-					"include": "#pair-value-integer-hexadecimal-with-separators"
-				},
-				{
-					"include": "#pair-value-integer-octal-with-separators"
-				},
-				{
-					"include": "#pair-value-integer-binary-with-separators"
-				},
-				{
-					"include": "#pair-value-float-inf-nan"
-				},
-				{
-					"include": "#pair-value-boolean"
-				},
-				{
-					"include": "#pair-value-date-time-offset"
-				},
-				{
-					"include": "#pair-value-local-date"
-				},
-				{
-					"include": "#pair-value-local-time"
-				}				
-			]
-		},
-
-		"equals-pair-value-triple-double-quote-string-comment": {
-			"begin": "(=)\\s*(?=\"\"\")",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.equals.toml"
-				}
-			},
-			"end": "(?<=\"\"\")(?=\\s+?#|\\s*?$)\\s*?(.*$)",
-			"endCaptures": {
-				"1": {
-					"patterns": [
-						{
-							"include": "#comment"
-						}
-					]
-				}
-			},
-			"patterns": [
-				{
-					"include": "#pair-value-triple-double-quote-string"
-				}
-			]
-		},
-		"pair-value-triple-double-quote-string": {
-			"begin": "\"\"\"",
-			"beginCaptures": {
-				"0": {
-					"name": "green1"
-				}
-			},
-			"end": "\"\"\"(?=\\s|$)",
-			"endCaptures": {
-				"0": {
-					"name": "green2"
-				}
-			},
-			"patterns": [
-				{
-					"include": "#value-string-escape-sequence"
-				},
-				{
-					"include": "#value-triple-double-quote-string-line-ending-backslash"
-				}
-			]
-		},
-		"equals-pair-value-triple-single-quote-string-comment": {
-			"begin": "(=)\\s*(?=''')",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.equals.toml"
-				}
-			},
-			"end": "(?<=''')(?=\\s+?#|\\s*?$)\\s*?(.*$)",
-			"endCaptures": {
-				"1": {
-					"patterns": [
-						{
-							"include": "#comment"
-						}
-					]
-				}
-			},
-			"patterns": [
-				{
-					"include": "#pair-value-triple-single-quote-string"
-				}
-			]
-		},
-		"pair-value-triple-single-quote-string": {
-			"begin": "'''",
-			"beginCaptures": {
-				"0": {
-					"name": "green1"
-				}
-			},
-			"end": "'''(?=\\s|$)",
-			"endCaptures": {
-				"0": {
-					"name": "green2"
-				}
-			}
-		},
-		"equals-pair-value-array-comment": {
-			"begin": "(=)\\s*(\\[)",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.equals.toml"
-				},
-				"2": {
-					"name": "green1"
-				}
-			},
-			"end": "(\\])(?=\\s+?#|\\s*?$)\\s*?(.*$)",
-			"endCaptures": {
-				"1": {
-					"name": "green2"
-				},
-				"2": {
-					"patterns": [
-						{
-							"include": "#comment"
-						}
-					]
-				}
-			},
-			"patterns": [
-				{
-					"include": "#inner-array"
-				},
-				{
-					"include": "#array-value-one-single-quote-string"
-				},
-				
-				
-				{
-					"include": "#array-value22"
-				}
-			]
-		},
-		"array-value": {
-			"begin": "(?<=[\\[,])(?:\\s*)",
-			"end": "(?:\\s*)((?=\\]|,))",
-			"endCaptures": {
-				"1": {
-					"patterns": [
-						{
-							"match": ",",
-							"name": "red1"
-						}
-					]
+					"include": "#key-equals-value"
 				}	
-			},
-			"patterns": [
-				{
-					"include": "#array-comment1"
-				},
-				{
-					"include": "#inner-array"
-				},
-				{
-					"include": "#array-value-one-double-quote-string"
-				},
-				{
-					"include": "#array-value-one-single-quote-string"
-				}
 			]
 		},
-		"array-comment": {
-			"match": "(?:^\\s*?|\\s+?)#\\s+?(.*)$",
-			"captures": {
-				"0": {
-					"patterns": [
-						{
-							"include": "#comment"
-						}
-					]
-				}
-			}
-		},
-		"array-value-one-double-quote-string": {
-			"match": "(\")(?!\")(.*?)((?<![^\\\\]\\\\)\")(?=\\s|$|,|\\])",
-			"captures": {
-				"1": {
-					"name": "green1"
-				},
-				"2": {
-					"name": "blue1",
-					"patterns": [
-						{
-							"include": "#value-string-escape-sequence"
-						}
-					]
-				},
-				"3": {
-					"name": "green1"
-				}
-			}
-		},
-		"array-value-one-single-quote-string": {
-			"begin": "(')(?!')([^']*?)(')(((?=\\s+?#)\\s*?(.*$))|\\s*?)",
+		"key-equals-value": {
+			"begin": "^\\s*?(.*?)\\s*?(=)",
 			"beginCaptures": {
 				"1": {
-					"name": "green1"
+					"patterns": [
+						{
+							"include": "#key"
+						}
+					]
 				},
 				"2": {
-					"name": "blue1"
+					"name": "punctuation.equals.toml"
+				}
+			},
+			"end": "$",
+			"patterns": [
+				{
+					"include": "#values"
+				},
+				{
+					"include": "#comment"
+				}	
+			]
+		},
+		
+		"values": {
+			"patterns": [
+				{
+					"include": "#value"
+				},
+				{
+					"include": "#value-inline-table"
+				},
+				{
+					"include": "#value-string-triple-single-quote"
+				}	
+			]
+		},
+
+		"key": {
+			"match": "^(?:(.+)(\\.\\s*?)(\")(.+)(\"\\s*?$))|(?:(.+)(\\.\\s*?)(')(.+)('\\s*?$))|(?:(.+)(\\.\\s*?)([A-Za-z0-9_-]+\\s*?$))|(?:(\")(.+)(\"\\s*?$))|(?:(')(.+)('\\s*?$))|([A-Za-z0-9_-]+\\s*?$)",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#key"
+						}	
+					]
+				},
+				"2": {
+					"name": "punctuation.equals.toml"
 				},
 				"3": {
 					"name": "green1"
+				},
+				"4": {
+					"name": "red2"
+				},
+				"5": {
+					"name": "green2"
 				},
 				"6": {
 					"patterns": [
 						{
-							"include": "#comment"
-						}
+							"include": "#key"
+						}	
 					]
-				}
-			},
-			"end": "(?:\\s*)(,|(?=\\]))(((?=\\s+?#)\\s*?(.*$))|\\s*?)",
-			"endCaptures": {
-				"1": {
-					"name": "red1"
-				},
-				"4": {
-					"patterns": [
-						{
-							"include": "#comment"
-						}
-					]
-				}
-			}
-		},
-
-		"array-value-one-single-quote-string1": {
-			"match": "(')(?!')([^']*?)(')((?=\\s*?(,|\\]|$))|(\\s+?#\\s+?([^,]+?)\\s*?$))",
-			"captures": {
-				"1": {
-					"name": "green1"
-				},
-				"2": {
-					"name": "blue1"
-				},
-				"3": {
-					"name": "green1"
 				},
 				"7": {
+					"name": "punctuation.equals.toml"
+				},
+				"8": {
+					"name": "green1"
+				},
+				"9": {
+					"name": "red2"
+				},
+				"10": {
+					"name": "green2"
+				},
+				"11": {
 					"patterns": [
 						{
-							"include": "#comment"
-						}
+							"include": "#key"
+						}	
 					]
+				},
+				"12": {
+					"name": "punctuation.equals.toml"
+				},
+				"13": {
+					"name": "red2"
+				},
+				"14": {
+					"name": "green1"
+				},
+				"15": {
+					"name": "red2"
+				},
+				"16": {
+					"name": "green2"
+				},
+				"17": {
+					"name": "green1"
+				},
+				"18": {
+					"name": "red2"
+				},
+				"19": {
+					"name": "green2"
+				},
+				"20": {
+					"name": "red2"
 				}
 			}
 		},
 		
-		"inner-array": {
-			"begin": "(?:\\s*)(\\[)",
+		"value": {
+			"match": "[0-9]",
+			"name": "blue1"
+		},
+
+		"value-inline-table": {
+			"begin": "(?<!^)\\s*(\\{)(?!\\s*$)",
 			"beginCaptures": {
 				"1": {
-					"name": "red1"
+					"name": "green1"
 				}
 			},
-			"end": "(\\])(?:\\s*)",
+			"end": "(?<!^)\\s*(\\})",
 			"endCaptures": {
 				"1": {
-					"name": "red2"
+					"name": "green2"
 				}
 			},
 			"patterns": [
 				{
-					"include": "#inner-array"
-				},
-				{
-					"include": "#array-value-one-single-quote-string"
-				},
-				{
-					"include": "#array-value1222"
-				}
+					"include": "#inline-table-key-equals-value"
+				}	
 			]
 		},
 		
-		"inner-array-comment": {
-			"begin": "\\s*(\\[)",
+		"inline-table-key-equals-value": {
+			"begin": "\\s*?(.*?)\\s*?(=)(?!\\s*$)",
 			"beginCaptures": {
 				"1": {
-					"name": "red1"
+					"patterns": [
+						{
+							"include": "#key"
+						}
+					]
+				},
+				"2": {
+					"name": "punctuation.equals.toml"
 				}
 			},
-			"end": "(\\])(?:(?:(?=\\s+?#)\\s*?(.*($|)))|\\s*)",
+			"end": "((?<!^)\\s*?,(?!\\s*$))|(?=\\s*?\\})",
 			"endCaptures": {
 				"1": {
-					"name": "red2"
-				},
-				"2": {
-					"patterns": [
-						{
-							"include": "#comment"
-						}
-					]
+					"name": "red1"
 				}
 			},
 			"patterns": [
 				{
-					"include": "#inner-array-comment"
-				},
-				{
-					"include": "#value-of-array-comment"
+					"include": "#values"
 				}
 			]
 		},
-		"value-of-array-comment": {
-			"patterns": [
-				{
-					"match": ";",
-					"name": "red1"
-				},
-				{
-					"include": "#value-of-array-comment11"
-				}
-			]
-		},
-		
-		"pair-value-one-double-quote-string": {
-			"match": "\\G(\")(?!\")(.*?)((?<![^\\\\]\\\\)\")(?=\\s|$)",
-			"captures": {
-				"1": {
-					"name": "red2"
-				},
-				"2": {
-					"name": "red1",
-					"patterns": [
-						{
-							"include": "#value-string-escape-sequence"
-						}
-					]
-				},
-				"3": {
-					"name": "red2"
-				}
-			}
-		},
-		"pair-value-one-single-quote-string": {
-			"match": "\\G(')(?!')([^']*?)(')(?=\\s|$)",
-			"captures": {
-				"1": {
-					"name": "red2"
-				},
-				"2": {
-					"name": "red1"
-				},
-				"3": {
-					"name": "red2"
-				}
-			}
-		},
-		
-		"value-string-escape-sequence": {
-			"patterns": [
-				{
-					"include": "#value-string-escape-sequence-four-unicode"
-				},
-				{
-					"include": "#value-string-escape-sequence-eight-unicode"
-				},
-				{
-					"include": "#value-string-escape-sequence-one-character-compact"
-				}
-			]
-		},
-		"value-string-escape-sequence-one-character-compact": {
-			"match": "(\\\\)([btnfr\\\"\\\\]{1})",
-			"captures": {
-				"1": {
-					"name": "blue1"
-				},
-				"2": {
-					"name": "blue2"
-				}
-			}
-		},
-		"value-string-escape-sequence-four-unicode": {
-			"match": "(\\\\u)([0-9A-E][0-9A-E][0-9A-E][0-9A-E])",
-			"captures": {
-				"1": {
-					"name": "blue1"
-				},
-				"2": {
-					"name": "blue2"
-				}
-			}
-		},
-		"value-string-escape-sequence-eight-unicode": {
-			"match": "(\\\\U)([0-9A-E][0-9A-E][0-9A-E][0-9A-E][0-9A-E][0-9A-E][0-9A-E][0-9A-E])",
-			"captures": {
-				"1": {
-					"name": "blue1"
-				},
-				"2": {
-					"name": "blue2"
-				}
-			}
-		},
-		"value-triple-double-quote-string-line-ending-backslash": {
-			"match": "(\\s*?)([\\\\])\\s*?$",
-			"captures": {
-				"1": {
-					"name": "red1"
-				},
-				"2": {
-					"name": "red2"
-				}
-			}
-		},
-		
-		"pair-value-integer-float-decimal-exponent-with-separators": {
-			"match": "\\G([+-]{0,1}(([1-9]{1}(([0-9]|(?<=[0-9])_(?=[0-9])){0,37}))|[0]{1}))(\\.(((([0-9]|(?<=[0-9])_(?=[0-9])){0,37}[1-9]{1}))|[0]{1})){0,1}([eE][+-]{0,1}(?=[0-9_]*?[1-9][0-9_]*?)((([0-9]|(?<=[0-9])_(?=[0-9])){0,37}))){0,1}(?=\\s|$)",
-			"captures": {
+
+		"value-string-triple-single-quote": {
+			"begin": "(?<!')'''",
+			"beginCaptures": {
 				"0": {
-					"patterns": [
-						{
-							"match": "[0-9+-]",
-							"name": "blue1"
-						},
-						{
-							"match": "\\.",
-							"name": "green1"
-						},
-						{
-							"match": "[eE]",
-							"name": "green1"
-						},
-						{
-							"match": "_",
-							"name": "red1"
-						}
-					]
+					"name": "green1"
 				}
-			}
-		},
-		"pair-value-integer-hexadecimal-with-separators": {
-			"match": "\\G((0x)((?:[0-9a-fA-F]|(?<=[0-9a-fA-F])_(?=[0-9a-fA-F])){1,}))(?=\\s|$)",
-			"captures": {
-				"2": {
+			},
+			"end": "'''(?!')",
+			"endCaptures": {
+				"0": {
 					"name": "green2"
-				},
-				"3": {
-					"patterns": [
-						{
-							"match": "[0-9a-fA-F]",
-							"name": "blue1"
-						},
-						{
-							"match": "_",
-							"name": "red1"
-						}
-					]
-				}
-			}
-		},
-		"pair-value-integer-octal-with-separators": {
-			"match": "\\G((0o)((?:[0-7]|(?<=[0-7])_(?=[0-7])){1,}))(?=\\s|$)",
-			"captures": {
-				"2": {
-					"name": "green2"
-				},
-				"3": {
-					"patterns": [
-						{
-							"match": "[0-7]",
-							"name": "blue1"
-						},
-						{
-							"match": "_",
-							"name": "red1"
-						}
-					]
-				}
-			}
-		},
-		"pair-value-integer-binary-with-separators": {
-			"match": "\\G((0b)((?:[0-1]|(?<=[0-1])_(?=[0-1])){1,}))(?=\\s|$)",
-			"captures": {
-				"2": {
-					"name": "green2"
-				},
-				"3": {
-					"patterns": [
-						{
-							"match": "[0-1]",
-							"name": "blue1"
-						},
-						{
-							"match": "_",
-							"name": "red1"
-						}
-					]
-				}
-			}
-		},
-
-		"pair-value-float-inf-nan": {
-			"match": "\\G([+-]{0,1}(?:inf|nan))(?=\\s|$)",
-			"captures": {
-				"1": {
-					"name": "blue1"
-				}
-			}
-		},
-
-		"pair-value-boolean": {
-			"match": "\\G((?:true|false))(?=\\s|$)",
-			"captures": {
-				"1": {
-					"name": "red2"
-				}
-			}
-		},		
-		
-		"pair-value-date-time-offset": {
-			"match": "\\G([0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31)[T ](?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1}(?:Z|[+-]{1}(?:0[0-9]|1[0-4]):(?:00|30|45)){0,1})(?=\\s|$)",
-			"captures": {
-				"1": {
-					"name": "blue1"
-				}
-			}
-		},
-		"pair-value-local-date": {
-			"match": "\\G([0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31))(?=\\s|$)",
-			"captures": {
-				"1": {
-					"name": "blue1"
-				}
-			}
-		},
-		"pair-value-local-time": {
-			"match": "\\G((?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1})(?=\\s|$)",
-			"captures": {
-				"1": {
-					"name": "blue1"
 				}
 			}
 		}
-
 		
 	}
 }
