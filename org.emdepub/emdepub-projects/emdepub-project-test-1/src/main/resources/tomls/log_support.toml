@@ -140,7 +140,7 @@ odt02 = 0000-12-31T23:59:59.123Z
 odt02 = 0000-12-31T23:59:59.1234Z
 odt02 = 0000-12-31T23:59:59.12345Z
 odt02 = 0000-12-31T23:59:59.123456Z
-odt02 = 0000-12-31T23:59:59.123456+21:59
+odt02 = 0000-12-31T23:59:59.123456+21:00
 
 odt1 = 1979-05-27T07:32:00Z
 odt2 = 1979-05-27T00:32:00-07:00
@@ -246,7 +246,7 @@ a = b
 
 # Special Characters
 
-arr1 = [
+arr1 = [ # gkgk,g,
 	"a" # arrc1,
 	, # gkgk,g,
 	["a", "b", "c"] # arrc2,
@@ -269,7 +269,9 @@ arr2 = [
 	'2' # rgrgerg,
 	, # rgr
 	['a' , 'b', 'c'],
-	['a', 'b', 'c'],
+	['a', 'b', 'c'] # gkgk,g,
+	# gkgk,g,
+	,
 	['a', 'b', 'c'],
 	['a', ['a', # rgr,
 	 'b', 'c'], 'c'], # rgr,
@@ -1259,12 +1261,12 @@ description = """
 Description FILTER_FIELDS_SPEL"""
 
 
-
+table.e." z E " = 1
 
 [table.e." z E "]
 key1-1 = "some string"
 key2 = 123
 
-[[table-2.F]]
+[[table-2.F." z E "]]
 key1 = "another string"
 key2 = 456	

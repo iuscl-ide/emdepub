@@ -1,7 +1,6 @@
 # This is a full-line comment
 
-it." e " = {it1 = 1, it2 = 2
-}
+it." e " = {it1 = 1, it2 = 2}
 
 
 s = """ # com"m # d

@@ -1,3 +1,4 @@
+# efer 1 # efer
 
 a.a =  1  # efer 1 # efer
 
@@ -5,8 +6,68 @@ b = ''' # efer 1 # efer
 # efer 1 # efer
 '''   # efer 1 # efer
 
-it = {it1 = 2}
+arr0 = [1
+{it1 = 2, it1 = 2},
+]  # efer 1 # efer
+
+arr1 = [1
+
+2
+,
+]
+
+arr1 = [ # efer 1 # efer
+ # efer 1 # efer
+	1  # efer 1 # efer
+	,
+	''' # efer 1 # efer
+# efer 1 # efer
+'''   # efer 1 # efer
+,
+# efer 1 # efer
+ 2
+,
+{it1 = {it1 = 1, it2 = 2}, bin = ''' # efer 1 # efer
+# efer 1 # efer
+''', it2 = 2}  # efer 1 # efer
+, 
+]  
+
+it = {it1 = 2, it1 = 2}
 
 itr."E" = {it1 = {it1 = 1, it2 = 2}, bin = ''' # efer 1 # efer
 # efer 1 # efer
 ''', it2 = 2}  # efer 1 # efer
+
+arr1 = [ # gkgk,g,
+	"a" # arrc1,
+	, # gkgk,g,
+	["a", "b", "c"] # arrc2,
+	, # gkgk,g,
+	["a", "b", "c"], # arrc2,
+	["a", "b", "c"],
+	# arrc2,
+	{it1 = {it1 = 1, it2 = 2}, bin = ''' # efer 1 # efer
+# efer 1 # efer
+''', it2 = 2}
+	["a", "b",  # gkgk,g,
+	 "c"]
+	, # arrc2,
+	["a", ["a", "b", "c"], "c"],
+	
+] # arrc2,
+
+arr2 = [
+	'1' # gkgk,g,
+	, # gkgk,g,
+	'2', # gkgk,g,
+	'2' # rgrgerg,
+	, # rgr
+	['a' , 'b', 'c'],
+	['a', 'b', 'c'] # gkgk,g,
+	# gkgk,g,
+	,
+	['a', 'b', 'c'],
+	['a', ['a', # rgr,
+	 'b', 'c'], 'c'], # rgr,
+	'5'] # arrc2,
