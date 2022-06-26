@@ -11,6 +11,16 @@ import org.eclipse.swt.graphics.Point;
 /** Markdown CompletionProposal */
 public final class MarkdownCompletionProposal implements ICompletionProposal {
 
+	/** Default proposal keys */
+	public static enum MarkdownCompletionProposalKey { 
+		BOLD_TEXT, ITALIC_TEXT, BOLD_ITALIC_TEXT,
+		STRIKETROUGH_TEXT, QUOTED_TEXT,
+		INLINE_CODE, FENCED_CODE_BLOCK, INDENTED_CODE_BLOCK,
+		HEADING_LEVEL_1, HEADING_LEVEL_2, HEADING_LEVEL_3, HEADING_LEVEL_4, HEADING_LEVEL_5, HEADING_LEVEL_6,
+		UNORDERED_LIST, ORDERED_LIST, DEFINITION_LIST,
+		LINK, IMAGE,
+		HORIZONTAL_RULE};
+
 	private String displayString;
 	private String replacementString;
 	private int replacementOffset;
@@ -21,6 +31,11 @@ public final class MarkdownCompletionProposal implements ICompletionProposal {
 	private String additionalProposalInfo;
 	private int cursorPositionChars;
 	private int cursorPositionLineDelimiters;
+
+	/** To create from TOML */
+	public MarkdownCompletionProposal() {
+		super();
+	}
 
 	public MarkdownCompletionProposal(String replacementString, int replacementOffset, int replacementLength,
 		int cursorPositionChars, int cursorPositionLineDelimiters,

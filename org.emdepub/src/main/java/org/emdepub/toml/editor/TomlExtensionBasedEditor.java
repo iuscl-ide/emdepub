@@ -10,18 +10,12 @@ public class TomlExtensionBasedEditor extends ExtensionBasedTextEditor {
 	public TomlExtensionBasedEditor() {
 		super();
 	}
-
-	/** For status bar */
-	public String getCursorPositionString() {
-		
-		return this.getCursorPosition();
-	}
 	
 	/** For status bar */
 	@Override
 	protected void handleCursorPositionChanged() {
 		
-		TomlExtensionBasedEditorContributor.getStatusLinePositionField().setText(this.getCursorPositionString());
+		TomlExtensionBasedEditorContributor.getStatusLinePositionField().setText(this.getCursorPosition());
 
 		super.handleCursorPositionChanged();
 	}

@@ -35,7 +35,7 @@ public class EPubProjectModifyTocItemWizard extends Wizard implements IExportWiz
 		itemSrc = epub_project_toc_item.itemSrc;
 
 		this.setWindowTitle("Modify Toc Item Wizard");
-		this.setDefaultPageImageDescriptor(ImageDescriptor.createFromURL(this.getClass().getResource("/images/md-wizard-banner-exportashtml.png")));
+		this.setDefaultPageImageDescriptor(ImageDescriptor.createFromURL(this.getClass().getResource("/images/epub-project-banner.png")));
 	}
 
 	/** Method */

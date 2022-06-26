@@ -1,0 +1,390 @@
+/** TOML theme with spec colors - https://toml.io/en/v1.0.0 **/
+
+/** Eclipse Dark.css first **/
+
+.emphasis { font-style: italic; }
+.strong { font-weight: bold; }
+.header { color: rgba(0, 0, 128, 1); }
+.comment { color: rgba(96, 139, 78, 1); }
+.constant.language { color: rgba(86, 156, 214, 1); }
+.constant.numeric { color: rgba(181, 206, 168, 1); }
+.constant.regexp { color: rgba(100, 102, 149, 1); }
+.constant.rgb-value { color: rgba(212, 212, 212, 1); }
+.entity.name.tag { color: rgba(86, 156, 214, 1); }
+.entity.name.tag.css { color: rgba(215, 186, 125, 1); }
+.entity.name.selector { color: rgba(215, 186, 125, 1); }
+.entity.other.attribute-name { color: rgba(156, 220, 254, 1); }
+.entity.other.attribute-name.css { color: rgba(215, 186, 125, 1); }
+.invalid { color: rgba(244, 71, 71, 1); }
+.markup.underline { text-decoration: underline; }
+.markup.bold { font-weight: bold; color: rgba(86, 156, 214, 1); }
+.markup.heading { font-weight: bold; color: rgba(86, 156, 214, 1); }
+.markup.italic { font-style: italic; }
+.markup.inserted { color: rgba(181, 206, 168, 1); }
+.markup.deleted { color: rgba(206, 145, 120, 1); }
+.markup.changed { color: rgba(86, 156, 214, 1); }
+.markup.punctuation.quote.beginning { color: rgba(96, 139, 78, 1); }
+.markup.punctuation.list.beginning { color: rgba(103, 150, 230, 1); }
+.markup.inline.raw { color: rgba(206, 145, 120, 1); }
+.meta.selector { color: rgba(215, 186, 125, 1); }
+.punctuation.definition.tag { color: rgba(128, 128, 128, 1); }
+.meta.preprocessor { color: rgba(86, 156, 214, 1); }
+.meta.preprocessor.string { color: rgba(206, 145, 120, 1); }
+.meta.preprocessor.numeric { color: rgba(181, 206, 168, 1); }
+.meta.structure.dictionary.key.python { color: rgba(156, 220, 254, 1); }
+.meta.header.diff { color: rgba(86, 156, 214, 1); }
+.storage { color: rgba(86, 156, 214, 1); }
+.storage.type { color: rgba(86, 156, 214, 1); }
+.storage.modifier { color: rgba(86, 156, 214, 1); }
+.string { color: rgba(206, 145, 120, 1); }
+.string.tag { color: rgba(206, 145, 120, 1); }
+.string.value { color: rgba(206, 145, 120, 1); }
+.string.regexp { color: rgba(209, 105, 105, 1); }
+.support.type.property-name { color: rgba(156, 220, 254, 1); }
+.keyword { color: rgba(86, 156, 214, 1); }
+.keyword.control.less { color: rgba(215, 186, 125, 1); }
+.keyword.operator { color: rgba(212, 212, 212, 1); }
+.keyword.operator.new { color: rgba(86, 156, 214, 1); }
+.keyword.operator.expression { color: rgba(86, 156, 214, 1); }
+.keyword.other.unit { color: rgba(181, 206, 168, 1); }
+.metatag.php { color: rgba(86, 156, 214, 1); }
+.support.function.git-rebase { color: rgba(156, 220, 254, 1); }
+.constant.sha.git-rebase { color: rgba(181, 206, 168, 1); }
+.storage.modifier.import.java { color: rgba(212, 212, 212, 1); }
+.storage.modifier.package.java { color: rgba(212, 212, 212, 1); }
+.variable.language { color: rgba(86, 156, 214, 1); }
+.entity.name.function { color: rgba(220, 220, 170, 1); }
+.support.function { color: rgba(220, 220, 170, 1); }
+.meta.return-type { color: rgba(78, 201, 176, 1); }
+.support.class { color: rgba(78, 201, 176, 1); }
+.support.type { color: rgba(78, 201, 176, 1); }
+.entity.name.type { color: rgba(78, 201, 176, 1); }
+.storage.type.cs { color: rgba(78, 201, 176, 1); }
+.storage.type.java { color: rgba(78, 201, 176, 1); }
+.meta.return.type { color: rgba(78, 201, 176, 1); }
+.meta.type.cast.expr { color: rgba(78, 201, 176, 1); }
+.meta.type.new.expr { color: rgba(78, 201, 176, 1); }
+.support.constant.math { color: rgba(78, 201, 176, 1); }
+.support.constant.dom { color: rgba(78, 201, 176, 1); }
+.support.constant.json { color: rgba(78, 201, 176, 1); }
+.keyword.control { color: rgba(197, 134, 192, 1); }
+.variable.parameter { color: rgba(156, 220, 254, 1); }
+.variable { color: rgba(156, 220, 254, 1); }
+.variable.name { color: rgba(156, 220, 254, 1); }
+.support.variable { color: rgba(156, 220, 254, 1); }
+.object-literal.member.key { color: rgba(156, 220, 254, 1); }
+.support.property-value { color: rgba(206, 145, 120, 1); }
+.constant.rgb-value { color: rgba(206, 145, 120, 1); }
+.support.property-value.scss { color: rgba(206, 145, 120, 1); }
+.constant.rgb-value.scss { color: rgba(206, 145, 120, 1); }
+.entity.name.function.tag { color: rgba(86, 156, 214, 1); }
+
+/** TOML specific theme from here **/
+
+.comment.toml {
+	font-style: italic;
+	color: #57a64a;
+}
+
+.keyword.control.hash.comment.toml {
+	font-style: italic;
+	color: #57a64a;
+}
+
+
+.tag.meta.begin.array-of-tables.toml {
+	color: #ffd700;
+}
+
+.tag.meta.end.array-of-tables.toml {
+	color: #ffd700;
+}
+
+
+.tag.meta.begin.table.toml {
+	color: #ffd700;
+}
+
+.tag.meta.end.table.toml {
+	color: #ffd700;
+}
+
+
+.operator.keyword.equals.key-equals-value.toml {
+	color: #edf2f7;
+}
+
+
+.selector.name.entity.dot.key.toml {
+	color: #9cdcfe;
+}
+
+.property-name.type.support.key.bare.toml {
+	color: #9cdcfe;
+}
+
+.property-name.type.support.key.quoted.toml {
+	color: #9cdcfe;
+}
+
+.property-value.support.quote.double.begin.key.toml {
+	color: #9cdcfe;
+}
+
+.property-value.support.quote.double.end.key.toml {
+	color: #9cdcfe;
+}
+
+.property-value.support.quote.single.begin.key.toml {
+	color: #9cdcfe;
+}
+
+.property-value.support.quote.single.end.key.toml {
+	color: #9cdcfe;
+}
+
+
+.selector.name.entity.dot.table.key.toml {
+	color: #ffd700;
+}
+
+.property-name.type.support.table.key.bare.toml {
+	color: #ffd700;
+}
+
+.property-name.type.support.table.key.quoted.toml {
+	color: #ffd700;
+}
+
+.property-value.support.quote.double.begin.table.key.toml {
+	color: #ffd700;
+}
+
+.property-value.support.quote.double.end.table.key.toml {
+	color: #ffd700;
+}
+
+.property-value.support.quote.single.begin.table.key.toml {
+	color: #ffd700;
+}
+
+.property-value.support.quote.single.end.table.key.toml {
+	color: #ffd700;
+}
+
+
+.tag.meta.begin.inline-table.toml {
+	color: rgb(237, 242, 247);
+}
+
+.tag.meta.end.inline-table.toml {
+	color: rgb(237, 242, 247);
+}
+
+.operator.keyword.equals.key-equals-value.inline-table.toml {
+	color: rgb(237, 242, 247);
+}
+
+.operator.keyword.comma.key-equals-value.inline-table.toml {
+	color: rgb(237, 242, 247);
+}
+
+
+.tag.meta.begin.array.toml {
+	color: rgb(237, 242, 247);
+}
+
+.tag.meta.end.array.toml {
+	color: rgb(237, 242, 247);
+}
+
+.operator.keyword.comma.array.toml {
+	color: rgb(237, 242, 247);
+}
+
+
+.string.begin.one-double-quote.toml {
+	color: #d69d85;
+}
+
+.string.end.one-double-quote.toml {
+	color: #d69d85;
+}
+
+.string.begin.one-single-quote.toml {
+	color: #d69d85;
+}
+
+.string.end.one-single-quote.toml {
+	color: #d69d85;
+}
+
+.string.begin.triple-double-quote.toml {
+	color: #d69d85;
+}
+
+.string.end.triple-double-quote.toml {
+	color: #d69d85;
+}
+
+.string.begin.triple-single-quote.toml {
+	color: #d69d85;
+}
+
+.string.end.triple-single-quote.toml {
+	font-weight: bold;
+	color: #d69d85;
+}
+
+.string.content.one-double-quote.toml {
+	color: #d69d85;
+}
+
+.string.content.one-single-quote.toml {
+	color: #d69d85;
+}
+
+.string.content.triple-double-quote.toml {
+	color: #d69d85;
+}
+
+.string.content.triple-single-quote.toml {
+	color: #d69d85;
+}
+
+
+.keyword.operator.backslash.escape.sequence-one-character-compact.toml {
+	color: #d69d85;
+}
+
+.keyword.control.escape.sequence-one-character-compact.toml {
+	color: #d69d85;
+}
+
+.keyword.operator.backslash.escape.unicode.sequence-eight.toml {
+	color: #d69d85;
+}
+
+.keyword.control.escape.unicode.sequence-eight.toml {
+	color: #d69d85;
+}
+
+.keyword.operator.backslash.escape.unicode.sequence-four.toml {
+	color: #d69d85;
+}
+
+.keyword.control.escape.unicode.sequence-four.toml {
+	color: #d69d85;
+}
+
+.keyword.operator.backslash.line-ending.string-triple-double-quote.toml {
+	color: #d69d85;
+}
+
+.keyword.operator.spaces-before-backslash.line-ending.string-triple-double-quote.toml {
+	color: #d69d85;
+}
+
+
+.numeric.constant.inf.nan.float.toml {
+	color: #b8d7a3;
+}
+
+
+.language.constant.true.false.boolean.toml {
+	color: #569cd6;
+}
+
+
+.keyword.control.integer.hexadecimal.toml {
+	font-weight: bold;
+	color: #b8d7a3;
+}
+
+.keyword.control.separator.integer.hexadecimal.toml {
+	color: #b8d7a3;
+}
+
+.keyword.control.integer.octal.toml {
+	font-weight: bold;
+	color: #b8d7a3;
+}
+
+.keyword.control.separator.integer.octal.toml {
+	color: #b8d7a3;
+}
+
+.keyword.control.integer.binary.toml {
+	font-weight: bold;
+	color: #b8d7a3;
+}
+
+.keyword.control.separator.integer.binary.toml {
+	color: #b8d7a3;
+}
+
+.keyword.control.decimal.integer.float.toml {
+	color: #b8d7a3;
+}
+
+.keyword.control.exponent.integer.float.toml {
+	color: #b8d7a3;
+}
+
+.keyword.control.separator.integer.float.toml {
+	color: #b8d7a3;
+}
+
+.numeric.constant.hexadecimal.toml {
+	color: #b8d7a3;
+}
+
+.numeric.constant.octal.toml {
+	color: #b8d7a3;
+}
+
+.numeric.constant.binary.toml {
+	color: #b8d7a3;
+}
+
+.numeric.constant.integer.float.toml {
+	color: #b8d7a3;
+}
+
+
+.storage.date-time-offset.toml {
+	color: #b8d7a3;
+}
+
+.storage.separator.date-time-offset.toml {
+	color: #b8d7a3;
+}
+
+.storage.local-date.toml {
+	color: #b8d7a3;
+}
+
+.storage.separator.local-date.toml {
+	color: #b8d7a3;
+}
+
+.storage.local-time.toml {
+	color: #b8d7a3;
+}
+
+.storage.separator.local-time.toml {
+	color: #b8d7a3;
+}
+
+.editor {
+	background-color: #000000;
+	color: rgba(255, 255, 255, 1);
+}
+
+.editor.lineHighlight {
+	background-color:  rgba(40, 40, 40, 1);
+}
+
+.editor.selection {
+	background-color: rgba(73, 72, 62, 0.5);
+}

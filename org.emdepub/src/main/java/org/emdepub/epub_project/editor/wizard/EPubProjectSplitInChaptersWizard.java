@@ -32,7 +32,7 @@ public class EPubProjectSplitInChaptersWizard extends Wizard implements IExportW
 		splitTargetFileNamesWithFullPath = project_ePub.splitTargetFileNamesWithFullPath;
 		
 		this.setWindowTitle("Split a File in Separate Files Wizard");
-		this.setDefaultPageImageDescriptor(ImageDescriptor.createFromURL(this.getClass().getResource("/images/md-wizard-banner-exportashtml.png")));
+		this.setDefaultPageImageDescriptor(ImageDescriptor.createFromURL(this.getClass().getResource("/images/epub-project-banner.png")));
 	}
 
 	/** Method */

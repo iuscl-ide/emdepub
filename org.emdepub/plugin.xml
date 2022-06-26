@@ -11,10 +11,10 @@
 		<editor class="org.emdepub.markdown.editor.MarkdownEditor" contributorClass="org.emdepub.markdown.editor.MarkdownEditorContributor" default="true" extensions="md, mdown, markdown, markdn" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.MarkdownEditor" name="Markdown Editor and Viewer">
 			<contentTypeBinding contentTypeId="org.emdepub.md"></contentTypeBinding>
 		</editor>
-		<editor class="org.emdepub.epub_project.editor.EPubProjectEditor" contributorClass="org.emdepub.epub_project.editor.EPubProjectEditorContributor" default="true" extensions="epub-project" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.EPubProject" name="ePub Project Editor">
+		<editor class="org.emdepub.epub_project.editor.EPubProjectEditor" contributorClass="org.emdepub.epub_project.editor.EPubProjectEditorContributor" default="true" extensions="epub-project" icon="plugin-icons/epub-editor.png" id="org.emdepub.editor.EPubProject" name="ePub Project Editor">
 			<contentTypeBinding contentTypeId="org.emdepub.epub_project"></contentTypeBinding>
 		</editor>
-		<editor class="org.emdepub.toml.editor.TomlExtensionBasedEditor" contributorClass="org.emdepub.toml.editor.TomlExtensionBasedEditorContributor" default="true" extensions="toml" icon="plugin-icons/md-multi-page-editor.png" id="org.emdepub.editor.TomlExtensionBasedEditor" name="TOML Editor">
+		<editor class="org.emdepub.toml.editor.TomlExtensionBasedEditor" contributorClass="org.emdepub.toml.editor.TomlExtensionBasedEditorContributor" default="true" extensions="toml" icon="plugin-icons/toml-editor.png" id="org.emdepub.editor.TomlExtensionBasedEditor" name="TOML Editor">
 			<contentTypeBinding contentTypeId="org.emdepub.toml"></contentTypeBinding>
 		</editor>
 	</extension>
@@ -37,6 +37,8 @@
 		<themeAssociation scopeName="text.html.markdown" themeId="org.emdepub.markdown.light.theme" whenDark="false"></themeAssociation>
 		<theme dark="false" default="true" id="org.emdepub.toml.light.theme" name="TOML Light" path="code-language/toml/themes/toml-light-theme.css"></theme>
 		<themeAssociation scopeName="source.toml" themeId="org.emdepub.toml.light.theme" whenDark="false"></themeAssociation>
+		<theme dark="true" default="true" id="org.emdepub.toml.dark.spec.theme" name="TOML Spec" path="code-language/toml/themes/toml-spec-theme.css"></theme>
+		<themeAssociation scopeName="source.toml" themeId="org.emdepub.toml.dark.spec.theme" whenDark="true"></themeAssociation>
 	</extension>
 	<extension point="org.eclipse.tm4e.ui.snippets">
 		<snippet name="org.emdepub.snippet1" path="code-language/markdown/snippets/markdown.code-snippets" scopeName="text.html.markdown"></snippet>
@@ -51,5 +53,6 @@
 	</extension>
 	<extension point="org.eclipse.ui.genericeditor.contentAssistProcessors">
 		<contentAssistProcessor class="org.emdepub.markdown.editor.language.MarkdownContentAssistProcessor" contentType="org.emdepub.md"></contentAssistProcessor>
+		<contentAssistProcessor class="org.emdepub.toml.editor.language.TomlContentAssistProcessor" contentType="org.emdepub.toml"></contentAssistProcessor>
 	</extension>
 </plugin>

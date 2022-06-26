@@ -1,12 +1,12 @@
 # This is a full-line comment
-"key" = 1  # This is a comment at the end of a line
+"keye1" = 1  # This is a comment at the end of a line
 key = "value"  # This is a comment at the end of a line
 another = "# This is not a comment"
 
 
 key1 = "value"
 
-key2 = # INVALID
+# key2 = # INVALID
 
 first = "Tom" last = "Preston-Werner" # INVALID
 

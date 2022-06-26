@@ -32,7 +32,7 @@ public class EPubProjectGenerateIDsWizard extends Wizard implements IExportWizar
 		manifestIDPrefix = project_ePub.manifestIDPrefix;
 		
 		this.setWindowTitle("Generate Manifest IDs Wizard");
-		this.setDefaultPageImageDescriptor(ImageDescriptor.createFromURL(this.getClass().getResource("/images/md-wizard-banner-exportashtml.png")));
+		this.setDefaultPageImageDescriptor(ImageDescriptor.createFromURL(this.getClass().getResource("/images/epub-project-banner.png")));
 	}
 
 	/** Method */

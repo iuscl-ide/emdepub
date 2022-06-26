@@ -3,6 +3,7 @@ package org.emdepub.activator;
 
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
@@ -11,6 +12,15 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.emdepub.markdown.editor.engine.MarkdownCompletionProposal;
+import org.emdepub.markdown.editor.engine.MarkdownCompletionProposal.MarkdownCompletionProposalKey;
+import org.emdepub.markdown.editor.engine.MarkdownResSupport;
+import org.emdepub.toml.editor.engine.TomlCompletionProposal;
+import org.emdepub.toml.editor.engine.TomlCompletionProposal.TomlCompletionProposalKey;
+import org.emdepub.toml.editor.engine.TomlResSupport;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.toml.TomlMapper;
 
 /** Resources */
 public class R {
@@ -44,6 +54,10 @@ public class R {
 	
 	/** Colors */
 	private final static HashMap<Colors, Color> colorRegistry = new HashMap<>();
+	
+	/** To get from TOML */
+	private static MarkdownResSupport markdownProposalsSupport;
+	private static TomlResSupport tomlProposalsSupport;
 	
 	/** Load shared icons, should be called from outside only once */
 	public static void load(UI ui) {
@@ -82,6 +96,9 @@ public class R {
 		
 		loadPngImageResourceToRegistry("markdown-header");
 		loadPngImageResourceToRegistry("markdown-content-assist-proposal");
+		
+		loadPngImageResourceToRegistry("toml-action-verify-file");
+		loadPngImageResourceToRegistry("toml-action-comment-uncomment");
 		
 		loadPngImageResourceToRegistry("message_warning");
 		
@@ -146,7 +163,7 @@ public class R {
 		colorRegistry.put(Colors.ListSelectedNotFocus, display.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW));
 
 		colorRegistry.put(Colors.ListSelectedSecondaryAndFocus, new Color(display,
-			R.blend(colorRegistry.get(Colors.ListSelectedAndFocus).getRGB(), colorRegistry.get(Colors.ListFontSelected).getRGB(), 80)));
+				R.blend(colorRegistry.get(Colors.ListSelectedAndFocus).getRGB(), colorRegistry.get(Colors.ListFontSelected).getRGB(), 80)));
 		colorRegistry.put(Colors.ListSelectedSecondaryNotFocus, new Color(display,
 				R.blend(colorRegistry.get(Colors.ListSelectedNotFocus).getRGB(), colorRegistry.get(Colors.ListFontSelected).getRGB(), 70)));
 
@@ -158,6 +175,24 @@ public class R {
 //		colorRegistry.put(Colors.ListFont33, new Color(display, R.blend(colorRegistry.get(Colors.List).getRGB(), colorRegistry.get(Colors.ListFont).getRGB(), 33)));
 		
 		//colorRegistry.put(Colors.ListSelectedNotFocus, new Color(display, R.blend(colorRegistry.get(Colors.ListSelectedAndFocus).getRGB(), colorRegistry.get(Colors.ListFontSelected).getRGB(), 85)));
+		
+		try {
+			markdownProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/markdown-content-assist-proposals.toml"), MarkdownResSupport.class);
+		} catch (JsonProcessingException jsonProcessingException) {
+			L.e("markdown-content-assist-proposals.toml", jsonProcessingException);
+		}
+		for (MarkdownCompletionProposal markdownCompletionProposal : markdownProposalsSupport.getProposals().values()) {
+			markdownCompletionProposal.setImage(getImage("markdown-content-assist-proposal"));
+		}
+		
+		try {
+			tomlProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/toml-content-assist-proposals.toml"), TomlResSupport.class);
+		} catch (JsonProcessingException jsonProcessingException) {
+			L.e("toml-content-assist-proposals.toml", jsonProcessingException);
+		}
+		for (TomlCompletionProposal tomlCompletionProposal : tomlProposalsSupport.getProposals().values()) {
+			tomlCompletionProposal.setImage(getImage("markdown-content-assist-proposal"));
+		}
 	}
 
 	/** From Grid */
@@ -248,11 +283,21 @@ public class R {
 	}
 
 	/**
-	 * @return the preferencestore
+	 * @return the preference store
 	 */
 //	public static IPreferenceStore getPreferenceStore() {
 //		return preferenceStore;
 //	}
 	
-	
+	/** Proposals */
+	public static LinkedHashMap<MarkdownCompletionProposalKey, MarkdownCompletionProposal> getMarkdownCompletionProposals() {
+		
+		return markdownProposalsSupport.getProposals();
+	}
+
+	/** Proposals */
+	public static LinkedHashMap<TomlCompletionProposalKey, TomlCompletionProposal> getTomlCompletionProposals() {
+		
+		return tomlProposalsSupport.getProposals();
+	}
 }

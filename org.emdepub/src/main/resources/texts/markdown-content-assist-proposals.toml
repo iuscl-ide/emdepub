@@ -1,0 +1,244 @@
+
+# Emdepub Eclipse Plugin - emdepub.org
+# Markdown content assist proposals
+# 
+# MarkdownCompletionProposal
+# 
+# String replacementString,
+# int replacementOffset,
+# int replacementLength,
+# int cursorPositionChars,
+# int cursorPositionLineDelimiters,
+# String displayString,
+# String additionalProposalInfo
+
+
+[proposals.BOLD_TEXT]
+replacementString = '****'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 0
+displayString = '**bold text** - Insert bold text'
+additionalProposalInfo = '**bold text**'
+
+[proposals.ITALIC_TEXT]
+replacementString = '**'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 1
+cursorPositionLineDelimiters = 0
+displayString = '*italic text* - Insert italic text'
+additionalProposalInfo = '*italic text*'
+
+[proposals.BOLD_ITALIC_TEXT]
+replacementString = '******'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 0
+displayString = '***bold italic text*** - Insert bold italic text'
+additionalProposalInfo = '***bold italic text***'
+
+
+[proposals.STRIKETROUGH_TEXT]
+replacementString = '~~~~'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 0
+displayString = '~~strikethrough text~~ - Insert strikethrough text'
+additionalProposalInfo = '~~strikethrough text~~'
+
+[proposals.QUOTED_TEXT]
+replacementString = '> '
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 0
+displayString = '> quoted text - Insert quoted text'
+additionalProposalInfo = '> quoted text'
+
+
+[proposals.INLINE_CODE]
+replacementString = '``'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 1
+cursorPositionLineDelimiters = 0
+displayString = '`inline code` - Insert inline code'
+additionalProposalInfo = '`inline code`'
+
+[proposals.FENCED_CODE_BLOCK]
+replacementString = '''
+
+``` language
+
+```
+
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 12
+cursorPositionLineDelimiters = 2
+displayString = '``` fenced code ``` - Insert fenced code block'
+additionalProposalInfo = '''
+``` language
+fenced code
+```
+'''
+
+[proposals.INDENTED_CODE_BLOCK]
+replacementString = '''
+
+	code
+
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 1
+cursorPositionLineDelimiters = 2
+displayString = '(tab) indented code - Insert indented code block'
+additionalProposalInfo = '''
+	indented code
+'''
+
+
+[proposals.HEADING_LEVEL_1]
+replacementString = '# Heading'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 0
+displayString = '# Heading - Insert heading level 1'
+additionalProposalInfo = '# Heading level 1'
+
+[proposals.HEADING_LEVEL_2]
+replacementString = '## Heading'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 0
+displayString = '## Heading - Insert heading level 2'
+additionalProposalInfo = '## Heading level 2'
+
+[proposals.HEADING_LEVEL_3]
+replacementString = '### Heading'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 4
+cursorPositionLineDelimiters = 0
+displayString = '### Heading - Insert heading level 3'
+additionalProposalInfo = '### Heading level 3'
+
+[proposals.HEADING_LEVEL_4]
+replacementString = '#### Heading'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 5
+cursorPositionLineDelimiters = 0
+displayString = '#### Heading - Insert heading level 4'
+additionalProposalInfo = '#### Heading level 4'
+
+[proposals.HEADING_LEVEL_5]
+replacementString = '##### Heading'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 6
+cursorPositionLineDelimiters = 0
+displayString = '##### Heading - Insert heading level 5'
+additionalProposalInfo = '##### Heading level 5'
+
+[proposals.HEADING_LEVEL_6]
+replacementString = '###### Heading'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 7
+cursorPositionLineDelimiters = 0
+displayString = '###### Heading - Insert heading level 6'
+additionalProposalInfo = '###### Heading level 6'
+
+
+[proposals.UNORDERED_LIST]
+replacementString = '''
+
+- first
+- second
+- third
+
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 1
+displayString = 'Unordered list - Insert unordered list'
+additionalProposalInfo = '''
+- first
+- second
+- third
+'''
+
+[proposals.ORDERED_LIST]
+replacementString = '''
+
+1. first
+2. second
+3. third
+
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 1
+displayString = 'Ordered list - Insert ordered list'
+additionalProposalInfo = '''
+1. first
+2. second
+3. third
+'''
+
+[proposals.DEFINITION_LIST]
+replacementString = '''
+
+
+:
+
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 0
+cursorPositionLineDelimiters = 1
+displayString = 'Definition list - Insert definition list'
+additionalProposalInfo = '''
+$term
+: definition
+'''
+
+
+[proposals.LINK]
+replacementString = '[](https:// "")'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 1
+cursorPositionLineDelimiters = 0
+displayString = '[link](https://address "Info") - Insert link'
+additionalProposalInfo = '[link text](https://link_address "Link info (tooltip)")'
+
+[proposals.IMAGE]
+replacementString = '![](https://)'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 0
+displayString = '![image alt](https://image_address) - Insert image'
+additionalProposalInfo = '![image alt (tooltip)](https://image_address)'
+
+
+[proposals.HORIZONTAL_RULE]
+replacementString = '----------'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 10
+cursorPositionLineDelimiters = 0
+displayString = '---------- - Insert horizontal rule'
+additionalProposalInfo = '----------'

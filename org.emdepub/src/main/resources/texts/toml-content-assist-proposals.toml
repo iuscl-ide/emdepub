@@ -1,0 +1,129 @@
+
+# Emdepub Eclipse Plugin - emdepub.org
+# Markdown content assist proposals
+# 
+# MarkdownCompletionProposal
+# 
+# String replacementString,
+# int replacementOffset,
+# int replacementLength,
+# int cursorPositionChars,
+# int cursorPositionLineDelimiters,
+# String displayString,
+# String additionalProposalInfo
+
+ 
+[proposals.LINE_COMMENT]
+replacementString = '# '
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 0
+displayString = '# Comment - Insert comment line start'
+additionalProposalInfo = '# All line comment'
+
+[proposals.END_OF_LINE_COMMENT]
+replacementString = ' # '
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 0
+displayString = ' # Comment - Insert end of line comment start'
+additionalProposalInfo = '... # Rest of the line comment'
+
+
+[proposals.KEY_VALUE]
+replacementString = "key = 'value'"
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 0
+cursorPositionLineDelimiters = 0
+displayString = "key = 'value' - Insert key equals value pair"
+additionalProposalInfo = "key = 'value'"
+
+
+[proposals.ONE_DOUBLE_QUOTE_STRING]
+replacementString = '******'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 3
+displayString = '***bold italic text*** - Insert bold italic text'
+additionalProposalInfo = '***bold italic text***'
+
+[proposals.TRIPLE_DOUBLE_QUOTE_STRING]
+replacementString = '******'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 3
+displayString = '***bold italic text*** - Insert bold italic text'
+additionalProposalInfo = '***bold italic text***'
+
+[proposals.ONE_SINGLE_QUOTE_STRING]
+replacementString = '******'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 3
+displayString = '***bold italic text*** - Insert bold italic text'
+additionalProposalInfo = '***bold italic text***'
+
+[proposals.TRIPLE_SINGLE_QUOTE_STRING]
+replacementString = '******'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 3
+displayString = '***bold italic text*** - Insert bold italic text'
+additionalProposalInfo = '***bold italic text***'
+
+
+[proposals.ARRAY]
+replacementString = '~~~~'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 2
+displayString = '~~strikethrough text~~ - Insert strikethrough text'
+additionalProposalInfo = '~~strikethrough text~~'
+
+
+[proposals.TABLE]
+replacementString = '> '
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 2
+displayString = '> quoted text - Insert quoted text'
+additionalProposalInfo = '> quoted text'
+
+
+[proposals.INLINE_TABLE]
+replacementString = '``'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 1
+cursorPositionLineDelimiters = 1
+displayString = '`inline code` - Insert inline code'
+additionalProposalInfo = '`inline code`'
+
+
+[proposals.ARRAY_OF_TABLES]
+replacementString = '''
+
+``` language
+
+```
+
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 12
+cursorPositionLineDelimiters = 2
+displayString = '``` fenced code ``` - Insert fenced code block'
+additionalProposalInfo = '''
+``` language
+fenced code
+```
+'''

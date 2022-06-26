@@ -1,4 +1,4 @@
-{
+
 	"information_for_contributors": [
 		"emdepub.org"
 	],
@@ -16,7 +16,7 @@
 			"include": "#array-of-tables"
 		},
 		{
-			"include": "#table"
+
 		},		
 		{
 			"include": "#key-equals-value"
@@ -39,7 +39,7 @@
 			"match": "(#)\\s+(.*)$",
 			"captures": {
 				"1": {
-					"name": "keyword.control.hash.comment.toml"
+					"name": "punctuation.definition.comment.toml"
 				},
 				"2": {
 					"name": "comment.toml"
@@ -47,7 +47,7 @@
 			}
 		},
 		
-		"array-of-tables": {
+
 			"match": "^\\s*?(\\[\\[)(.*?)\\s*?(\\]\\])(?=\\s+?#|\\s*?$)\\s*?(.*$)",
 			"captures": {
 				"1": {
@@ -56,7 +56,7 @@
 				"2": {
 					"patterns": [
 						{
-							"include": "#table-key"
+							"include": "#key"
 						}
 					]
 				},
@@ -82,7 +82,7 @@
 				"2": {
 					"patterns": [
 						{
-							"include": "#table-key"
+							"include": "#key"
 						}
 					]
 				},
@@ -183,7 +183,7 @@
 				},
 				"15": {
 					"name": "property-name.type.support.key.quoted.toml"
-				},
+
 				"16": {
 					"name": "property-value.support.quote.double.end.key.toml"
 				},
@@ -198,84 +198,6 @@
 				},
 				"20": {
 					"name": "property-name.type.support.key.bare.toml"
-				}
-			}
-		},
-
-		"table-key": {
-			"match": "(?:(.+)(\\.\\s*?)(\")(.+)(\"\\s*?$))|(?:(.+)(\\.\\s*?)(')(.+)('\\s*?$))|(?:(.+)(\\.\\s*?)([A-Za-z0-9_-]+\\s*?$))|(?:(\")(.+)(\"\\s*?$))|(?:(')(.+)('\\s*?$))|([A-Za-z0-9_-]+\\s*?$)",
-			"captures": {
-				"1": {
-					"patterns": [
-						{
-							"include": "#table-key"
-						}	
-					]
-				},
-				"2": {
-					"name": "selector.name.entity.dot.table.key.toml"
-				},
-				"3": {
-					"name": "property-value.support.quote.double.begin.table.key.toml"
-				},
-				"4": {
-					"name": "property-name.type.support.table.key.quoted.toml"
-				},
-				"5": {
-					"name": "property-value.support.quote.double.end.table.key.toml"
-				},
-				"6": {
-					"patterns": [
-						{
-							"include": "#table-key"
-						}	
-					]
-				},
-				"7": {
-					"name": "selector.name.entity.dot.table.key.toml"
-				},
-				"8": {
-					"name": "property-value.support.quote.single.begin.table.key.toml"
-				},
-				"9": {
-					"name": "property-name.type.support.table.key.quoted.toml"
-				},
-				"10": {
-					"name": "property-value.support.quote.single.end.table.key.toml"
-				},
-				"11": {
-					"patterns": [
-						{
-							"include": "#table-key"
-						}	
-					]
-				},
-				"12": {
-					"name": "selector.name.entity.dot.table.key.toml"
-				},
-				"13": {
-					"name": "property-name.type.support.table.key.bare.toml"
-				},
-				"14": {
-					"name": "property-value.support.quote.double.begin.table.key.toml"
-				},
-				"15": {
-					"name": "property-name.type.support.table.key.quoted.toml"
-				},
-				"16": {
-					"name": "property-value.support.quote.double.end.table.key.toml"
-				},
-				"17": {
-					"name": "property-value.support.quote.single.begin.table.key.toml"
-				},
-				"18": {
-					"name": "property-name.type.support.table.key.quoted.toml"
-				},
-				"19": {
-					"name": "property-value.support.quote.single.end.table.key.toml"
-				},
-				"20": {
-					"name": "property-name.type.support.table.key.bare.toml"
 				}
 			}
 		},
@@ -555,7 +477,7 @@
 					"patterns": [
 						{
 							"match": "[0-9a-fA-F]",
-							"name": "numeric.constant.hexadecimal.toml"
+							"name": "numeric.constant.toml"
 						},
 						{
 							"match": "_",
@@ -575,7 +497,7 @@
 					"patterns": [
 						{
 							"match": "[0-7]",
-							"name": "numeric.constant.octal.toml"
+							"name": "numeric.constant.toml"
 						},
 						{
 							"match": "_",
@@ -608,54 +530,15 @@
 
 		"date-time-offset": {
 			"match": "[0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31)[T ](?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1}(?:Z|[+-]{1}(?:0[0-9]|1[0-4]):(?:00|30|45)){0,1}",
-			"captures": {
-				"0": {
-					"patterns": [
-						{
-							"match": "[0-9]",
-							"name": "storage.date-time-offset.toml"
-						},
-						{
-							"match": "[-:TZ]",
-							"name": "storage.separator.date-time-offset.toml"
-						}
-					]
-				}
-			}
+			"name": "storage.date-time-offset.toml"
 		},
 		"local-date": {
 			"match": "[0-9][0-9][0-9][0-9]-(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8]|29|30|31)",
-			"captures": {
-				"0": {
-					"patterns": [
-						{
-							"match": "[0-9]",
-							"name": "storage.local-date.toml"
-						},
-						{
-							"match": "[-]",
-							"name": "storage.local-date.toml"
-						}
-					]
-				}
-			}
+			"name": "storage.local-date.toml"
 		},
 		"local-time": {
 			"match": "(?:0[0-9]|1[0-9]|2[0-3]):(?:[0-5][0-9]):(?:[0-5][0-9])(?:\\.[0-9][0-9][0-9](?:[0-9]){0,1}(?:[0-9]){0,1}(?:[0-9]){0,1}){0,1}",
-			"captures": {
-				"0": {
-					"patterns": [
-						{
-							"match": "[0-9]",
-							"name": "storage.local-time.toml"
-						},
-						{
-							"match": "[:.]",
-							"name": "storage.separator.local-time.toml"
-						}
-					]
-				}
-			}
+			"name": "storage.local-time.toml"
 		},
 		
 		"integer-float-decimal-exponent-with-separators": {

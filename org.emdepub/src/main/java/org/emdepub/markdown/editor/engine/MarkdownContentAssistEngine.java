@@ -7,8 +7,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.swt.graphics.Image;
 import org.emdepub.activator.R;
+import org.emdepub.markdown.editor.engine.MarkdownCompletionProposal.MarkdownCompletionProposalKey;
 
 import com.vladsch.flexmark.ast.Code;
 import com.vladsch.flexmark.ast.CodeBlock;
@@ -25,61 +25,28 @@ import com.vladsch.flexmark.util.ast.Visitor;
 
 /** Markdown visitors engine */
 public class MarkdownContentAssistEngine {
-	
+
 	/** For now */
 	private static final char[] NO_CHARS = new char[0];
-	
-	/** Default proposal keys */
-	private static enum MarkdownProposal { 
-		BOLD_TEXT, ITALIC_TEXT, BOLD_ITALIC_TEXT,
-		STRIKETROUGH_TEXT, QUOTED_TEXT,
-		INLINE_CODE, FENCED_CODE_BLOCK, INDENTED_CODE_BLOCK,
-		HEADING_LEVEL_1, HEADING_LEVEL_2, HEADING_LEVEL_3, HEADING_LEVEL_4, HEADING_LEVEL_5, HEADING_LEVEL_6,
-		UNORDERED_LIST, ORDERED_LIST, DEFINITION_LIST,
-		LINK, IMAGE,
-		HORIZONTAL_RULE};
 
 	/** Default proposals */
-	private static final LinkedHashMap<MarkdownProposal, MarkdownCompletionProposal> defaultProposals = new LinkedHashMap<>();
+	private static final LinkedHashMap<MarkdownCompletionProposalKey, MarkdownCompletionProposal> defaultProposals;
 	
 	/** Warning proposals */
 	private static final LinkedHashMap<String, MarkdownCompletionProposal> warningProposals = new LinkedHashMap<>();
 
-	private static final Image completionProposalImage = R.getImage("markdown-content-assist-proposal");
-	private static final Image warningProposalImage = R.getImage("message_warning");
-	
 	/** Fill default and warning proposals */
 	static {
-		int[] proposalIndex = { 0 };
-		new RecSepBlockDelim(R.getTextResourceAsString("texts/markdown-content-assist-proposals.txt")) {
-			@Override
-			public void loadFields(ArrayList<String> fields) {
-				//L.p(fields.toString());
-				defaultProposals.put(MarkdownProposal.values()[proposalIndex[0]], 
-					new MarkdownCompletionProposal(
-						fields.get(0),
-						Integer.valueOf(fields.get(1)),
-						Integer.valueOf(fields.get(2)),
-						Integer.valueOf(fields.get(3)),
-						Integer.valueOf(fields.get(4)),
-						completionProposalImage,
-						fields.get(5),
-						null,
-						fields.get(6)
-					)	
-				);
-				proposalIndex[0]++;
-			}
-		};
+		defaultProposals = R.getMarkdownCompletionProposals();
 		
 		warningProposals.put("Html", new MarkdownCompletionProposal("", 0, 0, 0, 0,
-			warningProposalImage,
-			"No Markdown elements available inside an HTML block",
-			null, null));
+				R.getImage("message_warning"),
+				"No Markdown elements available inside an HTML block",
+				null, null));
 		warningProposals.put("Code", new MarkdownCompletionProposal("", 0, 0, 0, 0,
-			warningProposalImage,
-			"No Markdown elements available inside a code inline or code block",
-			null, null));
+				R.getImage("message_warning"),
+				"No Markdown elements available inside a code inline or code block",
+				null, null));
 	}
 	
 	/** Linearize some nodes */
@@ -167,7 +134,7 @@ public class MarkdownContentAssistEngine {
 
 		MarkdownCompletionProposal[] completionProposals;
 
-		LinkedHashSet<MarkdownProposal> validProposals = new LinkedHashSet<MarkdownProposal>(Arrays.asList(MarkdownProposal.values()));
+		LinkedHashSet<MarkdownCompletionProposalKey> validProposals = new LinkedHashSet<MarkdownCompletionProposalKey>(Arrays.asList(MarkdownCompletionProposalKey.values()));
 		MarkdownCompletionProposal warningProposal = null;
 		
 		if (linearNodes.size() == 0) {
@@ -182,20 +149,20 @@ public class MarkdownContentAssistEngine {
 		}
 		else {
 			if (linearNodes.contains("Heading")) {
-				validProposals.remove(MarkdownProposal.HEADING_LEVEL_1);
-				validProposals.remove(MarkdownProposal.HEADING_LEVEL_2);
-				validProposals.remove(MarkdownProposal.HEADING_LEVEL_3);
-				validProposals.remove(MarkdownProposal.HEADING_LEVEL_4);
-				validProposals.remove(MarkdownProposal.HEADING_LEVEL_5);
-				validProposals.remove(MarkdownProposal.HEADING_LEVEL_6);
+				validProposals.remove(MarkdownCompletionProposalKey.HEADING_LEVEL_1);
+				validProposals.remove(MarkdownCompletionProposalKey.HEADING_LEVEL_2);
+				validProposals.remove(MarkdownCompletionProposalKey.HEADING_LEVEL_3);
+				validProposals.remove(MarkdownCompletionProposalKey.HEADING_LEVEL_4);
+				validProposals.remove(MarkdownCompletionProposalKey.HEADING_LEVEL_5);
+				validProposals.remove(MarkdownCompletionProposalKey.HEADING_LEVEL_6);
 			}
 			if (linearNodes.get(linearNodes.size() - 1).equals("Emphasis")) {
-				validProposals.remove(MarkdownProposal.ITALIC_TEXT);
-				validProposals.remove(MarkdownProposal.BOLD_ITALIC_TEXT);
+				validProposals.remove(MarkdownCompletionProposalKey.ITALIC_TEXT);
+				validProposals.remove(MarkdownCompletionProposalKey.BOLD_ITALIC_TEXT);
 			}
 			if (linearNodes.get(linearNodes.size() - 1).equals("StrongEmphasis")) {
-				validProposals.remove(MarkdownProposal.BOLD_TEXT);
-				validProposals.remove(MarkdownProposal.BOLD_ITALIC_TEXT);
+				validProposals.remove(MarkdownCompletionProposalKey.BOLD_TEXT);
+				validProposals.remove(MarkdownCompletionProposalKey.BOLD_ITALIC_TEXT);
 			}
 		}
 
@@ -209,7 +176,7 @@ public class MarkdownContentAssistEngine {
 		completionProposals = new MarkdownCompletionProposal[validProposals.size()];
 		int index = 0;
 		int lineDelimiterChars = lineDelimiter.length();
-		for (MarkdownProposal validProposal : validProposals) {
+		for (MarkdownCompletionProposalKey validProposal : validProposals) {
 			MarkdownCompletionProposal completionProposal = defaultProposals.get(validProposal);
 			completionProposal.setReplacementString(completionProposal.getReplacementString().replaceAll("\\R", lineDelimiter));
 			completionProposal.setReplacementOffset(offset);

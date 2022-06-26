@@ -44,7 +44,7 @@ public class EPubProjectModifyManifestItemWizard extends Wizard implements IExpo
 		itemFileProperties = project_ePub_manifest_item.itemFileProperties;
 		
 		this.setWindowTitle("Modify Manifest Item Wizard");
-		this.setDefaultPageImageDescriptor(ImageDescriptor.createFromURL(this.getClass().getResource("/images/md-wizard-banner-exportashtml.png")));
+		this.setDefaultPageImageDescriptor(ImageDescriptor.createFromURL(this.getClass().getResource("/images/epub-project-banner.png")));
 	}
 
 	/** Method */
