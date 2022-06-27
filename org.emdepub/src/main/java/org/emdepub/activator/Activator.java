@@ -32,8 +32,6 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
-		/* Resources */
-		R.load(new UI(false, Display.getDefault()));
 		
 		/* Plug-in root folder */
 		URL pluginRootURL = FileLocator.find(Platform.getBundle(PLUGIN_ID), new Path("/"), null);
@@ -41,16 +39,19 @@ public class Activator extends AbstractUIPlugin {
 			pluginFolderPathName = (new File(FileLocator.resolve(pluginRootURL).toURI())).getCanonicalFile().getCanonicalPath();
 		}
 		catch (IOException ioException) {
-			L.e("IOException in Activator", ioException);
+			ioException.printStackTrace();
 		}
 		catch (URISyntaxException uriSyntaxException) {
-			L.e("URISyntaxException in Activator", uriSyntaxException);
+			uriSyntaxException.printStackTrace();
 		}
 
 		/* Log */
 		File logFile = new File(pluginFolderPathName, "log/emdepub.log");
 		F.createFoldersIfNotExists(pluginFolderPathName + "/log");
 		L.initLog(logFile);
+		
+		/* Resources */
+		R.load(new UI(false, Display.getDefault()));
 	}
 
 	@Override

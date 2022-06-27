@@ -20,7 +20,11 @@ replacementLength = 0
 cursorPositionChars = 2
 cursorPositionLineDelimiters = 0
 displayString = '# Comment - Insert comment line start'
-additionalProposalInfo = '# All line comment'
+additionalProposalInfo = '''
+Line comment
+
+# This is a full-line comment
+'''
 
 [proposals.END_OF_LINE_COMMENT]
 replacementString = ' # '
@@ -29,7 +33,11 @@ replacementLength = 0
 cursorPositionChars = 3
 cursorPositionLineDelimiters = 0
 displayString = ' # Comment - Insert end of line comment start'
-additionalProposalInfo = '... # Rest of the line comment'
+additionalProposalInfo = '''
+Rest of the line comment
+
+ # This is a comment at the end of a line
+'''
 
 
 [proposals.KEY_VALUE]
@@ -39,91 +47,411 @@ replacementLength = 0
 cursorPositionChars = 0
 cursorPositionLineDelimiters = 0
 displayString = "key = 'value' - Insert key equals value pair"
-additionalProposalInfo = "key = 'value'"
+additionalProposalInfo = '''
+Key/Value Pair
+
+key = "value"
+
+key = "value"
+bare_key = "value"
+bare-key = "value"
+1234 = "value"
+
+"127.0.0.1" = "value"
+"character encoding" = "value"
+"ʎǝʞ" = "value"
+'key2' = "value"
+'quoted "value"' = "value"
+
+name = "Orange"
+physical.color = "orange"
+physical.shape = "round"
+site."google.com" = true
+
+3.14159 = "pi"
+'''
 
 
 [proposals.ONE_DOUBLE_QUOTE_STRING]
-replacementString = '******'
-replacementOffset = 0
-replacementLength = 0
-cursorPositionChars = 3
-cursorPositionLineDelimiters = 3
-displayString = '***bold italic text*** - Insert bold italic text'
-additionalProposalInfo = '***bold italic text***'
-
-[proposals.TRIPLE_DOUBLE_QUOTE_STRING]
-replacementString = '******'
-replacementOffset = 0
-replacementLength = 0
-cursorPositionChars = 3
-cursorPositionLineDelimiters = 3
-displayString = '***bold italic text*** - Insert bold italic text'
-additionalProposalInfo = '***bold italic text***'
-
-[proposals.ONE_SINGLE_QUOTE_STRING]
-replacementString = '******'
-replacementOffset = 0
-replacementLength = 0
-cursorPositionChars = 3
-cursorPositionLineDelimiters = 3
-displayString = '***bold italic text*** - Insert bold italic text'
-additionalProposalInfo = '***bold italic text***'
-
-[proposals.TRIPLE_SINGLE_QUOTE_STRING]
-replacementString = '******'
-replacementOffset = 0
-replacementLength = 0
-cursorPositionChars = 3
-cursorPositionLineDelimiters = 3
-displayString = '***bold italic text*** - Insert bold italic text'
-additionalProposalInfo = '***bold italic text***'
-
-
-[proposals.ARRAY]
-replacementString = '~~~~'
-replacementOffset = 0
-replacementLength = 0
-cursorPositionChars = 2
-cursorPositionLineDelimiters = 2
-displayString = '~~strikethrough text~~ - Insert strikethrough text'
-additionalProposalInfo = '~~strikethrough text~~'
-
-
-[proposals.TABLE]
-replacementString = '> '
-replacementOffset = 0
-replacementLength = 0
-cursorPositionChars = 2
-cursorPositionLineDelimiters = 2
-displayString = '> quoted text - Insert quoted text'
-additionalProposalInfo = '> quoted text'
-
-
-[proposals.INLINE_TABLE]
-replacementString = '``'
+replacementString = '""'
 replacementOffset = 0
 replacementLength = 0
 cursorPositionChars = 1
-cursorPositionLineDelimiters = 1
-displayString = '`inline code` - Insert inline code'
-additionalProposalInfo = '`inline code`'
+cursorPositionLineDelimiters = 0
+displayString = '"" - Insert one double quote string'
+additionalProposalInfo = '''
+One double quote string
 
+"I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
 
-[proposals.ARRAY_OF_TABLES]
+"The quick brown fox jumps over the lazy dog."
+'''
+
+[proposals.TRIPLE_DOUBLE_QUOTE_STRING]
 replacementString = '''
+"""
 
-``` language
-
-```
-
+"""
 '''
 replacementOffset = 0
 replacementLength = 0
-cursorPositionChars = 12
-cursorPositionLineDelimiters = 2
-displayString = '``` fenced code ``` - Insert fenced code block'
+cursorPositionChars = 4
+cursorPositionLineDelimiters = 1
+displayString = '""" """ - Insert triple double quote string'
 additionalProposalInfo = '''
-``` language
-fenced code
-```
+Triple double quote string
+
+"""
+Roses are red
+Violets are blue"""
+
+"""
+The quick brown \
+
+
+  fox jumps over \
+    the lazy dog."""
+    
+"""\
+       The quick brown \
+       fox jumps over \
+       the lazy dog.\
+       """    
+'''
+
+[proposals.ONE_SINGLE_QUOTE_STRING]
+replacementString = "''"
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 1
+cursorPositionLineDelimiters = 0
+displayString = "'' - Insert one sigle quote string"
+additionalProposalInfo = '''
+One sigle quote string (Literal string)
+
+'C:\Users\nodejs\templates'
+'\\ServerX\admin$\system32\'
+'Tom "Dubs" Preston-Werner'
+'<\i\c*\s*>'
+'''
+
+[proposals.TRIPLE_SINGLE_QUOTE_STRING]
+replacementString = """
+'''
+
+'''
+"""
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 4
+cursorPositionLineDelimiters = 1
+displayString = "''' ''' - Insert triple sigle quote string"
+additionalProposalInfo = """
+Triple sigle quote string
+
+'''I [dw]on't need \\d{2} apples'''
+
+'''
+The first newline is
+trimmed in raw strings.
+   All other whitespace
+   is preserved.
+'''
+"""
+
+
+[proposals.INTEGER_SEPARATORS]
+replacementString = '123_456'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 7
+cursorPositionLineDelimiters = 0
+displayString = '123_456 - Insert integer (with separators)'
+additionalProposalInfo = '''
+Integer
+
++99
+42
+0
+-17
+
+1_000
+5_349_221
+53_49_221
+1_2_3_4_5
+'''
+
+[proposals.INTEGER_HEXADECIMAL_SEPARATORS]
+replacementString = '0xAB_CD_EF'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 10
+cursorPositionLineDelimiters = 0
+displayString = '0xAB_CD_EF - Insert integer hexadecimal (with separators)'
+additionalProposalInfo = '''
+Integer hexadecimal
+
+0xDEADBEEF
+0xdeadbeef
+0xdead_beef
+'''
+
+[proposals.INTEGER_OCTAL_SEPARATORS]
+replacementString = '0o0123_4567'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 11
+cursorPositionLineDelimiters = 0
+displayString = '0o0123_4567 - Insert integer octal (with separators)'
+additionalProposalInfo = '''
+Integer octal
+
+0o01234567
+0o755 # useful for Unix file permissions
+'''
+
+[proposals.INTEGER_BINARY_SEPARATORS]
+replacementString = '0b1111_0000'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 11
+cursorPositionLineDelimiters = 0
+displayString = '0b1111_0000 - Insert integer binary (with separators)'
+additionalProposalInfo = '''
+Integer binary
+
+0b11010110
+'''
+
+
+[proposals.FLOAT_SEPARATORS]
+replacementString = '1_234.567e89'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 12
+cursorPositionLineDelimiters = 0
+displayString = '1_234.567e89 - Insert float (with separators)'
+additionalProposalInfo = '''
+Float fractional, exponent or both
+
++1.0
+3.1415
+-0.01
+
+5e+22
+1e06
+-2E-2
+
+6.626e-34
+
+224_617.445_991_228
+'''
+
+[proposals.FLOAT_INF]
+replacementString = 'inf'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 0
+displayString = 'inf - Insert float inf'
+additionalProposalInfo = '''
+Float Infinity
+
+inf  # positive infinity
++inf # positive infinity
+-inf # negative infinity
+'''
+
+[proposals.FLOAT_NAN]
+replacementString = 'nan'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 0
+displayString = 'nan - Insert float nan'
+additionalProposalInfo = '''
+Float Not A Number
+
+nan  # actual sNaN/qNaN encoding is implementation-specific
++nan # same as `nan`
+-nan # valid, actual encoding is implementation-specific
+'''
+
+
+[proposals.BOOLEAN_TRUE]
+replacementString = 'true'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 4
+cursorPositionLineDelimiters = 0
+displayString = 'true - Insert boolean true'
+additionalProposalInfo = '''
+Boolean TRUE
+
+true
+'''
+
+[proposals.BOOLEAN_FALSE]
+replacementString = 'false'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 5
+cursorPositionLineDelimiters = 0
+displayString = 'false - Insert boolean false'
+additionalProposalInfo = '''
+Boolean FALSE
+
+false
+'''
+
+
+[proposals.OFFSET_DATE_TIME]
+replacementString = '2022-10-20T23:59:59.999999-07:00'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 32
+cursorPositionLineDelimiters = 0
+displayString = '2022-10-20T23:59:59.999999-07:00 - Offset Date-Time'
+additionalProposalInfo = '''
+Offset Date-Time
+
+1979-05-27T07:32:00Z
+1979-05-27T00:32:00-07:00
+1979-05-27T00:32:00.999999-07:00
+
+1979-05-27 07:32:00Z
+'''
+
+[proposals.LOCAL_DATE_TIME]
+replacementString = '2022-10-20T23:59:59.999999'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 26
+cursorPositionLineDelimiters = 0
+displayString = '2022-10-20T23:59:59.999999 - Local Date-Time'
+additionalProposalInfo = '''
+Local Date-Time
+
+1979-05-27T07:32:00
+1979-05-27T00:32:00.999999
+'''
+
+[proposals.LOCAL_DATE]
+replacementString = '2022-10-20'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 10
+cursorPositionLineDelimiters = 0
+displayString = '2022-10-20 - Local Date'
+additionalProposalInfo = '''
+Local Date
+
+1979-05-27
+'''
+
+[proposals.LOCAL_TIME]
+replacementString = '23:59:59.999999'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 15
+cursorPositionLineDelimiters = 0
+displayString = '23:59:59.999999 - Local Time'
+additionalProposalInfo = '''
+Local Time
+
+07:32:00
+00:32:00.999999
+'''
+
+
+[proposals.ARRAY]
+replacementString = '[, ]'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 1
+cursorPositionLineDelimiters = 0
+displayString = '[, ] - Insert array'
+additionalProposalInfo = '''
+Array
+
+[ 1, 2, 3 ]
+[ "red", "yellow", "green" ]
+[ [ 1, 2 ], [3, 4, 5] ]
+[ [ 1, 2 ], ["a", "b", "c"] ]
+[ "all", 'strings', """are the same""" ]
+
+[ 0.1, 0.2, 0.5, 1, 2, 5 ]
+[
+  "Foo Bar <foo@example.com>",
+  { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
+]
+
+[
+  1, 2, 3
+]
+[
+  1,
+  2, # this is ok
+]
+'''
+
+
+[proposals.TABLE]
+replacementString = '[table.key]'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 1
+cursorPositionLineDelimiters = 0
+displayString = '[table.key] - Insert table header'
+additionalProposalInfo = '''
+Table
+
+[table]
+[table-1]
+[table-2]
+
+[dog."tater.man"]
+
+[fruit.apple]
+[fruit.orange]
+
+[animal]
+
+[fruit.apple.texture]
+'''
+
+
+[proposals.INLINE_TABLE]
+replacementString = '{ key1 = "value1", key2 = "value2" }'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 0
+displayString = '{ key1 = "value1", key2 = "value2" } - Insert inline table'
+additionalProposalInfo = '''
+Inline Table
+
+{ first = "Tom", last = "Preston-Werner" }
+{ x = 1, y = 2 }
+{ type.name = "pug" }
+
+{ name = "Nail" }
+'''
+
+
+[proposals.ARRAY_OF_TABLES]
+replacementString = '[[table.key]]'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 2
+cursorPositionLineDelimiters = 0
+displayString = '[[table.key]] - Insert array of tables header'
+additionalProposalInfo = '''
+Array of Tables
+
+[[products]]
+
+[[fruits]]
+[fruits.physical]
+[[fruits.varieties]]
 '''

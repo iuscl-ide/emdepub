@@ -99,6 +99,7 @@ public class R {
 		
 		loadPngImageResourceToRegistry("toml-action-verify-file");
 		loadPngImageResourceToRegistry("toml-action-comment-uncomment");
+		loadPngImageResourceToRegistry("toml-completion-proposal");
 		
 		loadPngImageResourceToRegistry("message_warning");
 		
@@ -191,7 +192,7 @@ public class R {
 			L.e("toml-content-assist-proposals.toml", jsonProcessingException);
 		}
 		for (TomlCompletionProposal tomlCompletionProposal : tomlProposalsSupport.getProposals().values()) {
-			tomlCompletionProposal.setImage(getImage("markdown-content-assist-proposal"));
+			tomlCompletionProposal.setImage(getImage("toml-completion-proposal"));
 		}
 	}
 
