@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?compositeMetadataRepository version='1.0.0'?>
-<repository name='Eclipse Markdown ePub Plugin' type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository' version='1.0.0'>
+<repository name='Eclipse Markdown ePub TOML Plugin' type='org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository' version='1.0.0'>
     <properties size='2'>
         <property name='p2.compressed' value='true' />
         <!-- get new time w/ date +%s000 -->
-        <property name='p2.timestamp' value='202105032050' />
+        <property name='p2.timestamp' value='202206282012' />
     </properties>
     <children size='1'>
-        <child location='jar:https://github.com/iuscl-ide/emdepub/releases/download/v1.0.1.202105032050/org.emdepub_1.0.1.202105032050.zip!/' />
+        <child location='jar:https://github.com/iuscl-ide/emdepub/releases/download/v1.0.2.202206282012/org.emdepub_1.0.2.202206282012.zip!/' />
     </children>
 </repository>
