@@ -1,6 +1,6 @@
 <!--
 ---
-Eclipse Markdown ePub Plugin - 2021 emdepub.org
+Eclipse Markdown ePub TOML Plugin - 2022 emdepub.org
 ---
 -->
 
@@ -14,7 +14,7 @@ Emdepub is an Eclipse plugin for displaying and editing [Markdown (.md)](http://
 
 The plugin now has support for [TOML](https://toml.io/en/v1.0.0), with syntax, verification and proposals
 
-This plugin is a new version of the now deprecated (no longer maintained) plugin [Markdown Semantic EP](http://markdownsemanticep.org) ([GitHub](https://github.com/iuscl-ide/markdownsemanticep)). The difference between the two comes from the fact that the visual part is now done in the Eclipse "modern" way, with tm4e, JavaScript render, and MS VSC. The code manipulation part has remain in [Flexmark](https://github.com/vsch/flexmark-java) and for a detailed description of each functionality, please go to [markdown progress](progress.html)
+This plugin is a new version of the now deprecated (no longer maintained) plugin [Markdown Semantic EP](http://markdownsemanticep.org) ([GitHub](https://github.com/iuscl-ide/markdownsemanticep)). The difference between the two comes from the fact that the visual part is now done in the Eclipse "modern" way, with tm4e, JavaScript render, and MS VSC. The code manipulation part has remain in [Flexmark](https://github.com/vsch/flexmark-java) and for a detailed description of each functionality, please go to [Markdown progress](progress.html)
 
 The main goals are speed and quality for both the syntax highlight and the resulted HTML. These qualities still doesn't seem to be entirely fulfilled by the existing Eclipse plugins. 
 
