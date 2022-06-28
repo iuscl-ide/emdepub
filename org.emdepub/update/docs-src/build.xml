@@ -2,7 +2,7 @@
 
 <project name="MarkdownSemanticEP_create_docs" default="create">
 
-	<property name="home.folder" value="${REPLACED_FROM_ANT_RUN}"/>
+	<property name="home.folder" value="${HOME_FOLDER}"/>
 	
 	<target name="create">
 <!--    	<delete includeEmptyDirs="true" quiet="true">

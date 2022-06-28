@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.emdepub"
-      label="Eclipse Markdown ePub Plugin"
-      version="1.0.1.qualifier"
+      label="Eclipse Markdown ePub TOML Plugin"
+      version="1.0.2.qualifier"
       provider-name="emdepub.org"
       plugin="org.emdepub">
 
    <description url="http://emdepub.org">
-      Eclipse Markdown ePub Plugin
+      Eclipse Markdown ePub TOML Plugin
    </description>
 
    <copyright>
-      Copyright 2021 emdepub.org - http://emdepub.org
+      Copyright 2022 emdepub.org - http://emdepub.org
    </copyright>
 
    <license url="">
@@ -25,13 +25,13 @@ Two small things to keep in mind:
    </license>
 
    <url>
-      <update label="Eclipse Markdown ePub Plugin Update Site" url="http://emdepub.org/update"/>
+      <update label="Eclipse Markdown ePub TOML Plugin Update Site" url="http://emdepub.org/update"/>
    </url>
 
    <plugin
          id="org.emdepub"
          download-size="0"
          install-size="0"
-         version="1.0.1.qualifier"/>
+         version="1.0.2.qualifier"/>
 
 </feature>

@@ -1,8 +1,7 @@
-
-# Emdepub Eclipse Plugin - emdepub.org
-# Markdown content assist proposals
+# EMDEPUB Eclipse Plugin - emdepub.org
+# TOML content assist proposals
 # 
-# MarkdownCompletionProposal
+# TomlCompletionProposal
 # 
 # String replacementString,
 # int replacementOffset,
@@ -125,9 +124,9 @@ replacementOffset = 0
 replacementLength = 0
 cursorPositionChars = 1
 cursorPositionLineDelimiters = 0
-displayString = "'' - Insert one sigle quote string"
+displayString = "'' - Insert one single quote string"
 additionalProposalInfo = '''
-One sigle quote string (Literal string)
+One single quote string (Literal string)
 
 'C:\Users\nodejs\templates'
 '\\ServerX\admin$\system32\'
@@ -145,9 +144,9 @@ replacementOffset = 0
 replacementLength = 0
 cursorPositionChars = 4
 cursorPositionLineDelimiters = 1
-displayString = "''' ''' - Insert triple sigle quote string"
+displayString = "''' ''' - Insert triple single quote string"
 additionalProposalInfo = """
-Triple sigle quote string
+Triple single quote string
 
 '''I [dw]on't need \\d{2} apples'''
 
@@ -311,7 +310,7 @@ replacementOffset = 0
 replacementLength = 0
 cursorPositionChars = 32
 cursorPositionLineDelimiters = 0
-displayString = '2022-10-20T23:59:59.999999-07:00 - Offset Date-Time'
+displayString = '2022-10-20T23:59:59.999999-07:00 - Insert offset date-time'
 additionalProposalInfo = '''
 Offset Date-Time
 
@@ -328,7 +327,7 @@ replacementOffset = 0
 replacementLength = 0
 cursorPositionChars = 26
 cursorPositionLineDelimiters = 0
-displayString = '2022-10-20T23:59:59.999999 - Local Date-Time'
+displayString = '2022-10-20T23:59:59.999999 - Insert local date-time'
 additionalProposalInfo = '''
 Local Date-Time
 
@@ -355,7 +354,7 @@ replacementOffset = 0
 replacementLength = 0
 cursorPositionChars = 15
 cursorPositionLineDelimiters = 0
-displayString = '23:59:59.999999 - Local Time'
+displayString = '23:59:59.999999 - Insert local time'
 additionalProposalInfo = '''
 Local Time
 

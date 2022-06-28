@@ -1,10 +1,10 @@
-<!-- Eclipse Markdown ePub Plugin - 2021 emdepub.org -->
+<!-- Eclipse Markdown ePub TOML Plugin - 2022 emdepub.org -->
 
 <project name="emdepub_create_distribution" default="create">
 
-	<property name="release.timestamp" value="202105032050"/>
-	<property name="release.version" value="1.0.1.${release.timestamp}"/>
-	<property name="home.folder" value="${REPLACED_FROM_ANT_RUN}"/>
+	<property name="release.timestamp" value="${RELEASE_TIMESTAMP}"/>
+	<property name="release.version" value="1.0.2.${release.timestamp}"/>
+	<property name="home.folder" value="${HOME_FOLDER}"/>
 
 	<target name="create">
 
@@ -17,7 +17,7 @@
 				<include name="site.xml"/>
 			</fileset>
 			<manifest>
-				<attribute name="Implementation-Title" value="Eclipse Markdown ePub Plugin" />
+				<attribute name="Implementation-Title" value="Eclipse Markdown ePub TOML Plugin" />
 				<attribute name="Implementation-Version" value="${release.version}" />
 				<attribute name="Implementation-Vendor" value="emdepub.org" />
 			</manifest>

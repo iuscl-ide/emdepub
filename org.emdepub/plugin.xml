@@ -41,8 +41,8 @@
 		<themeAssociation scopeName="source.toml" themeId="org.emdepub.toml.dark.spec.theme" whenDark="true"></themeAssociation>
 	</extension>
 	<extension point="org.eclipse.tm4e.ui.snippets">
-		<snippet name="org.emdepub.snippet1" path="code-language/markdown/snippets/markdown.code-snippets" scopeName="text.html.markdown"></snippet>
-		<snippet name="org.emdepub.snippet2" path="code-language/markdown/snippets/markdown.code-snippets" scopeName="source.toml"></snippet>
+		<snippet name="org.emdepub.snippet.markdown" path="code-language/markdown/snippets/markdown.code-snippets" scopeName="text.html.markdown"></snippet>
+		<snippet name="org.emdepub.snippet.toml" path="code-language/toml/snippets/toml.code-snippets" scopeName="source.toml"></snippet>
 	</extension>
 
 	<extension point="org.eclipse.ui.genericeditor.reconcilers">

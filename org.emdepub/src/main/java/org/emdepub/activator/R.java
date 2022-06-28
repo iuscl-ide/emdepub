@@ -98,7 +98,7 @@ public class R {
 		loadPngImageResourceToRegistry("markdown-content-assist-proposal");
 		
 		loadPngImageResourceToRegistry("toml-action-verify-file");
-		loadPngImageResourceToRegistry("toml-action-comment-uncomment");
+		loadPngImageResourceToRegistry("toml-action-comment");
 		loadPngImageResourceToRegistry("toml-completion-proposal");
 		
 		loadPngImageResourceToRegistry("message_warning");

@@ -45,8 +45,7 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 	private Action verifyTomlAction;
 	private final static String verifyTomlActionId = "org.emdepub.ui.editor.toml.action.verifyToml";
 	
-	private final static String verifyTomlResultOK = "OK on last verify";
-	private String verifyTomlResultString = verifyTomlResultOK;
+
 
 	/** Comment TOML */
 	private Action commentTomlAction;
@@ -62,7 +61,7 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 		statusLinePositionField.setText("0");
 
 		statusLineVerifyField = new StatusLineContributionItem("statusLineVerifyField", 120);
-		statusLineVerifyField.setText(verifyTomlResultString);
+		statusLineVerifyField.setText(TomlExtensionBasedEditor.verifyTomlResultVoid);
 	}
 
 	/** Initial, fix contribution */
@@ -100,7 +99,15 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 		
 		tomlSourceTextEditor = (TomlExtensionBasedEditor) editorPart;
 		
-		verifyToml();
+		statusLinePositionField.setText(tomlSourceTextEditor.getCursorPositionText());
+		
+		if (tomlSourceTextEditor.getVerifyTomlResultString().equals(TomlExtensionBasedEditor.verifyTomlResultOK) ||
+				tomlSourceTextEditor.getVerifyTomlResultString().equals(TomlExtensionBasedEditor.verifyTomlResultVoid)) {
+			statusLineVerifyField.setText(tomlSourceTextEditor.getVerifyTomlResultString());	
+		}
+		else {
+			statusLineVerifyField.setText(tomlSourceTextEditor.getVerifyTomlResultString() + " " + tomlSourceTextEditor.getVerifyTomlResultLineCol());	
+		}
 	}
 
 	/** Action to be access also from page activation */
@@ -110,12 +117,13 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 		try {
 			IDocument document = tomlSourceTextEditor.getDocumentProvider().getDocument(tomlSourceTextEditor.getEditorInput());
 			tomlMapper.readTree(document.get());
-			verifyTomlResultString = verifyTomlResultOK;
-			statusLineVerifyField.setText(verifyTomlResultString);
+			tomlSourceTextEditor.setVerifyTomlResultString(TomlExtensionBasedEditor.verifyTomlResultOK);
+			statusLineVerifyField.setText(tomlSourceTextEditor.getVerifyTomlResultString());
 		} catch (TomlStreamReadException tomlStreamReadException) {
 			tomlSourceTextEditor.selectAndReveal((int) tomlStreamReadException.getLocation().getCharOffset(), 0);
-			verifyTomlResultString = tomlStreamReadException.getOriginalMessage();
-			statusLineVerifyField.setText(verifyTomlResultString);
+			tomlSourceTextEditor.setVerifyTomlResultString(tomlStreamReadException.getOriginalMessage());
+			tomlSourceTextEditor.setVerifyTomlResultLineCol("(" + tomlStreamReadException.getLocation().getLineNr() + " : " + tomlStreamReadException.getLocation().getColumnNr() + ")");
+			statusLineVerifyField.setText(tomlSourceTextEditor.getVerifyTomlResultString());
 		} catch (JsonMappingException jsonMappingException) {
 			L.e("Load from TOML resource, JSON exception", jsonMappingException);
 		} catch (JsonProcessingException jsonProcessingException) {
@@ -216,16 +224,10 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 		commentTomlAction.setId(commentTomlActionId);
 		commentTomlAction.setText("Comment / Uncomment TOML");
 		commentTomlAction.setToolTipText("Comment / Uncomment TOML");
-		commentTomlAction.setImageDescriptor(R.getImageDescriptor("toml-action-comment-uncomment"));
+		commentTomlAction.setImageDescriptor(R.getImageDescriptor("toml-action-comment"));
 	}
 	
 	public static StatusLineContributionItem getStatusLinePositionField() {
 		return statusLinePositionField;
 	}
-
-	public String getVerifyTomlResultString() {
-		return verifyTomlResultString;
-	}
-	
-	
 }

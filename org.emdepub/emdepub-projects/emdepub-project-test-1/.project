@@ -32,6 +32,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>docs-src</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>markdown-content-assist-proposals.toml</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/src/main/resources/texts/markdown-content-assist-proposals.toml</locationURI>
@@ -40,6 +45,61 @@
 			<name>toml-content-assist-proposals.toml</name>
 			<type>1</type>
 			<locationURI>PARENT-3-ECLIPSE_HOME/_emdepub/repositories/emdepub/org.emdepub/src/main/resources/texts/toml-content-assist-proposals.toml</locationURI>
+		</link>
+		<link>
+			<name>docs-src/CNAME</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/CNAME</locationURI>
+		</link>
+		<link>
+			<name>docs-src/build.xml</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/build.xml</locationURI>
+		</link>
+		<link>
+			<name>docs-src/css</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>docs-src/favicon.ico</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/favicon.ico</locationURI>
+		</link>
+		<link>
+			<name>docs-src/index.html</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/index.html</locationURI>
+		</link>
+		<link>
+			<name>docs-src/index.md</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/index.md</locationURI>
+		</link>
+		<link>
+			<name>docs-src/index.md.prefs</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/index.md.prefs</locationURI>
+		</link>
+		<link>
+			<name>docs-src/progress.html</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/progress.html</locationURI>
+		</link>
+		<link>
+			<name>docs-src/progress.md</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/progress.md</locationURI>
+		</link>
+		<link>
+			<name>docs-src/progress.md.prefs</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/progress.md.prefs</locationURI>
+		</link>
+		<link>
+			<name>docs-src/css/stylesheet.css</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/update/docs-src/css/stylesheet.css</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

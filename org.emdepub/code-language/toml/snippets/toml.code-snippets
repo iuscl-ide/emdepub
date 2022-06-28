@@ -1,0 +1,257 @@
+TOML snippets
+ 
+# ==================================================================
+# Line comment
+
+# This is a full-line comment
+
+
+# ==================================================================
+# Rest of the line comment
+
+ # This is a comment at the end of a line
+
+
+# ==================================================================
+# Key/Value Pair
+
+key = "value"
+
+key = "value"
+bare_key = "value"
+bare-key = "value"
+1234 = "value"
+
+"127.0.0.1" = "value"
+"character encoding" = "value"
+"ʎǝʞ" = "value"
+'key2' = "value"
+'quoted "value"' = "value"
+
+name = "Orange"
+physical.color = "orange"
+physical.shape = "round"
+site."google.com" = true
+
+3.14159 = "pi"
+
+
+# ==================================================================
+# One double quote string
+
+key = "I'm a string. \"You can quote me\". Name\tJos\u00E9\nLocation\tSF."
+
+key = "The quick brown fox jumps over the lazy dog."
+
+
+# ==================================================================
+# Triple double quote string
+
+key = """
+Roses are red
+Violets are blue"""
+
+key = """
+The quick brown \
+
+
+  fox jumps over \
+    the lazy dog."""
+    
+key = """\
+       The quick brown \
+       fox jumps over \
+       the lazy dog.\
+       """    
+
+
+# ==================================================================
+# One single quote string (Literal string)
+
+key = 'C:\Users\nodejs\templates'
+key = '\\ServerX\admin$\system32\'
+key = 'Tom "Dubs" Preston-Werner'
+key = '<\i\c*\s*>'
+
+# ==================================================================
+# Triple single quote string
+
+key = '''I [dw]on't need \\d{2} apples'''
+
+key = '''
+The first newline is
+trimmed in raw strings.
+   All other whitespace
+   is preserved.
+'''
+
+
+# ==================================================================
+# Integer
+
+key = +99
+key = 42
+key = 0
+key = -17
+
+key = 1_000
+key = 5_349_221
+key = 53_49_221
+key = 1_2_3_4_5
+
+
+# ==================================================================
+# Integer hexadecimal
+
+key = 0xDEADBEEF
+key = 0xdeadbeef
+key = 0xdead_beef
+
+
+# ==================================================================
+# Integer octal
+
+key = 0o01234567
+key = 0o755 # useful for Unix file permissions
+
+
+# ==================================================================
+# Integer binary
+
+key = 0b11010110
+
+
+# ==================================================================
+# Float fractional, exponent or both
+
+key = +1.0
+key = 3.1415
+key = -0.01
+
+key = 5e+22
+key = 1e06
+key = -2E-2
+
+key = 6.626e-34
+
+key = 224_617.445_991_228
+
+
+# ==================================================================
+# Float Infinity
+
+key = inf  # positive infinity
+key = +inf # positive infinity
+key = -inf # negative infinity
+
+
+# ==================================================================
+# Float Not A Number
+
+key = nan  # actual sNaN/qNaN encoding is implementation-specific
+key = +nan # same as `nan`
+key = -nan # valid, actual encoding is implementation-specific
+
+
+# ==================================================================
+# Boolean TRUE
+
+key = true
+
+
+# ==================================================================
+# Boolean FALSE
+
+key = false
+
+
+# ==================================================================
+# Offset Date-Time
+
+key = 1979-05-27T07:32:00Z
+key = 1979-05-27T00:32:00-07:00
+key = 1979-05-27T00:32:00.999999-07:00
+
+key = 1979-05-27 07:32:00Z
+
+
+# ==================================================================
+# Local Date-Time
+
+key = 1979-05-27T07:32:00
+key = 1979-05-27T00:32:00.999999
+
+
+# ==================================================================
+# Local Date
+
+key = 1979-05-27
+
+
+# ==================================================================
+# Local Time
+
+key = 07:32:00
+key = 00:32:00.999999
+
+
+# ==================================================================
+# Array
+
+key = [ 1, 2, 3 ]
+key = [ "red", "yellow", "green" ]
+key = [ [ 1, 2 ], [3, 4, 5] ]
+key = [ [ 1, 2 ], ["a", "b", "c"] ]
+key = [ "all", 'strings', """are the same""" ]
+
+key = [ 0.1, 0.2, 0.5, 1, 2, 5 ]
+key = [
+  "Foo Bar <foo@example.com>",
+  { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" }
+]
+
+key = [
+  1, 2, 3
+]
+key = [
+  1,
+  2, # this is ok
+]
+
+
+# ==================================================================
+# Table
+
+[table]
+[table-1]
+[table-2]
+
+[dog."tater.man"]
+
+[fruit.apple]
+[fruit.orange]
+
+[animal]
+
+[fruit.apple.texture]
+
+
+# ==================================================================
+# Inline Table
+
+key = { first = "Tom", last = "Preston-Werner" }
+key = { x = 1, y = 2 }
+key = { type.name = "pug" }
+
+key = { name = "Nail" }
+
+
+# ==================================================================
+# Array of Tables
+
+[[products]]
+
+[[fruits]]
+[fruits.physical]
+[[fruits.varieties]]
+
