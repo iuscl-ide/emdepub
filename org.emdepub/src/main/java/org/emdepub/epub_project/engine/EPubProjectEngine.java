@@ -1,5 +1,6 @@
 package org.emdepub.epub_project.engine;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,10 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.UUID;
-import java.util.concurrent.Callable;
 
 import org.emdepub.activator.F;
-import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.epub_project.editor.EPubProjectEditor;
 import org.emdepub.epub_project.model.EPUB_project;
@@ -30,20 +29,11 @@ import org.emdepub.epub_project.model.opf.OPF_package_spine_itemref;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import lombok.SneakyThrows;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.model.ZipParameters;
 
 public class EPubProjectEngine {
-
-	/** Convenient call */
-	public static <T> T c(Callable<T> theFunction) {
-		try {
-			return theFunction.call();
-		} catch (Exception exception) {
-			L.e("Exception", exception);
-			throw new RuntimeException(exception);
-		}
-	}
 
 	private static final String s = F.s;
 
@@ -55,6 +45,7 @@ public class EPubProjectEngine {
 	private static final XmlMapper xmlMapper = new XmlMapper();
 
 	/** Generate ePub */
+	@SneakyThrows(IOException.class)
 	public static void generateBook(EPubProjectEditor ePubProjectEditor) {
 		
 		EPUB_project ePubProject = ePubProjectEditor.getEPubProject();
@@ -62,7 +53,7 @@ public class EPubProjectEngine {
 		Path targetCommonFolderName = Paths.get(ePubProject.targetFolderNameWithFullPath);
 		
 		String book = F.getFileNameWithoutExtension(ePubProjectEditor.getSourceEPubProjectFilePathAndName());
-		Path tempBookRootFolder = c(() -> Files.createTempDirectory(targetCommonFolderName, "temp-ePub-book_" + book + "_"));
+		Path tempBookRootFolder = Files.createTempDirectory(targetCommonFolderName, "temp-ePub-book_" + book + "_");
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
 			F.deleteFolderAndItsContents(tempBookRootFolder.toString());
@@ -186,7 +177,7 @@ public class EPubProjectEngine {
 		opfTocManifestItem.media_type = "application/x-dtbncx+xml";
 		opfPackage.item.add(opfTocManifestItem);
 		
-		String ncxXml = c(() -> xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ncx));
+		String ncxXml = xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ncx);
 		F.saveStringToFile(ncxXml, Paths.get(tempBookRootFolderManifest.toString(), tocFileNameWithoutPath).toString());
 
 		
@@ -204,7 +195,7 @@ public class EPubProjectEngine {
 		}
 		
 		
-		String opfXml = c(() -> xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(opfPackage));
+		String opfXml = xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(opfPackage);
 		F.saveStringToFile(opfXml, opfFile.toString());
 		
 		/* Copy manifest files */
@@ -233,7 +224,7 @@ public class EPubProjectEngine {
 		ZipFile bookZipFile = new ZipFile(Paths.get(ePubProject.targetFolderNameWithFullPath, book + ".epub").toString());
 		ZipParameters zipParameters = new ZipParameters();
 		zipParameters.setIncludeRootFolder(false);
-		c(() -> { bookZipFile.addFolder(tempBookRootFolder.toFile(), zipParameters); return null; });
+		bookZipFile.addFolder(tempBookRootFolder.toFile(), zipParameters);
 		
 		F.deleteFolderAndItsContents(tempBookRootFolder.toString());
 	}

@@ -24,6 +24,8 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import lombok.SneakyThrows;
+
 /** Streams, files and other operations */
 public class F {
 
@@ -63,10 +65,8 @@ public class F {
 			return inputStream.readAllBytes();
 		}
 		catch (IOException ioException) {
-			L.e("loadInputStreamInString", ioException);
+			throw new RuntimeException(ioException);
 		}
-		
-		return null;
 	}
 	
 	/** Loads an entire input stream in one string */
@@ -112,28 +112,17 @@ public class F {
 	/* Files */
 	
 	/** File into string */
+	@SneakyThrows(IOException.class)
 	public static byte[] loadFileInBuffer(String fileName) {
 		
-		try {
-			return Files.readAllBytes(Paths.get(fileName));
-		}
-		catch (IOException ioException) {
-			L.e("loadFileInBuffer, fileName: " + fileName, ioException);
-		}
-		
-		return null;
+		return Files.readAllBytes(Paths.get(fileName));
 	}
 
 	/** String into file */
+	@SneakyThrows(IOException.class)
 	public static void saveBufferToFile(byte[] buffer, String fileName) {
 
-		try {
-			Files.write(Paths.get(fileName), buffer);
-		}
-		catch (IOException ioException) {
-			L.e("saveBufferToFile, fileName: " + fileName, ioException);
-			throw new E(ioException);
-		}
+		Files.write(Paths.get(fileName), buffer);
 	}
 
 	/** File into string */
@@ -170,13 +159,10 @@ public class F {
 	}
 	
 	/** Delete file */
+	@SneakyThrows(IOException.class)
 	public static void deleteFile(String fileNameWithPath) {
 
-		try {
-			Files.deleteIfExists(Paths.get(fileNameWithPath));
-		} catch (IOException ioException) {
-			L.e("deleteFile; fileNameWithPath: " + fileNameWithPath, ioException);
-		}
+		Files.deleteIfExists(Paths.get(fileNameWithPath));
 	}
 	
 	/** Delete folder contents */
@@ -192,24 +178,19 @@ public class F {
 	}
 
 	/** Delete folder and/only contents */
+	@SneakyThrows(IOException.class)
 	private static void deleteFolder(String folderNameWithPath, boolean deleteContentsOnly) {
 
-		try {
-			Path rootPath = Paths.get(folderNameWithPath);
-			if (Files.notExists(rootPath)) {
-				return;
-			}
-			List<Path> pathsToDelete = Files.walk(rootPath).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-			if (deleteContentsOnly) {
-				pathsToDelete.remove(rootPath);
-			}
-			for(Path path : pathsToDelete) {
-			    Files.deleteIfExists(path);
-			}
+		Path rootPath = Paths.get(folderNameWithPath);
+		if (Files.notExists(rootPath)) {
+			return;
 		}
-		catch (IOException ioException) {
-			L.e("deleteFolder; folderNameWithPath: " + folderNameWithPath + ", deleteContentsOnly: " + deleteContentsOnly, ioException);
-			throw new E(ioException);
+		List<Path> pathsToDelete = Files.walk(rootPath).sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+		if (deleteContentsOnly) {
+			pathsToDelete.remove(rootPath);
+		}
+		for(Path path : pathsToDelete) {
+		    Files.deleteIfExists(path);
 		}
 	}
 
@@ -234,62 +215,46 @@ public class F {
 	}
 
 	/** Modern */
+	@SneakyThrows(IOException.class)
 	public static void deleteFolderAndItsContents(String folderNameWithPath) {
 	    
-		try {
-			Path rootPath = Paths.get(folderNameWithPath);
-			if (Files.notExists(rootPath)) {
-				return;
-			}
-			Files.walkFileTree(rootPath, new SimpleFileVisitor<Path>() {
-			    @Override
-			    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-			        Files.delete(file);
-			        return FileVisitResult.CONTINUE;
-			    }
-			    @Override
-			    public FileVisitResult postVisitDirectory(Path folder, IOException ioException) throws IOException {
-			        if (ioException != null) {
-			            throw ioException;
-			        }
-			        Files.delete(folder);
-			        return FileVisitResult.CONTINUE;
-			    }
-			});
+		Path rootPath = Paths.get(folderNameWithPath);
+		if (Files.notExists(rootPath)) {
+			return;
 		}
-		catch (IOException ioException) {
-			L.e("deleteFolderAndItsContents; folderNameWithPath: " + folderNameWithPath, ioException);
-		}
+		Files.walkFileTree(rootPath, new SimpleFileVisitor<Path>() {
+		    @Override
+		    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+		        Files.delete(file);
+		        return FileVisitResult.CONTINUE;
+		    }
+		    @Override
+		    public FileVisitResult postVisitDirectory(Path folder, IOException ioException) throws IOException {
+		        if (ioException != null) {
+		            throw ioException;
+		        }
+		        Files.delete(folder);
+		        return FileVisitResult.CONTINUE;
+		    }
+		});
 	}
 
 	
 	/** Create all folders */
+	@SneakyThrows(IOException.class)
 	public static void createFoldersIfNotExists(String folderNameWithPath) {
 
-		try {
-			Path catalogBlocksFolderPath = Paths.get(folderNameWithPath); 
-			if (Files.notExists(catalogBlocksFolderPath)) {
-				Files.createDirectories(catalogBlocksFolderPath);
-			}
-		}
-		catch (IOException ioException) {
-			L.e("createFoldersIfNotExists; folderNameWithPath: " + folderNameWithPath, ioException);
-			throw new E(ioException);
+		Path catalogBlocksFolderPath = Paths.get(folderNameWithPath); 
+		if (Files.notExists(catalogBlocksFolderPath)) {
+			Files.createDirectories(catalogBlocksFolderPath);
 		}
 	}
 
 	/** Create all folders */
+	@SneakyThrows(IOException.class)
 	public static long findFileSizeInBytes(String fileNameWithPath) {
 
-		long fileSize = -1; 
-		try {
-			fileSize = Files.size(Paths.get(fileNameWithPath)); 
-		}
-		catch (IOException ioException) {
-			L.e("findFileSizeInBytes; fileNameWithPath: " + fileNameWithPath, ioException);
-			throw new E(ioException);
-		}
-		return fileSize;
+		return Files.size(Paths.get(fileNameWithPath)); 
 	}
 
     /**
@@ -341,36 +306,24 @@ public class F {
 	}
 
 	/** Copy folders */
+	@SneakyThrows(IOException.class)
 	public static void copyFileOrFolderIntoFolder(String sourceFileOrFolder, String targetFolder) {
 	
-		try {
-			Files.walkFileTree(Paths.get(sourceFileOrFolder), new CopyFileVisitor(Paths.get(targetFolder), ""));
-		}
-		catch (IOException ioException) {
-			L.e("copyFileOrFolderIntoFolder; source: " + sourceFileOrFolder + ", target: " + targetFolder, ioException);
-		}
+		Files.walkFileTree(Paths.get(sourceFileOrFolder), new CopyFileVisitor(Paths.get(targetFolder), ""));
 	}
 	
 	/** Copy folders */
+	@SneakyThrows(IOException.class)
 	public static void copyFolders(String sourceFolder, String targetFolder, String ignoreForExtensions) {
 		
-		try {
-			Files.walkFileTree(Paths.get(sourceFolder), new CopyFileVisitor(Paths.get(targetFolder), ignoreForExtensions));	
-		}
-		catch (IOException ioException) {
-			L.e("copyFolders; sourceFolder: " + sourceFolder + ", targetFolder: " + targetFolder + ", ignoreForExtensions: " + ignoreForExtensions, ioException);
-			throw new E(ioException);
-		}
+		Files.walkFileTree(Paths.get(sourceFolder), new CopyFileVisitor(Paths.get(targetFolder), ignoreForExtensions));	
 	}
 
 	/** Copy file */
+	@SneakyThrows(IOException.class)
 	public static void copyFile(String sourceFileNameWithPath, String targetFileNameWithPath) {
 	
-		try {
-			Files.copy(Paths.get(sourceFileNameWithPath), Paths.get(targetFileNameWithPath), StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException ioException) {
-			L.e("copyFile, sourceFileNameWithPath: " + sourceFileNameWithPath + ", targetFileNameWithPath: " + targetFileNameWithPath, ioException);
-		}
+		Files.copy(Paths.get(sourceFileNameWithPath), Paths.get(targetFileNameWithPath), StandardCopyOption.REPLACE_EXISTING);
 	}
 
 	/** File / folder path */

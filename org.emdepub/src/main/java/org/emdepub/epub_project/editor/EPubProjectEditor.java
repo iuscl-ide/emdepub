@@ -3,7 +3,9 @@ package org.emdepub.epub_project.editor;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URLDecoder;
 import java.nio.file.FileVisitResult;
@@ -20,7 +22,6 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.UUID;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -54,6 +55,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.Form;
@@ -62,7 +64,6 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.ide.FileStoreEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 import org.emdepub.activator.F;
-import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.activator.UI;
 import org.emdepub.epub_project.editor.wizard.EPubProjectGenerateIDsWizard;
@@ -75,21 +76,16 @@ import org.emdepub.epub_project.model.EPUB_project_manifest_item;
 import org.emdepub.epub_project.model.EPUB_project_spine_item;
 import org.emdepub.epub_project.model.EPUB_project_toc_item;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.SneakyThrows;
+
 /** EPubProject multi-page editor */
+
 public class EPubProjectEditor extends FormEditor {
 
-	/** Convenient call */
-	public static <T> T r(Callable<T> theFunction) {
-		try {
-			return theFunction.call();
-		} catch (Exception exception) {
-			L.e("Exception", exception);
-			throw new RuntimeException(exception);
-		}
-	}
-	
 	/* Columns */
 	public static final int itemFileNameIndex = 0;
 	public static final int itemFileRelativePathIndex = 1;
@@ -268,6 +264,7 @@ public class EPubProjectEditor extends FormEditor {
 	private int ePubProjectTextEditorPageIndex;
 
 	/** Creates the viewer page of the forms editor */
+	@SneakyThrows({JsonMappingException.class, JsonProcessingException.class})
 	private void createEPubProjectEditorPage() {
 		
 		/* load */
@@ -278,7 +275,7 @@ public class EPubProjectEditor extends FormEditor {
 			
 		}
 		else {
-			ePubProject = r(() -> objectMapper.readValue(json, EPUB_project.class));	
+			ePubProject = objectMapper.readValue(json, EPUB_project.class);	
 		}
 		//ePubProject.metadata_identifier = UUID.randomUUID().toString();
 //		final int indentWidth = 24;
@@ -809,10 +806,11 @@ public class EPubProjectEditor extends FormEditor {
 	}
 	
 	/** Creates EPubProject text editor page of the forms editor */
+	@SneakyThrows(PartInitException.class)
 	private void createEPubProjectTextEditorPage() {
 
 		ePubProjectTextEditor = new EPubProjectTextEditor();
-		ePubProjectTextEditorPageIndex = r(() -> addPage(ePubProjectTextEditor, getEditorInput()));
+		ePubProjectTextEditorPageIndex = addPage(ePubProjectTextEditor, getEditorInput());
 		
 		this.setPartName(ePubProjectTextEditor.getTitle());
 		
@@ -852,6 +850,7 @@ public class EPubProjectEditor extends FormEditor {
 //	}
 
 	/** Source EPubProject file path and name */
+	@SneakyThrows({UnsupportedEncodingException.class, MalformedURLException.class})
 	public String getSourceEPubProjectFilePathAndName() {
 
 		IEditorInput editorInput = getEditorInput();
@@ -864,19 +863,21 @@ public class EPubProjectEditor extends FormEditor {
 		else if (editorInput instanceof FileStoreEditorInput) {
 		
 			URI urlPath = ((FileStoreEditorInput) editorInput).getURI();
-			return r(() -> new File(URLDecoder.decode(urlPath.toURL().getPath(), "UTF-8")).getAbsolutePath());
+			return new File(URLDecoder.decode(urlPath.toURL().getPath(), "UTF-8")).getAbsolutePath();
 		}
 		
 		return editorInput.getName();
 	}
 
 	/** Used in many places */
+	@SneakyThrows(JsonProcessingException.class)
 	public void serialize() {
 
-		document.set(r(() -> objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ePubProject)));
+		document.set(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ePubProject));
 	}
 
 	/** Refreshes contents of viewer page when it is activated */
+	@SneakyThrows(JsonProcessingException.class)
 	protected void pageChange(int newPageIndex) {
 		super.pageChange(newPageIndex);
 		
@@ -886,7 +887,7 @@ public class EPubProjectEditor extends FormEditor {
 				return;
 			}
 			
-			ePubProject = r(() -> objectMapper.readValue(document.get(), EPUB_project.class));
+			ePubProject = objectMapper.readValue(document.get(), EPUB_project.class);
 
 			rootFolderFileControl.reload();
 			targetFolderFileControl.reload();
@@ -957,6 +958,7 @@ public class EPubProjectEditor extends FormEditor {
 	}
 
 	/** Create file control */
+	@SneakyThrows({NoSuchFieldException.class, IllegalAccessException.class})
 	private FileControl addFileControl(UI ui, Composite parentComposite, String labelText, Integer labelWidth, String fileType, boolean isFolder, String fieldName) {
 		
 		final Composite fileComposite = new Composite(parentComposite, SWT.NONE);
@@ -968,11 +970,11 @@ public class EPubProjectEditor extends FormEditor {
 		fileLabel.setLayoutData(labelWidth == null ? ui.createGridData() : ui.createWidthGridData(labelWidth));
 		fileLabel.setText(labelText);
 
-		final Field field = r(() -> ePubProject.getClass().getDeclaredField(fieldName));
+		final Field field = ePubProject.getClass().getDeclaredField(fieldName);
 		field.setAccessible(true);
 		
 		final Text fileText = new Text(fileComposite, SWT.SINGLE | SWT.BORDER);
-		String fileTextValue = (String) r(() -> field.get(ePubProject));
+		String fileTextValue = (String) field.get(ePubProject);
 		fileText.setText(F.isEmpty(fileTextValue) ? "" : fileTextValue);
 		fileText.setLayoutData(ui.createFillHorizontalGridData());
 
@@ -983,10 +985,11 @@ public class EPubProjectEditor extends FormEditor {
 		/* File name */
 		fileText.addFocusListener(new FocusAdapter() {
 			@Override
+			@SneakyThrows(IllegalAccessException.class)
 			public void focusLost(FocusEvent focusEvent) {
 				String focusLostFileName = fileText.getText().trim();
-				if (!focusLostFileName.equalsIgnoreCase((String) r(() -> field.get(ePubProject)))) {
-					r(() -> { field.set(ePubProject, focusLostFileName); return null; });
+				if (!focusLostFileName.equalsIgnoreCase((String) field.get(ePubProject))) {
+					field.set(ePubProject, focusLostFileName);
 					serialize();
 				}
 			}
@@ -1045,10 +1048,12 @@ public class EPubProjectEditor extends FormEditor {
 			}
 		});
 		
+		
 		return new FileControl() {
 			@Override
+			@SneakyThrows(IllegalAccessException.class)
 			public void reload() {
-				String fileTextValue = (String) r(() -> field.get(ePubProject));
+				String fileTextValue = (String) field.get(ePubProject);
 				fileText.setText(F.isEmpty(fileTextValue) ? "" : fileTextValue);
 				//fileText.setLayoutData(ui.createFillHorizontalGridData());
 			}
@@ -1060,6 +1065,7 @@ public class EPubProjectEditor extends FormEditor {
 	}
 
 	/** Create text control */
+	@SneakyThrows({NoSuchFieldException.class, IllegalAccessException.class})
 	private TextControl addTextControl(UI ui, Composite parentComposite, String labelText, Integer labelWidth, int lines, String fieldName) {
 		
 		final Composite textComposite = new Composite(parentComposite, SWT.NONE);
@@ -1078,11 +1084,11 @@ public class EPubProjectEditor extends FormEditor {
 		textLabel.setLayoutData(textLabelGridData);
 		textLabel.setText(labelText);
 
-		final Field field = r(() -> ePubProject.getClass().getDeclaredField(fieldName));
+		final Field field = ePubProject.getClass().getDeclaredField(fieldName);
 		field.setAccessible(true);
 		
 		final Text text = new Text(textComposite, (lines > 1 ? SWT.MULTI | SWT.V_SCROLL | SWT.WRAP : SWT.SINGLE) | SWT.BORDER );
-		String textValue = (String) r(() -> field.get(ePubProject));
+		String textValue = (String) field.get(ePubProject);
 		text.setText(F.isEmpty(textValue) ? "" : textValue);
 		GridData textGridData = ui.createFillHorizontalGridData();
 		if (lines > 1) {
@@ -1094,10 +1100,11 @@ public class EPubProjectEditor extends FormEditor {
 		/* Text */
 		text.addFocusListener(new FocusAdapter() {
 			@Override
+			@SneakyThrows(IllegalAccessException.class)
 			public void focusLost(FocusEvent focusEvent) {
 				String focusLostText = text.getText().trim();
-				if (!focusLostText.equalsIgnoreCase((String) r(() -> field.get(ePubProject)))) {
-					r(() -> { field.set(ePubProject, focusLostText); return null; });
+				if (!focusLostText.equalsIgnoreCase((String) field.get(ePubProject))) {
+					field.set(ePubProject, focusLostText);
 					serialize();
 				}
 			}
@@ -1105,8 +1112,9 @@ public class EPubProjectEditor extends FormEditor {
 		
 		return new TextControl() {
 			@Override
+			@SneakyThrows(IllegalAccessException.class)
 			public void reload() {
-				String textValue = (String) r(() -> field.get(ePubProject));
+				String textValue = (String) field.get(ePubProject);
 				text.setText(F.isEmpty(textValue) ? "" : textValue);
 			}
 			@Override
@@ -1117,6 +1125,7 @@ public class EPubProjectEditor extends FormEditor {
 	}
 
 	/** Refresh manifest */
+	@SneakyThrows(IOException.class)
 	public void refreshManifest() {
 		
 		if (F.isEmpty(ePubProject.rootFolderNameWithFullPath)) {
@@ -1132,7 +1141,7 @@ public class EPubProjectEditor extends FormEditor {
 		Path opfFolderPath = Paths.get(rootFolderPath.toString(), ePubProject.opfFileNameWithRelativePath).getParent();
 		
 		linearFileNamesWithPath.clear();
-		r(() -> { Files.walkFileTree(rootFolderPath, linearizeFileVisitor); return null; });
+		Files.walkFileTree(rootFolderPath, linearizeFileVisitor);
 		
 		ePubProject.manifestItems.clear();
 		
@@ -1151,7 +1160,7 @@ public class EPubProjectEditor extends FormEditor {
 
 			manifest_item.itemFileId = "";
 
-			String mediaType = r(() -> Files.probeContentType(file));
+			String mediaType = Files.probeContentType(file);
 			manifest_item.itemFileMediaType = mediaType == null ? "unk" : mediaType; 
 			
 			manifest_item.itemFileProperties = "";

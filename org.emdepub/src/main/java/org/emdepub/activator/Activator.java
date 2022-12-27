@@ -14,6 +14,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import lombok.SneakyThrows;
+
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -31,19 +33,12 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The constructor
 	 */
+	@SneakyThrows({IOException.class, URISyntaxException.class})
 	public Activator() {
 		
 		/* Plug-in root folder */
 		URL pluginRootURL = FileLocator.find(Platform.getBundle(PLUGIN_ID), new Path("/"), null);
-		try {
-			pluginFolderPathName = (new File(FileLocator.resolve(pluginRootURL).toURI())).getCanonicalFile().getCanonicalPath();
-		}
-		catch (IOException ioException) {
-			ioException.printStackTrace();
-		}
-		catch (URISyntaxException uriSyntaxException) {
-			uriSyntaxException.printStackTrace();
-		}
+		pluginFolderPathName = (new File(FileLocator.resolve(pluginRootURL).toURI())).getCanonicalFile().getCanonicalPath();
 
 		/* Log */
 		File logFile = new File(pluginFolderPathName, "log/emdepub.log");

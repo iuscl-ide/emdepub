@@ -11,7 +11,7 @@
    </description>
 
    <copyright>
-      Copyright 2022 emdepub.org - http://emdepub.org
+      Copyright 2023 emdepub.org - http://emdepub.org
    </copyright>
 
    <license url="">
@@ -32,6 +32,6 @@ Two small things to keep in mind:
          id="org.emdepub"
          download-size="0"
          install-size="0"
-         version="1.0.2.qualifier"/>
+         version="1.0.3.qualifier"/>
 
 </feature>

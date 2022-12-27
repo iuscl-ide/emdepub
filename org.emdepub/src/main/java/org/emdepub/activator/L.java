@@ -18,6 +18,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Display;
 
+import lombok.SneakyThrows;
+
 /** Common desktop-model-apk log, standard JRE */
 public class L {
 
@@ -26,6 +28,7 @@ public class L {
 	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMM-dd 'at' HH:mm:ss.SSS");
 
     /** Initialize the log and log file */
+	@SneakyThrows(IOException.class)
     public static void initLog(File logFile) {
 
     	logger = Logger.getLogger("org.emdepub.log");
@@ -65,14 +68,9 @@ public class L {
         logger.addHandler(consoleHandler);
 
         if (logFile != null) {
-            try {
-                FileHandler fileHandler = new FileHandler(logFile.getAbsolutePath(), 50000, 5, true);
-                fileHandler.setFormatter(formatter);
-                logger.addHandler(fileHandler);
-            }
-            catch (IOException ioException) {
-                e("IOException in initLog", ioException);
-            }
+            FileHandler fileHandler = new FileHandler(logFile.getAbsolutePath(), 50000, 5, true);
+            fileHandler.setFormatter(formatter);
+            logger.addHandler(fileHandler);
         }
         else {
             e("NullPointerException in initLog", new NullPointerException("Parameter logFile is null"));

@@ -8,6 +8,8 @@ import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
+import lombok.SneakyThrows;
+
 /** Markdown CompletionProposal */
 public final class TomlCompletionProposal implements ICompletionProposal {
 
@@ -58,11 +60,9 @@ public final class TomlCompletionProposal implements ICompletionProposal {
 	}
 
 	@Override
+	@SneakyThrows(BadLocationException.class)
 	public void apply(IDocument document) {
-		try {
-			document.replace(this.replacementOffset, this.replacementLength, this.replacementString);
-		} catch (BadLocationException badLocationException) {
-		}
+		document.replace(this.replacementOffset, this.replacementLength, this.replacementString);
 	}
 
 	@Override

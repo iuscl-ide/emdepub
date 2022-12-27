@@ -5,8 +5,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import swt_text_layout.help.HelpPage1;
-
 public class TestTextLayoutResult {
 
 	public static void main (String [] args) {

@@ -5,8 +5,6 @@ import org.emdepub.activator.F;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
 
-import swt_text_layout.help.HelpBand;
-
 public class MarkdownToTextLayout {
 
 	static final Parser PARSER = Parser.builder().build();

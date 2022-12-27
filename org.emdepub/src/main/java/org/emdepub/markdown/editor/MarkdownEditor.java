@@ -41,7 +41,6 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.emdepub.activator.Activator;
 import org.emdepub.activator.F;
-import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.activator.UI;
 import org.emdepub.markdown.editor.engine.MarkdownFormatterEngine;
@@ -51,6 +50,8 @@ import org.emdepub.markdown.editor.preferences.MarkdownPreferences.DisplayFormat
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.DisplayFormatStyles;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
 import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExportType;
+
+import lombok.SneakyThrows;
 
 /** Markdown multi-page editor */
 public class MarkdownEditor extends FormEditor {
@@ -200,16 +201,13 @@ public class MarkdownEditor extends FormEditor {
 	}
 
 	/** Creates Markdown text editor page of the forms editor */
+	@SneakyThrows(PartInitException.class)
 	private void createMarkdownTextEditorPage() {
 
 		markdownPreferences = new MarkdownPreferences();
 		
 		markdownTextEditor = new MarkdownTextEditor();
-		try {
-			markdownTextEditorPageIndex = addPage(markdownTextEditor, getEditorInput());
-		} catch (PartInitException partInitException) {
-			L.e("createMarkdownTextEditorPage", partInitException);
-		}
+		markdownTextEditorPageIndex = addPage(markdownTextEditor, getEditorInput());
 		
 		IDocumentProvider documentProvider = markdownTextEditor.getDocumentProvider();
 		if (documentProvider instanceof IStorageDocumentProvider) {
@@ -266,6 +264,7 @@ public class MarkdownEditor extends FormEditor {
 	}
 
 	/** Source Markdown file path and name */
+	@SneakyThrows({MalformedURLException.class, UnsupportedEncodingException.class})
 	public String getSourceMarkdownFilePathAndName() {
 
 		IEditorInput editorInput = markdownTextEditor.getEditorInput();
@@ -278,13 +277,7 @@ public class MarkdownEditor extends FormEditor {
 		else if (editorInput instanceof FileStoreEditorInput) {
 		
 			URI urlPath = ((FileStoreEditorInput) editorInput).getURI();
-			try {
-				return new File(URLDecoder.decode(urlPath.toURL().getPath(), "UTF-8")).getAbsolutePath();
-			} catch (MalformedURLException malformedURLException) {
-				L.e("getSourceMarkdownFilePathAndName", malformedURLException);
-			} catch (UnsupportedEncodingException unsupportedEncodingException) {
-				L.e("getSourceMarkdownFilePathAndName", unsupportedEncodingException);
-			}
+			return new File(URLDecoder.decode(urlPath.toURL().getPath(), "UTF-8")).getAbsolutePath();
 		}
 		
 		return editorInput.getName();
@@ -382,6 +375,7 @@ public class MarkdownEditor extends FormEditor {
 	}
 	
 	/** Special formatting */
+	@SneakyThrows(BadLocationException.class)
 	public void doSpecialFormatting(MarkdownPreferences markdownPreferences) {
 		
 		Document document = (Document) markdownTextEditor.getDocumentProvider().getDocument(markdownTextEditor.getEditorInput());
@@ -394,12 +388,7 @@ public class MarkdownEditor extends FormEditor {
 
 		String formattedSelection = MarkdownFormatterEngine.formatMarkdown(selection, markdownPreferences);
 
-		try {
-			document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
-		}
-		catch (BadLocationException badLocationException) {
-			L.e("BadLocationException in doSpecialFormatting", badLocationException);
-		}
+		document.replace(textSelection.getOffset(), textSelection.getLength(), formattedSelection);
 	}
 	
 	/** Get the Markdown as Base64 text */
@@ -487,20 +476,18 @@ public class MarkdownEditor extends FormEditor {
 	}
 
 	/** Open external file in IDE */
+	@SneakyThrows(PartInitException.class)
 	private void openExternalFile(String fileNameWithPath) {
 
 		IFileStore fileStore = EFS.getLocalFileSystem().getStore(new Path(fileNameWithPath));
 		if (!fileStore.fetchInfo().isDirectory() && fileStore.fetchInfo().exists()) {
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			try {
-				IDE.openEditor(page, new FileStoreEditorInput(fileStore), "org.eclipse.ui.genericeditor.GenericEditor");
-			} catch (PartInitException partInitException) {
-				L.e("openExternalFile", partInitException);
-			}
+			IDE.openEditor(page, new FileStoreEditorInput(fileStore), "org.eclipse.ui.genericeditor.GenericEditor");
 		}
 	}
 
 	/** Close external file opened in IDE */
+	@SneakyThrows(PartInitException.class)
 	private void closeExternalFile(String fileNameWithPath) {
 
 		String fileName = fileNameWithPath.substring(F.getFileFolder(fileNameWithPath).length() + 1);
@@ -510,13 +497,9 @@ public class MarkdownEditor extends FormEditor {
 		
 		for (IEditorReference editorReference : workbenchPage.getEditorReferences()) {
 			if (editorReference.getName().equals(fileName)) {
-				try {
-					String fullPath = java.nio.file.Path.of(editorReference.getEditorInput().getAdapter(FileStoreEditorInput.class).getURI()).toString();
-					if (fullPath.equals(fileNameWithPath)) {
-						workbenchPage.closeEditor(editorReference.getEditor(true), true);
-					}
-				} catch (PartInitException partInitException) {
-					/* ILB */
+				String fullPath = java.nio.file.Path.of(editorReference.getEditorInput().getAdapter(FileStoreEditorInput.class).getURI()).toString();
+				if (fullPath.equals(fileNameWithPath)) {
+					workbenchPage.closeEditor(editorReference.getEditor(true), true);
 				}
 			}
 		};

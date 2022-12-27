@@ -27,7 +27,6 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
-import org.emdepub.activator.L;
 import org.emdepub.activator.R;
 import org.emdepub.markdown.editor.engine.MarkdownFormatterEngine;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
@@ -36,6 +35,8 @@ import org.emdepub.markdown.editor.preferences.MarkdownPreferences.DisplayFormat
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
 import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard;
 import org.emdepub.markdown.editor.wizard.MarkdownFormatSourceTextWizard;
+
+import lombok.SneakyThrows;
 
 /** Markdown multi-page editor contributor to menu, tool bar, status bar */
 public class MarkdownEditorContributor extends MultiPageEditorActionBarContributor {
@@ -89,18 +90,14 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	/** Replace document selection */
 	private abstract class ReplaceDocumentSelection {
 
+		@SneakyThrows(BadLocationException.class)
 		public ReplaceDocumentSelection() {
 			super();
 
 			TextSelection textSelection = (TextSelection) markdownSourceTextEditor.getSelectionProvider().getSelection();
 			String replacedSelection = replace(textSelection.getText());
 			IDocument document = markdownSourceTextEditor.getDocumentProvider().getDocument(markdownSourceTextEditor.getEditorInput());
-			try {
-				document.replace(textSelection.getOffset(), textSelection.getLength(), replacedSelection);
-			}
-			catch (BadLocationException badLocationException) {
-				L.e("BadLocationException in ReplaceDocumentSelection", badLocationException);
-			}
+			document.replace(textSelection.getOffset(), textSelection.getLength(), replacedSelection);
 		}
 		
 		public abstract String replace(String selection);

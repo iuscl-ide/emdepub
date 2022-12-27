@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.nebula.widgets.grid;
 
+import java.util.Vector;
+
 import org.eclipse.nebula.widgets.grid.internal.DefaultColumnGroupHeaderRenderer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
@@ -21,8 +23,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.TypedListener;
-
-import java.util.Vector;
 
 /**
  * <p>

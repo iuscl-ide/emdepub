@@ -22,6 +22,8 @@ import org.emdepub.toml.editor.engine.TomlResSupport;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.toml.TomlMapper;
 
+import lombok.SneakyThrows;
+
 /** Resources */
 public class R {
 	
@@ -60,6 +62,7 @@ public class R {
 	private static TomlResSupport tomlProposalsSupport;
 	
 	/** Load shared icons, should be called from outside only once */
+	@SneakyThrows(JsonProcessingException.class)
 	public static void load(UI ui) {
 		
 		Display display = ui.getDisplay();
@@ -177,20 +180,12 @@ public class R {
 		
 		//colorRegistry.put(Colors.ListSelectedNotFocus, new Color(display, R.blend(colorRegistry.get(Colors.ListSelectedAndFocus).getRGB(), colorRegistry.get(Colors.ListFontSelected).getRGB(), 85)));
 		
-		try {
-			markdownProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/markdown-content-assist-proposals.toml"), MarkdownResSupport.class);
-		} catch (JsonProcessingException jsonProcessingException) {
-			L.e("markdown-content-assist-proposals.toml", jsonProcessingException);
-		}
+		markdownProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/markdown-content-assist-proposals.toml"), MarkdownResSupport.class);
 		for (MarkdownCompletionProposal markdownCompletionProposal : markdownProposalsSupport.getProposals().values()) {
 			markdownCompletionProposal.setImage(getImage("markdown-content-assist-proposal"));
 		}
 		
-		try {
-			tomlProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/toml-content-assist-proposals.toml"), TomlResSupport.class);
-		} catch (JsonProcessingException jsonProcessingException) {
-			L.e("toml-content-assist-proposals.toml", jsonProcessingException);
-		}
+		tomlProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/toml-content-assist-proposals.toml"), TomlResSupport.class);
 		for (TomlCompletionProposal tomlCompletionProposal : tomlProposalsSupport.getProposals().values()) {
 			tomlCompletionProposal.setImage(getImage("toml-completion-proposal"));
 		}
