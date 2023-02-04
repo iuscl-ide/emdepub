@@ -15,6 +15,8 @@ public class TomlExtensionBasedEditor extends ExtensionBasedTextEditor {
 
 	public TomlExtensionBasedEditor() {
 		super();
+		
+		setSourceViewerConfiguration(new TomlExtensionBasedTextViewerConfiguration(this, null));
 	}
 
 	/** For status bar */

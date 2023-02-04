@@ -9,6 +9,8 @@ public class MarkdownTextEditor extends ExtensionBasedTextEditor {
 
 	public MarkdownTextEditor() {
 		super();
+		
+		setSourceViewerConfiguration(new MarkdownExtensionBasedTextViewerConfiguration(this, null));
 	}
 
 	/** For status bar */

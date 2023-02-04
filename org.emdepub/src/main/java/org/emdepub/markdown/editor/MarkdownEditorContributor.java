@@ -236,15 +236,19 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 	/** Named separator */
 	private Separator editSeparatorAction = new Separator();
 	private String editSeparatorActionId = "org.emdepub.ui.editor.markdown.action.editSeparatorAction";
-	
+
 	/** Format Markdown text */
 	private Action formatMarkdownAction;
 	private String formatMarkdownActionId = "org.emdepub.ui.editor.markdown.action.formatMarkdownAction";
 
 	/** Special Markdown text format */
-	private Action specialFormatAction;
-	private String specialFormatActionId = "org.emdepub.ui.editor.markdown.action.specialFormatAction";
+	private Action formatOptionsAction;
+	private String formatOptionsActionId = "org.emdepub.ui.editor.markdown.action.specialFormatAction";
 
+	/** Format Markdown text */
+	private Action repairBrokenTextAction;
+	private String repairBrokenTextActionId = "org.emdepub.ui.editor.markdown.action.repairBrokenTextAction";
+	
 	/** Named separator */
 	private Separator formatSeparatorAction = new Separator();
 	private String formatSeparatorActionId = "org.emdepub.ui.editor.markdown.action.formatSeparatorAction";
@@ -406,7 +410,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		formatMarkdownAction.setImageDescriptor(R.getImageDescriptor("markdown-action-format-md"));
 
 		/** Special Markdown format */
-		specialFormatAction = new Action() {
+		formatOptionsAction = new Action() {
 			public void run() {
 				Shell ideShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 				MarkdownFormatSourceTextWizard markdownFormatSourceTextWizard = new MarkdownFormatSourceTextWizard(markdownMultiPageEditor);
@@ -414,10 +418,26 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 				wizardDialog.open();    	
 			}
 		};
-		specialFormatAction.setId(specialFormatActionId);
-		specialFormatAction.setText("Markdown format options");
-		specialFormatAction.setToolTipText("Markdown format source text options");
-		specialFormatAction.setImageDescriptor(R.getImageDescriptor("markdown-action-repair-paragraph"));
+		formatOptionsAction.setId(formatOptionsActionId);
+		formatOptionsAction.setText("Markdown format options");
+		formatOptionsAction.setToolTipText("Markdown format source text options");
+		formatOptionsAction.setImageDescriptor(R.getImageDescriptor("markdown-action-create-80"));
+
+		/* Format Selected Markdown Source Text */
+		repairBrokenTextAction = new Action() {
+			public void run() {
+				new ReplaceDocumentSelection() {
+					@Override
+					public String replace(String selection) {
+						return MarkdownFormatterEngine.repairBrokenText(selection);
+					}
+				};
+			}
+		};
+		repairBrokenTextAction.setId(repairBrokenTextActionId);
+		repairBrokenTextAction.setText("Repair broken text paragraphs");
+		repairBrokenTextAction.setToolTipText("Repair broken text to re-create paragraphs");
+		repairBrokenTextAction.setImageDescriptor(R.getImageDescriptor("markdown-action-repair-paragraph"));
 
 		/** Bold Markdown format */
 		boldFormatAction = new Action() {
@@ -595,8 +615,11 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		markdownMenuManager.remove(formatMarkdownActionId);
 		markdownToolBarManager.remove(formatMarkdownActionId);
 		
-		markdownMenuManager.remove(specialFormatActionId);
-		markdownToolBarManager.remove(specialFormatActionId);
+		markdownMenuManager.remove(formatOptionsActionId);
+		markdownToolBarManager.remove(formatOptionsActionId);
+
+		markdownMenuManager.remove(repairBrokenTextActionId);
+		markdownToolBarManager.remove(repairBrokenTextActionId);
 
 		markdownToolBarManager.remove(formatSeparatorActionId);
 		
@@ -637,8 +660,11 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 			markdownMenuManager.add(formatMarkdownAction);
 			markdownToolBarManager.add(formatMarkdownAction);
 
-			markdownMenuManager.add(specialFormatAction);
-			markdownToolBarManager.add(specialFormatAction);
+			markdownMenuManager.add(formatOptionsAction);
+			markdownToolBarManager.add(formatOptionsAction);
+
+			markdownMenuManager.add(repairBrokenTextAction);
+			markdownToolBarManager.add(repairBrokenTextAction);
 
 			markdownToolBarManager.add(formatSeparatorAction);
 

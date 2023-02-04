@@ -3,6 +3,7 @@ package org.emdepub.markdown.editor.engine;
 
 import java.util.Arrays;
 
+import org.emdepub.activator.F;
 import org.emdepub.markdown.editor.language.MarkdownOutlineNode;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
@@ -62,7 +63,69 @@ public class MarkdownFormatterEngine {
 		
 		return formatter.render(parser.parse(markdownString));
 	}
-	
+
+	/** Format */
+	public static String repairBrokenText(String text) {
+
+		String enter = "\r\n";
+		if (!text.contains(enter)) {
+			enter = "\r";
+			if (!text.contains(enter)) {
+				enter = "\n";
+				if (!text.contains(enter)) {
+					enter = F.e;				
+				}
+			}
+		}
+		
+		String one = Character.valueOf((char) 1) + "";
+		
+		/* Double enter */
+		text = text.replace(enter + enter, one + one);
+		text = text.replace(one + enter, one + one);
+		
+		/* Sign and enter */
+		text = text.replace("\"" + enter, "\"" + one);
+		text = text.replace("'" + enter, "'" + one);
+		
+		text = text.replace("-" + enter, "-" + one);
+		text = text.replace("_" + enter, "_" + one);
+		
+		text = text.replace("." + enter, "." + one);
+		text = text.replace("?" + enter, "?" + one);
+		text = text.replace("!" + enter, "!" + one);
+		
+		/* Enter and sign */
+		text = text.replace(enter + "1", one + "1");
+		text = text.replace(enter + "2", one + "2");
+		text = text.replace(enter + "3", one + "3");
+		text = text.replace(enter + "4", one + "4");
+		text = text.replace(enter + "5", one + "5");
+		text = text.replace(enter + "6", one + "6");
+		text = text.replace(enter + "7", one + "7");
+		text = text.replace(enter + "8", one + "8");
+		text = text.replace(enter + "9", one + "9");
+		text = text.replace(enter + "0", one + "0");
+		
+		text = text.replace(enter + "\"", one + "\"");
+		text = text.replace(enter + "'", one + "'");
+		text = text.replace(enter + "-", one + "-");
+		text = text.replace(enter + "_", one + "_");
+
+		if (enter.endsWith("\n")) {
+			text = text.replaceAll("\n[\\s]*", "\n");	
+		}
+		else {
+			text = text.replaceAll("\r[\\s]*", "\r");
+		}
+		
+		/* Main replace */
+		text = text.replace(enter, ' ' + "");
+		text = text.replace(one, enter);
+
+		return text;
+	}
+
 	/** Actual outline reconcile */
 	public static MarkdownOutlineNode updateDocumentOutline(String markdownString) {
 

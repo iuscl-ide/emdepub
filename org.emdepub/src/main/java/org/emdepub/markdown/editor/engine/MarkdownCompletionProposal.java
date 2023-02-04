@@ -21,7 +21,10 @@ public final class MarkdownCompletionProposal implements ICompletionProposal {
 		HEADING_LEVEL_1, HEADING_LEVEL_2, HEADING_LEVEL_3, HEADING_LEVEL_4, HEADING_LEVEL_5, HEADING_LEVEL_6,
 		UNORDERED_LIST, ORDERED_LIST, DEFINITION_LIST,
 		LINK, IMAGE,
-		HORIZONTAL_RULE};
+		HORIZONTAL_RULE,
+		SIMPLE_TABLE, DETAILED_TABLE,
+		TASKS
+		};
 
 	private String displayString;
 	private String replacementString;

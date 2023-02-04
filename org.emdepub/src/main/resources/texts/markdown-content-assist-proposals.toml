@@ -200,8 +200,8 @@ additionalProposalInfo = '''
 [proposals.DEFINITION_LIST]
 replacementString = '''
 
-
-:
+$term
+: definition
 
 '''
 replacementOffset = 0
@@ -242,3 +242,65 @@ cursorPositionChars = 10
 cursorPositionLineDelimiters = 0
 displayString = '---------- - Insert horizontal rule'
 additionalProposalInfo = '----------'
+
+
+[proposals.SIMPLE_TABLE]
+replacementString = '''
+
+|               |               |
+|---------------|---------------|
+|               |               |
+
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 0
+displayString = '|---------------| - Insert simple table'
+additionalProposalInfo = '''
+|               |               |
+|---------------|---------------|
+|               |               |
+'''
+
+[proposals.DETAILED_TABLE]
+replacementString = '''
+
+| Header 1      |   Header 2    |      Header 3 |
+|:--------------|:-------------:|--------------:|
+| Line 1 Item 1 | Line 1 Item 2 | Line 1 Item 3 |
+| Line 2 Item 1 |               | Line 2 Item 2 |
+| Line 3 Item 1 | Line 1 Item 3 |               |
+
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 3
+cursorPositionLineDelimiters = 0
+displayString = '| Header | - Insert detailed table'
+additionalProposalInfo = '''
+| Header 1      |   Header 2    |      Header 3 |
+|:--------------|:-------------:|--------------:|
+| Line 1 Item 1 | Line 1 Item 2 | Line 1 Item 3 |
+| Line 2 Item 1 |               | Line 2 Item 2 |
+| Line 3 Item 1 | Line 1 Item 3 |               |
+'''
+
+
+[proposals.TASKS]
+replacementString = '''
+
+- [x] Task 1
+- [ ] Task 2
+- [x] Task 3
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 6
+cursorPositionLineDelimiters = 1
+displayString = '- [x] Task - Insert tasks'
+additionalProposalInfo = '''
+- [x] Task 1
+- [ ] Task 2
+- [x] Task 3
+'''

@@ -141,7 +141,7 @@ public class MarkdownContentAssistEngine {
 			/* OK */
 		}
 		else if (linearNodes.contains("Code") || linearNodes.contains("FencedCodeBlock") ||
-				linearNodes.contains("FencedCodeBlock") || linearNodes.contains("FencedCodeBlock")) {
+				linearNodes.contains("IndentedCodeBlock") || linearNodes.contains("CodeBlock")) {
 			warningProposal = warningProposals.get("Code");
 		}
 		else if (linearNodes.contains("HtmlBlock")) {

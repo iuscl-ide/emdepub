@@ -94,7 +94,7 @@ public class R {
 		
 		loadPngImageResourceToRegistry("markdown-action-format-md");
 //		loadPngImageResourceToRegistry("markdown-action-word-wrap");
-//		loadPngImageResourceToRegistry("markdown-action-create-80");
+		loadPngImageResourceToRegistry("markdown-action-create-80");
 		loadPngImageResourceToRegistry("markdown-action-repair-paragraph");
 		
 		loadPngImageResourceToRegistry("markdown-header");
