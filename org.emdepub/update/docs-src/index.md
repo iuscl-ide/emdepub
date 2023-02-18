@@ -1,24 +1,34 @@
 <!--
 ---
-Eclipse Markdown ePub TOML Plugin - 2022 emdepub.org
+Eclipse Markdown ePub TOML Plugin - 2023 emdepub.org
 ---
 -->
+
+*(text rephrased with ChatGPT)*
 
 # Eclipse Markdown ePub TOML Plugin
 
 ### | [Home](index.html) || [Markdown Progress](progress.html) || [Code](https://github.com/iuscl-ide/emdepub) |
 
-Emdepub is an Eclipse plugin for displaying and editing [Markdown (.md)](http://daringfireball.net/projects/markdown/syntax) files, and creating [ePub (.epub)](https://en.wikipedia.org/wiki/EPUB) books.
+**Emdepub** is an Eclipse plugin that facilitates the display and modification of files written in [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax (with `.md` extension), in addition to enabling the creation of books in [ePub](https://en.wikipedia.org/wiki/EPUB) format (`.epub` extension) and editing of [TOML](https://toml.io/en/v1.0.0) files (`.toml` extension).
 
-**ADDED SUPPORT FOR TOML**
+### Versions
 
-The plugin now has support for [TOML](https://toml.io/en/v1.0.0), with syntax, verification and proposals
+**NEW VERSION 1.0.3 - CORRECTIONS**
 
-This plugin is a new version of the now deprecated (no longer maintained) plugin [Markdown Semantic EP](http://markdownsemanticep.org) ([GitHub](https://github.com/iuscl-ide/markdownsemanticep)). The difference between the two comes from the fact that the visual part is now done in the Eclipse "modern" way, with tm4e, JavaScript render, and MS VSC. The code manipulation part has remain in [Flexmark](https://github.com/vsch/flexmark-java) and for a detailed description of each functionality, please go to [Markdown progress](progress.html)
+**VERSION 1.0.2 - ADDED SUPPORT FOR TOML**
 
-The main goals are speed and quality for both the syntax highlight and the resulted HTML. These qualities still doesn't seem to be entirely fulfilled by the existing Eclipse plugins. 
+The plugin now offers support for [TOML](https://toml.io/en/v1.0.0), including syntax highlighting, verification, and suggestions.
 
-For using the ePub creator, plase see the example inside the GitHub sources.
+### About
+
+This plugin, which is aimed at providing faster and higher-quality syntax highlighting and resulting HTML output, is a newer version of the now-defunct [Markdown Semantic EP](http://markdownsemanticep.org) plugin ([GitHub](https://github.com/iuscl-ide/markdownsemanticep)), which is no longer maintained.
+
+The primary difference between the two plugins is that this one uses `tm4e`, `JavaScript rendering`, and `MS VSC` to create a more modern and visually-appealing interface. Code manipulation still uses [Flexmark](https://github.com/vsch/flexmark-java).
+
+For more detailed information about the plugin's various functionalities, please visit [Markdown progress](progress.html).
+
+To use the **ePub** creation feature, please refer to the example within the [GitHub](https://github.com/iuscl-ide/emdepub/tree/main/org.emdepub/emdepub-projects/emdepub-project-test-1/src/main/resources/ePub-samples/THREE_MEN_IN_A_BOAT "THREE_MEN_IN_A_BOAT ePub example") source.
 
 ### Install
 
@@ -30,4 +40,4 @@ Help -> Install new software...
     
 And then add the site `https://emdepub.org/update`
 
-### Website hosted by [GitHub](https://github.com/iuscl-ide/emdepub) || 2022 [emdepub.org](https://emdepub.org)
+### Website hosted by [GitHub](https://github.com/iuscl-ide/emdepub) || 2023 [emdepub.org](https://emdepub.org)

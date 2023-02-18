@@ -1,8 +1,8 @@
-<!-- Eclipse Markdown ePub Plugin - 2021 emdepub.org -->
+<!-- Eclipse Markdown ePub TOML Plugin - 2023 emdepub.org -->
 
 <project name="MarkdownSemanticEP_create_docs" default="create">
 
-	<property name="home.folder" value="${HOME_FOLDER}"/>
+	<property name="home.folder" value="${REPLACED_FROM_ANT_RUN}"/>
 	
 	<target name="create">
 <!--    	<delete includeEmptyDirs="true" quiet="true">

@@ -33,19 +33,157 @@ article.markdown-body pre {
 background: rgb(248, 248, 248);color: rgb(51, 51, 51);
 }
 	</style>
-    <title>Eclipse Markdown ePub TOML Plugin</title>
+    <title>progress</title>
 </head>
 <body>
 <article class="markdown-body">
 <!--
 ---
-Eclipse Markdown ePub Plugin - 2021 emdepub.org
+Eclipse Markdown ePub TOML Plugin - 2023 emdepub.org
 ---
 -->
 
 
 <h1 id="progress">Progress</h1>
 <h3 id="-home--progress--code-">| <a href="index.html">Home</a> || <a href="progress.html">Progress</a> || <a href="https://github.com/iuscl-ide/emdepub">Code</a> |</h3>
+<h3 id="versions">Versions</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Release Tag Version</th>
+            <th>Date</th>
+            <th>Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1.0.3.202302182143</td>
+            <td>Feb 18, 2023</td>
+            <td>Corrections</td>
+        </tr>
+        <tr>
+            <td>1.0.2.202206282012</td>
+            <td>Jun 28, 2022</td>
+            <td>TOML added</td>
+        </tr>
+        <tr>
+            <td>1.0.0.202103232351</td>
+            <td>May 3, 2021</td>
+            <td>Corrections</td>
+        </tr>
+        <tr>
+            <td>1.0.1.202105032050</td>
+            <td>Mar 23, 2021</td>
+            <td>Markdown and ePub</td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3 id="ctrl--space">CTRL + Space</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Insert</th>
+            <th>Text</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Bold text</td>
+            <td><code>**bold text**</code></td>
+        </tr>
+        <tr>
+            <td>Italic text</td>
+            <td><code>*italic text*</code></td>
+        </tr>
+        <tr>
+            <td>Bold italic text</td>
+            <td><code>***bold italic text***</code></td>
+        </tr>
+        <tr>
+            <td>Strikethrough text</td>
+            <td><code>~~strikethrough text~~</code></td>
+        </tr>
+        <tr>
+            <td>Quoted text</td>
+            <td><code>&gt; quoted text</code></td>
+        </tr>
+        <tr>
+            <td>Inline code</td>
+            <td><code>`inline code`</code></td>
+        </tr>
+        <tr>
+            <td>Fenced code block</td>
+            <td><code>``` language</code><br><code>fenced code</code><br><code>```</code></td>
+        </tr>
+        <tr>
+            <td>Indented code block</td>
+            <td><strong><code>TAB</code></strong> indented code</td>
+        </tr>
+        <tr>
+            <td>Heading level 1</td>
+            <td><code># Heading level 1</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 2</td>
+            <td><code>## Heading level 2</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 3</td>
+            <td><code>### Heading level 3</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 4</td>
+            <td><code>#### Heading level 4</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 5</td>
+            <td><code>##### Heading level 5</code></td>
+        </tr>
+        <tr>
+            <td>Heading level 6</td>
+            <td><code>###### Heading level 6</code></td>
+        </tr>
+        <tr>
+            <td>Unordered list</td>
+            <td><code>- first</code><br><code>- second</code><br><code>- third</code></td>
+        </tr>
+        <tr>
+            <td>Ordered list</td>
+            <td><code>1. first</code><br><code>2. second</code><br><code>3. third</code></td>
+        </tr>
+        <tr>
+            <td>Definition list</td>
+            <td><code>term</code><br><code>: definition</code></td>
+        </tr>
+        <tr>
+            <td>Link</td>
+            <td><code>[link text](https://link_address &quot;Link info (tooltip)&quot;)</code></td>
+        </tr>
+        <tr>
+            <td>Image</td>
+            <td><code>![image alt (tooltip)](https://image_address)</code></td>
+        </tr>
+        <tr>
+            <td>Horizontal rule</td>
+            <td><code>----------</code></td>
+        </tr>
+        <tr>
+            <td>Simple table</td>
+            <td><code>&#124;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;</code><br><code>&#124;---------------&#124;---------------&#124;</code><br><code>&#124;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;</code></td>
+        </tr>
+        <tr>
+            <td>Detailed table</td>
+            <td><code>&#124;&nbsp;Header 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp;Header 2&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Header 3&nbsp;&#124;</code><br><code>&#124;:--------------&#124;:-------------:&#124;--------------:&#124;</code><br><code>&#124;&nbsp;Line 1 Item 1&nbsp;&#124;&nbsp;Line 1 Item 2&nbsp;&#124;&nbsp;Line 1 Item 3&nbsp;&#124;</code><br><code>&#124;&nbsp;Line 2 Item 1&nbsp;&#124;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp;Line 2 Item 3&nbsp;&#124;</code><br><code>&#124;&nbsp;Line 3 Item 1&nbsp;&#124;&nbsp;Line 3 Item 2&nbsp;&#124;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;</code></td>
+        </tr>
+        <tr>
+            <td>Tasks</td>
+            <td><code>- [x] Task 1</code><br><code>- [ ] Task 2</code><br><code>- [x] Task 3</code></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<h3 id="markdown-features">Markdown Features</h3>
 <table>
     <thead>
         <tr>
@@ -148,7 +286,7 @@ Eclipse Markdown ePub Plugin - 2021 emdepub.org
         <tr>
             <td><a href="#additional-formatting">Additional Formatting</a></td>
             <td align="center">YES</td>
-            <td>Bold and italic toolbar commands</td>
+            <td>Bold and italic toolbar commands, maybe in the future add line and column for table</td>
         </tr>
     </tbody>
 </table>
@@ -294,96 +432,6 @@ Eclipse Markdown ePub Plugin - 2021 emdepub.org
 <hr>
 <h3 id="content-assist"><a name="content-assist"></a>Content assist</h3>
 <p>CTRL + SPACE, insert (by context)</p>
-<table>
-    <thead>
-        <tr>
-            <th>Insert</th>
-            <th>Text</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Bold text</td>
-            <td><code>**bold text**</code></td>
-        </tr>
-        <tr>
-            <td>Italic text</td>
-            <td><code>*italic text*</code></td>
-        </tr>
-        <tr>
-            <td>Bold italic text</td>
-            <td><code>***bold italic text***</code></td>
-        </tr>
-        <tr>
-            <td>Strikethrough text</td>
-            <td><code>~~strikethrough text~~</code></td>
-        </tr>
-        <tr>
-            <td>Quoted text</td>
-            <td><code>&gt; quoted text</code></td>
-        </tr>
-        <tr>
-            <td>Inline code</td>
-            <td><code>`inline code`</code></td>
-        </tr>
-        <tr>
-            <td>Fenced code block</td>
-            <td><code>``` language</code> <strong><code>ENTER</code></strong> <code>fenced code</code> <strong><code>ENTER</code></strong> <code>```</code></td>
-        </tr>
-        <tr>
-            <td>Indented code block</td>
-            <td><strong><code>TAB</code></strong> indented code</td>
-        </tr>
-        <tr>
-            <td>Heading level 1</td>
-            <td><code># Heading level 1</code></td>
-        </tr>
-        <tr>
-            <td>Heading level 2</td>
-            <td><code>## Heading level 2</code></td>
-        </tr>
-        <tr>
-            <td>Heading level 3</td>
-            <td><code>### Heading level 3</code></td>
-        </tr>
-        <tr>
-            <td>Heading level 4</td>
-            <td><code>#### Heading level 4</code></td>
-        </tr>
-        <tr>
-            <td>Heading level 5</td>
-            <td><code>##### Heading level 5</code></td>
-        </tr>
-        <tr>
-            <td>Heading level 6</td>
-            <td><code>###### Heading level 6</code></td>
-        </tr>
-        <tr>
-            <td>Unordered list</td>
-            <td><code>- first</code> <strong><code>ENTER</code></strong> <code>- second</code> <strong><code>ENTER</code></strong> <code>- third</code></td>
-        </tr>
-        <tr>
-            <td>Ordered list</td>
-            <td><code>1. first</code> <strong><code>ENTER</code></strong> <code>2. second</code> <strong><code>ENTER</code></strong> <code>3. third</code></td>
-        </tr>
-        <tr>
-            <td>Definition list</td>
-            <td><code>term</code> <strong><code>ENTER</code></strong> <code>: definition</code></td>
-        </tr>
-        <tr>
-            <td>Link</td>
-            <td><code>[link text](https://link_address &quot;Link info (tooltip)&quot;)</code></td>
-        </tr>
-        <tr>
-            <td>Image</td>
-            <td><code>![image alt (tooltip)](https://image_address)</code></td>
-        </tr>
-        <tr>
-            <td>Horizontal rule</td>
-            <td><code>----------</code></td>
-        </tr>
-    </tbody>
-</table>
 <hr>
 <h3 id="hover"><a name="hover"></a>Hover</h3>
 <p>Hover to show what?</p>
@@ -397,7 +445,7 @@ Eclipse Markdown ePub Plugin - 2021 emdepub.org
 <h3 id="additional-formatting"><a name="additional-formatting"></a>Additional formatting</h3>
 <p>Bold and italic commands, on/off for text selection</p>
 <hr>
-<h3 id="website-hosted-by-github--2021-emdepuborg">Website hosted by <a href="https://github.com/iuscl-ide/emdepub">GitHub</a> || 2021 <a href="https://emdepub.org">emdepub.org</a></h3>
+<h3 id="website-hosted-by-github--2023-emdepuborg">Website hosted by <a href="https://github.com/iuscl-ide/emdepub">GitHub</a> || 2023 <a href="https://emdepub.org">emdepub.org</a></h3>
 </article>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <feature
       id="org.emdepub"
       label="Eclipse Markdown ePub TOML Plugin"
-      version="1.0.2.qualifier"
+      version="1.0.3.qualifier"
       provider-name="emdepub.org"
       plugin="org.emdepub">
 
@@ -26,6 +26,7 @@ Two small things to keep in mind:
 
    <url>
       <update label="Eclipse Markdown ePub TOML Plugin Update Site" url="http://emdepub.org/update"/>
+      <discovery label="Plugin site" url="http://emdepub.org/"/>
    </url>
 
    <plugin

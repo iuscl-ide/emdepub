@@ -1,10 +1,10 @@
-<!-- Eclipse Markdown ePub TOML Plugin - 2022 emdepub.org -->
+<!-- Eclipse Markdown ePub TOML Plugin - 2023 emdepub.org -->
 
 <project name="emdepub_create_distribution" default="create">
 
-	<property name="release.timestamp" value="${RELEASE_TIMESTAMP}"/>
-	<property name="release.version" value="1.0.2.${release.timestamp}"/>
-	<property name="home.folder" value="${HOME_FOLDER}"/>
+	<property name="release.timestamp" value="202302182143"/>
+	<property name="release.version" value="1.0.3.${release.timestamp}"/>
+	<property name="home.folder" value="${REPLACED_FROM_ANT_RUN}"/>
 
 	<target name="create">
 
