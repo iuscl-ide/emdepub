@@ -18,7 +18,7 @@ This plugin, which is aimed at providing faster and higher-quality syntax highli
 
 The primary difference between the two plugins is that this one uses `tm4e`, `JavaScript rendering`, and `MS VSC` to create a more modern and visually-appealing interface. Code manipulation still uses [Flexmark](https://github.com/vsch/flexmark-java).
 
-For more detailed information about the plugin's various functionalities, please visit [Markdown progress](progress.html).
+For more detailed information about the plugin's various functionalities, please visit [Markdown progress](http://emdepub.org/progress.html).
 
 To use the **ePub** creation feature, please refer to the example within the [GitHub](https://github.com/iuscl-ide/emdepub/tree/main/org.emdepub/emdepub-projects/emdepub-project-test-1/src/main/resources/ePub-samples/THREE_MEN_IN_A_BOAT "THREE_MEN_IN_A_BOAT ePub example") source.
 
