@@ -55,19 +55,4 @@
 		<contentAssistProcessor class="org.emdepub.markdown.editor.language.MarkdownContentAssistProcessor" contentType="org.emdepub.md"></contentAssistProcessor>
 		<contentAssistProcessor class="org.emdepub.toml.editor.language.TomlContentAssistProcessor" contentType="org.emdepub.toml"></contentAssistProcessor>
 	</extension>
- <extension
-       point="org.eclipse.ui.newWizards">
-    <category
-          id="org.emdepub.site_project"
-          name="Emdepub Web Site">
-    </category>
-    <wizard
-          category="org.emdepub.site_project"
-          project="true"
-          class="org.emdepub.site_project.wizard.SiteNewWizard"
-          icon="plugin-icons/site-editor.png"
-          id="org.emdepub.site_project.wizard.SiteNewWizard"
-          name="Web Site Java Project">
-    </wizard>
- </extension>
 </plugin>
