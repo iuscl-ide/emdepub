@@ -284,7 +284,8 @@ public class MarkdownEditor extends FormEditor {
 	}
 	
 	/** Export */
-	public void exportAsHtml(MarkdownExportType markdownExportType, String exportCssReference, String exportName, String exportLocation) {
+	public void exportAsHtml(MarkdownExportType markdownExportType, String exportCssReference, 
+			String exportHtmlTitle, String exportName, String exportLocation) {
 
 		String formatStyleCss = formatStylesCss.get(markdownPreferences.get(PreferenceNames.DisplayFormatStyle));
 		String formatCodeStyleCss = formatCodeStylesCss.get(markdownPreferences.get(PreferenceNames.DisplayFormatCodeStyle));
@@ -310,7 +311,7 @@ public class MarkdownEditor extends FormEditor {
     		
     		String markdownExport = markdownExportTemplate;
     		markdownExport = markdownExport.replace("{{export-content}}", htmlText);
-    		markdownExport = markdownExport.replace("{{export-title}}", exportName);
+    		markdownExport = markdownExport.replace("{{export-title}}", exportHtmlTitle);
     		
     		String exportCss = "<link rel=\"stylesheet\" href=\"" + exportCssReference + "\">";
     		String formatOptionsCss = getFormatOptionsCss();
@@ -334,7 +335,7 @@ public class MarkdownEditor extends FormEditor {
     		
     		String markdownExport = markdownExportTemplate;
     		markdownExport = markdownExport.replace("{{export-content}}", htmlText);
-    		markdownExport = markdownExport.replace("{{export-title}}", exportName);
+    		markdownExport = markdownExport.replace("{{export-title}}", exportHtmlTitle);
 
     		String exportCss = "";
     		
@@ -345,7 +346,7 @@ public class MarkdownEditor extends FormEditor {
         		String exportFormatStylesCss = formatStyleCss + ".css";
         		F.copyFile(markdownViewerFolderNameWithPath + s + "styles" + s + exportFormatStylesCss,
         			exportCssFolderNameWithPath + s + exportFormatStylesCss);
-        		exportCss = exportCss + e + "<link rel=\"stylesheet\" href=\"css/" + exportFormatStylesCss + "\">" + e;
+        		exportCss = exportCss + e + "\t<link rel=\"stylesheet\" href=\"css/" + exportFormatStylesCss + "\">" + e;
     		}
     		
     		/* CSS Highlight */
@@ -355,13 +356,13 @@ public class MarkdownEditor extends FormEditor {
         		String exportFormatCodeStylesCss = formatCodeStyleCss + ".css";
         		F.copyFile(markdownViewerFolderNameWithPath + s + "styles/highlight" + s + exportFormatCodeStylesCss,
        				exportCssHighlightFolderNameWithPath + s + exportFormatCodeStylesCss);
-        		exportCss = exportCss + e + "<link rel=\"stylesheet\" href=\"css/highlight/" + exportFormatCodeStylesCss + "\">" + e;
+        		exportCss = exportCss + e + "\t<link rel=\"stylesheet\" href=\"css/highlight/" + exportFormatCodeStylesCss + "\">" + e;
     		}
 
     		/* CSS options */
     		String formatOptionsCss = getFormatOptionsCss();
     		if (formatOptionsCss.trim().length() > 0) {
-    			formatOptionsCss = "<\tstyle>" + formatOptionsCss + e + "\t</style>";
+    			formatOptionsCss = "\t<style>" + formatOptionsCss + e + "\t</style>";
     			exportCss = exportCss + e + formatOptionsCss + e;
     		}
     		
@@ -418,7 +419,7 @@ public class MarkdownEditor extends FormEditor {
 		
 		String formatCodeStylePre = formatCodeStylesPre.get(markdownPreferences.get(PreferenceNames.DisplayFormatCodeStyle));
 		if (formatCodeStylePre != null) {
-			String formatCodeStylesCssBackground = "article.markdown-body pre {" + e + formatCodeStylePre + e + "}";
+			String formatCodeStylesCssBackground = "\t\tarticle.markdown-body pre {" + e + "\t\t\t" + formatCodeStylePre + e + "\t\t}";
 			formatOptionsCss = formatOptionsCss + e + formatCodeStylesCssBackground;
 		}
 		

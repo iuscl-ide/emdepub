@@ -3,10 +3,7 @@ package org.emdepub.markdown.editor.wizard;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
@@ -19,32 +16,40 @@ import org.emdepub.activator.F;
 import org.emdepub.activator.UI;
 import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExportType;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+
 /** Markdown export as HTML wizard page */
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 	/** Convenient */
-	private static final String s = F.s;
+	static final String s = F.s;
 	
 	/* Data */
-	private MarkdownExportType markdownExportType;
-	private String exportCssReference;
-	private String exportName;
-	private String exportLocation;
+	@Getter MarkdownExportType markdownExportType;
+	@Getter String exportCssReference;
+	@Getter String exportHtmlTitle;
+	@Getter String exportFileOrFolderName;
+	@Getter String exportLocation;
 
 	/* UI */
-	private Text exportCssReferenceText;
-	private Text exportNameText;
-	private Text exportLocationText;	
-	private Label exportPathLabel;
+	Text exportCssReferenceText;
+	Text exportHtmlTitleText;
+	Text exportFileOrFolderNameText;
+	Text exportLocationText;	
+	Label exportPathLabel;
 	
 	/** Constructor */
 	public MarkdownExportAsHtmlWizardPage(MarkdownExportType markdownExportType, String exportCssReference,
-			String exportName, String exportLocation) {
+			String exportHtmlTitle, String exportName, String exportLocation) {
 		super("MarkdownExportAsHtmlWizardPage");
 		
 		this.markdownExportType = markdownExportType;
 		this.exportCssReference = exportCssReference;
-		this.exportName = exportName;
+		this.exportHtmlTitle = exportHtmlTitle;
+		this.exportFileOrFolderName = exportName;
 		this.exportLocation = exportLocation;
 		
 		setTitle("Export Markdown as HTML");
@@ -61,7 +66,7 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		Font fontItalic = ui.newFontAttributes(parent.getFont(), SWT.ITALIC);
 
 		final int indentWidth = 24;
-		final int labelWidth = 90;
+		final int labelWidth = 100;
 		final int buttonWidth = 92;
 
 		Label label;
@@ -81,13 +86,10 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		exportAllRadio.setText("Export the HTML and its assets in a folder");
 		exportAllRadio.setLayoutData(ui.createFillHorizontalGridData());
 		exportAllRadio.setSelection(markdownExportType == MarkdownExportType.ExportAssetsFolder);
-		exportAllRadio.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent selectionEvent) {
-				markdownExportType = MarkdownExportType.ExportAssetsFolder;
-				dialogChanged();
-			}
-		});
+		exportAllRadio.addSelectionListener(SelectionListener.widgetSelectedAdapter(selectionEvent -> {
+			markdownExportType = MarkdownExportType.ExportAssetsFolder;
+			dialogChanged();
+		}));
 
 		composite = new Composite(container, SWT.NULL);
 		composite.setLayoutData(ui.createFillHorizontalGridData());
@@ -106,13 +108,10 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		exportEPubRadio.setText("Export the HTML as file with a custom style file reference (for ePub)");
 		exportEPubRadio.setLayoutData(ui.createFillHorizontalGridData());
 		exportEPubRadio.setSelection(markdownExportType == MarkdownExportType.ExportFileOnlyWithCssReference);
-		exportEPubRadio.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent selectionEvent) {
-				markdownExportType = MarkdownExportType.ExportFileOnlyWithCssReference;
-				dialogChanged();
-			}
-		});
+		exportEPubRadio.addSelectionListener(SelectionListener.widgetSelectedAdapter(selectionEvent -> {
+			markdownExportType = MarkdownExportType.ExportFileOnlyWithCssReference;
+			dialogChanged();
+		}));
 
 		composite = new Composite(container, SWT.NULL);
 		composite.setLayoutData(ui.createFillHorizontalGridData());
@@ -130,11 +129,9 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		exportCssReferenceText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		exportCssReferenceText.setText(exportCssReference);
 		exportCssReferenceText.setLayoutData(ui.createFillHorizontalGridData());
-		exportCssReferenceText.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				exportCssReference = exportCssReferenceText.getText();
-				dialogChanged();
-			}
+		exportCssReferenceText.addModifyListener(modifyEvent -> {
+			exportCssReference = exportCssReferenceText.getText();
+			dialogChanged();
 		});
 
 //		label = new Label(composite, SWT.LEAD);
@@ -146,17 +143,34 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		exportFileOnlyRadio.setText("Export the HTML file only");
 		exportFileOnlyRadio.setLayoutData(ui.createFillHorizontalGridData());
 		exportFileOnlyRadio.setSelection(markdownExportType == MarkdownExportType.ExportFileOnly);
-		exportFileOnlyRadio.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent selectionEvent) {
-				markdownExportType = MarkdownExportType.ExportFileOnly;
-				dialogChanged();
-			}
-		});
-		
+		exportFileOnlyRadio.addSelectionListener(SelectionListener.widgetSelectedAdapter(selectionEvent -> {
+			markdownExportType = MarkdownExportType.ExportFileOnly;
+			dialogChanged();
+		}));
+
 		/* Horizontal separator */
 		label = new Label(container, SWT.LEAD);
 		label.setLayoutData(ui.createFillHorizontalGridData());
+
+		/* Export HTML title */
+		composite = new Composite(container, SWT.NULL);
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
+		
+		label = new Label(composite, SWT.NULL);
+		label.setText("Export HTML title");
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
+		
+		exportHtmlTitleText = new Text(composite, SWT.BORDER | SWT.SINGLE);
+		exportHtmlTitleText.setText(exportHtmlTitle);
+		exportHtmlTitleText.setLayoutData(ui.createFillHorizontalGridData());
+		exportHtmlTitleText.addModifyListener(modifyEvent -> {
+			exportHtmlTitle = exportHtmlTitleText.getText();
+			dialogChanged();
+		});
+
+		label = new Label(composite, SWT.LEAD);
+		label.setLayoutData(ui.createWidthGridData(buttonWidth));
 
 		/* Export name */
 		composite = new Composite(container, SWT.NULL);
@@ -167,14 +181,12 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		label.setText("Export name");
 		label.setLayoutData(ui.createWidthGridData(labelWidth));
 		
-		exportNameText = new Text(composite, SWT.BORDER | SWT.SINGLE);
-		exportNameText.setText(exportName);
-		exportNameText.setLayoutData(ui.createFillHorizontalGridData());
-		exportNameText.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent e) {
-				exportName = exportNameText.getText();
-				dialogChanged();
-			}
+		exportFileOrFolderNameText = new Text(composite, SWT.BORDER | SWT.SINGLE);
+		exportFileOrFolderNameText.setText(exportFileOrFolderName);
+		exportFileOrFolderNameText.setLayoutData(ui.createFillHorizontalGridData());
+		exportFileOrFolderNameText.addModifyListener(modifyEvent -> {
+			exportFileOrFolderName = exportFileOrFolderNameText.getText();
+			dialogChanged();
 		});
 
 		label = new Label(composite, SWT.LEAD);
@@ -192,21 +204,17 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		exportLocationText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		exportLocationText.setText(exportLocation);
 		exportLocationText.setLayoutData(ui.createFillHorizontalGridData());
-		exportLocationText.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent modifyEvent) {
-				exportLocation = exportLocationText.getText();
-				dialogChanged();
-			}
+		exportLocationText.addModifyListener(modifyEvent -> {
+			exportLocation = exportLocationText.getText();
+			dialogChanged();
 		});
 
 		Button button = new Button(composite, SWT.PUSH);
 		button.setText("Change...");
 		button.setLayoutData(ui.createWidthGridData(buttonWidth));
-		button.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-				handleBrowse();
-			}
-		});
+		button.addSelectionListener(SelectionListener.widgetSelectedAdapter(selectionEvent -> {
+			handleBrowse();
+		}));
 
 		
 		/* Horizontal separator */
@@ -248,14 +256,20 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 	/** Method */
 	private void dialogChanged() {
-		
-		if (getExportName().length() == 0) {
-			updateStatus("Export name must be specified");
-			exportNameText.setFocus();
+
+		if (exportHtmlTitle.length() == 0) {
+			updateStatus("Export HTML title must be specified");
+			exportHtmlTitleText.setFocus();
 			return;
 		}
 
-		if (getExportLocation().length() == 0) {
+		if (exportFileOrFolderName.length() == 0) {
+			updateStatus("Export name must be specified");
+			exportFileOrFolderNameText.setFocus();
+			return;
+		}
+
+		if (exportLocation.length() == 0) {
 			updateStatus("Export location must be specified");
 			exportLocationText.setFocus();
 			return;
@@ -268,11 +282,11 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		switch (markdownExportType) {
 		case ExportAssetsFolder:
 			exportCssReferenceText.setEnabled(false);
-			exportPathLabel.setText(exportLocation + s + exportName + s);
+			exportPathLabel.setText(exportLocation + s + exportFileOrFolderName + s);
 			break;
 		case ExportFileOnlyWithCssReference:
 			exportCssReferenceText.setEnabled(true);
-			exportPathLabel.setText(exportLocation + s + exportName + ".html");
+			exportPathLabel.setText(exportLocation + s + exportFileOrFolderName + ".html");
 			
 			if (getExportCssReference().length() == 0) {
 				updateStatus("Export CSS reference must be specified");
@@ -282,7 +296,7 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 			break;
 		case ExportFileOnly:
 			exportCssReferenceText.setEnabled(false);
-			exportPathLabel.setText(exportLocation + s + exportName + ".html");
+			exportPathLabel.setText(exportLocation + s + exportFileOrFolderName + ".html");
 			break;
 		default:
 			break;
@@ -295,21 +309,5 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 	private void updateStatus(String message) {
 		setErrorMessage(message);
 		setPageComplete(message == null);
-	}
-
-	public MarkdownExportType getMarkdownExportType() {
-		return markdownExportType;
-	}
-
-	public String getExportName() {
-		return exportName;
-	}
-
-	public String getExportLocation() {
-		return exportLocation;
-	}
-
-	public String getExportCssReference() {
-		return exportCssReference;
 	}
 }

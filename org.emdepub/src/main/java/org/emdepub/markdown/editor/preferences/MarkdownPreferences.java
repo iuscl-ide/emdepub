@@ -21,6 +21,7 @@ public class MarkdownPreferences {
 		DisplayFormatCodeStyle,
 		ExportType,
 		ExportCssReference,
+		ExportHtmlTitle,
 		ExportName,
 		ExportLocation,
 		SourceFormatRightMarginWrap,
@@ -71,6 +72,7 @@ public class MarkdownPreferences {
 		
 		initialPreferences.put(PreferenceNames.ExportType, MarkdownExportType.ExportAssetsFolder);
 		initialPreferences.put(PreferenceNames.ExportCssReference, "../css/stylesheet.css");
+		initialPreferences.put(PreferenceNames.ExportHtmlTitle, "");
 		initialPreferences.put(PreferenceNames.ExportName, "");
 		initialPreferences.put(PreferenceNames.ExportLocation, "");
 
@@ -132,22 +134,23 @@ public class MarkdownPreferences {
 			case DisplayFormatCodeStyle:
 				modifieds.put(pref, DisplayFormatCodeStyles.valueOf(propertyValue));
 				break;
-
 			case ExportType:
 				modifieds.put(pref, MarkdownExportType.valueOf(propertyValue));
 				break;
 			case ExportCssReference:
+			case ExportHtmlTitle:
 			case ExportName:
 			case ExportLocation:
 				modifieds.put(pref, propertyValue);
 				break;
-				
 			case SourceFormatRightMarginWrap:
 			case SourceFormatCollapseWhitespace:
 				modifieds.put(pref, Boolean.parseBoolean(propertyValue));
 				break;
 			case SourceFormatRightMarginColumns:
 				modifieds.put(pref, Integer.valueOf(propertyValue));
+				break;
+			default:
 				break;
 			}
 		}
