@@ -3,7 +3,7 @@
    <description name="Eclipse Markdown ePub TOML Plugin Update Site" url="http://emdepub.org/update">
       Eclipse Markdown ePub TOML Plugin Update Site - http://emdepub.org/update
    </description>
-   <feature url="features/org.emdepub_1.0.3.202302191232.jar" id="org.emdepub" version="1.0.3.202302191232">
+   <feature url="features/org.emdepub_1.0.3.202302191456.jar" id="org.emdepub" version="1.0.3.202302191456">
       <category name="org.emdepub.updatesite.category"/>
    </feature>
    <category-def name="org.emdepub.updatesite.category" label="Eclipse Markdown ePub TOML Plugin Distribution">
