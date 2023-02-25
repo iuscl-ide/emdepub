@@ -12,6 +12,9 @@ Eclipse Markdown ePub TOML Plugin - 2023 emdepub.org
 
 **Emdepub** is an Eclipse plugin that facilitates the display and modification of files written in [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax (with `.md` extension), in addition to enabling the creation of books in [ePub](https://en.wikipedia.org/wiki/EPUB) format (`.epub` extension) and editing of [TOML](https://toml.io/en/v1.0.0) files (`.toml` extension).
 
+Version `1.0.3` downloads: **<span id="downloads">finding...</span>**.
+
+
 ### Versions
 
 **NEW VERSION 1.0.3 - CORRECTIONS**
@@ -41,3 +44,10 @@ Help -> Install new software...
 And then add the site `https://emdepub.org/update`
 
 ### Website hosted by [GitHub](https://github.com/iuscl-ide/emdepub) || 2023 [emdepub.org](https://emdepub.org)
+
+<script defer>
+	var xhr=new XMLHttpRequest;xhr.addEventListener("load",function(){
+		var e=JSON.parse(this.responseText)[0].assets[0].download_count;
+		document.getElementById("downloads").innerHTML = e;
+	});xhr.open("GET","https://api.github.com/repos/iuscl-ide/emdepub/releases");xhr.send();
+</script>

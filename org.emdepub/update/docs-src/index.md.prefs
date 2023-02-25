@@ -1,8 +1,9 @@
 #Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org
-#Sat Feb 18 22:26:16 EET 2023
+#Sat Feb 25 21:02:59 EET 2023
 DisplayCenterHeaders=true
 DisplayFormatCodeStyle=None
 ExportCssReference=css/stylesheet.css
+ExportHtmlTitle=Index
 ExportLocation=C\:\\Iustin\\Programming\\_emdepub\\repositories\\emdepub\\org.emdepub\\update\\docs-src
 ExportName=index
 ExportType=ExportFileOnlyWithCssReference
