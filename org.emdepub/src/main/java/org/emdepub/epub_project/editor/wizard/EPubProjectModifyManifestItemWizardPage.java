@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.emdepub.activator.UI;
+import org.emdepub.common.ui.UI;
 
 /** Generate manifest IDs wizard page */
 public class EPubProjectModifyManifestItemWizardPage extends WizardPage {

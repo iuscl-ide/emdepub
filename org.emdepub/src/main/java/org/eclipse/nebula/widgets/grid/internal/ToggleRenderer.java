@@ -39,10 +39,10 @@ public class ToggleRenderer extends AbstractRenderer
     {
         
 //    	if (isSelected()) {
-//    		gc.setBackground(R.getColor(R.Colors.SelectBlue));
+//    		gc.setBackground(CR.getColor(CR.Colors.SelectBlue));
 //    	}
 //    	else {
-    		//gc.setBackground(R.getColor(R.Colors.List));	
+    		//gc.setBackground(CR.getColor(CR.Colors.List));	
 //    	}
         //gc.fillRectangle(getBounds());
 
@@ -59,7 +59,7 @@ public class ToggleRenderer extends AbstractRenderer
 //            gc.drawLine(getBounds().x + 4, getBounds().y + 2, getBounds().x + 4, getBounds().y + 6);
 //        }
 
-        //gc.setBackground(R.getColor(R.Colors.List));
+        //gc.setBackground(CR.getColor(CR.Colors.List));
         gc.setForeground(getDisplay().getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW));
 
         //gc.fillRectangle(getBounds().x + 2, getBounds().y + 2, getBounds().width - 4, getBounds().height - 4);

@@ -1,0 +1,97 @@
+# Introduction
+
+
+## Motivation
+
+Today, log file management remains a challenging task, which has resulted in the need for an application to simplify the process.
+In maintenance teams, employees typically arrive at the office and check for any incidents. If they find one, they usually download the log file from a remote network location and open it in a text editor such as *Notepad++*. They then use the "**Ctrl-F**" function to search for the keyword "**ERROR**" and proceed to locate and address each error found in the file.
+Performing this task on a daily basis can lead to a deep understanding of the log file format and the specific search terms required to identify the root cause of an issue. However, due to the fact that logs are essentially just plain text, and different applications have their own unique logging styles, it can be a challenging and time-consuming process.
+
+There are certain similarities shared by log files:
+
+
+### Lines/Records
+
+A log file is composed of lines, which are essentially paragraphs ending with a line break represented by "**\R**" (`CR`, `LF`, `CRLF`). Meanwhile, a record refers to a single entry or piece of information that is recorded in the log at one time. A record can consist of one or multiple lines, such as a simple information on a single line, or an exception containing multiple lines for the stack trace. Some modern logs may even have simple information spread across multiple lines, such as one line for the date and level, and another line for the message. Alternatively, an entire record may be presented in a multi-line *JSON* or *XML* layout format that is neatly formatted for improved readability. In other scenarios, a *JSON* or *XML* record must be contained within a single line to ensure proper processing by *Kibana*.
+
+> For log examples, please see the help topic "`Log Examples`"
+
+
+### Identifiers
+
+To identify the start of each log record, there should be a consistent marker that separates records from one another. This enables the end of a record to be identified just before the start of the next. In many cases, the identifier is a date and time stamp.
+
+### Levels
+
+Each record should be assigned a level, such as INFO, WARNING, ERROR, DEBUG, or a variation thereof, to group similar records together. This not only helps to locate a specific record when searching through logs, but also enables selective logging of specific events, rather than logging everything which can result in very large logs. While each record should ideally have a level, it is not always enforced, resulting in some logs with records lacking a level.
+
+## Implementation
+
+Next, we will explore ways to make these log file characteristics as visible as possible.
+
+
+
+● ai
+id: abc123
+▶
+### Lines/Records/Fields Views
+
+There will be three ways to view a log file, as **"Lines"** - like a normal text file, as **"Records"** - to see by log information and as **"Fields"** - record values
+◀
+
+● ai
+id: abc123
+▶
+### Lines View
+
+For "**Lines**" view the log will be displayed by lines
+
+In the "**Lines**" view the log will be displayed as text, no rules are necessary
+
+### Records View
+
+For "**Records**" view the log will be displayed as records
+
+In order to display the "**Records**" view the actual records have to be identified by rules, to see on which line the a record is starting
+
+### Fields View
+
+For "**Fields**" view the log will be displayed only as records which have some found pieces of text
+
+The "**Fields**" view will have data (records) only if rules are defined in order to identify pieces of information and the rules pass for the record text
+
+### Levels
+
+The log levels will be identified by rules, and will be displayed in customisable colors
+
+Can chose to display only some of the levels
+
+### Filters
+
+For each view, some identification rules can be defined in order to display only the lines that are verified by a certain rule
+
+The lines will be selected if it contains a `space` followed by a `digit` followed by "`)`":
+
+### Fields and Map Fields
+
+Fields are values created by an expression from a record text. Can be as simple as a substring or complex with multiple levels of concatenation
+
+Map fields are lists of keys-values created by an expression from a record text by spliting with delimiters
+
+Here the first field is the content of "`loggerName`", the second one is the content of "`message`" and the map field is the content of "`source`" split in key-value pairs by "`,`" and in key and value by "`:`"
+
+### Search
+
+The search will verify each line for a text
+
+Here the search is "content" and the occurences are marked:
+
+> For a more detailed description of the functionality, please see the help topic "`User Guide`"
+
+◀
+
+|                           **Log Values** - Because logs are hard                           |
+|:------------------------------------------------------------------------------------------:|
+|                                    log-values.com 2023                                     |
+|                         *(this text was reformatted with ChatGPT)*                         |
+| __________________________________________________________________________________________ |

@@ -12,6 +12,9 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.emdepub.common.resources.CR;
+import org.emdepub.common.ui.UI;
+import org.emdepub.common.utils.CU;
 import org.osgi.framework.BundleContext;
 
 import lombok.SneakyThrows;
@@ -21,10 +24,10 @@ import lombok.SneakyThrows;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/* The plug-in ID */
 	public static final String PLUGIN_ID = "org.emdepub"; //$NON-NLS-1$
 
-	// The shared instance
+	/* The shared instance */
 	private static Activator plugin;
 	
 	/** Plug-in root folder */
@@ -42,11 +45,11 @@ public class Activator extends AbstractUIPlugin {
 
 		/* Log */
 		File logFile = new File(pluginFolderPathName, "log/emdepub.log");
-		F.createFoldersIfNotExists(pluginFolderPathName + "/log");
+		CU.createFoldersIfNotExists(pluginFolderPathName + "/log");
 		L.initLog(logFile);
 		
 		/* Resources */
-		R.load(new UI(false, Display.getDefault()));
+		CR.load(new UI(false, Display.getDefault()));
 	}
 
 	@Override

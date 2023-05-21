@@ -15,7 +15,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
-import org.emdepub.activator.R;
+import org.emdepub.common.resources.CR;
 
 /**
  * @author chris.gross@us.ibm.com
@@ -43,7 +43,7 @@ public class ExpandToggleRenderer extends AbstractRenderer
 
         if (isHover())
         {
-            innerColor = R.getColor(R.Colors.List);
+            innerColor = CR.getColor(CR.Colors.List);
         }
         else
         {

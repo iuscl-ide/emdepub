@@ -82,7 +82,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TypedListener;
-import org.emdepub.activator.R;
+import org.emdepub.common.resources.CR;
 
 /**
  * <p>
@@ -825,7 +825,7 @@ public class Grid extends Canvas {
 		emptyRowHeaderRenderer.setDisplay(getDisplay());
 		insertMarkRenderer.setDisplay(getDisplay());
 
-		setForeground(R.getColor(R.Colors.ListFont));
+		setForeground(CR.getColor(CR.Colors.ListFont));
 		setLineColor(getDisplay().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
 
 		if ((style & SWT.MULTI) != 0) {
@@ -855,10 +855,10 @@ public class Grid extends Canvas {
 
 		//itemHeight = sizingGC.getFontMetrics().getHeight() + 2;
 
-		RGB sel = R.getColor(R.Colors.ListSelectedAndFocus).getRGB();
+		RGB sel = CR.getColor(CR.Colors.ListSelectedAndFocus).getRGB();
 		RGB white = getDisplay().getSystemColor(SWT.COLOR_WHITE).getRGB();
 
-		RGB cellSel = R.blend(sel, white, 50);
+		RGB cellSel = CR.blend(sel, white, 50);
 
 		cellHeaderSelectionBackground = new Color(getDisplay(), cellSel);
 
@@ -872,7 +872,7 @@ public class Grid extends Canvas {
 	public Color getBackground() {
 		checkWidget();
 		if (backgroundColor == null)
-			return R.getColor(R.Colors.List);
+			return CR.getColor(CR.Colors.List);
 		return backgroundColor;
 	}
 

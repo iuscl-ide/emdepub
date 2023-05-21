@@ -1,0 +1,4 @@
+#Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org
+#Tue Feb 28 23:20:08 EET 2023
+DisplayFormatCodeStyle=VSCode
+SourceFormatRightMarginWrap=true

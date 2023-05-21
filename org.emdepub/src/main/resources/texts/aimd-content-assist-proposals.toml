@@ -1,0 +1,35 @@
+
+# Emdepub Eclipse Plugin - emdepub.org
+# AiMd content assist proposals
+# 
+# CommonCompletionProposal
+# 
+# String replacementString,
+# int replacementOffset,
+# int replacementLength,
+# int cursorPositionChars,
+# int cursorPositionLineDelimiters,
+# String displayString,
+# String additionalProposalInfo
+
+[proposals.AI_BLOCKS]
+replacementString = '''
+
+● ai
+id: UNIQUE_ID
+▶
+
+◀
+'''
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 20
+cursorPositionLineDelimiters = 3
+displayString = 'AI header and text blocks'
+additionalProposalInfo = '''
+● ai
+id: UNIQUE_ID
+▶
+Non-AI text
+◀
+'''

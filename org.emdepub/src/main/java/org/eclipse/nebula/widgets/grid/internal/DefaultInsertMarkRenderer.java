@@ -5,7 +5,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
-import org.emdepub.activator.R;
+import org.emdepub.common.resources.CR;
 
 /**
  * A renderer which paints the insert mark feedback during drag & drop.
@@ -27,7 +27,7 @@ public class DefaultInsertMarkRenderer extends AbstractRenderer
     	Rectangle r = (Rectangle)value;
 
     	gc.setLineStyle(SWT.LINE_SOLID);
-    	gc.setForeground(R.getColor(R.Colors.ListSelectedAndFocus));
+    	gc.setForeground(CR.getColor(CR.Colors.ListSelectedAndFocus));
 
     	gc.drawLine(r.x, r.y-1, r.x+r.width, r.y-1);
     	gc.drawLine(r.x, r.y  , r.x+r.width, r.y  );

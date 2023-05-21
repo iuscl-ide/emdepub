@@ -63,9 +63,9 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.ide.FileStoreEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-import org.emdepub.activator.F;
-import org.emdepub.activator.R;
-import org.emdepub.activator.UI;
+import org.emdepub.common.resources.CR;
+import org.emdepub.common.ui.UI;
+import org.emdepub.common.utils.CU;
 import org.emdepub.epub_project.editor.wizard.EPubProjectGenerateIDsWizard;
 import org.emdepub.epub_project.editor.wizard.EPubProjectModifyManifestItemWizard;
 import org.emdepub.epub_project.editor.wizard.EPubProjectModifyTocItemWizard;
@@ -194,8 +194,8 @@ public class EPubProjectEditor extends FormEditor {
 		}
 	}
 	
-	private static final String s = F.s;
-//	private static final String e = F.enter();
+	private static final String s = CU.S;
+//	private static final String e = CU.enter();
 
 	
 	private EPUB_project ePubProject;
@@ -269,8 +269,8 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* load */
 		projectFileNameWithPath = getSourceEPubProjectFilePathAndName();
-		String json = F.loadFileInString(projectFileNameWithPath);
-		if (F.isEmpty(json)) {
+		String json = CU.loadFileInString(projectFileNameWithPath);
+		if (CU.isEmpty(json)) {
 			ePubProject = new EPUB_project();
 			
 		}
@@ -293,9 +293,9 @@ public class EPubProjectEditor extends FormEditor {
 		FormToolkit formsToolkit = new FormToolkit(opfPageComposite.getDisplay());
 		/* Form */
 		Form opfForm = formsToolkit.createForm(opfPageComposite);
-		String fileName = F.getFileName(projectFileNameWithPath);   //fileNameWithPath.substring(F.getFileFolderName(fileNameWithPath).length() + 1);
+		String fileName = CU.findFileName(projectFileNameWithPath);   //fileNameWithPath.substring(CU.getFileFolderName(fileNameWithPath).length() + 1);
 		opfForm.setText("\"" + fileName + "\" " + this.getTitle());
-		opfForm.setImage(R.getImage("project"));
+		opfForm.setImage(CR.getImage("project"));
 //		opfForm.setToolBarVerticalAlignment(SWT.BOTTOM);
 		formsToolkit.decorateFormHeading(opfForm);
 
@@ -324,13 +324,13 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Run */
 		generalToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.generalRunAction",
-			"Run", "Generate ePub book", R.getImageDescriptor("run"), () -> {
+			"Run", "Generate ePub book", CR.getImageDescriptor("run"), () -> {
 				generateBook();
 			}));
 
 		/* Split */
 		generalToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.generalSplitAction",
-			"Split", "Split a file in separate files (for chapters)", R.getImageDescriptor("XML_file"), () -> {
+			"Split", "Split a file in separate files (for chapters)", CR.getImageDescriptor("XML_file"), () -> {
 				splitSourceFile();
 			}));
 
@@ -360,7 +360,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Generate identifier UUID */
 		metadataToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.generateIdentifierUuidAction",
-			"Generate identifier UUID", "Generate identifier UUID", R.getImageDescriptor("asterisk"), () -> {
+			"Generate identifier UUID", "Generate identifier UUID", CR.getImageDescriptor("asterisk"), () -> {
 				ePubProject.metadata_identifier = "urn:uuid:" + UUID.randomUUID().toString();
 				metadataIdentifierTextControl.reload();
 			}));
@@ -394,19 +394,19 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Refresh manifest */
 		manifestToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.manifestRefreshAction",
-			"Refresh manifest", "Refresh manifest from root files and folders", R.getImageDescriptor("refresh"), () -> {
+			"Refresh manifest", "Refresh manifest from root files and folders", CR.getImageDescriptor("refresh"), () -> {
 				refreshManifest();
 			}));
 		
 		/* Generate manifest IDs */
 		manifestToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.manifestGenerateIDsAction",
-			"Generate manifest IDs", "Generate manifest IDs", R.getImageDescriptor("XSDIdentityConstraintDefinitionKey"), () -> {
+			"Generate manifest IDs", "Generate manifest IDs", CR.getImageDescriptor("XSDIdentityConstraintDefinitionKey"), () -> {
 				editManifestIDPreferences();
 			}));
 
 		/* Modify manifest item */
 		manifestToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.modifyManifestItemAction",
-			"Manifest item properties", "Edit manifest item properties", R.getImageDescriptor("edit_template"), () -> {
+			"Manifest item properties", "Edit manifest item properties", CR.getImageDescriptor("edit_template"), () -> {
 				if (opfManifestGrid.getItemCount() == 0) {
 					MessageDialog.openError(Display.getCurrent().getActiveShell(), "The manifest is empty", "Fill the manifest and select an item");
 					return;
@@ -583,22 +583,22 @@ public class EPubProjectEditor extends FormEditor {
 
 		/* Add to spine */
 		spineToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.spineAddAction", "Add to spine",
-			"Add documents from manifest to spine", R.getImageDescriptor("add"), () -> {
+			"Add documents from manifest to spine", CR.getImageDescriptor("add"), () -> {
 				addToSpine();
 			}));
 		
 		spineToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.spineRemoveAction", "Remove from spine",
-			"Remove documents from spine", R.getImageDescriptor("remove"), () -> {
+			"Remove documents from spine", CR.getImageDescriptor("remove"), () -> {
 				removeFromSpine();
 			}));
 
 		spineToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.spineMoveUpAction", "Move up in spine",
-			"Move documents up in spine, to the beginning of the book", R.getImageDescriptor("move-up"), () -> {
+			"Move documents up in spine, to the beginning of the book", CR.getImageDescriptor("move-up"), () -> {
 				moveInSpine(true);
 			}));
 
 		spineToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.spineMoveDownAction", "Move down in spine",
-			"Move documents down in spine, to the end of the book", R.getImageDescriptor("move-down"), () -> {
+			"Move documents down in spine, to the end of the book", CR.getImageDescriptor("move-down"), () -> {
 				moveInSpine(false);
 			}));
 		
@@ -696,28 +696,28 @@ public class EPubProjectEditor extends FormEditor {
 
 		/* Add to toc */
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.tocAddAction", "Add to toc",
-			"Add documents from manifest to toc", R.getImageDescriptor("add"), () -> {
+			"Add documents from manifest to toc", CR.getImageDescriptor("add"), () -> {
 			addToToc();
 		}));
 		
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.tocRemoveAction", "Remove from toc",
-			"Remove documents from toc", R.getImageDescriptor("remove"), () -> {
+			"Remove documents from toc", CR.getImageDescriptor("remove"), () -> {
 			removeFromToc();
 		}));
 
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.tocMoveUpAction", "Move up in toc",
-			"Move documents up in toc, to the beginning of the book", R.getImageDescriptor("move-up"), () -> {
+			"Move documents up in toc, to the beginning of the book", CR.getImageDescriptor("move-up"), () -> {
 			moveInToc(true);
 		}));
 
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.tocMoveDownAction", "Move down in toc",
-			"Move documents down in toc, to the end of the book", R.getImageDescriptor("move-down"), () -> {
+			"Move documents down in toc, to the end of the book", CR.getImageDescriptor("move-down"), () -> {
 			moveInToc(false);
 		}));
 		
 		/* Modify toc item */
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.modifyTocItemAction",
-			"Edit TOC item", "Edit TOC item", R.getImageDescriptor("edit_template"), () -> {
+			"Edit TOC item", "Edit TOC item", CR.getImageDescriptor("edit_template"), () -> {
 				
 			if (noToc()) {
 				return;
@@ -883,7 +883,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		if (newPageIndex == ePubProjectFormsPageIndex) {
 			
-			if (F.isEmpty(document.get())) {
+			if (CU.isEmpty(document.get())) {
 				return;
 			}
 			
@@ -975,7 +975,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		final Text fileText = new Text(fileComposite, SWT.SINGLE | SWT.BORDER);
 		String fileTextValue = (String) field.get(ePubProject);
-		fileText.setText(F.isEmpty(fileTextValue) ? "" : fileTextValue);
+		fileText.setText(CU.isEmpty(fileTextValue) ? "" : fileTextValue);
 		fileText.setLayoutData(ui.createFillHorizontalGridData());
 
 		final Button fileButton = new Button(fileComposite, SWT.NONE);
@@ -1054,7 +1054,7 @@ public class EPubProjectEditor extends FormEditor {
 			@SneakyThrows(IllegalAccessException.class)
 			public void reload() {
 				String fileTextValue = (String) field.get(ePubProject);
-				fileText.setText(F.isEmpty(fileTextValue) ? "" : fileTextValue);
+				fileText.setText(CU.isEmpty(fileTextValue) ? "" : fileTextValue);
 				//fileText.setLayoutData(ui.createFillHorizontalGridData());
 			}
 			@Override
@@ -1089,7 +1089,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		final Text text = new Text(textComposite, (lines > 1 ? SWT.MULTI | SWT.V_SCROLL | SWT.WRAP : SWT.SINGLE) | SWT.BORDER );
 		String textValue = (String) field.get(ePubProject);
-		text.setText(F.isEmpty(textValue) ? "" : textValue);
+		text.setText(CU.isEmpty(textValue) ? "" : textValue);
 		GridData textGridData = ui.createFillHorizontalGridData();
 		if (lines > 1) {
 			textGridData.minimumHeight = lines * text.getLineHeight();
@@ -1115,7 +1115,7 @@ public class EPubProjectEditor extends FormEditor {
 			@SneakyThrows(IllegalAccessException.class)
 			public void reload() {
 				String textValue = (String) field.get(ePubProject);
-				text.setText(F.isEmpty(textValue) ? "" : textValue);
+				text.setText(CU.isEmpty(textValue) ? "" : textValue);
 			}
 			@Override
 			public String getText() {
@@ -1128,7 +1128,7 @@ public class EPubProjectEditor extends FormEditor {
 	@SneakyThrows(IOException.class)
 	public void refreshManifest() {
 		
-		if (F.isEmpty(ePubProject.rootFolderNameWithFullPath)) {
+		if (CU.isEmpty(ePubProject.rootFolderNameWithFullPath)) {
 			
 			MessageDialog.openError(Display.getCurrent().getActiveShell(),
 				"Refresh manifest cannot continue", "Root folder name is empty");
@@ -1170,16 +1170,16 @@ public class EPubProjectEditor extends FormEditor {
 				
 				EPUB_project_manifest_item oldManifestItem = oldManifestItems.get(key);
 				
-				if (!F.isEmpty(oldManifestItem.itemFileManualId)) {
+				if (!CU.isEmpty(oldManifestItem.itemFileManualId)) {
 					manifest_item.itemFileManualId = oldManifestItem.itemFileManualId;
 				}
-				if (!F.isEmpty(oldManifestItem.itemFileId)) {
+				if (!CU.isEmpty(oldManifestItem.itemFileId)) {
 					manifest_item.itemFileId = oldManifestItem.itemFileId;
 				}
-				if (!F.isEmpty(oldManifestItem.itemFileMediaType)) {
+				if (!CU.isEmpty(oldManifestItem.itemFileMediaType)) {
 					manifest_item.itemFileMediaType = oldManifestItem.itemFileMediaType;
 				}
-				if (!F.isEmpty(oldManifestItem.itemFileProperties)) {
+				if (!CU.isEmpty(oldManifestItem.itemFileProperties)) {
 					manifest_item.itemFileProperties = oldManifestItem.itemFileProperties;
 				}
 			}
@@ -1212,7 +1212,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		if (ePubProject.manifestIDGuid) {
 			for (EPUB_project_manifest_item gridManifestItem : gridManifestItems) {
-				if (F.isEmpty(gridManifestItem.itemFileManualId)) {
+				if (CU.isEmpty(gridManifestItem.itemFileManualId)) {
 					gridManifestItem.itemFileId =  id + UUID.randomUUID().toString();	
 				}
 			}
@@ -1220,7 +1220,7 @@ public class EPubProjectEditor extends FormEditor {
 		else {
 			int index = 1;
 			for (EPUB_project_manifest_item gridManifestItem : gridManifestItems) {
-				if (F.isEmpty(gridManifestItem.itemFileManualId)) {
+				if (CU.isEmpty(gridManifestItem.itemFileManualId)) {
 					String count = "" + index;
 					gridManifestItem.itemFileId =  id + "00000".substring(count.length()) + count;
 					index++;
@@ -1286,31 +1286,31 @@ public class EPubProjectEditor extends FormEditor {
 			GridItem gridItem = new GridItem(opfManifestGrid, SWT.NONE);
 
 			String mediaType = manifest_item.itemFileMediaType; 
-			if (F.isEmpty(mediaType)) {
-				gridItem.setImage(R.getImage("unknown"));
+			if (CU.isEmpty(mediaType)) {
+				gridItem.setImage(CR.getImage("unknown"));
 			}
 			else {
 				if (mediaType.contains("html")) {
-					gridItem.setImage(R.getImage("html"));
+					gridItem.setImage(CR.getImage("html"));
 				}
 				else if (mediaType.contains("image")) {
-					gridItem.setImage(R.getImage("tag-image"));
+					gridItem.setImage(CR.getImage("tag-image"));
 				}
 				else if (mediaType.contains("css")) {
-					gridItem.setImage(R.getImage("stylesheet"));
+					gridItem.setImage(CR.getImage("stylesheet"));
 				}
 				else if (mediaType.contains("text")) {
-					gridItem.setImage(R.getImage("unknown"));
+					gridItem.setImage(CR.getImage("unknown"));
 				}
 				else {
-					gridItem.setImage(R.getImage("fileType_filter"));
+					gridItem.setImage(CR.getImage("fileType_filter"));
 				}
 			}
 			
 			gridItem.setText(itemFileNameIndex, manifest_item.itemFileName);
 			gridItem.setText(itemFileRelativePathIndex, manifest_item.itemFileRelativePath);
 			
-			gridItem.setFont(itemFileIdIndex, F.isEmpty(manifest_item.itemFileManualId) ? gridFont : gridFontItalic);
+			gridItem.setFont(itemFileIdIndex, CU.isEmpty(manifest_item.itemFileManualId) ? gridFont : gridFontItalic);
 			gridItem.setText(itemFileIdIndex, manifest_item.itemFileId);
 			
 			gridItem.setText(itemFileMediaTypeIndex, manifest_item.itemFileMediaType);
@@ -1496,7 +1496,7 @@ public class EPubProjectEditor extends FormEditor {
 	/** In engine ? */
 	public void splitFileInFiles() {
 		
-		String source = F.loadFileInString(ePubProject.splitSourceFileNameWithFullPath);
+		String source = CU.loadFileInString(ePubProject.splitSourceFileNameWithFullPath);
 		
 		String[] targets = source.split(ePubProject.splitStartExpression);
 		
@@ -1508,7 +1508,7 @@ public class EPubProjectEditor extends FormEditor {
 		for (int index = 1; index < count; index ++) {
 			String counter = "" + index;
 			counter = counterMax.substring(0, counterLength - counter.length()) + counter;
-			F.saveStringToFile(targets[index], ePubProject.splitTargetFileNamesWithFullPath.replaceAll("\\*", counter));
+			CU.saveStringToFile(targets[index], ePubProject.splitTargetFileNamesWithFullPath.replaceAll("\\*", counter));
 		}
 	}
 	
@@ -1545,7 +1545,7 @@ public class EPubProjectEditor extends FormEditor {
 			EPUB_project_manifest_item manifestItem = (EPUB_project_manifest_item) manifestGridItem.getData("manifest_item");
 				
 			EPUB_project_toc_item tocItem = new EPUB_project_toc_item();
-			tocItem.itemText = F.getFileNameWithoutExtension(manifestItem.itemFileName);
+			tocItem.itemText = CU.findFileNameWithoutExtension(manifestItem.itemFileName);
 			tocItem.itemSrc = manifestItem.itemFileRelativePath.replace(s, "/") + "/" + manifestItem.itemFileName;
 			gridTocItems.add(tocSelectionIndex, tocItem);
 			tocSelectionIndex++;

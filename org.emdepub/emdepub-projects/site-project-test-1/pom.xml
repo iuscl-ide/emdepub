@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.emdepub</groupId>
+	<artifactId>site-project</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>site-project</name>
+	<url>https://site.com</url>
+	<properties>
+		<!-- Build properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.vladsch.flexmark/flexmark-all -->
+		<dependency>
+			<groupId>com.vladsch.flexmark</groupId>
+			<artifactId>flexmark-all</artifactId>
+			<version>0.64.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.vladsch.flexmark/flexmark-ext-superscript -->
+<!--		<dependency>-->
+<!--		    <groupId>com.vladsch.flexmark</groupId>-->
+<!--		    <artifactId>flexmark-ext-superscript</artifactId>-->
+<!--		    <version>0.64.0</version>-->
+<!--		</dependency>-->
+		<dependency>
+	        <groupId>com.google.flogger</groupId>
+	        <artifactId>flogger</artifactId>
+	        <version>0.7.4</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>com.google.flogger</groupId>
+	        <artifactId>flogger-system-backend</artifactId>
+	        <version>0.7.4</version>
+	        <scope>runtime</scope>
+	    </dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-toml -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-toml</artifactId>
+			<version>2.13.2</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<!-- Installation, distribution -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<ant antfile="${basedir}/dist-ant/build.xml">
+									<target name="start" />
+								</ant>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

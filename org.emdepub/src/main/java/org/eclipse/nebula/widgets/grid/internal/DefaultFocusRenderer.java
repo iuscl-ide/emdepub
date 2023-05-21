@@ -14,7 +14,7 @@ import org.eclipse.nebula.widgets.grid.AbstractRenderer;
 import org.eclipse.nebula.widgets.grid.GridItem;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
-import org.emdepub.activator.R;
+import org.emdepub.common.resources.CR;
 
 /**
  * The focus item renderer - renders over the completely drawn table.
@@ -34,8 +34,8 @@ public class DefaultFocusRenderer extends AbstractRenderer
 
         if (item.getParent().isSelected(item))
         {
-            gc.setBackground(R.getColor(R.Colors.ListSelectedAndFocus));
-            gc.setForeground(R.getColor(R.Colors.ListFontSelected));
+            gc.setBackground(CR.getColor(CR.Colors.ListSelectedAndFocus));
+            gc.setForeground(CR.getColor(CR.Colors.ListFontSelected));
         }
         else
         {

@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.emdepub.activator.UI;
+import org.emdepub.common.ui.UI;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
 

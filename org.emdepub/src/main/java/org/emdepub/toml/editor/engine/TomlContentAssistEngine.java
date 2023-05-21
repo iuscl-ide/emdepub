@@ -4,7 +4,7 @@ package org.emdepub.toml.editor.engine;
 import java.util.LinkedHashMap;
 
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.emdepub.activator.R;
+import org.emdepub.common.resources.CR;
 import org.emdepub.toml.editor.engine.TomlCompletionProposal.TomlCompletionProposalKey;
 
 /** TOML visitors engine */
@@ -19,7 +19,7 @@ public class TomlContentAssistEngine {
 	
 	/** Fill default proposals */
 	static {
-		defaultProposals = R.getTomlCompletionProposals();
+		defaultProposals = CR.getTomlCompletionProposals();
 		completionProposals = new TomlCompletionProposal[defaultProposals.size()];
 	}
 
@@ -29,7 +29,7 @@ public class TomlContentAssistEngine {
 		int index = 0;
 		int lineDelimiterChars = lineDelimiter.length();
 		for (TomlCompletionProposal completionProposal : defaultProposals.values()) {
-			completionProposal.setReplacementString(completionProposal.getReplacementString().replaceAll("\\R", lineDelimiter));
+			completionProposal.setReplacementString(completionProposal.getReplacementString().replaceAll("\\CR", lineDelimiter));
 			completionProposal.setReplacementOffset(offset);
 			completionProposal.setCursorPosition(completionProposal.getCursorPositionChars() +
 					completionProposal.getCursorPositionLineDelimiters() * lineDelimiterChars);

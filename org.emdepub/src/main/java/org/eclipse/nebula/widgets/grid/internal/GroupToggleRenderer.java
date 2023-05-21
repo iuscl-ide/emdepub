@@ -14,7 +14,7 @@ import org.eclipse.nebula.widgets.grid.AbstractRenderer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
-import org.emdepub.activator.R;
+import org.emdepub.common.resources.CR;
 
 /**
  * The renderer for the expand/collapse toggle on a column group header.
@@ -43,7 +43,7 @@ public class GroupToggleRenderer extends AbstractRenderer
 
         if (isHover())
         {
-            gc.setForeground(R.getColor(R.Colors.List));
+            gc.setForeground(CR.getColor(CR.Colors.List));
         }
         else
         {

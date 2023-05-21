@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-19">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -13,18 +19,18 @@
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
-			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="lib/annotations-15.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-gfm-tasklist-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-tables-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-0.64.0.jar" sourcepath="C:/Users/iirimia/AppData/Local/Temp/.org.sf.feeling.decompiler1684065128875/source/flexmark-0.64.0-sources-1684065533616.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-gfm-tasklist-0.64.0.jar" sourcepath="C:/Users/iirimia/AppData/Local/Temp/.org.sf.feeling.decompiler1682872050440/source/flexmark-ext-gfm-tasklist-0.64.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-tables-0.64.0.jar" sourcepath="C:/Users/iirimia/AppData/Local/Temp/.org.sf.feeling.decompiler1683977841122/source/flexmark-ext-tables-0.64.0-sources-1683992981039.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-ast-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-builder-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-ast-0.64.0.jar" sourcepath="C:/Users/iirimia/AppData/Local/Temp/.org.sf.feeling.decompiler1684305613001/source/flexmark-util-ast-0.64.0-sources-1684305738812.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-builder-0.64.0.jar" sourcepath="C:/Users/iirimia/AppData/Local/Temp/.org.sf.feeling.decompiler1683977841122/source/flexmark-util-builder-0.64.0-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-collection-0.64.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-data-0.64.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-dependency-0.64.0.jar"/>
@@ -32,24 +38,17 @@
 	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-html-0.64.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-misc-0.64.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-options-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-sequence-0.64.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-sequence-0.64.0.jar" sourcepath="C:/Users/iirimia/AppData/Local/Temp/.org.sf.feeling.decompiler1683977841122/source/flexmark-util-sequence-0.64.0-sources-1684002016712.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-visitor-0.64.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jackson-annotations-2.14.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jackson-core-2.14.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jackson-databind-2.14.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jackson-dataformat-toml-2.14.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jackson-dataformat-xml-2.14.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/lombok-1.18.26.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lombok-1.18.26.jar" sourcepath="C:/Users/iirimia/AppData/Local/Temp/.org.sf.feeling.decompiler1681557770064/source/lombok-1.18.26-sources-1681558401929.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/stax2-api-4.2.1.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/woodstox-core-6.5.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/zip4j-2.11.4.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
-		<attributes>
-			<attribute name="module" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
