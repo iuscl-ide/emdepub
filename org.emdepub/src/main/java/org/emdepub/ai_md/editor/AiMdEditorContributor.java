@@ -24,6 +24,7 @@ import org.emdepub.ai_md.editor.formatter.AiMdFormatter;
 import org.emdepub.ai_md.engine.AiMdEngine;
 import org.emdepub.common.resources.CR;
 import org.emdepub.common.ui.UI;
+import org.emdepub.common.utils.CU;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
 
 import lombok.SneakyThrows;
@@ -109,6 +110,10 @@ public class AiMdEditorContributor extends MultiPageEditorActionBarContributor {
 	private Separator aiSeparatorAction = new Separator();
 	private String aiSeparatorActionId = "org.emdepub.ui.editor.markdown.action.aiSeparatorAction";
 
+	/** Split view */
+	private Action aiSplitViewAction;
+	private final String aiSplitViewActionId = "org.emdepub.ui.editor.aiMd.action.aiSplitViewAction";
+
 	/** Collapse */
 	private Action aiCollapseHeadersAction;
 	private String aiCollapseHeadersActionId = "org.emdepub.ui.editor.aiMd.action.aiCollapseHeadersAction";
@@ -119,6 +124,7 @@ public class AiMdEditorContributor extends MultiPageEditorActionBarContributor {
 
 	/** Eclipse actions */
 	private void createActions() {
+		
 		
 		/* Second page */
 		
@@ -192,6 +198,17 @@ public class AiMdEditorContributor extends MultiPageEditorActionBarContributor {
 			};
 		});
 
+		/** Split view */
+		aiSplitViewAction = UI.ActionFactory.create(aiSplitViewActionId, "Split view", "Split view", CR.getImageDescriptor("split_vertical"), () -> {
+			boolean isEditorSplitView = !aiMdMultiPageEditor.isEditorSplitView();
+			aiMdMultiPageEditor.setEditorSplitView(isEditorSplitView);
+			aiSplitViewAction.setChecked(isEditorSplitView);
+			
+			aiMdMultiPageEditor.changeSplitView(isEditorSplitView);
+		});
+		/* Initial */
+		aiSplitViewAction.setChecked(true);
+
 		/** Collapse headers */
 		aiCollapseHeadersAction = UI.ActionFactory.create(aiCollapseHeadersActionId, "Collapse all AI headers", "Collapse all AI text headers",
 				CR.getImageDescriptor("collapseall"), () -> {
@@ -201,14 +218,17 @@ public class AiMdEditorContributor extends MultiPageEditorActionBarContributor {
 		/** Generate */
 		aiGenerateAction = UI.ActionFactory.create(aiGenerateActionId, "Generate", "Generate", CR.getImageDescriptor("run"), () -> {
 
-			FileEditorInput fileEditorInput = (FileEditorInput) aiMdMultiPageEditor.getEditorInput();
-			Path fileEditorFilePath = Paths.get(fileEditorInput.getPath().makeAbsolute().toOSString());
-			String fileTargetFileName = fileEditorFilePath.getFileName().toString().replace(".ai-md", ".md");
+			String aiMdFileName = ((FileEditorInput) aiMdMultiPageEditor.getEditorInput()).getPath().makeAbsolute().toOSString();
+			String fileTargetFileName = CU.findFileNameWithoutExtension(aiMdFileName) + ".md";
+			
+//			FileEditorInput fileEditorInput = (FileEditorInput) aiMdMultiPageEditor.getEditorInput();
+//			Path fileEditorFilePath = Paths.get(fileEditorInput.getPath().makeAbsolute().toOSString());
+//			String fileTargetFileName = fileEditorFilePath.getFileName().toString().replace(".ai-md", ".md");
 
 			Path targetFolderPath = aiMdMultiPageEditor.getAiMdProject().getTargetFolderPath();
 			String targetFilePathName = Paths.get(targetFolderPath.toAbsolutePath().toString(), fileTargetFileName).toAbsolutePath().toString();
 			
-			AiMdEngine.generateMdFromAiMd(aiMdSourceTextEditor.getDocument().get(), targetFilePathName);
+			AiMdEngine.generateMdFromAiMd(aiMdSourceTextEditor.getDocument().get(), aiMdSourceTextEditor.getCursorPositionString(), targetFilePathName);
 		});
 	}
 
@@ -304,6 +324,7 @@ public class AiMdEditorContributor extends MultiPageEditorActionBarContributor {
 
 		aiMdToolBarManager.remove(aiSeparatorActionId);
 		
+		aiMdToolBarManager.remove(aiSplitViewActionId);
 		aiMdToolBarManager.remove(aiCollapseHeadersActionId);
 		aiMdToolBarManager.remove(aiGenerateActionId);
 		
@@ -345,6 +366,7 @@ public class AiMdEditorContributor extends MultiPageEditorActionBarContributor {
 			
 			aiMdToolBarManager.add(aiSeparatorAction);
 			
+			aiMdToolBarManager.add(aiSplitViewAction);
 			aiMdToolBarManager.add(aiCollapseHeadersAction);
 			aiMdToolBarManager.add(aiGenerateAction);
 

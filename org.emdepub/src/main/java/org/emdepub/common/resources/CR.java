@@ -2,15 +2,20 @@
 package org.emdepub.common.resources;
 
 import java.io.InputStream;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.emdepub.ai_md.editor.content_assist.AiMdContentAssistProcessor.AiMdCompletionProposalKey;
 import org.emdepub.common.editor.language.content_assist.CommonCompletionProposal;
@@ -20,11 +25,6 @@ import org.emdepub.markdown.editor.engine.MarkdownCompletionProposal.MarkdownCom
 import org.emdepub.toml.editor.engine.TomlCompletionProposal;
 import org.emdepub.toml.editor.engine.TomlCompletionProposal.TomlCompletionProposalKey;
 import org.emdepub.toml.editor.engine.TomlResSupport;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.dataformat.toml.TomlMapper;
-
-import lombok.SneakyThrows;
 
 /** Resources */
 public class CR {
@@ -49,6 +49,9 @@ public class CR {
 		ListSelectedSecondaryAndFocus, ListSelectedSecondaryNotFocus,
 		ListNotSelectedButFocus };
 
+	/** Fonts */
+	public enum Fonts { NORMAL, BOLD, BIGGER, BIGGER_BOLD, RECENTS, SMALLER, MONOSPACED, MONOSPACED_BIGGER }
+
 	/** The shared list of loaded icons */
 	private final static HashMap<String, Image> resourceImageRegistry = new HashMap<>();
 	private final static HashMap<String, ImageDescriptor> resourceImageDescriptorRegistry = new HashMap<>();
@@ -59,14 +62,17 @@ public class CR {
 	/** Colors */
 	private final static HashMap<Colors, Color> colorRegistry = new HashMap<>();
 	
+	
+	/** Fonts */
+	private static final EnumMap<Fonts, Font> fontRegistry = new EnumMap<>(Fonts.class);
+	
 	/** To get from TOML */
 	private static MarkdownResSupport markdownProposalsSupport;
 	private static AiMdResSupport aiMdProposalsSupport;
 	private static TomlResSupport tomlProposalsSupport;
 	
 	/** Load shared icons, should be called from outside only once */
-	@SneakyThrows(JsonProcessingException.class)
-	public static void load(UI ui) {
+	public static void load(UI ui, Shell shell) {
 		
 		Display display = ui.getDisplay();
 		
@@ -85,6 +91,7 @@ public class CR {
 		loadGifImageResourceToRegistry("unknown");
 		loadGifImageResourceToRegistry("tag-image");
 		loadGifImageResourceToRegistry("show_properties_view");
+		loadPngImageResourceToRegistry("split_vertical");
 		loadPngImageResourceToRegistry("collapseall");
 		loadGifImageResourceToRegistry("run");
 		
@@ -179,22 +186,37 @@ public class CR {
 		/* Tab before anything selected */
 		colorRegistry.put(Colors.ListNotSelectedButFocus, colorRegistry.get(Colors.ControlFace));
 		
+		
+		/* Fonts */
+		Font defaultFont = shell.getFont();
+		int defaultFontHeight = defaultFont.getFontData()[0].getHeight();
+		fontRegistry.put(Fonts.NORMAL, defaultFont);
+		fontRegistry.put(Fonts.BOLD, ui.newFontAttributes(defaultFont, SWT.BOLD));
+		fontRegistry.put(Fonts.BIGGER, ui.newFontSize(defaultFont, defaultFontHeight + 5));
+		fontRegistry.put(Fonts.BIGGER_BOLD, ui.newFontSize(fontRegistry.get(Fonts.BOLD), defaultFontHeight + 5));
+		fontRegistry.put(Fonts.RECENTS, ui.newFontSize(defaultFont, defaultFontHeight  + 1));
+		fontRegistry.put(Fonts.SMALLER, ui.newFontSize(defaultFont, defaultFontHeight - 3));
+		Font monospacedFont = getsMonospacedFont(display);
+		fontRegistry.put(Fonts.MONOSPACED, monospacedFont);
+		fontRegistry.put(Fonts.MONOSPACED_BIGGER, ui.newFontSize(monospacedFont, monospacedFont.getFontData()[0].getHeight() + 5));
+		
+		
 //		colorRegistry.put(Colors.ListFont66, new Color(display, CR.blend(colorRegistry.get(Colors.List).getRGB(), colorRegistry.get(Colors.ListFont).getRGB(), 66)));
 //		colorRegistry.put(Colors.ListFont33, new Color(display, CR.blend(colorRegistry.get(Colors.List).getRGB(), colorRegistry.get(Colors.ListFont).getRGB(), 33)));
 		
 		//colorRegistry.put(Colors.ListSelectedNotFocus, new Color(display, CR.blend(colorRegistry.get(Colors.ListSelectedAndFocus).getRGB(), colorRegistry.get(Colors.ListFontSelected).getRGB(), 85)));
 		
-		markdownProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/markdown-content-assist-proposals.toml"), MarkdownResSupport.class);
+		markdownProposalsSupport = CU.tomlDeserialize(getTextResourceAsString("texts/markdown-content-assist-proposals.toml"), MarkdownResSupport.class);
 		for (CommonCompletionProposal commonCompletionProposal : markdownProposalsSupport.getProposals().values()) {
 			commonCompletionProposal.setImage(getImage("markdown-content-assist-proposal"));
 		}
 
-		aiMdProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/aimd-content-assist-proposals.toml"), AiMdResSupport.class);
+		aiMdProposalsSupport = CU.tomlDeserialize(getTextResourceAsString("texts/aimd-content-assist-proposals.toml"), AiMdResSupport.class);
 		for (CommonCompletionProposal commonCompletionProposal : aiMdProposalsSupport.getProposals().values()) {
 			commonCompletionProposal.setImage(getImage("markdown-content-assist-proposal"));
 		}
 
-		tomlProposalsSupport = (new TomlMapper()).readValue(getTextResourceAsString("texts/toml-content-assist-proposals.toml"), TomlResSupport.class);
+		tomlProposalsSupport = CU.tomlDeserialize(getTextResourceAsString("texts/toml-content-assist-proposals.toml"), TomlResSupport.class);
 		for (TomlCompletionProposal tomlCompletionProposal : tomlProposalsSupport.getProposals().values()) {
 			tomlCompletionProposal.setImage(getImage("toml-completion-proposal"));
 		}
@@ -269,6 +291,78 @@ public class CR {
 	/** For Eclipse forms */
 	public static FormToolkit getFormsToolkit() {
 		return formsToolkit;
+	}
+
+	/** Font by defined name */
+	public static Font findFont(Fonts fonts) {
+		return fontRegistry.get(fonts);
+	}
+
+	/** Per OS */
+	private static Font getsMonospacedFont(Display display) {
+
+		String os = System.getProperty("os.name");
+		os = CU.deleteWhitespace(os).toLowerCase(Locale.US);
+
+		String fontSerialization = "";
+		
+		if (os.contains("windows")) {
+			fontSerialization = "Consolas,10";
+		}
+		else {
+			fontSerialization = "Liberation Mono,10";
+		}
+
+//		switch (os) {
+//		case "linux":
+//			fontSerialization = "adobe-courier,10";
+//			break;
+//		case "macosx":
+//			fontSerialization = "Monaco,10";
+//			break;
+//		case "windows":
+//			fontSerialization = "Consolas,10";
+//			break;
+//		default:
+//			fontSerialization = "Courier New,10";
+//			break;
+//		}
+		
+		return new Font(display, toFontData(fontSerialization));
+	}
+
+	public static FontData toFontData(Object fontSerialization) {
+		
+		return toFontData(fontSerialization.toString());
+	}
+
+	public static FontData toFontData(String fontSerialization) {
+		
+		String[] splitValues = fontSerialization.split(",");
+		int index = 0;
+		String name = "";
+		int height = 0;
+		int style = SWT.NORMAL;
+		
+		for (String splitValue : splitValues) {
+			splitValue = splitValue.trim();
+			switch (index) {
+				case 0: 
+					name = splitValue;
+					break;
+				case 1:
+					height = Integer.valueOf(splitValue);
+					break;
+				case 2, 3:
+					style = style | (splitValue.equalsIgnoreCase("bold") ? SWT.BOLD : SWT.ITALIC);
+					break;
+				default:
+					/* ILB */
+			}
+			index++;
+		}
+
+		return new FontData(name, height, style);
 	}
 
 //	/** Color from RGB */

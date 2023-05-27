@@ -26,7 +26,23 @@ Each record should be assigned a level, such as INFO, WARNING, ERROR, DEBUG, or 
 
 Next, we will explore ways to make these log file characteristics as visible as possible.
 
-There are three options to display a log file: "Lines" which shows the file as a typical text document, "Records" which presents the data by log information, and "Fields" which displays the values of each record.The log can be viewed in three different ways: Lines, Records, and Fields. The Lines view displays the log as plain text without any specific rules. Records view requires rules to identify the records and displays them accordingly. The Fields view only displays records that meet certain criteria specified by the rules. Log levels can be highlighted in customizable colors, and certain filters can be applied to display only relevant lines. Fields and Map Fields allow for the creation of expressions and lists based on the record text. The Search function allows users to search for specific text within the log. For more detailed information, please consult the User Guide.
+### Lines/Records/Fields Views
+
+4y0cpfv0 -- There are three available options for viewing a log file: **"Lines"** (similar to a standard text file), **"Records"** (organized by log information), and **"Fields"** (displaying record values).
+
+### Lines View
+
+### Records View
+
+### Fields View
+
+### Levels
+
+### Filters
+
+### Fields and Map Fields
+
+### Search
 
 |                           **Log Values** - Because logs are hard                           |
 |:------------------------------------------------------------------------------------------:|

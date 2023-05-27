@@ -25,7 +25,7 @@ public class AiMdCall {
 	
 	static String header_Authorization = findAuthorization();
 	
-	static String aiTextAction = "Rephrase the text";
+	static String aiTextAction = "Rephrase the text (and keep the Markdown tags)";
 	
 	static String aiModel = "gpt-3.5-turbo-0301";
 	
@@ -46,7 +46,7 @@ public class AiMdCall {
 		request_body.getMessages().add(request_message);
 		
 		
-		String requestBody = CU.serialize(request_body);
+		String requestBody = CU.jsonSerialize(request_body);
 		System.out.println(requestBody);
 		
 		HttpClient httpClient = HttpClient.newHttpClient();
@@ -64,7 +64,7 @@ public class AiMdCall {
 		System.out.println(postResponse.body());
 		
 		try {
-			AiMdCallResponse_body response_body = CU.deserialize(postResponse.body(), AiMdCallResponse_body.class);
+			AiMdCallResponse_body response_body = CU.jsonDeserialize(postResponse.body(), AiMdCallResponse_body.class);
 			
 			String resultText = response_body.getChoices().get(0).getMessage().getContent();
 			

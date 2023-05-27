@@ -11,6 +11,9 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.emdepub.common.resources.CR;
 import org.emdepub.common.ui.UI;
@@ -49,7 +52,10 @@ public class Activator extends AbstractUIPlugin {
 		L.initLog(logFile);
 		
 		/* Resources */
-		CR.load(new UI(false, Display.getDefault()));
+		IWorkbench workbench = PlatformUI.getWorkbench();
+		IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+		
+		CR.load(new UI(false, Display.getDefault()), workbenchWindow.getShell());
 	}
 
 	@Override

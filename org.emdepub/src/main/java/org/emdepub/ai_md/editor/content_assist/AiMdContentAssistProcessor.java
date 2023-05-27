@@ -15,6 +15,7 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 import org.emdepub.ai_md.parser.AiMdParser;
 import org.emdepub.common.editor.language.content_assist.CommonCompletionProposal;
 import org.emdepub.common.resources.CR;
+import org.emdepub.common.utils.CU;
 
 import com.vladsch.flexmark.ast.Code;
 import com.vladsch.flexmark.ast.CodeBlock;
@@ -34,7 +35,7 @@ public class AiMdContentAssistProcessor implements IContentAssistProcessorExtens
 
 	/** Default proposal keys */
 	public static enum AiMdCompletionProposalKey {
-		AI_BLOCKS,
+		AI_BLOCKS, AI_ID,
 		
 		BOLD_TEXT, ITALIC_TEXT, BOLD_ITALIC_TEXT,
 		STRIKETROUGH_TEXT, QUOTED_TEXT,
@@ -208,9 +209,15 @@ public class AiMdContentAssistProcessor implements IContentAssistProcessorExtens
 		int lineDelimiterChars = lineDelimiter.length();
 		for (AiMdCompletionProposalKey validProposal : validProposals) {
 			CommonCompletionProposal completionProposal = defaultProposals.get(validProposal);
-			completionProposal.setReplacementString(completionProposal.getReplacementString().replaceAll("\\CR", lineDelimiter));
+			//completionProposal.setReplacementString(completionProposal.getReplacementString().replaceAll("\\CR", lineDelimiter));
 			if (validProposal == AiMdCompletionProposalKey.AI_BLOCKS) {
-				completionProposal.setReplacementString(completionProposal.getReplacementString().replace("UNIQUE_ID", "12345678"));
+				String uniqueId = CU.generateUniqueId();
+				String replacement = completionProposal.getReplacementString();
+				int startReplacementIndex = replacement.indexOf("id: ") + 4;
+				completionProposal.setReplacementString(replacement.substring(0, startReplacementIndex) + uniqueId + replacement.substring(startReplacementIndex + 8));
+			}
+			if (validProposal == AiMdCompletionProposalKey.AI_ID) {
+				completionProposal.setReplacementString(CU.generateUniqueId());
 			}
 			completionProposal.setReplacementOffset(offset);
 			completionProposal.setCursorPosition(completionProposal.getCursorPositionChars() +

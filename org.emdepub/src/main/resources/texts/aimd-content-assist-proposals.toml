@@ -16,7 +16,7 @@
 replacementString = '''
 
 ● ai
-id: UNIQUE_ID
+id: UNIQUEID
 ▶
 
 ◀
@@ -33,3 +33,12 @@ id: UNIQUE_ID
 Non-AI text
 ◀
 '''
+
+[proposals.AI_ID]
+replacementString = 'UNIQUEID'
+replacementOffset = 0
+replacementLength = 0
+cursorPositionChars = 8
+cursorPositionLineDelimiters = 0
+displayString = 'New AI header ID'
+additionalProposalInfo = 'UNIQUEID'

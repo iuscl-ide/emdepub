@@ -1,0 +1,6 @@
+#Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org
+#Thu May 25 13:59:43 EEST 2023
+DisplayCenterHeaders=true
+DisplayFormatStyle=Custom
+SourceFormatCollapseWhitespace=true
+SourceFormatRightMarginWrap=true
