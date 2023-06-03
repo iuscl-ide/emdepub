@@ -2,16 +2,13 @@ package org.emdepub.ai_md.engine;
 
 import java.util.Arrays;
 
-import org.emdepub.activator.L;
 import org.emdepub.ai_md.call.AiMdCall;
 import org.emdepub.ai_md.engine.model.AiMdReferenceHeader;
 import org.emdepub.ai_md.parser.ext.references.AiMdReferenceBlock;
 import org.emdepub.ai_md.parser.ext.references.AiMdReferencesExtension;
 import org.emdepub.common.utils.CU;
-import org.emdepub.toml.editor.engine.TomlResSupport;
 import org.jetbrains.annotations.NotNull;
 
-import com.fasterxml.jackson.dataformat.toml.TomlMapper;
 import com.vladsch.flexmark.ast.Paragraph;
 import com.vladsch.flexmark.ast.Text;
 import com.vladsch.flexmark.ext.gfm.tasklist.TaskListExtension;

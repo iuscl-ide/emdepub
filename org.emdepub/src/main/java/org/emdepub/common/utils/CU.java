@@ -135,6 +135,11 @@ public class CU {
 		return (text == null) || (trimStrip(text).length() == 0);
 	}
 	
+	public static String capitalize(String text) {
+		
+		return text.substring(0, 1).toUpperCase() + text.substring(1);
+	}
+	
 	/* Files */
 	
 	/** File into string */
@@ -667,7 +672,7 @@ public class CU {
 
 	@SneakyThrows({DatabindException.class, StreamWriteException.class, IOException.class})
 	public static String yamlSerialize(Object value) {
-
+		
 		return yamlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
 	}
 

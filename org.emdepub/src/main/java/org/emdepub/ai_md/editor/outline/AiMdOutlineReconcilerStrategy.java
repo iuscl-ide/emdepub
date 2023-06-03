@@ -16,7 +16,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.texteditor.ITextEditor;
-import org.emdepub.ai_md.editor.AiMdEditor;
+import org.emdepub.ai_md.editor.AiMdMultiPageEditor;
 import org.emdepub.ai_md.editor.AiMdTextEditor;
 
 /** AiMd outline strategy */
@@ -54,8 +54,8 @@ public class AiMdOutlineReconcilerStrategy implements IReconcilingStrategy, IRec
 					IWorkbenchPage workbenchPage = workbenchWindow.getActivePage();
 					for (IEditorReference editorReference : workbenchPage.getEditorReferences()) {
 						IEditorPart editorPart = editorReference.getEditor(true);
-						if (editorPart instanceof AiMdEditor) {
-							AiMdEditor aiMdEditor = (AiMdEditor) editorPart;
+						if (editorPart instanceof AiMdMultiPageEditor) {
+							AiMdMultiPageEditor aiMdEditor = (AiMdMultiPageEditor) editorPart;
 							AiMdTextEditor aiMdTextEditor = aiMdEditor.getAiMdTextEditor();
 							Document editorReferenceDocument = (Document) aiMdTextEditor.getDocumentProvider().getDocument(aiMdTextEditor.getEditorInput());
 							if (editorReferenceDocument == document) {

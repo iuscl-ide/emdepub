@@ -7,6 +7,10 @@ Today, log file management remains a challenging task, which has resulted in the
 In maintenance teams, employees typically arrive at the office and check for any incidents. If they find one, they usually download the log file from a remote network location and open it in a text editor such as *Notepad++*. They then use the "**Ctrl-F**" function to search for the keyword "**ERROR**" and proceed to locate and address each error found in the file.
 Performing this task on a daily basis can lead to a deep understanding of the log file format and the specific search terms required to identify the root cause of an issue. However, due to the fact that logs are essentially just plain text, and different applications have their own unique logging styles, it can be a challenging and time-consuming process.
 
+``` java
+System.out.println("Hello");
+```
+
 There are certain similarities shared by log files:
 
 
@@ -145,4 +149,7 @@ id: iwxise8x
 |:------------------------------------------------------------------------------------------:|
 |                                    log-values.com 2023                                     |
 |                         *(this text was reformatted with ChatGPT)*                         |
-| __________________________________________________________________________________________ |
+|                                    log-values.com 2023                                     |
+|                         *(this text was reformatted with ChatGPT)*                         |
+
+

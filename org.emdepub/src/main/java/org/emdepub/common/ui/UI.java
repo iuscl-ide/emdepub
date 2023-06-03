@@ -631,6 +631,14 @@ public class UI {
 		return createComposite(composite, gridData, createGridLayout_ColumnsSpacing(numColumns, horizontalSpacing));
 	}
 
+	/** Height composite */
+	public Composite createComposite_ColumnsSpacing_FillHorizontal_Height(Composite composite, int numColumns, int horizontalSpacing, int height) {
+		
+		GridData gridData = createGridData_Height(height);
+		fillHorizontal(gridData);
+		return createComposite(composite, gridData, createGridLayout_ColumnsSpacing(numColumns, horizontalSpacing));
+	}
+
 	/** Line height composite */
 	public Composite createComposite_ColumnsSpacing(Composite composite, int numColumns, int horizontalSpacing) {
 		
@@ -780,6 +788,14 @@ public class UI {
 		
 		control.setVisible(toVisible);
 		((GridData) control.getLayoutData()).exclude = !toVisible;
+	}
+
+	/** Sync */
+	public void syncNotNull(Runnable runnable) {
+		
+		if (runnable != null) {
+			display.syncExec(runnable);	
+		}
 	}
 
 	/** Sync */

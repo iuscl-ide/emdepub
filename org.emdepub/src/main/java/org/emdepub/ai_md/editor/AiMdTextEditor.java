@@ -99,7 +99,7 @@ public class AiMdTextEditor extends ExtensionBasedTextEditor {
 
 //		L.i("handleCursorPositionChanged " + this.getCursorPosition());
 		
-		AiMdEditorContributor.getStatusLinePositionField().setText(this.getCursorPosition());
+		AiMdMultiPageEditorContributor.getStatusLinePositionField().setText(this.getCursorPosition());
 
 		super.handleCursorPositionChanged();
 		

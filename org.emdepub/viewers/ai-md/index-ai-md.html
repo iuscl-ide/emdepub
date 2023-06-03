@@ -1,0 +1,169 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title></title>
+ 	<script src="./javascripts/jquery.min.js"></script>
+ 	<script src="./javascripts/marked.min.js"></script>
+ 	<script src="./javascripts/highlight.pack.js"></script>
+	<script src="./javascripts/iconv.js"></script>
+	
+	<script src="./javascripts/jschardet.min.js"></script>
+	<script src="./javascripts/emoji.min.js"></script>
+	<script src="./javascripts/beautify-html.min.js"></script>
+
+    <style>
+    </style>
+</head>
+<body>
+    <article id="content" class="markdown-body"></article>
+
+    <!-- Client scripts -->
+    <script>
+
+		/* jQuery stuff */
+		var $content = $("#content");
+
+		/* Polyfills */
+		if (!String.prototype.startsWith) {
+		  String.prototype.startsWith = function(searchString, position) {
+		    position = position || 0;
+		    return this.indexOf(searchString, position) === position;
+		  };
+		}
+		if (!String.prototype.endsWith) {
+			String.prototype.endsWith = function(pattern) {
+			  var d = this.length - pattern.length;
+			  return d >= 0 && this.lastIndexOf(pattern) === d;
+			};
+		}
+		if (typeof Object.assign != 'function') {
+			Object.assign = function (target) {
+				'use strict';
+				if (target == null) {
+					throw new TypeError('Cannot convert undefined or null to object');
+				}
+
+				target = Object(target);
+				for (var index = 1; index < arguments.length; index++) {
+					var source = arguments[index];
+					if (source != null) {
+						for (var key in source) {
+							if (Object.prototype.hasOwnProperty.call(source, key)) {
+								target[key] = source[key];
+							}
+						}
+					}
+				}
+				return target;
+			};
+		}
+
+		/* Emoji */
+		var emoji = new EmojiConvertor();
+		emoji.replace_mode = "unified";
+
+		/* Markdown */
+		var createHTML = function () {
+
+			/* Base64 */
+			var markdownText = atob(window.markdownSettings.markdownText);
+			//var markdownText = "LS0tCkhlYWRlcgotLS0KPCEtLSBTdGFydCBtZCAtLT4KIyBIZWFkaW5nCioqKkJvbGRJdGFsaWMqKioKKipCb2xkMSAqSXRhbGljMSAqKkJvbGQyKiogSXRhbGljMSogQm9sZDEqKgogICAgICAgICpJdGFsaWMxICAgICAgICAgICBJdGFsaWMxKgpTb21ldGhpbmcKd3d3Lm1kLmNvbQoKKipJbmxpbmUgPCEtLSBIZXJlIGlzIHRoZSBjb21tZW50IC0tPiBjb21tZW50KioKCioqU3RhcnQgY29tbWVudCoqCjwhLS0KVG8gYmUgY29tbWVudGVkCi0tPgoqRW5kIGNvbW1lbnQqCgoqPHAgYWxpZ249ImNlbnRlciI+KipIVE1MKiogcGFydDwvcD4qCgpvbmUgKm9uZSogbm9ybWFsdSBub3JtYWwgKnR3byogdHdvCgorK0hUTUwgYmxvY2s6KysKCjxkaXY+CjwhLS0gQW5vdGhlciBpbnNpZGUgY29tbWVudCAtLT4KSFRNTCBUZXh0CjwvZGl2Pg==";
+			//alert("window.markdownText =  " + markdownText);
+
+			/* Encoding */
+			var markdownTextEncoding = jschardet.detect(markdownText, { minimumThreshold: 0 }).encoding;
+			//alert("markdownTextEncoding " + markdownTextEncoding);
+
+			/* Transform encoding */
+			markdownText = iconv.decode(markdownText, markdownTextEncoding);
+
+			var highlightFunction = null;
+			if (window.markdownSettings.cssHighlightName !== undefined) {
+				highlightFunction = function (code, language) {
+					return hljs.highlightAuto(code).value;
+				};
+			};
+			
+			marked.setOptions({
+				baseUrl: window.markdownSettings.localBaseHref,
+				renderer: new marked.Renderer(),
+				highlight: highlightFunction,
+				pedantic: false,
+				gfm: true,
+				breaks: false,
+				sanitize: false,
+				smartLists: true,
+				smartypants: false,
+				xhtml: false
+			});
+
+			var tokens = marked.lexer(markdownText);
+			marked.walkTokens(tokens, function (token) {
+				if ((token.type === "text") && (token.text !== undefined)) {
+					var markdownTokenText = token.text;
+					markdownTokenText = emoji.replace_unified(markdownTokenText);
+					markdownTokenText = emoji.replace_colons(markdownTokenText);
+					token.text = markdownTokenText;
+				}
+			});
+			
+			var parsed = marked.parser(tokens);
+			var beautified = html_beautify(parsed, { indent_size: 4 });
+			
+			return beautified;
+		}
+
+		/* Display */
+		var displayMarkdown = function () {
+
+			var markdownText = createHTML();
+			/* Display */
+			$content.html(markdownText);
+		};
+
+		/* CSS */
+		var loadCSS = function (cssName) {
+
+			var styles = document.createElement("link");
+			styles.rel = "stylesheet";
+			styles.type = "text/css";
+			styles.media = "screen";
+			styles.href = "./styles/" + cssName + ".css";
+
+			$(styles).insertBefore($("head style"));
+			
+		};
+
+		/* Reload */
+		var reload = function () {
+
+			var cssName = window.markdownSettings.cssName; 
+			if (cssName !== undefined) {
+				loadCSS(cssName);	
+			}
+			var cssHighlightName = window.markdownSettings.cssHighlightName; 
+			if (cssHighlightName !== undefined) {
+				loadCSS(cssHighlightName);	
+			}
+			
+			displayMarkdown();
+
+			var formatOptionsCss = atob(window.markdownSettings.formatOptionsCss);
+			if (formatOptionsCss !== "") {
+				$("head style").html(formatOptionsCss);	
+				//alert(formatOptionsCss);
+			};
+			
+			/* Open links in new window */
+			$("#content a[href^='http://'],a[href^='https://']").on("click", function (clickEvent) {
+				clickEvent.preventDefault();
+				window.open($(this).attr("href"), "_new");
+			});
+		}
+    </script>
+
+</body>
+</html>
