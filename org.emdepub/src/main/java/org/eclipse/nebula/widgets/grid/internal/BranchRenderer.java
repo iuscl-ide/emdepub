@@ -18,7 +18,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
-import org.emdepub.common.resources.CR;
+import org.emdepub.activator.R;
 
 /**
  * Renders the tree branch hierarchy for a {@link GridColumn}
@@ -130,7 +130,7 @@ public class BranchRenderer extends AbstractRenderer {
 //						SWT.COLOR_LIST_SELECTION_TEXT 
 //						: SWT.COLOR_WIDGET_NORMAL_SHADOW));
 
-		gc.setForeground(isSelected() ? CR.getColor(CR.Colors.ListFontSelected) : getDisplay().getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW));
+		gc.setForeground(isSelected() ? R.getColor(R.Colors.ListFontSelected) : getDisplay().getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW));
 		
 		//int dy = bounds.y % 2;
 		//int dy = bounds.y;

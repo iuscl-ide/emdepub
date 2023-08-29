@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.UUID;
 
-import org.emdepub.common.resources.CR;
-import org.emdepub.common.utils.CU;
+import org.emdepub.activator.F;
+import org.emdepub.activator.R;
 import org.emdepub.epub_project.editor.EPubProjectEditor;
 import org.emdepub.epub_project.model.EPUB_project;
 import org.emdepub.epub_project.model.EPUB_project_manifest_item;
@@ -35,10 +35,10 @@ import net.lingala.zip4j.model.ZipParameters;
 
 public class EPubProjectEngine {
 
-	private static final String s = CU.S;
+	private static final String s = F.s;
 
-	private static final String ePub_mimetype = CR.getTextResourceAsString("texts/epub-mimetype");
-	private static final String ePub_container = CR.getTextResourceAsString("texts/epub-container.xml");
+	private static final String ePub_mimetype = R.getTextResourceAsString("texts/epub-mimetype");
+	private static final String ePub_container = R.getTextResourceAsString("texts/epub-container.xml");
 
 	private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
@@ -52,26 +52,26 @@ public class EPubProjectEngine {
 		
 		Path targetCommonFolderName = Paths.get(ePubProject.targetFolderNameWithFullPath);
 		
-		String book = CU.findFileNameWithoutExtension(ePubProjectEditor.getSourceEPubProjectFilePathAndName());
+		String book = F.getFileNameWithoutExtension(ePubProjectEditor.getSourceEPubProjectFilePathAndName());
 		Path tempBookRootFolder = Files.createTempDirectory(targetCommonFolderName, "temp-ePub-book_" + book + "_");
 		
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			CU.deleteFolderAndItsContents(tempBookRootFolder.toString());
+			F.deleteFolderAndItsContents(tempBookRootFolder.toString());
 		}));
 
 		/* mimetype */
-		CU.saveStringToFile(ePub_mimetype, Paths.get(tempBookRootFolder.toString(), "mimetype").toString());
+		F.saveStringToFile(ePub_mimetype, Paths.get(tempBookRootFolder.toString(), "mimetype").toString());
 		
 		/* META-INF/container.xml */
 		Path tempBookMetaInfoFolder = Paths.get(tempBookRootFolder.toString(), "META-INF");
-		CU.createFoldersIfNotExists(tempBookMetaInfoFolder.toString());
+		F.createFoldersIfNotExists(tempBookMetaInfoFolder.toString());
 		String container = ePub_container.replace("{{opf}}", ePubProject.opfFileNameWithRelativePath);
-		CU.saveStringToFile(container, Paths.get(tempBookMetaInfoFolder.toString(), "container.xml").toString());
+		F.saveStringToFile(container, Paths.get(tempBookMetaInfoFolder.toString(), "container.xml").toString());
 		
 		
 		/* OPF */
 		Path opfFile = Paths.get(tempBookRootFolder.toString(), ePubProject.opfFileNameWithRelativePath);
-		CU.createFoldersIfNotExists(CU.findFileFolder(opfFile.toString()));
+		F.createFoldersIfNotExists(F.getFileFolder(opfFile.toString()));
 		Path tempBookRootFolderManifest = opfFile.getParent();
 		
 		OPF_package opfPackage = new OPF_package();
@@ -132,7 +132,7 @@ public class EPubProjectEngine {
 		for (EPUB_project_manifest_item projectManifestItem : ePubProject.manifestItems) {
 			
 			OPF_package_manifest_item opfManifestItem = new OPF_package_manifest_item();
-			if (CU.isEmpty(projectManifestItem.itemFileRelativePath)) {
+			if (F.isEmpty(projectManifestItem.itemFileRelativePath)) {
 				opfManifestItem.href = projectManifestItem.itemFileName;
 			}
 			else {
@@ -140,7 +140,7 @@ public class EPubProjectEngine {
 			}
 			opfManifestItem.id = projectManifestItem.itemFileId;
 			opfManifestItem.media_type = projectManifestItem.itemFileMediaType;
-			if (!CU.isEmpty(projectManifestItem.itemFileProperties)) {
+			if (!F.isEmpty(projectManifestItem.itemFileProperties)) {
 				opfManifestItem.properties = projectManifestItem.itemFileProperties;	
 			}
 			
@@ -178,7 +178,7 @@ public class EPubProjectEngine {
 		opfPackage.item.add(opfTocManifestItem);
 		
 		String ncxXml = xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ncx);
-		CU.saveStringToFile(ncxXml, Paths.get(tempBookRootFolderManifest.toString(), tocFileNameWithoutPath).toString());
+		F.saveStringToFile(ncxXml, Paths.get(tempBookRootFolderManifest.toString(), tocFileNameWithoutPath).toString());
 
 		
 		/* Spine */
@@ -196,7 +196,7 @@ public class EPubProjectEngine {
 		
 		
 		String opfXml = xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(opfPackage);
-		CU.saveStringToFile(opfXml, opfFile.toString());
+		F.saveStringToFile(opfXml, opfFile.toString());
 		
 		/* Copy manifest files */
 		Path opfRootRelativePath = Paths.get(ePubProject.opfFileNameWithRelativePath).getParent();
@@ -211,13 +211,13 @@ public class EPubProjectEngine {
 		for (String newRelativeFolder : newRelativeFoldersSet) {
 			Path targetFolderPath = Paths.get(tempBookRootFolderManifest.toString(), newRelativeFolder);
 			if (!Files.exists(targetFolderPath)) {
-				CU.createFoldersIfNotExists(targetFolderPath.toString());
+				F.createFoldersIfNotExists(targetFolderPath.toString());
 			}
 		}
 		for (EPUB_project_manifest_item manifestItem : ePubProject.manifestItems) {
 			Path sourcePath = Paths.get(rootFolderManifest, manifestItem.itemFileRelativePath, manifestItem.itemFileName);
 			Path targetPath = Paths.get(tempBookRootFolderManifest.toString(), manifestItem.itemFileRelativePath, manifestItem.itemFileName);
-			CU.copyFile(sourcePath.toString(), targetPath.toString());
+			F.copyFile(sourcePath.toString(), targetPath.toString());
 		}
 		
 		/* ZIP */
@@ -226,6 +226,6 @@ public class EPubProjectEngine {
 		zipParameters.setIncludeRootFolder(false);
 		bookZipFile.addFolder(tempBookRootFolder.toFile(), zipParameters);
 		
-		CU.deleteFolderAndItsContents(tempBookRootFolder.toString());
+		F.deleteFolderAndItsContents(tempBookRootFolder.toString());
 	}
 }

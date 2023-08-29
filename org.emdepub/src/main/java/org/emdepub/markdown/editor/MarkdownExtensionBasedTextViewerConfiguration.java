@@ -1,6 +1,5 @@
 package org.emdepub.markdown.editor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -30,7 +29,6 @@ import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.quickassist.IQuickAssistAssistant;
 import org.eclipse.jface.text.quickassist.QuickAssistAssistant;
 import org.eclipse.jface.text.reconciler.IReconciler;
-import org.eclipse.jface.text.reconciler.IReconcilingStrategy;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
@@ -194,17 +192,16 @@ public class MarkdownExtensionBasedTextViewerConfiguration extends TextSourceVie
 
 	@Override public IReconciler getReconciler(ISourceViewer sourceViewer) {
 		ReconcilerRegistry registry = GenericEditorPlugin.getDefault().getReconcilerRegistry();
-		List<IReconcilingStrategy> reconcilingStrategies = new ArrayList<>();
-		List<IReconciler> reconcilers = registry.getReconcilers(sourceViewer, editor, reconcilingStrategies, getContentTypes(sourceViewer));
+		List<IReconciler> reconcilers = registry.getReconcilers(sourceViewer, editor, getContentTypes(sourceViewer));
 		// Fill with highlight reconcilers
-		List<IReconciler> highlightReconcilers = registry.getHighlightReconcilers(sourceViewer, editor, reconcilingStrategies, getContentTypes(sourceViewer));
+		List<IReconciler> highlightReconcilers = registry.getHighlightReconcilers(sourceViewer, editor, getContentTypes(sourceViewer));
 		if (!highlightReconcilers.isEmpty()) {
 			reconcilers.addAll(highlightReconcilers);
 		} else {
 			reconcilers.add(new DefaultWordHighlightReconciler());
 		}
 		// Fill with folding reconcilers
-		List<IReconciler> foldingReconcilers = registry.getFoldingReconcilers(sourceViewer, editor, reconcilingStrategies, getContentTypes(sourceViewer));
+		List<IReconciler> foldingReconcilers = registry.getFoldingReconcilers(sourceViewer, editor, getContentTypes(sourceViewer));
 		if (!foldingReconcilers.isEmpty()) {
 			reconcilers.addAll(foldingReconcilers);
 		} else {

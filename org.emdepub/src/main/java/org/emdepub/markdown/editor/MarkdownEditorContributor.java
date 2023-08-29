@@ -27,7 +27,7 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
-import org.emdepub.common.resources.CR;
+import org.emdepub.activator.R;
 import org.emdepub.markdown.editor.engine.MarkdownFormatterEngine;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.DisplayFormatCodeStyles;
@@ -276,7 +276,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		exportAsHtmlAction.setId(exportAsHtmlActionId);
 		exportAsHtmlAction.setText("Export Markdown as HTML file...");
 		exportAsHtmlAction.setToolTipText("Export Markdown Document as HTML File");
-		exportAsHtmlAction.setImageDescriptor(CR.getImageDescriptor("html"));
+		exportAsHtmlAction.setImageDescriptor(R.getImageDescriptor("html"));
 		
 		/* First page */
 		
@@ -291,7 +291,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		};
 		formatStyleDropDownMenuAction.setId(formatStyleDropDownMenuActionId);
 		formatStyleDropDownMenuAction.setToolTipText("Format Styles");
-		formatStyleDropDownMenuAction.setImageDescriptor(CR.getImageDescriptor("stylesheet"));
+		formatStyleDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("stylesheet"));
 		formatStyleDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
 			public Menu getMenu(Menu menu) {
@@ -330,7 +330,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		};
 		formatOptionDropDownMenuAction.setId(formatOptionDropDownMenuActionId);
 		formatOptionDropDownMenuAction.setToolTipText("Format Options");
-		formatOptionDropDownMenuAction.setImageDescriptor(CR.getImageDescriptor("ui_props"));
+		formatOptionDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("ui_props"));
 		formatOptionDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
 			public Menu getMenu(Menu menu) {
@@ -366,7 +366,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		};
 		formatCodeStyleDropDownMenuAction.setId(formatCodeStyleDropDownMenuActionId);
 		formatCodeStyleDropDownMenuAction.setToolTipText("Format Code Styles");
-		formatCodeStyleDropDownMenuAction.setImageDescriptor(CR.getImageDescriptor("PD_Toolbar_source"));
+		formatCodeStyleDropDownMenuAction.setImageDescriptor(R.getImageDescriptor("PD_Toolbar_source"));
 		formatCodeStyleDropDownMenuAction.setMenuCreator(new IMenuCreator() {
 			@Override
 			public Menu getMenu(Menu menu) {
@@ -407,7 +407,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		formatMarkdownAction.setId(formatMarkdownActionId);
 		formatMarkdownAction.setText("Format Markdown source");
 		formatMarkdownAction.setToolTipText("Format selected Markdown source text");
-		formatMarkdownAction.setImageDescriptor(CR.getImageDescriptor("markdown-action-format-md"));
+		formatMarkdownAction.setImageDescriptor(R.getImageDescriptor("markdown-action-format-md"));
 
 		/** Special Markdown format */
 		formatOptionsAction = new Action() {
@@ -421,7 +421,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		formatOptionsAction.setId(formatOptionsActionId);
 		formatOptionsAction.setText("Markdown format options");
 		formatOptionsAction.setToolTipText("Markdown format source text options");
-		formatOptionsAction.setImageDescriptor(CR.getImageDescriptor("markdown-action-create-80"));
+		formatOptionsAction.setImageDescriptor(R.getImageDescriptor("markdown-action-create-80"));
 
 		/* Format Selected Markdown Source Text */
 		repairBrokenTextAction = new Action() {
@@ -437,7 +437,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		repairBrokenTextAction.setId(repairBrokenTextActionId);
 		repairBrokenTextAction.setText("Repair broken text paragraphs");
 		repairBrokenTextAction.setToolTipText("Repair broken text to re-create paragraphs");
-		repairBrokenTextAction.setImageDescriptor(CR.getImageDescriptor("markdown-action-repair-paragraph"));
+		repairBrokenTextAction.setImageDescriptor(R.getImageDescriptor("markdown-action-repair-paragraph"));
 
 		/** Bold Markdown format */
 		boldFormatAction = new Action() {
@@ -461,7 +461,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		boldFormatAction.setId(boldFormatActionId);
 		boldFormatAction.setText("Bold format selected text");
 		boldFormatAction.setToolTipText("Markdown Bold format selected text");
-		boldFormatAction.setImageDescriptor(CR.getImageDescriptor("PD_Toolbar_bold"));
+		boldFormatAction.setImageDescriptor(R.getImageDescriptor("PD_Toolbar_bold"));
 		
 		/** Italic Markdown format */
 		italicFormatAction = new Action() {
@@ -485,7 +485,7 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		italicFormatAction.setId(italicFormatActionId);
 		italicFormatAction.setText("Italic format selected text");
 		italicFormatAction.setToolTipText("Markdown Italic format selected text");
-		italicFormatAction.setImageDescriptor(CR.getImageDescriptor("PD_Toolbar_italic"));
+		italicFormatAction.setImageDescriptor(R.getImageDescriptor("PD_Toolbar_italic"));
 	}
 
 	/** Initial, fix contribution */
@@ -540,12 +540,12 @@ public class MarkdownEditorContributor extends MultiPageEditorActionBarContribut
 		
 		/** Word wrap */
 		wordWrapAction = (Action) markdownSourceTextEditor.getAction(ITextEditorActionConstants.WORD_WRAP);
-		wordWrapAction.setImageDescriptor(CR.getImageDescriptor("wordwrap"));
+		wordWrapAction.setImageDescriptor(R.getImageDescriptor("wordwrap"));
 		wordWrapActionId = wordWrapAction.getId();
 
 		/** Show whitespace characters */
 		showWhitespaceCharactersAction = (Action) markdownSourceTextEditor.getAction(ITextEditorActionConstants.SHOW_WHITESPACE_CHARACTERS);
-		showWhitespaceCharactersAction.setImageDescriptor(CR.getImageDescriptor("show_whitespace_chars"));
+		showWhitespaceCharactersAction.setImageDescriptor(R.getImageDescriptor("show_whitespace_chars"));
 		showWhitespaceCharactersActionId = showWhitespaceCharactersAction.getId();
 		
 		super.setActiveEditor(markdownMultiPageEditor);

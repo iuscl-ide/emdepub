@@ -3,7 +3,7 @@ package org.emdepub.markdown.editor.engine;
 
 import java.util.Arrays;
 
-import org.emdepub.common.utils.CU;
+import org.emdepub.activator.F;
 import org.emdepub.markdown.editor.language.MarkdownOutlineNode;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
@@ -73,7 +73,7 @@ public class MarkdownFormatterEngine {
 			if (!text.contains(enter)) {
 				enter = "\n";
 				if (!text.contains(enter)) {
-					enter = CU.E;				
+					enter = F.e;				
 				}
 			}
 		}

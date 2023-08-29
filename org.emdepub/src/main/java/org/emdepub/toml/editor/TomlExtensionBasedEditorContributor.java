@@ -15,7 +15,7 @@ import org.eclipse.jface.text.TextSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.EditorActionBarContributor;
-import org.emdepub.common.resources.CR;
+import org.emdepub.activator.R;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -205,7 +205,7 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 		verifyTomlAction.setId(verifyTomlActionId);
 		verifyTomlAction.setText("Verify TOML");
 		verifyTomlAction.setToolTipText("Verify TOML file (try to load)");
-		verifyTomlAction.setImageDescriptor(CR.getImageDescriptor("toml-action-verify-file"));
+		verifyTomlAction.setImageDescriptor(R.getImageDescriptor("toml-action-verify-file"));
 
 		/* Comment / Uncomment TOML */
 		commentTomlAction = new Action() {
@@ -216,7 +216,7 @@ public class TomlExtensionBasedEditorContributor extends EditorActionBarContribu
 		commentTomlAction.setId(commentTomlActionId);
 		commentTomlAction.setText("Comment / Uncomment TOML");
 		commentTomlAction.setToolTipText("Comment / Uncomment TOML");
-		commentTomlAction.setImageDescriptor(CR.getImageDescriptor("toml-action-comment"));
+		commentTomlAction.setImageDescriptor(R.getImageDescriptor("toml-action-comment"));
 	}
 
 	public static StatusLineContributionItem getStatusLinePositionField() {

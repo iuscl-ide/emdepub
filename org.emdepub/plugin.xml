@@ -5,7 +5,6 @@
 		<content-type id="org.emdepub.md" name="Markdown" base-type="org.eclipse.core.runtime.text" file-extensions="md, mdown, markdown, markdn"></content-type>
 		<content-type id="org.emdepub.epub_project" name="ePub Project" base-type="org.eclipse.core.runtime.text" file-extensions="epub-project"></content-type>
 		<content-type id="org.emdepub.toml" name="TOML" base-type="org.eclipse.core.runtime.text" file-extensions="toml"></content-type>
-		<content-type id="org.emdepub.ai-md" name="AI MD" base-type="org.eclipse.core.runtime.text" file-extensions="ai-md"></content-type>
 	</extension>
 
 	<extension point="org.eclipse.ui.editors">
@@ -18,9 +17,6 @@
 		<editor class="org.emdepub.toml.editor.TomlExtensionBasedEditor" contributorClass="org.emdepub.toml.editor.TomlExtensionBasedEditorContributor" default="true" extensions="toml" icon="plugin-icons/toml-editor.png" id="org.emdepub.editor.TomlExtensionBasedEditor" name="TOML Editor">
 			<contentTypeBinding contentTypeId="org.emdepub.toml"></contentTypeBinding>
 		</editor>
-		<editor class="org.emdepub.ai_md.editor.AiMdEditor" contributorClass="org.emdepub.ai_md.editor.AiMdEditorContributor" default="true" extensions="ai-md" icon="plugin-icons/ai-md-multi-page-editor.png" id="org.emdepub.editor.AIMarkdownEditor" name="AI MD Editor">
-			<contentTypeBinding contentTypeId="org.emdepub.ai-md"></contentTypeBinding>
-		</editor>
 	</extension>
 
 	<extension point="org.eclipse.tm4e.registry.grammars">
@@ -29,16 +25,11 @@
 		
 		<grammar path="code-language/toml/grammars/toml.tmLanguage.json" scopeName="source.toml"></grammar>
 		<scopeNameContentTypeBinding contentTypeId="org.emdepub.toml" scopeName="source.toml"></scopeNameContentTypeBinding>
-		
-		<grammar path="code-language/ai-md/grammars/ai-md.tmLanguage" scopeName="text.html.ai-md"></grammar>
-		<scopeNameContentTypeBinding contentTypeId="org.emdepub.ai-md" scopeName="text.html.ai-md"></scopeNameContentTypeBinding>
 	</extension>
 	
 	<extension point="org.eclipse.tm4e.languageconfiguration.languageConfigurations">
 		<languageConfiguration contentTypeId="org.emdepub.md" path="code-language/markdown/language-configurations/language-configuration.json"></languageConfiguration>
 		<languageConfiguration contentTypeId="org.emdepub.toml" path="code-language/toml/language-configurations/language-configuration.json"></languageConfiguration>
-		
-		<languageConfiguration contentTypeId="org.emdepub.ai-md" path="code-language/ai-md/language-configurations/language-configuration.json"></languageConfiguration>
 	</extension>
 	
 	<extension point="org.eclipse.tm4e.ui.themes">
@@ -48,119 +39,20 @@
 		<themeAssociation scopeName="source.toml" themeId="org.emdepub.toml.light.theme" whenDark="false"></themeAssociation>
 		<theme dark="true" default="true" id="org.emdepub.toml.dark.spec.theme" name="TOML Spec" path="code-language/toml/themes/toml-spec-theme.css"></theme>
 		<themeAssociation scopeName="source.toml" themeId="org.emdepub.toml.dark.spec.theme" whenDark="true"></themeAssociation>
-		<theme dark="false" default="true" id="org.emdepub.ai-md.light.theme" name="AI MD Light" path="code-language/ai-md/themes/ai-md-light-theme.css"></theme>
-		<themeAssociation scopeName="text.html.ai-md" themeId="org.emdepub.ai-md.light.theme" whenDark="false"></themeAssociation>
 	</extension>
 	<extension point="org.eclipse.tm4e.ui.snippets">
 		<snippet name="org.emdepub.snippet.markdown" path="code-language/markdown/snippets/markdown.code-snippets" scopeName="text.html.markdown"></snippet>
 		<snippet name="org.emdepub.snippet.toml" path="code-language/toml/snippets/toml.code-snippets" scopeName="source.toml"></snippet>
-		<snippet name="org.emdepub.snippet.ai-md" path="code-language/ai-md/snippets/ai-md.code-snippets" scopeName="text.html.ai-md"></snippet>
 	</extension>
 
 	<extension point="org.eclipse.ui.genericeditor.reconcilers">
 		<reconciler class="org.emdepub.markdown.editor.language.MarkdownOutlineReconciler" contentType="org.emdepub.md"></reconciler>
-		<reconciler class="org.emdepub.ai_md.editor.outline.AiMdOutlineReconciler" contentType="org.emdepub.ai-md"></reconciler>
-		
-		<reconciler class="org.emdepub.ai_md.editor.annotations.AiMdAnnotationsReconciler" contentType="org.emdepub.ai-md"></reconciler>
 	</extension>
 	<extension point="org.eclipse.ui.genericeditor.foldingReconcilers">
 		<foldingReconciler class="org.emdepub.markdown.editor.language.MarkdownFoldingReconciler" contentType="org.emdepub.md"></foldingReconciler>
-		<foldingReconciler class="org.emdepub.ai_md.editor.folding.AiMdFoldingReconciler" contentType="org.emdepub.ai-md"></foldingReconciler>
 	</extension>
 	<extension point="org.eclipse.ui.genericeditor.contentAssistProcessors">
 		<contentAssistProcessor class="org.emdepub.markdown.editor.language.MarkdownContentAssistProcessor" contentType="org.emdepub.md"></contentAssistProcessor>
 		<contentAssistProcessor class="org.emdepub.toml.editor.language.TomlContentAssistProcessor" contentType="org.emdepub.toml"></contentAssistProcessor>
-		
-		<contentAssistProcessor class="org.emdepub.ai_md.editor.content_assist.AiMdContentAssistProcessor" contentType="org.emdepub.ai-md"></contentAssistProcessor>
 	</extension>
-<!--	<extension point="org.eclipse.ui.genericeditor.contentAssistProcessors">-->
-<!--		<contentAssistant class="org.emdepub.markdown.editor.language.AiMdContentAssistant" contentType="org.emdepub.ai-md"></contentAssistant>-->
-<!--	</extension>-->
-	
-	<!-- Markers -->
-	
-	<extension point="org.eclipse.core.resources.markers" id="org.emdepub.ai-md.reference.begin.marker" name="AI MD Reference Begin Marker">
-		<super type="org.eclipse.core.resources.textmarker"/>
-		<persistent value="false"/>
-	</extension>
-	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification" id="org.emdepub.ai-md.reference.begin.annotationSpec" name="AI MD Reference Begin Marker Annotation Specification">
-		<specification annotationType="org.emdepub.ai-md.reference.begin.annotationType"
-			includeOnPreferencePage="true"
-			label="AI MD Reference Begin"
-			icon="plugin-icons/ai-md-reference-begin-annotation.png"
-			presentationLayer="0"
-			overviewRulerPreferenceKey="org.emdepub.ai-md.reference.begin.overview.ruler"
-			overviewRulerPreferenceValue="true"
-			verticalRulerPreferenceKey="org.emdepub.ai-md.reference.begin.vertical.ruler"
-			verticalRulerPreferenceValue="true"
-			highlightPreferenceKey="org.emdepub.ai-md.reference.begin.highlight"
-			highlightPreferenceValue="false"
-			colorPreferenceKey="org.emdepub.ai-md.reference.begin.color"
-			colorPreferenceValue="0,0,0"
-			textPreferenceKey="org.emdepub.ai-md.reference.begin.text"
-			textPreferenceValue="false"
-			textStylePreferenceKey="org.emdepub.ai-md.reference.begin.textStyle"
-			textStylePreferenceValue="BOX">
-		</specification>
-	</extension>
-	<extension point="org.eclipse.ui.editors.annotationTypes" id="org.emdepub.ai-md.reference.begin.annotationType" name="AI MD Reference Begin Annotation Type">
-		<type markerType="org.emdepub.ai-md.reference.begin.marker" name="org.emdepub.ai-md.reference.begin.annotationType"></type>
-	</extension>
-	
-	<extension point="org.eclipse.core.resources.markers" id="org.emdepub.ai-md.reference.text.end.marker" name="AI MD Reference Text End Marker">
-		<super type="org.eclipse.core.resources.textmarker"/>
-		<persistent value="false"/>
-	</extension>
-	<extension point="org.eclipse.ui.editors.annotationTypes" id="org.emdepub.ai-md.reference.text.end.annotationType" name="AI MD Reference Text End Annotation Type">
-		<type markerType="org.emdepub.ai-md.reference.text.end.marker" name="org.emdepub.ai-md.reference.text.end.annotationType"></type>
-	</extension>
-	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification" id="org.emdepub.ai-md.reference.text.begin.annotationSpec" name="AI MD Reference Text Begin Marker Annotation Specification">
-		<specification annotationType="org.emdepub.ai-md.reference.text.begin.annotationType"
-			includeOnPreferencePage="true"
-			label="AI MD Reference Text Begin"
-			icon="plugin-icons/ai-md-reference-text-begin-annotation.png"
-			presentationLayer="0"
-			overviewRulerPreferenceKey="org.emdepub.ai-md.reference.text.begin.overview.ruler"
-			overviewRulerPreferenceValue="false"
-			verticalRulerPreferenceKey="org.emdepub.ai-md.reference.text.begin.vertical.ruler"
-			verticalRulerPreferenceValue="true"
-			highlightPreferenceKey="org.emdepub.ai-md.reference.text.begin.highlight"
-			highlightPreferenceValue="false"
-			colorPreferenceKey="org.emdepub.ai-md.reference.text.begin.color"
-			colorPreferenceValue="50,50,50"
-			textPreferenceKey="org.emdepub.ai-md.reference.text.begin.text"
-			textPreferenceValue="false"
-			textStylePreferenceKey="org.emdepub.ai-md.reference.text.begin.textStyle"
-			textStylePreferenceValue="BOX">
-		</specification>
-	</extension>
-	
-	<extension point="org.eclipse.core.resources.markers" id="org.emdepub.ai-md.reference.text.begin.marker" name="AI MD Reference Text Begin Marker">
-		<super type="org.eclipse.core.resources.textmarker"/>
-		<persistent value="false"/>
-	</extension>
-	<extension point="org.eclipse.ui.editors.annotationTypes" id="org.emdepub.ai-md.reference.text.begin.annotationType" name="AI MD Reference Text Begin Annotation Type">
-		<type markerType="org.emdepub.ai-md.reference.text.begin.marker" name="org.emdepub.ai-md.reference.text.begin.annotationType"></type>
-	</extension>
-	<extension point="org.eclipse.ui.editors.markerAnnotationSpecification" id="org.emdepub.ai-md.reference.text.end.annotationSpec" name="AI MD Reference Text End Marker Annotation Specification">
-		<specification annotationType="org.emdepub.ai-md.reference.text.end.annotationType"
-			includeOnPreferencePage="true"
-			label="AI MD Reference Text End"
-			icon="plugin-icons/ai-md-reference-text-end-annotation.png"
-			presentationLayer="0"
-			overviewRulerPreferenceKey="org.emdepub.ai-md.reference.text.end.overview.ruler"
-			overviewRulerPreferenceValue="false"
-			verticalRulerPreferenceKey="org.emdepub.ai-md.reference.text.end.vertical.ruler"
-			verticalRulerPreferenceValue="true"
-			highlightPreferenceKey="org.emdepub.ai-md.reference.text.end.highlight"
-			highlightPreferenceValue="false"
-			colorPreferenceKey="org.emdepub.ai-md.reference.text.end.color"
-			colorPreferenceValue="100,100,100"
-			textPreferenceKey="org.emdepub.ai-md.reference.text.end.text"
-			textPreferenceValue="false"
-			textStylePreferenceKey="org.emdepub.ai-md.reference.text.end.textStyle"
-			textStylePreferenceValue="BOX">
-		</specification>
-	</extension>
-	
 </plugin>

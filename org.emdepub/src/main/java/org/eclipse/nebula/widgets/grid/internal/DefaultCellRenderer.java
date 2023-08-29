@@ -26,7 +26,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.graphics.TextLayout;
-import org.emdepub.common.resources.CR;
+import org.emdepub.activator.R;
 
 /**
  * The renderer for a cell in Grid.
@@ -78,8 +78,8 @@ public class DefaultCellRenderer extends GridCellRenderer {
 		}
 
 		if (drawAsSelected) {
-			gc.setBackground(CR.getColor(CR.Colors.ListSelectedAndFocus));
-			gc.setForeground(CR.getColor(CR.Colors.ListFontSelected));
+			gc.setBackground(R.getColor(R.Colors.ListSelectedAndFocus));
+			gc.setForeground(R.getColor(R.Colors.ListFontSelected));
 		}
 		else {
 			if (item.getParent().isEnabled()) {
@@ -169,8 +169,8 @@ public class DefaultCellRenderer extends GridCellRenderer {
 		int width = getBounds().width - x - rightMargin;
 
 		if (drawAsSelected) {
-			gc.setForeground(CR.getColor(CR.Colors.ListFontSelected));
-			gc.setBackground(CR.getColor(CR.Colors.ListSelectedAndFocus));
+			gc.setForeground(R.getColor(R.Colors.ListFontSelected));
+			gc.setBackground(R.getColor(R.Colors.ListSelectedAndFocus));
 		}
 		else {
 			gc.setForeground(item.getForeground(getColumn()));
@@ -196,7 +196,7 @@ public class DefaultCellRenderer extends GridCellRenderer {
 					if (drawBackground) {
 						if (drawAsSelected) {
 							if (!item.getParent().isFocusControl()) {
-								gc.setBackground(CR.getColor(CR.Colors.ListSelectedNotFocus));
+								gc.setBackground(R.getColor(R.Colors.ListSelectedNotFocus));
 							}
 						}
 						gc.fillRectangle(getBounds().x + x - 2, getBounds().y + textTopMargin + topMargin - 1, len + 8, getBounds().height);
@@ -209,22 +209,22 @@ public class DefaultCellRenderer extends GridCellRenderer {
 							int sel = item.getParent().getSelection()[item.getParent().getSelectionCount() - 1].getRowIndex();
 							if (item.getRowIndex() != sel) {
 								if (!item.getParent().isFocusControl()) {
-									gc.setBackground(CR.getColor(CR.Colors.ListSelectedSecondaryNotFocus));	
+									gc.setBackground(R.getColor(R.Colors.ListSelectedSecondaryNotFocus));	
 								}
 								else {
-									gc.setBackground(CR.getColor(CR.Colors.ListSelectedSecondaryAndFocus));	
+									gc.setBackground(R.getColor(R.Colors.ListSelectedSecondaryAndFocus));	
 								}
 							}
 							else {
 								if (!item.getParent().isFocusControl()) {
-									gc.setBackground(CR.getColor(CR.Colors.ListSelectedNotFocus));
+									gc.setBackground(R.getColor(R.Colors.ListSelectedNotFocus));
 								}
 							}
 						}
 						else {
 							if (item.getParent().getFocusItem() != null) {
 								if (item.getParent().getIndexOfItem(item) == item.getParent().getIndexOfItem(item.getParent().getFocusItem())) {
-									gc.setBackground(CR.getColor(CR.Colors.ListNotSelectedButFocus));
+									gc.setBackground(R.getColor(R.Colors.ListNotSelectedButFocus));
 								}
 							}
 						}
@@ -287,22 +287,22 @@ public class DefaultCellRenderer extends GridCellRenderer {
 					int sel = item.getParent().getSelection()[item.getParent().getSelectionCount() - 1].getRowIndex();
 					if (item.getRowIndex() != sel) {
 						if (!item.getParent().isFocusControl()) {
-							gc.setBackground(CR.getColor(CR.Colors.ListSelectedSecondaryNotFocus));	
+							gc.setBackground(R.getColor(R.Colors.ListSelectedSecondaryNotFocus));	
 						}
 						else {
-							gc.setBackground(CR.getColor(CR.Colors.ListSelectedSecondaryAndFocus));	
+							gc.setBackground(R.getColor(R.Colors.ListSelectedSecondaryAndFocus));	
 						}
 					}
 					else {
 						if (!item.getParent().isFocusControl()) {
-							gc.setBackground(CR.getColor(CR.Colors.ListSelectedNotFocus));
+							gc.setBackground(R.getColor(R.Colors.ListSelectedNotFocus));
 						}
 					}
 				}
 				else {
 					if (item.getParent().getFocusItem() != null) {
 						if (item.getParent().getIndexOfItem(item) == item.getParent().getIndexOfItem(item.getParent().getFocusItem())) {
-							gc.setBackground(CR.getColor(CR.Colors.ListNotSelectedButFocus));
+							gc.setBackground(R.getColor(R.Colors.ListNotSelectedButFocus));
 						}
 					}
 				}
@@ -332,7 +332,7 @@ public class DefaultCellRenderer extends GridCellRenderer {
 		if (isCellFocus()) {
 			Rectangle focusRect = new Rectangle(getBounds().x, getBounds().y, getBounds().width - 1, getBounds().height);
 
-			gc.setForeground(CR.getColor(CR.Colors.ListFont));
+			gc.setForeground(R.getColor(R.Colors.ListFont));
 			gc.drawRectangle(focusRect);
 
 			if (isFocus()) {

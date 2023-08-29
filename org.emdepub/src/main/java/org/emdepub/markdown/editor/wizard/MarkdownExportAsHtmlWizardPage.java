@@ -12,8 +12,8 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.emdepub.common.ui.UI;
-import org.emdepub.common.utils.CU;
+import org.emdepub.activator.F;
+import org.emdepub.activator.UI;
 import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExportType;
 
 import lombok.AccessLevel;
@@ -25,7 +25,7 @@ import lombok.experimental.FieldDefaults;
 public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 	/** Convenient */
-	static final String s = CU.S;
+	static final String s = F.s;
 	
 	/* Data */
 	@Getter MarkdownExportType markdownExportType;

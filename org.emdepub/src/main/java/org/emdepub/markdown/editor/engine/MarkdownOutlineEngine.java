@@ -3,7 +3,7 @@ package org.emdepub.markdown.editor.engine;
 
 import java.util.ArrayList;
 
-import org.emdepub.common.resources.CR;
+import org.emdepub.activator.R;
 import org.emdepub.markdown.editor.language.MarkdownOutlineNode;
 
 import com.vladsch.flexmark.ast.Heading;
@@ -60,7 +60,7 @@ public class MarkdownOutlineEngine {
 		MarkdownOutlineNode documentOutlineNode = viewOutlineNode.addChildNode();
 //			documentOutlineNode.setStart(0);
 //			documentOutlineNode.setLength(0);
-//			documentOutlineNode.setImage(CR.getImage("markdowd"));
+//			documentOutlineNode.setImage(R.getImage("markdowd"));
 //			documentOutlineNode.setLabel("Document");
 //			documentOutlineNode.setType("Document");
 		documentOutlineNode.setSubType("0");
@@ -84,7 +84,7 @@ public class MarkdownOutlineEngine {
 			String level = "" + markdownHeadingLevel;
 			headingOutlineNode.setType("Heading");
 			headingOutlineNode.setSubType(level);
-			headingOutlineNode.setImage(CR.getImage("markdown-header"));
+			headingOutlineNode.setImage(R.getImage("markdown-header"));
 			headingStringBuilder.setLength(0);
 			headingTextsNodeVisitor.visitChildren(heading);
 			headingOutlineNode.setLabel(headingStringBuilder.toString());
