@@ -99,13 +99,6 @@ public class CR {
 		
 		loadGifImageResourceToRegistry("XML_file");
 		
-		loadGifImageResourceToRegistry("initializ_parameter");
-		loadGifImageResourceToRegistry("initializ_parameter_context");
-		
-		loadGifImageResourceToRegistry("reload_nav_16");
-		
-		
-		loadPngImageResourceToRegistry("ai-md-multi-page-editor");
 		
 		loadPngImageResourceToRegistry("wordwrap");
 		loadPngImageResourceToRegistry("show_whitespace_chars");
@@ -138,8 +131,6 @@ public class CR {
 		
 		loadPngImageResourceToRegistry("asterisk");
 		loadPngImageResourceToRegistry("edit_template");
-
-		loadPngImageResourceToRegistry("save");
 		
 //		loadGifImageResourceToRegistry("md-preference-toolbar-notdefault");
 //		loadGifImageResourceToRegistry("md-preference-toolbar-apply");

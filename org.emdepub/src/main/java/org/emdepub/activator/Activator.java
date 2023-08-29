@@ -10,7 +10,13 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.emdepub.common.resources.CR;
+import org.emdepub.common.ui.UI;
 import org.emdepub.common.utils.CU;
 import org.osgi.framework.BundleContext;
 
@@ -45,7 +51,11 @@ public class Activator extends AbstractUIPlugin {
 		CU.createFoldersIfNotExists(pluginFolderPathName + "/log");
 		L.initLog(logFile);
 		
-		App.initialize();
+		/* Resources */
+		IWorkbench workbench = PlatformUI.getWorkbench();
+		IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+		
+		CR.load(new UI(false, Display.getDefault()), workbenchWindow.getShell());
 	}
 
 	@Override

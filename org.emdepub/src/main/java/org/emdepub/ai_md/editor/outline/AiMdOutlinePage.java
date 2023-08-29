@@ -14,7 +14,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
-import org.emdepub.ai_md.editor.AiMdMultiPageEditor;
+import org.emdepub.ai_md.editor.AiMdEditor;
 import org.emdepub.ai_md.editor.AiMdTextEditor;
 import org.emdepub.ai_md.parser.AiMdParser;
 import org.emdepub.common.resources.CR;
@@ -67,12 +67,12 @@ public class AiMdOutlinePage extends ContentOutlinePage {
 	}
 
 	/** Editor */
-	private AiMdMultiPageEditor aiMdEditor;
+	private AiMdEditor aiMdEditor;
 	private AiMdTextEditor aiMdTextEditor;
 	private Document document;
 	
 	/** The view */
-	public AiMdOutlinePage(AiMdMultiPageEditor aiMdEditor) {
+	public AiMdOutlinePage(AiMdEditor aiMdEditor) {
 		super();
 		
 		this.aiMdEditor = aiMdEditor;

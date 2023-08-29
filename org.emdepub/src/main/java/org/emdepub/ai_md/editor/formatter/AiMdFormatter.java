@@ -2,8 +2,9 @@
 package org.emdepub.ai_md.editor.formatter;
 
 import org.emdepub.ai_md.parser.AiMdParser;
-import org.emdepub.ai_md.preferences.AiMdPreferencesMdFormatter;
 import org.emdepub.common.utils.CU;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
+import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
 
 import com.vladsch.flexmark.formatter.Formatter;
 import com.vladsch.flexmark.util.data.MutableDataSet;
@@ -25,21 +26,20 @@ public class AiMdFormatter {
 
 	
 	/** Format */
-	public static String formatMarkdown(String markdownString, AiMdPreferencesMdFormatter mdPreferences) {
+	public static String formatMarkdown(String markdownString, MarkdownPreferences markdownPreferences) {
 
 		MutableDataSet formatterCustomOptions = MutableDataSet.merge(formatterOptions);
 
 		int formatFlags = formatFlagsOptions;
 
-		if (mdPreferences != null) {
-			if (mdPreferences.getFormatCollapseLineWhitespace()) {
+		if (markdownPreferences != null) {
+			if (markdownPreferences.<Boolean>get(PreferenceNames.SourceFormatCollapseWhitespace)) {
 				formatFlags = formatFlags | LineAppendable.F_COLLAPSE_WHITESPACE;
 			}
 
-			formatterCustomOptions.set(Formatter.RIGHT_MARGIN, mdPreferences.getFormatRightMarginWrap() ? mdPreferences.getFormatRightMarginColumns() : Integer.valueOf(0));
-			
-			formatterCustomOptions.set(Formatter.MAX_BLANK_LINES, mdPreferences.getFormatCollapseEmptyLines() ? Integer.valueOf(2) : Integer.valueOf(100));
-			formatterCustomOptions.set(Formatter.MAX_TRAILING_BLANK_LINES, mdPreferences.getFormatCollapseTrailingEmptyLines() ? Integer.valueOf(1) : Integer.valueOf(100));
+			if (markdownPreferences.<Boolean>get(PreferenceNames.SourceFormatRightMarginWrap)) {
+				formatterCustomOptions.set(Formatter.RIGHT_MARGIN, markdownPreferences.<Integer>get(PreferenceNames.SourceFormatRightMarginColumns));
+			}
 		}
 		if (formatFlags != 0) {
 			formatterCustomOptions.set(Formatter.FORMAT_FLAGS, formatFlags);	

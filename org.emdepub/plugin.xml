@@ -18,7 +18,7 @@
 		<editor class="org.emdepub.toml.editor.TomlExtensionBasedEditor" contributorClass="org.emdepub.toml.editor.TomlExtensionBasedEditorContributor" default="true" extensions="toml" icon="plugin-icons/toml-editor.png" id="org.emdepub.editor.TomlExtensionBasedEditor" name="TOML Editor">
 			<contentTypeBinding contentTypeId="org.emdepub.toml"></contentTypeBinding>
 		</editor>
-		<editor class="org.emdepub.ai_md.editor.AiMdMultiPageEditor" contributorClass="org.emdepub.ai_md.editor.AiMdMultiPageEditorContributor" default="true" extensions="ai-md" icon="plugin-icons/ai-md-multi-page-editor.png" id="org.emdepub.editor.AIMarkdownEditor" name="AI MD Editor">
+		<editor class="org.emdepub.ai_md.editor.AiMdEditor" contributorClass="org.emdepub.ai_md.editor.AiMdEditorContributor" default="true" extensions="ai-md" icon="plugin-icons/ai-md-multi-page-editor.png" id="org.emdepub.editor.AIMarkdownEditor" name="AI MD Editor">
 			<contentTypeBinding contentTypeId="org.emdepub.ai-md"></contentTypeBinding>
 		</editor>
 	</extension>
@@ -96,7 +96,7 @@
 			highlightPreferenceKey="org.emdepub.ai-md.reference.begin.highlight"
 			highlightPreferenceValue="false"
 			colorPreferenceKey="org.emdepub.ai-md.reference.begin.color"
-			colorPreferenceValue="208,161,161"
+			colorPreferenceValue="0,0,0"
 			textPreferenceKey="org.emdepub.ai-md.reference.begin.text"
 			textPreferenceValue="false"
 			textStylePreferenceKey="org.emdepub.ai-md.reference.begin.textStyle"
@@ -127,7 +127,7 @@
 			highlightPreferenceKey="org.emdepub.ai-md.reference.text.begin.highlight"
 			highlightPreferenceValue="false"
 			colorPreferenceKey="org.emdepub.ai-md.reference.text.begin.color"
-			colorPreferenceValue="255,255,255"
+			colorPreferenceValue="50,50,50"
 			textPreferenceKey="org.emdepub.ai-md.reference.text.begin.text"
 			textPreferenceValue="false"
 			textStylePreferenceKey="org.emdepub.ai-md.reference.text.begin.textStyle"
@@ -155,7 +155,7 @@
 			highlightPreferenceKey="org.emdepub.ai-md.reference.text.end.highlight"
 			highlightPreferenceValue="false"
 			colorPreferenceKey="org.emdepub.ai-md.reference.text.end.color"
-			colorPreferenceValue="255,255,255"
+			colorPreferenceValue="100,100,100"
 			textPreferenceKey="org.emdepub.ai-md.reference.text.end.text"
 			textPreferenceValue="false"
 			textStylePreferenceKey="org.emdepub.ai-md.reference.text.end.textStyle"

@@ -6,10 +6,6 @@ Today, log file management remains a challenging task, which has resulted in the
 In maintenance teams, employees typically arrive at the office and check for any incidents. If they find one, they usually download the log file from a remote network location and open it in a text editor such as *Notepad++*. They then use the "**Ctrl-F**" function to search for the keyword "**ERROR**" and proceed to locate and address each error found in the file.
 Performing this task on a daily basis can lead to a deep understanding of the log file format and the specific search terms required to identify the root cause of an issue. However, due to the fact that logs are essentially just plain text, and different applications have their own unique logging styles, it can be a challenging and time-consuming process.
 
-```java
-System.out.println("Hello");
-```
-
 There are certain similarities shared by log files:
 
 ### Lines/Records
@@ -32,120 +28,25 @@ Next, we will explore ways to make these log file characteristics as visible as 
 
 ### Lines/Records/Fields Views
 
-● ai
-id: 4y0cpfv0
-▶
-There will be three ways to view a log file, as **"Lines"** - like a normal text file, as **"Records"** - to see by log information and as **"Fields"** - record values
-◀
+4y0cpfv0 -- There are three available options for viewing a log file: **"Lines"** (similar to a standard text file), **"Records"** (organized by log information), and **"Fields"** (displaying record values).
 
 ### Lines View
 
-● ai
-id: w4ucn850
-▶
-For "**Lines**" view the log will be displayed as text by lines, and no indentification rules are necessary
-◀
-
 ### Records View
-
-● ai
-id: 9apyyreg
-▶
-For "**Records**" view the log will be displayed as records
-◀
-
-● ai
-id: aziskdpk
-▶
-In order to display the "**Records**" view the actual records have to be identified by rules, to see on which line the a record is starting
-◀
 
 ### Fields View
 
-● ai
-id: gdtq7fyu
-▶
-For "**Fields**" view the log will be displayed only as records which have some found pieces of text
-◀
-
-● ai
-id: e9z3e3gj
-▶
-The "**Fields**" view will have data (records) only if rules are defined in order to identify pieces of information and the rules pass for the record text
-◀
-
 ### Levels
-
-● ai
-id: 8c62yvnu
-▶
-The log levels will be identified by rules, and will be displayed in customisable colors
-◀
-
-● ai
-id: 4t47e7oc
-▶
-Can chose to display only some of the levels
-◀
 
 ### Filters
 
-● ai
-id: 4k1mi9jm
-▶
-For each view, some identification rules can be defined in order to display only the lines that are verified by a certain rule
-◀
-
-● ai
-id: lwb5x5hr
-▶
-The lines will be selected if it contains a `space` followed by a `digit` followed by "`)`":
-◀
-
 ### Fields and Map Fields
-
-● ai
-id: xsrxwk6z
-▶
-Fields are values created by an expression from a record text. Can be as simple as a substring or complex with multiple levels of concatenation
-◀
-
-● ai
-id: dogkbr9p
-▶
-Map fields are lists of keys-values created by an expression from a record text by spliting with delimiters
-◀
-
-● ai
-id: znw1ci7t
-▶
-Here the first field is the content of "`loggerName`", the second one is the content of "`message`" and the map field is the content of "`source`" split in key-value pairs by "`,`" and in key and value by "`:`"
-◀
 
 ### Search
 
-● ai
-id: 4gq2atcd
-▶
-The search will verify each line for a text
-◀
-
-● ai
-id: 9uxorcop
-▶
-Here the search is "content" and the occurences are marked:
-◀
-
-● ai
-id: iwxise8x
-▶
-> For a more detailed description of the functionality, please see the help topic "`User Guide`"
-◀
-
-|   **Log Values** - Because logs are hard   |
-|:------------------------------------------:|
-|            log-values.com 2023             |
-| *(this text was reformatted with ChatGPT)* |
-|            log-values.com 2023             |
-| *(this text was reformatted with ChatGPT)* |
+|                           **Log Values** - Because logs are hard                           |
+|:------------------------------------------------------------------------------------------:|
+|                                    log-values.com 2023                                     |
+|                         *(this text was reformatted with ChatGPT)*                         |
+| __________________________________________________________________________________________ |
 
