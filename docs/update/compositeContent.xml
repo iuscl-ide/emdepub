@@ -4,9 +4,9 @@
     <properties size='2'>
         <property name='p2.compressed' value='true' />
         <!-- get new time w/ date +%s000 -->
-        <property name='p2.timestamp' value='202302192037' />
+        <property name='p2.timestamp' value='202308290000' />
     </properties>
     <children size='1'>
-        <child location='jar:https://github.com/iuscl-ide/emdepub/releases/download/v1.0.3/org.emdepub_1.0.3.zip!/' />
+        <child location='jar:https://github.com/iuscl-ide/emdepub/releases/download/v1.0.4/org.emdepub_1.0.4.zip!/' />
     </children>
 </repository>
