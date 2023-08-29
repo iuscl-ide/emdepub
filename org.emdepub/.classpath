@@ -18,34 +18,33 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="lib/annotations-15.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-gfm-tasklist-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-tables-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-ast-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-builder-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-collection-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-data-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-dependency-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-format-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-html-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-misc-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-options-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-sequence-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-visitor-0.64.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson-annotations-2.14.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson-core-2.14.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson-databind-2.14.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson-dataformat-toml-2.14.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/jackson-dataformat-xml-2.14.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/lombok-1.18.26.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/annotations-24.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-gfm-tasklist-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-ext-tables-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-ast-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-builder-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-collection-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-data-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-dependency-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-format-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-html-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-misc-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-options-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-sequence-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/flexmark-util-visitor-0.64.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-annotations-2.15.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-core-2.15.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-databind-2.15.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-dataformat-toml-2.15.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jackson-dataformat-xml-2.15.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lombok-1.18.28.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/stax2-api-4.2.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/woodstox-core-6.5.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/zip4j-2.11.4.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry exported="true" kind="lib" path="lib/woodstox-core-6.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/zip4j-2.11.5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
 		<attributes>
-			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
