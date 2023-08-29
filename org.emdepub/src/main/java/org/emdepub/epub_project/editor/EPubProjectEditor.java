@@ -38,6 +38,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -63,9 +64,9 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.ide.FileStoreEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-import org.emdepub.activator.F;
-import org.emdepub.activator.R;
-import org.emdepub.activator.UI;
+import org.emdepub.common.resources.CR;
+import org.emdepub.common.ui.UI;
+import org.emdepub.common.utils.CU;
 import org.emdepub.epub_project.editor.wizard.EPubProjectGenerateIDsWizard;
 import org.emdepub.epub_project.editor.wizard.EPubProjectModifyManifestItemWizard;
 import org.emdepub.epub_project.editor.wizard.EPubProjectModifyTocItemWizard;
@@ -194,8 +195,8 @@ public class EPubProjectEditor extends FormEditor {
 		}
 	}
 	
-	private static final String s = F.s;
-//	private static final String e = F.enter();
+	private static final String s = CU.S;
+//	private static final String e = CU.enter();
 
 	
 	private EPUB_project ePubProject;
@@ -269,8 +270,8 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* load */
 		projectFileNameWithPath = getSourceEPubProjectFilePathAndName();
-		String json = F.loadFileInString(projectFileNameWithPath);
-		if (F.isEmpty(json)) {
+		String json = CU.loadFileInString(projectFileNameWithPath);
+		if (CU.isEmpty(json)) {
 			ePubProject = new EPUB_project();
 			
 		}
@@ -293,28 +294,29 @@ public class EPubProjectEditor extends FormEditor {
 		FormToolkit formsToolkit = new FormToolkit(opfPageComposite.getDisplay());
 		/* Form */
 		Form opfForm = formsToolkit.createForm(opfPageComposite);
-		String fileName = F.getFileName(projectFileNameWithPath);   //fileNameWithPath.substring(F.getFileFolderName(fileNameWithPath).length() + 1);
+		String fileName = CU.findFileName(projectFileNameWithPath);   //fileNameWithPath.substring(CU.getFileFolderName(fileNameWithPath).length() + 1);
 		opfForm.setText("\"" + fileName + "\" " + this.getTitle());
-		opfForm.setImage(R.getImage("project"));
+		opfForm.setImage(CR.getImage("project"));
 //		opfForm.setToolBarVerticalAlignment(SWT.BOTTOM);
 		formsToolkit.decorateFormHeading(opfForm);
 
 		/* Form Composite */
 		Composite opfFormComposite = opfForm.getBody();
-		GridLayout opfFormCompositeGridLayout = ui.createMarginsVerticalSpacingGridLayout(marginSpacing, verticalSpacing);
+		GridLayout opfFormCompositeGridLayout = ui.createGridLayout_Margins_VerticalSpacing(marginSpacing, verticalSpacing);
 		opfFormComposite.setLayout(opfFormCompositeGridLayout);
 		
 		/* Top */
 		Composite topComposite = new Composite(opfFormComposite, SWT.NULL);
-		topComposite.setLayoutData(ui.createFillHorizontalGridData());
-		GridLayout topCompositeGridLayout = ui.createColumnsSpacingGridLayout(2, horizontalSpacing * 2);
+		topComposite.setLayoutData(ui.createGridData_FillHorizontal());
+		GridLayout topCompositeGridLayout = ui.createGridLayout_ColumnsSpacing(2, horizontalSpacing * 2);
 		topCompositeGridLayout.makeColumnsEqualWidth = true;
 		topComposite.setLayout(topCompositeGridLayout);
 		
 		
 		/* General Section */
 		Section opfGeneralSection = formsToolkit.createSection(topComposite, Section.EXPANDED | Section.TWISTIE | Section.DESCRIPTION | Section.TITLE_BAR);
-		opfGeneralSection.setLayoutData(ui.createTopAlignedFillHorizontalGridData());
+		opfGeneralSection.setLayoutData(ui.createGridData_FillHorizontal());
+//		opfGeneralSection.setLayoutData(ui.createGridData_TopAlignedFillHorizontal());
 		opfGeneralSection.setLayout(ui.createGridLayout());
 		opfGeneralSection.setText("General");
 		opfGeneralSection.setDescription("ePub project settings");
@@ -324,13 +326,13 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Run */
 		generalToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.generalRunAction",
-			"Run", "Generate ePub book", R.getImageDescriptor("run"), () -> {
+			"Run", "Generate ePub book", CR.getImageDescriptor("run"), () -> {
 				generateBook();
 			}));
 
 		/* Split */
 		generalToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.generalSplitAction",
-			"Split", "Split a file in separate files (for chapters)", R.getImageDescriptor("XML_file"), () -> {
+			"Split", "Split a file in separate files (for chapters)", CR.getImageDescriptor("XML_file"), () -> {
 				splitSourceFile();
 			}));
 
@@ -340,8 +342,8 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* General Section Composite */
 		Composite opfGeneralSectionComposite = formsToolkit.createComposite(opfGeneralSection, SWT.NULL);
-		opfGeneralSectionComposite.setLayoutData(ui.createFillBothGridData());
-		opfGeneralSectionComposite.setLayout(ui.createMarginTopVerticalSpacingGridLayout(verticalSpacing, verticalSpacing));
+		opfGeneralSectionComposite.setLayoutData(ui.createGridData_FillBoth());
+		opfGeneralSectionComposite.setLayout(ui.createGridLayout_MarginTop_VerticalSpacing(verticalSpacing, verticalSpacing));
 		opfGeneralSection.setClient(opfGeneralSectionComposite);
 		
 		rootFolderFileControl = addFileControl(ui, opfGeneralSectionComposite, "Root folder", labelWidth, null, true, "rootFolderNameWithFullPath");
@@ -350,7 +352,8 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Metadata Section */
 		Section opfMetadataSection = formsToolkit.createSection(topComposite, Section.EXPANDED | Section.TWISTIE | Section.DESCRIPTION | Section.TITLE_BAR);
-		opfMetadataSection.setLayoutData(ui.createTopAlignedFillHorizontalGridData());
+		opfMetadataSection.setLayoutData(ui.createGridData_FillHorizontal());
+//		opfMetadataSection.setLayoutData(ui.createGridData_TopAlignedFillHorizontal());
 		opfMetadataSection.setLayout(ui.createGridLayout());
 		opfMetadataSection.setText("Metadata");
 		opfMetadataSection.setDescription("ePub book properties");
@@ -360,7 +363,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Generate identifier UUID */
 		metadataToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.generateIdentifierUuidAction",
-			"Generate identifier UUID", "Generate identifier UUID", R.getImageDescriptor("asterisk"), () -> {
+			"Generate identifier UUID", "Generate identifier UUID", CR.getImageDescriptor("asterisk"), () -> {
 				ePubProject.metadata_identifier = "urn:uuid:" + UUID.randomUUID().toString();
 				metadataIdentifierTextControl.reload();
 			}));
@@ -371,8 +374,8 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Metadata Section Composite */
 		Composite opfMetadataSectionComposite = formsToolkit.createComposite(opfMetadataSection, SWT.NULL);
-		opfMetadataSectionComposite.setLayoutData(ui.createFillBothGridData());
-		opfMetadataSectionComposite.setLayout(ui.createMarginTopVerticalSpacingGridLayout(verticalSpacing, verticalSpacing));
+		opfMetadataSectionComposite.setLayoutData(ui.createGridData_FillBoth());
+		opfMetadataSectionComposite.setLayout(ui.createGridLayout_MarginTop_VerticalSpacing(verticalSpacing, verticalSpacing));
 		opfMetadataSection.setClient(opfMetadataSectionComposite);
 		
 		metadataIdentifierTextControl = addTextControl(ui, opfMetadataSectionComposite, "Identifier", labelWidth, 1, "metadata_identifier");
@@ -384,7 +387,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Manifest Section */
 		Section opfManifestSection = formsToolkit.createSection(opfFormComposite, Section.DESCRIPTION | Section.TITLE_BAR);
-		opfManifestSection.setLayoutData(ui.createFillBothGridData());
+		opfManifestSection.setLayoutData(ui.createGridData_FillBoth());
 		opfManifestSection.setLayout(ui.createGridLayout());
 		opfManifestSection.setText("Manifest"); //$NON-NLS-1$
 		opfManifestSection.setDescription("All the files to be included in the ePub book: documents, images, styles"); //$NON-NLS-1$
@@ -394,19 +397,19 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Refresh manifest */
 		manifestToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.manifestRefreshAction",
-			"Refresh manifest", "Refresh manifest from root files and folders", R.getImageDescriptor("refresh"), () -> {
+			"Refresh manifest", "Refresh manifest from root files and folders", CR.getImageDescriptor("refresh"), () -> {
 				refreshManifest();
 			}));
 		
 		/* Generate manifest IDs */
 		manifestToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.manifestGenerateIDsAction",
-			"Generate manifest IDs", "Generate manifest IDs", R.getImageDescriptor("XSDIdentityConstraintDefinitionKey"), () -> {
+			"Generate manifest IDs", "Generate manifest IDs", CR.getImageDescriptor("XSDIdentityConstraintDefinitionKey"), () -> {
 				editManifestIDPreferences();
 			}));
 
 		/* Modify manifest item */
 		manifestToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.modifyManifestItemAction",
-			"Manifest item properties", "Edit manifest item properties", R.getImageDescriptor("edit_template"), () -> {
+			"Manifest item properties", "Edit manifest item properties", CR.getImageDescriptor("edit_template"), () -> {
 				if (opfManifestGrid.getItemCount() == 0) {
 					MessageDialog.openError(Display.getCurrent().getActiveShell(), "The manifest is empty", "Fill the manifest and select an item");
 					return;
@@ -426,8 +429,8 @@ public class EPubProjectEditor extends FormEditor {
 		/* Manifest Section Composite */
 		Composite opfManifestSectionComposite = formsToolkit.createComposite(opfManifestSection, SWT.NULL);
 		//ui.addDebug(opfManifestSectionComposite);
-		opfManifestSectionComposite.setLayoutData(ui.createFillBothGridData());
-		opfManifestSectionComposite.setLayout(ui.createMarginTopVerticalSpacingGridLayout(verticalSpacing, verticalSpacing));
+		opfManifestSectionComposite.setLayoutData(ui.createGridData_FillBoth());
+		opfManifestSectionComposite.setLayout(ui.createGridLayout_MarginTop_VerticalSpacing(verticalSpacing, verticalSpacing));
 		opfManifestSection.setClient(opfManifestSectionComposite);
 		
 		opfManifestGrid = new Grid(opfManifestSectionComposite, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
@@ -435,7 +438,7 @@ public class EPubProjectEditor extends FormEditor {
 		/* Italic */
 		gridFontItalic = ui.newFontAttributes(opfManifestGrid.getFont(), SWT.ITALIC);
 
-		opfManifestGrid.setLayoutData(ui.createFillBothGridData());
+		opfManifestGrid.setLayoutData(ui.createGridData_FillBoth());
 		
 		opfManifestGrid.setHeaderVisible(true);
 		//opfManifestGrid.setItemHeight(24);
@@ -443,7 +446,7 @@ public class EPubProjectEditor extends FormEditor {
 		int opfManifestGridHorizontalScrollCompensate = opfManifestGrid.getVerticalBar().getSize().x;
 		opfManifestGrid.setHorizontalScrollCompensate(opfManifestGridHorizontalScrollCompensate);
 		
-		opfManifestGrid.addControlListener((UI.OnResize) resizeEvent -> {
+		opfManifestGrid.addControlListener(ControlListener.controlResizedAdapter(resizeEvent -> {
 			
 			Point filesListGridNewSize = opfManifestGrid.getSize();
 			//L.p("resize " + filesListGridNewSize);
@@ -467,15 +470,15 @@ public class EPubProjectEditor extends FormEditor {
 				opfManifestGrid.resetMeasures();
 				opfManifestGrid.showSelection();
 			}
-		});
+		}));
 		
-		opfManifestGrid.addMouseListener((UI.OnMouseDoubleClick) mouseEvent -> {
+		opfManifestGrid.addMouseListener(MouseListener.mouseDoubleClickAdapter(mouseDoubleClickEvent -> {
 			
-			GridItem gridItem = opfManifestGrid.getItem(new Point(mouseEvent.x, mouseEvent.y));
+			GridItem gridItem = opfManifestGrid.getItem(new Point(mouseDoubleClickEvent.x, mouseDoubleClickEvent.y));
 			if (gridItem != null) {
 				modifyManifestItem(gridItem);
 			}
-		});
+		}));
 				
 		opfManifestGrid.addTraverseListener(keyTraverseEvent -> {
 
@@ -495,7 +498,7 @@ public class EPubProjectEditor extends FormEditor {
 			}
 		});
 
-		SelectionListener opfManifestGridColumnSelectionListener = (UI.OnSelection) selectionEvent -> {
+		SelectionListener opfManifestGridColumnSelectionListener = SelectionListener.widgetSelectedAdapter(selectionEvent -> {
 				
 			ArrayList<GridColumn> filesListGridColumns = new ArrayList<>(Arrays.asList(opfManifestGrid.getColumns()));
 			int index = filesListGridColumns.indexOf((GridColumn) selectionEvent.item);
@@ -512,15 +515,15 @@ public class EPubProjectEditor extends FormEditor {
 			opfManifestGrid.getColumn(index).setSort(opfManifestGridSortColumnAsc ? SWT.DOWN : SWT.UP);
 			sortManifestGrid();
 			loadManifestGrid();
-		};
+		});
 		
-		ControlListener opfManifestGridColumnControlListener = (UI.OnResize) controlEvent -> {
+		ControlListener opfManifestGridColumnControlListener = ControlListener.controlResizedAdapter(resizeEvent -> {
 				
 			if (opfManifestGrid.getItemCount() > 0) {
 				opfManifestGrid.resetMeasures();
 				opfManifestGrid.showSelection();
 			}
-		};
+		});
 		
 		GridColumn gridColumn = new GridColumn(opfManifestGrid, SWT.NONE);
 		gridColumn.setText("File name");
@@ -566,14 +569,14 @@ public class EPubProjectEditor extends FormEditor {
 
 		/* Bottom */
 		Composite bottomComposite = new Composite(opfFormComposite, SWT.NULL);
-		bottomComposite.setLayoutData(ui.createFillHorizontalGridData());
-		GridLayout bottomCompositeGridLayout = ui.createColumnsSpacingGridLayout(2, horizontalSpacing * 2);
+		bottomComposite.setLayoutData(ui.createGridData_FillHorizontal());
+		GridLayout bottomCompositeGridLayout = ui.createGridLayout_ColumnsSpacing(2, horizontalSpacing * 2);
 		bottomCompositeGridLayout.makeColumnsEqualWidth = true;
 		bottomComposite.setLayout(bottomCompositeGridLayout);
 		
 		/* Spine Section */
 		Section opfSpineSection = formsToolkit.createSection(bottomComposite, Section.EXPANDED | Section.TWISTIE | Section.DESCRIPTION | Section.TITLE_BAR);
-		opfSpineSection.setLayoutData(ui.createFillHorizontalGridData());
+		opfSpineSection.setLayoutData(ui.createGridData_FillHorizontal());
 		opfSpineSection.setLayout(ui.createGridLayout());
 		opfSpineSection.setText("Spine"); //$NON-NLS-1$
 		opfSpineSection.setDescription("What documents will be presented to the reader and on which order"); //$NON-NLS-1$
@@ -583,22 +586,22 @@ public class EPubProjectEditor extends FormEditor {
 
 		/* Add to spine */
 		spineToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.spineAddAction", "Add to spine",
-			"Add documents from manifest to spine", R.getImageDescriptor("add"), () -> {
+			"Add documents from manifest to spine", CR.getImageDescriptor("add"), () -> {
 				addToSpine();
 			}));
 		
 		spineToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.spineRemoveAction", "Remove from spine",
-			"Remove documents from spine", R.getImageDescriptor("remove"), () -> {
+			"Remove documents from spine", CR.getImageDescriptor("remove"), () -> {
 				removeFromSpine();
 			}));
 
 		spineToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.spineMoveUpAction", "Move up in spine",
-			"Move documents up in spine, to the beginning of the book", R.getImageDescriptor("move-up"), () -> {
+			"Move documents up in spine, to the beginning of the book", CR.getImageDescriptor("move-up"), () -> {
 				moveInSpine(true);
 			}));
 
 		spineToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.spineMoveDownAction", "Move down in spine",
-			"Move documents down in spine, to the end of the book", R.getImageDescriptor("move-down"), () -> {
+			"Move documents down in spine, to the end of the book", CR.getImageDescriptor("move-down"), () -> {
 				moveInSpine(false);
 			}));
 		
@@ -607,8 +610,8 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Spine Section Composite */
 		Composite opfSpineSectionComposite = formsToolkit.createComposite(opfSpineSection, SWT.NULL);
-		opfSpineSectionComposite.setLayoutData(ui.createFillBothGridData());
-		opfSpineSectionComposite.setLayout(ui.createMarginTopVerticalSpacingGridLayout(verticalSpacing, verticalSpacing));
+		opfSpineSectionComposite.setLayoutData(ui.createGridData_FillBoth());
+		opfSpineSectionComposite.setLayout(ui.createGridLayout_MarginTop_VerticalSpacing(verticalSpacing, verticalSpacing));
 		opfSpineSection.setClient(opfSpineSectionComposite);
 
 		opfSpineGrid = new Grid(opfSpineSectionComposite, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
@@ -616,7 +619,7 @@ public class EPubProjectEditor extends FormEditor {
 		/* Italic */
 		gridFontItalic = ui.newFontAttributes(opfSpineGrid.getFont(), SWT.ITALIC);
 
-		GridData opfSpineGridData = ui.createFillBothGridData();
+		GridData opfSpineGridData = ui.createGridData_FillBoth();
 		opfSpineGridData.minimumHeight = 250;
 		opfSpineGrid.setLayoutData(opfSpineGridData);
 		
@@ -627,7 +630,7 @@ public class EPubProjectEditor extends FormEditor {
 		opfSpineGrid.setHorizontalScrollCompensate(opfSpineGridHorizontalScrollCompensate);
 		
 		/* Spine grid resize */
-		opfSpineGrid.addControlListener((UI.OnResize) resizeEvent -> {
+		opfSpineGrid.addControlListener(ControlListener.controlResizedAdapter(resizeEvent -> {
 			
 			Point gridNewSize = opfSpineGrid.getSize();
 			if (opfSpineGridLastSize.equals(gridNewSize)) {
@@ -650,16 +653,16 @@ public class EPubProjectEditor extends FormEditor {
 				opfSpineGrid.resetMeasures();
 				opfSpineGrid.showSelection();
 			}
-		});
+		}));
 
 		/* Spine grid columns resize */
-		ControlListener opfSpineGridColumnControlListener = (UI.OnResize) controlEvent -> {
+		ControlListener opfSpineGridColumnControlListener = ControlListener.controlResizedAdapter(resizeEvent -> {
 				
 			if (opfSpineGrid.getItemCount() > 0) {
 				opfSpineGrid.resetMeasures();
 				opfSpineGrid.showSelection();
 			}
-		};
+		});
 
 		gridColumn = new GridColumn(opfSpineGrid, SWT.NONE);
 		gridColumn.setText("File name");
@@ -686,7 +689,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Toc Section */
 		Section tocSection = formsToolkit.createSection(bottomComposite, Section.EXPANDED | Section.TWISTIE | Section.DESCRIPTION | Section.TITLE_BAR);
-		tocSection.setLayoutData(ui.createFillHorizontalGridData());
+		tocSection.setLayoutData(ui.createGridData_FillHorizontal());
 		tocSection.setLayout(ui.createGridLayout());
 		tocSection.setText("Table of Contents"); //$NON-NLS-1$
 		tocSection.setDescription("What document links will be in the table of contents (only ncx and only one level)"); //$NON-NLS-1$
@@ -696,28 +699,28 @@ public class EPubProjectEditor extends FormEditor {
 
 		/* Add to toc */
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.tocAddAction", "Add to toc",
-			"Add documents from manifest to toc", R.getImageDescriptor("add"), () -> {
+			"Add documents from manifest to toc", CR.getImageDescriptor("add"), () -> {
 			addToToc();
 		}));
 		
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.tocRemoveAction", "Remove from toc",
-			"Remove documents from toc", R.getImageDescriptor("remove"), () -> {
+			"Remove documents from toc", CR.getImageDescriptor("remove"), () -> {
 			removeFromToc();
 		}));
 
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.tocMoveUpAction", "Move up in toc",
-			"Move documents up in toc, to the beginning of the book", R.getImageDescriptor("move-up"), () -> {
+			"Move documents up in toc, to the beginning of the book", CR.getImageDescriptor("move-up"), () -> {
 			moveInToc(true);
 		}));
 
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.tocMoveDownAction", "Move down in toc",
-			"Move documents down in toc, to the end of the book", R.getImageDescriptor("move-down"), () -> {
+			"Move documents down in toc, to the end of the book", CR.getImageDescriptor("move-down"), () -> {
 			moveInToc(false);
 		}));
 		
 		/* Modify toc item */
 		tocToolBarManager.add(UI.ActionFactory.create("org.emdepub.epub_project.editor.modifyTocItemAction",
-			"Edit TOC item", "Edit TOC item", R.getImageDescriptor("edit_template"), () -> {
+			"Edit TOC item", "Edit TOC item", CR.getImageDescriptor("edit_template"), () -> {
 				
 			if (noToc()) {
 				return;
@@ -733,8 +736,8 @@ public class EPubProjectEditor extends FormEditor {
 		
 		/* Toc Section Composite */
 		Composite tocSectionComposite = formsToolkit.createComposite(tocSection, SWT.NULL);
-		tocSectionComposite.setLayoutData(ui.createFillBothGridData());
-		tocSectionComposite.setLayout(ui.createMarginTopVerticalSpacingGridLayout(verticalSpacing, verticalSpacing));
+		tocSectionComposite.setLayoutData(ui.createGridData_FillBoth());
+		tocSectionComposite.setLayout(ui.createGridLayout_MarginTop_VerticalSpacing(verticalSpacing, verticalSpacing));
 		tocSection.setClient(tocSectionComposite);
 
 		tocGrid = new Grid(tocSectionComposite, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
@@ -742,7 +745,7 @@ public class EPubProjectEditor extends FormEditor {
 		/* Italic */
 		gridFontItalic = ui.newFontAttributes(tocGrid.getFont(), SWT.ITALIC);
 
-		GridData tocGridData = ui.createFillBothGridData();
+		GridData tocGridData = ui.createGridData_FillBoth();
 		tocGridData.minimumHeight = 250;
 		tocGrid.setLayoutData(tocGridData);
 		
@@ -753,7 +756,7 @@ public class EPubProjectEditor extends FormEditor {
 		tocGrid.setHorizontalScrollCompensate(tocGridHorizontalScrollCompensate);
 		
 		/* Toc grid resize */
-		tocGrid.addControlListener((UI.OnResize) resizeEvent -> {
+		tocGrid.addControlListener(ControlListener.controlResizedAdapter(resizeEvent -> {
 			
 			Point gridNewSize = tocGrid.getSize();
 			if (tocGridLastSize.equals(gridNewSize)) {
@@ -774,16 +777,16 @@ public class EPubProjectEditor extends FormEditor {
 				tocGrid.resetMeasures();
 				tocGrid.showSelection();
 			}
-		});
+		}));
 
 		/* Toc grid columns resize */
-		ControlListener tocGridColumnControlListener = (UI.OnResize) controlEvent -> {
+		ControlListener tocGridColumnControlListener = ControlListener.controlResizedAdapter(resizeEvent -> {
 				
 			if (tocGrid.getItemCount() > 0) {
 				tocGrid.resetMeasures();
 				tocGrid.showSelection();
 			}
-		};
+		});
 
 		gridColumn = new GridColumn(tocGrid, SWT.NONE);
 		gridColumn.setText("Toc entry title");
@@ -883,7 +886,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		if (newPageIndex == ePubProjectFormsPageIndex) {
 			
-			if (F.isEmpty(document.get())) {
+			if (CU.isEmpty(document.get())) {
 				return;
 			}
 			
@@ -963,11 +966,11 @@ public class EPubProjectEditor extends FormEditor {
 		
 		final Composite fileComposite = new Composite(parentComposite, SWT.NONE);
 		//ui.addDebug(fileComposite);
-	    fileComposite.setLayoutData(ui.createFillHorizontalGridData());
-		fileComposite.setLayout(ui.createColumnsSpacingGridLayout(3, UI.sep));
+	    fileComposite.setLayoutData(ui.createGridData_FillHorizontal());
+		fileComposite.setLayout(ui.createGridLayout_ColumnsSpacing(3, UI.sep8));
 		
 		final Label fileLabel = new Label(fileComposite, SWT.NONE);
-		fileLabel.setLayoutData(labelWidth == null ? ui.createGridData() : ui.createWidthGridData(labelWidth));
+		fileLabel.setLayoutData(labelWidth == null ? ui.createGridData() : ui.createGridData_Width(labelWidth));
 		fileLabel.setText(labelText);
 
 		final Field field = ePubProject.getClass().getDeclaredField(fieldName);
@@ -975,12 +978,12 @@ public class EPubProjectEditor extends FormEditor {
 		
 		final Text fileText = new Text(fileComposite, SWT.SINGLE | SWT.BORDER);
 		String fileTextValue = (String) field.get(ePubProject);
-		fileText.setText(F.isEmpty(fileTextValue) ? "" : fileTextValue);
-		fileText.setLayoutData(ui.createFillHorizontalGridData());
+		fileText.setText(CU.isEmpty(fileTextValue) ? "" : fileTextValue);
+		fileText.setLayoutData(ui.createGridData_FillHorizontal());
 
 		final Button fileButton = new Button(fileComposite, SWT.NONE);
 		fileButton.setText("Browse");
-		fileButton.setLayoutData(ui.createWidthGridData(80));
+		fileButton.setLayoutData(ui.createGridData_Width(80));
 		
 		/* File name */
 		fileText.addFocusListener(new FocusAdapter() {
@@ -1054,8 +1057,8 @@ public class EPubProjectEditor extends FormEditor {
 			@SneakyThrows(IllegalAccessException.class)
 			public void reload() {
 				String fileTextValue = (String) field.get(ePubProject);
-				fileText.setText(F.isEmpty(fileTextValue) ? "" : fileTextValue);
-				//fileText.setLayoutData(ui.createFillHorizontalGridData());
+				fileText.setText(CU.isEmpty(fileTextValue) ? "" : fileTextValue);
+				//fileText.setLayoutData(ui.createGridData_FillHorizontal());
 			}
 			@Override
 			public String getCompleteFileName() {
@@ -1070,16 +1073,18 @@ public class EPubProjectEditor extends FormEditor {
 		
 		final Composite textComposite = new Composite(parentComposite, SWT.NONE);
 		//ui.addDebug(fileComposite);
-	    textComposite.setLayoutData(ui.createFillHorizontalGridData());
-		textComposite.setLayout(ui.createColumnsSpacingGridLayout(2, UI.sep));
+	    textComposite.setLayoutData(ui.createGridData_FillHorizontal());
+		textComposite.setLayout(ui.createGridLayout_ColumnsSpacing(2, UI.sep8));
 		
 		final Label textLabel = new Label(textComposite, SWT.NONE);
 		GridData textLabelGridData = null;
 		if (labelWidth == null) {
-			textLabelGridData = lines > 1 ? ui.createTopAlignedGridData() : ui.createGridData();
+			textLabelGridData = ui.createGridData();
+			//textLabelGridData = lines > 1 ? ui.createGridData_TopAligned() : ui.createGridData();
 		}
 		else {
-			textLabelGridData = lines > 1 ? ui.createWidthTopAlignedGridData(labelWidth) : ui.createWidthGridData(labelWidth);
+			textLabelGridData = ui.createGridData_Width(labelWidth);
+			//textLabelGridData = lines > 1 ? ui.createGridData_TopAligned(labelWidth) : ui.createGridData_Width(labelWidth);
 		}
 		textLabel.setLayoutData(textLabelGridData);
 		textLabel.setText(labelText);
@@ -1089,8 +1094,8 @@ public class EPubProjectEditor extends FormEditor {
 		
 		final Text text = new Text(textComposite, (lines > 1 ? SWT.MULTI | SWT.V_SCROLL | SWT.WRAP : SWT.SINGLE) | SWT.BORDER );
 		String textValue = (String) field.get(ePubProject);
-		text.setText(F.isEmpty(textValue) ? "" : textValue);
-		GridData textGridData = ui.createFillHorizontalGridData();
+		text.setText(CU.isEmpty(textValue) ? "" : textValue);
+		GridData textGridData = ui.createGridData_FillHorizontal();
 		if (lines > 1) {
 			textGridData.minimumHeight = lines * text.getLineHeight();
 			textGridData.heightHint = lines * text.getLineHeight();
@@ -1115,7 +1120,7 @@ public class EPubProjectEditor extends FormEditor {
 			@SneakyThrows(IllegalAccessException.class)
 			public void reload() {
 				String textValue = (String) field.get(ePubProject);
-				text.setText(F.isEmpty(textValue) ? "" : textValue);
+				text.setText(CU.isEmpty(textValue) ? "" : textValue);
 			}
 			@Override
 			public String getText() {
@@ -1128,7 +1133,7 @@ public class EPubProjectEditor extends FormEditor {
 	@SneakyThrows(IOException.class)
 	public void refreshManifest() {
 		
-		if (F.isEmpty(ePubProject.rootFolderNameWithFullPath)) {
+		if (CU.isEmpty(ePubProject.rootFolderNameWithFullPath)) {
 			
 			MessageDialog.openError(Display.getCurrent().getActiveShell(),
 				"Refresh manifest cannot continue", "Root folder name is empty");
@@ -1170,16 +1175,16 @@ public class EPubProjectEditor extends FormEditor {
 				
 				EPUB_project_manifest_item oldManifestItem = oldManifestItems.get(key);
 				
-				if (!F.isEmpty(oldManifestItem.itemFileManualId)) {
+				if (!CU.isEmpty(oldManifestItem.itemFileManualId)) {
 					manifest_item.itemFileManualId = oldManifestItem.itemFileManualId;
 				}
-				if (!F.isEmpty(oldManifestItem.itemFileId)) {
+				if (!CU.isEmpty(oldManifestItem.itemFileId)) {
 					manifest_item.itemFileId = oldManifestItem.itemFileId;
 				}
-				if (!F.isEmpty(oldManifestItem.itemFileMediaType)) {
+				if (!CU.isEmpty(oldManifestItem.itemFileMediaType)) {
 					manifest_item.itemFileMediaType = oldManifestItem.itemFileMediaType;
 				}
-				if (!F.isEmpty(oldManifestItem.itemFileProperties)) {
+				if (!CU.isEmpty(oldManifestItem.itemFileProperties)) {
 					manifest_item.itemFileProperties = oldManifestItem.itemFileProperties;
 				}
 			}
@@ -1212,7 +1217,7 @@ public class EPubProjectEditor extends FormEditor {
 		
 		if (ePubProject.manifestIDGuid) {
 			for (EPUB_project_manifest_item gridManifestItem : gridManifestItems) {
-				if (F.isEmpty(gridManifestItem.itemFileManualId)) {
+				if (CU.isEmpty(gridManifestItem.itemFileManualId)) {
 					gridManifestItem.itemFileId =  id + UUID.randomUUID().toString();	
 				}
 			}
@@ -1220,7 +1225,7 @@ public class EPubProjectEditor extends FormEditor {
 		else {
 			int index = 1;
 			for (EPUB_project_manifest_item gridManifestItem : gridManifestItems) {
-				if (F.isEmpty(gridManifestItem.itemFileManualId)) {
+				if (CU.isEmpty(gridManifestItem.itemFileManualId)) {
 					String count = "" + index;
 					gridManifestItem.itemFileId =  id + "00000".substring(count.length()) + count;
 					index++;
@@ -1286,31 +1291,31 @@ public class EPubProjectEditor extends FormEditor {
 			GridItem gridItem = new GridItem(opfManifestGrid, SWT.NONE);
 
 			String mediaType = manifest_item.itemFileMediaType; 
-			if (F.isEmpty(mediaType)) {
-				gridItem.setImage(R.getImage("unknown"));
+			if (CU.isEmpty(mediaType)) {
+				gridItem.setImage(CR.getImage("unknown"));
 			}
 			else {
 				if (mediaType.contains("html")) {
-					gridItem.setImage(R.getImage("html"));
+					gridItem.setImage(CR.getImage("html"));
 				}
 				else if (mediaType.contains("image")) {
-					gridItem.setImage(R.getImage("tag-image"));
+					gridItem.setImage(CR.getImage("tag-image"));
 				}
 				else if (mediaType.contains("css")) {
-					gridItem.setImage(R.getImage("stylesheet"));
+					gridItem.setImage(CR.getImage("stylesheet"));
 				}
 				else if (mediaType.contains("text")) {
-					gridItem.setImage(R.getImage("unknown"));
+					gridItem.setImage(CR.getImage("unknown"));
 				}
 				else {
-					gridItem.setImage(R.getImage("fileType_filter"));
+					gridItem.setImage(CR.getImage("fileType_filter"));
 				}
 			}
 			
 			gridItem.setText(itemFileNameIndex, manifest_item.itemFileName);
 			gridItem.setText(itemFileRelativePathIndex, manifest_item.itemFileRelativePath);
 			
-			gridItem.setFont(itemFileIdIndex, F.isEmpty(manifest_item.itemFileManualId) ? gridFont : gridFontItalic);
+			gridItem.setFont(itemFileIdIndex, CU.isEmpty(manifest_item.itemFileManualId) ? gridFont : gridFontItalic);
 			gridItem.setText(itemFileIdIndex, manifest_item.itemFileId);
 			
 			gridItem.setText(itemFileMediaTypeIndex, manifest_item.itemFileMediaType);
@@ -1496,7 +1501,7 @@ public class EPubProjectEditor extends FormEditor {
 	/** In engine ? */
 	public void splitFileInFiles() {
 		
-		String source = F.loadFileInString(ePubProject.splitSourceFileNameWithFullPath);
+		String source = CU.loadFileInString(ePubProject.splitSourceFileNameWithFullPath);
 		
 		String[] targets = source.split(ePubProject.splitStartExpression);
 		
@@ -1508,7 +1513,7 @@ public class EPubProjectEditor extends FormEditor {
 		for (int index = 1; index < count; index ++) {
 			String counter = "" + index;
 			counter = counterMax.substring(0, counterLength - counter.length()) + counter;
-			F.saveStringToFile(targets[index], ePubProject.splitTargetFileNamesWithFullPath.replaceAll("\\*", counter));
+			CU.saveStringToFile(targets[index], ePubProject.splitTargetFileNamesWithFullPath.replaceAll("\\*", counter));
 		}
 	}
 	
@@ -1545,7 +1550,7 @@ public class EPubProjectEditor extends FormEditor {
 			EPUB_project_manifest_item manifestItem = (EPUB_project_manifest_item) manifestGridItem.getData("manifest_item");
 				
 			EPUB_project_toc_item tocItem = new EPUB_project_toc_item();
-			tocItem.itemText = F.getFileNameWithoutExtension(manifestItem.itemFileName);
+			tocItem.itemText = CU.findFileNameWithoutExtension(manifestItem.itemFileName);
 			tocItem.itemSrc = manifestItem.itemFileRelativePath.replace(s, "/") + "/" + manifestItem.itemFileName;
 			gridTocItems.add(tocSelectionIndex, tocItem);
 			tocSelectionIndex++;

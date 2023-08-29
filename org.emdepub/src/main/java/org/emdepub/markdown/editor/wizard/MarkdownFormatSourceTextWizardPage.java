@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.emdepub.activator.UI;
+import org.emdepub.common.ui.UI;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
 
@@ -45,26 +45,26 @@ public class MarkdownFormatSourceTextWizardPage extends WizardPage {
 			this.descriptionUnchecked = descriptionUnchecked;
 			
 			Composite composite = new Composite(container, SWT.NULL);
-			composite.setLayoutData(ui.createFillHorizontalGridData());
+			composite.setLayoutData(ui.createGridData_FillHorizontal());
 			
 			int textColumn = 0;
 			if (textWidth > 0) {
 				textColumn = 1;
 			}
 			if (indented) {
-				composite.setLayout(ui.createColumnsSpacingGridLayout(3 + textColumn, 7));
+				composite.setLayout(ui.createGridLayout_ColumnsSpacing(3 + textColumn, 7));
 				Label leadLabel = new Label(composite, SWT.LEAD);
-				leadLabel.setLayoutData(ui.createWidthGridData(32));
+				leadLabel.setLayoutData(ui.createGridData_Width(32));
 			}
 			else if (indented2) {
-				composite.setLayout(ui.createColumnsSpacingGridLayout(4 + textColumn, 7));
+				composite.setLayout(ui.createGridLayout_ColumnsSpacing(4 + textColumn, 7));
 				Label leadLabel = new Label(composite, SWT.LEAD);
-				leadLabel.setLayoutData(ui.createWidthGridData(32));
+				leadLabel.setLayoutData(ui.createGridData_Width(32));
 				leadLabel = new Label(composite, SWT.LEAD);
-				leadLabel.setLayoutData(ui.createWidthGridData(32));
+				leadLabel.setLayoutData(ui.createGridData_Width(32));
 			}
 			else {
-				composite.setLayout(ui.createColumnsSpacingGridLayout(2 + textColumn, 7));
+				composite.setLayout(ui.createGridLayout_ColumnsSpacing(2 + textColumn, 7));
 			}
 			Boolean value = markdownPreferences.get(preferenceName);
 			checkBox = new Button(composite, SWT.CHECK);
@@ -73,21 +73,21 @@ public class MarkdownFormatSourceTextWizardPage extends WizardPage {
 			checkBox.setLayoutData(ui.createGridData());
 			checkBox.setSelection(value);
 			if (indented) {
-				composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
+				composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
 				Label leadLabel = new Label(composite, SWT.LEAD);
-				leadLabel.setLayoutData(ui.createWidthGridData(32));
+				leadLabel.setLayoutData(ui.createGridData_Width(32));
 			}
 			checkBox.pack();
 			if (textWidth > 0) {
 				text = new Text(composite, SWT.BORDER | SWT.SINGLE | SWT.RIGHT);
 				text.setText(textValue);
-				text.setLayoutData(ui.createWidthGridData(textWidth));
+				text.setLayoutData(ui.createGridData_Width(textWidth));
 				text.setEnabled(value);
 			}
 			label = new Label(composite, SWT.TRAIL);
 			label.setText(value ? descriptionChecked : descriptionUnchecked);
 			//label.setLayoutData(ui.createWidthGridData(320));
-			label.setLayoutData(ui.createFillHorizontalGridData());
+			label.setLayoutData(ui.createGridData_FillHorizontal());
 			label.setFont(fontItalic);
 			checkBox.addSelectionListener(new SelectionListener() {
 				@Override
@@ -171,7 +171,7 @@ public class MarkdownFormatSourceTextWizardPage extends WizardPage {
 
 		/* Wizard layout */
 		container = new Composite(parent, SWT.NULL);
-		container.setLayout(ui.createMarginsVerticalSpacingGridLayout(6, 7));
+		container.setLayout(ui.createGridLayout_Margins_VerticalSpacing(6, 7));
 
 		new CheckBoxAndLabel(PreferenceNames.SourceFormatCollapseWhitespace,
 				"Remove spoiler spaces", "Reduce consecutive spaces to one (collapse whitespace)", "",

@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
-import org.emdepub.activator.F;
 import org.emdepub.activator.P;
+import org.emdepub.common.utils.CU;
 import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExportType;
 
 /** Markdown preferences */
@@ -96,7 +96,7 @@ public class MarkdownPreferences {
 			}
 		}
 		if (modifieds.size() == 0) {
-			F.deleteFile(fileNameWithPath);
+			CU.deleteFile(fileNameWithPath);
 			return;
 		}
 		
@@ -110,7 +110,7 @@ public class MarkdownPreferences {
 	/** Load */
 	public void loadProperties(String fileNameWithPath) {
 		
-		if (!F.fileExists(fileNameWithPath)) {
+		if (!CU.findIfFileExists(fileNameWithPath)) {
 			return;
 		}
 

@@ -6,7 +6,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
-import org.emdepub.activator.F;
+import org.emdepub.common.utils.CU;
 import org.emdepub.markdown.editor.MarkdownEditor;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences;
 import org.emdepub.markdown.editor.preferences.MarkdownPreferences.PreferenceNames;
@@ -35,12 +35,12 @@ public class MarkdownExportAsHtmlWizard extends Wizard implements IExportWizard 
 		MarkdownPreferences preferences = markdownEditor.getPreferences();
 
 		String exportName = preferences.get(PreferenceNames.ExportName);
-		if (F.isEmpty(exportName)) {
-			exportName = F.getFileNameWithoutExtension(markdownEditor.getSourceMarkdownFilePathAndName());
+		if (CU.isEmpty(exportName)) {
+			exportName = CU.findFileNameWithoutExtension(markdownEditor.getSourceMarkdownFilePathAndName());
 		}
 
 		String exportHtmlTitle = preferences.get(PreferenceNames.ExportHtmlTitle);
-		if (F.isEmpty(exportHtmlTitle)) {
+		if (CU.isEmpty(exportHtmlTitle)) {
 			if (exportName.length() > 1) {
 				exportHtmlTitle = exportName.substring(0, 1).toUpperCase() + exportName.substring(1);				
 			}

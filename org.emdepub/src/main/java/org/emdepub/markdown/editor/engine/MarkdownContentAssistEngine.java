@@ -7,7 +7,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.emdepub.activator.R;
+import org.emdepub.common.editor.language.content_assist.CommonCompletionProposal;
+import org.emdepub.common.resources.CR;
 import org.emdepub.markdown.editor.engine.MarkdownCompletionProposal.MarkdownCompletionProposalKey;
 
 import com.vladsch.flexmark.ast.Code;
@@ -30,23 +31,27 @@ public class MarkdownContentAssistEngine {
 	private static final char[] NO_CHARS = new char[0];
 
 	/** Default proposals */
-	private static final LinkedHashMap<MarkdownCompletionProposalKey, MarkdownCompletionProposal> defaultProposals;
+	private static final LinkedHashMap<MarkdownCompletionProposalKey, CommonCompletionProposal> defaultProposals;
 	
 	/** Warning proposals */
-	private static final LinkedHashMap<String, MarkdownCompletionProposal> warningProposals = new LinkedHashMap<>();
+	private static final LinkedHashMap<String, CommonCompletionProposal> warningProposals = new LinkedHashMap<>();
 
 	/** Fill default and warning proposals */
 	static {
-		defaultProposals = R.getMarkdownCompletionProposals();
+		defaultProposals = CR.getMarkdownCompletionProposals();
 		
-		warningProposals.put("Html", new MarkdownCompletionProposal("", 0, 0, 0, 0,
-				R.getImage("message_warning"),
-				"No Markdown elements available inside an HTML block",
-				null, null));
-		warningProposals.put("Code", new MarkdownCompletionProposal("", 0, 0, 0, 0,
-				R.getImage("message_warning"),
-				"No Markdown elements available inside a code inline or code block",
-				null, null));
+		warningProposals.put("Html", new CommonCompletionProposal("No Markdown elements available inside an HTML block",
+				"",
+				0, 0, 0,
+				CR.getImage("message_warning"),
+				null, null,
+				0, 0));
+		warningProposals.put("Code", new CommonCompletionProposal("No Markdown elements available inside a code inline or code block",
+				"",
+				0, 0, 0,
+				CR.getImage("message_warning"),
+				null, null,
+				0, 0));
 	}
 	
 	/** Linearize some nodes */
@@ -132,10 +137,10 @@ public class MarkdownContentAssistEngine {
 		nodeVisitor.visitChildren(documentNode);
 		//L.p(linearNodes.toString());
 
-		MarkdownCompletionProposal[] completionProposals;
+		CommonCompletionProposal[] completionProposals;
 
 		LinkedHashSet<MarkdownCompletionProposalKey> validProposals = new LinkedHashSet<MarkdownCompletionProposalKey>(Arrays.asList(MarkdownCompletionProposalKey.values()));
-		MarkdownCompletionProposal warningProposal = null;
+		CommonCompletionProposal warningProposal = null;
 		
 		if (linearNodes.size() == 0) {
 			/* OK */
@@ -167,18 +172,18 @@ public class MarkdownContentAssistEngine {
 		}
 
 		if (warningProposal != null) {
-			completionProposals = new MarkdownCompletionProposal[1];
+			completionProposals = new CommonCompletionProposal[1];
 			warningProposal.setReplacementOffset(offset);
 			completionProposals[0] = warningProposal;
 			return completionProposals;
 		}
 		
-		completionProposals = new MarkdownCompletionProposal[validProposals.size()];
+		completionProposals = new CommonCompletionProposal[validProposals.size()];
 		int index = 0;
 		int lineDelimiterChars = lineDelimiter.length();
 		for (MarkdownCompletionProposalKey validProposal : validProposals) {
-			MarkdownCompletionProposal completionProposal = defaultProposals.get(validProposal);
-			completionProposal.setReplacementString(completionProposal.getReplacementString().replaceAll("\\R", lineDelimiter));
+			CommonCompletionProposal completionProposal = defaultProposals.get(validProposal);
+			completionProposal.setReplacementString(completionProposal.getReplacementString().replaceAll("\\CR", lineDelimiter));
 			completionProposal.setReplacementOffset(offset);
 			completionProposal.setCursorPosition(completionProposal.getCursorPositionChars() +
 					completionProposal.getCursorPositionLineDelimiters() * lineDelimiterChars);

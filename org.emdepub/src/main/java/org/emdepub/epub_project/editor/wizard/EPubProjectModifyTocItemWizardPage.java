@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.emdepub.activator.UI;
+import org.emdepub.common.ui.UI;
 
 /** Generate manifest IDs wizard page */
 public class EPubProjectModifyTocItemWizardPage extends WizardPage {
@@ -48,20 +48,20 @@ public class EPubProjectModifyTocItemWizardPage extends WizardPage {
 
 		/* Wizard layout */
 		Composite container = new Composite(parent, SWT.NULL);
-		container.setLayout(ui.createMarginsVerticalSpacingGridLayout(6, 7));
+		container.setLayout(ui.createGridLayout_Margins_VerticalSpacing(6, 7));
 
 		/* itemText */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createFillHorizontalGridData());
-		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
+		composite.setLayoutData(ui.createGridData_FillHorizontal());
+		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("Toc entry title");
-		label.setLayoutData(ui.createWidthGridData(labelWidth));
+		label.setLayoutData(ui.createGridData_Width(labelWidth));
 		
 		itemTextText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		itemTextText.setText(itemText);
-		itemTextText.setLayoutData(ui.createFillHorizontalGridData());
+		itemTextText.setLayoutData(ui.createGridData_FillHorizontal());
 		itemTextText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent modifyEvent) {
 				itemText = itemTextText.getText().trim().strip();
@@ -71,16 +71,16 @@ public class EPubProjectModifyTocItemWizardPage extends WizardPage {
 
 		/* itemSrc */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createFillHorizontalGridData());
-		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
+		composite.setLayoutData(ui.createGridData_FillHorizontal());
+		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("Toc entry src");
-		label.setLayoutData(ui.createWidthGridData(labelWidth));
+		label.setLayoutData(ui.createGridData_Width(labelWidth));
 		
 		itemSrcText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		itemSrcText.setText(itemSrc);
-		itemSrcText.setLayoutData(ui.createFillHorizontalGridData());
+		itemSrcText.setLayoutData(ui.createGridData_FillHorizontal());
 		itemSrcText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent modifyEvent) {
 				itemSrc = itemSrcText.getText().trim().strip();

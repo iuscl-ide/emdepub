@@ -16,7 +16,7 @@ import org.eclipse.nebula.widgets.grid.GridItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
-import org.emdepub.activator.R;
+import org.emdepub.common.resources.CR;
 
 /**
  * The empty cell renderer.
@@ -48,8 +48,8 @@ public class DefaultEmptyCellRenderer extends GridCellRenderer
         
         if (isSelected())
         {
-            gc.setBackground(R.getColor(R.Colors.ListSelectedAndFocus));
-            gc.setForeground(R.getColor(R.Colors.ListFontSelected));
+            gc.setBackground(CR.getColor(CR.Colors.ListSelectedAndFocus));
+            gc.setForeground(CR.getColor(CR.Colors.ListFontSelected));
         }
         else
         {

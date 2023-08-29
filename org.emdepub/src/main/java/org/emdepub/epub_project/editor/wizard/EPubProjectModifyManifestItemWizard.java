@@ -7,7 +7,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.nebula.widgets.grid.GridItem;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
-import org.emdepub.activator.F;
+import org.emdepub.common.utils.CU;
 import org.emdepub.epub_project.editor.EPubProjectEditor;
 import org.emdepub.epub_project.model.EPUB_project_manifest_item;
 
@@ -78,7 +78,7 @@ public class EPubProjectModifyManifestItemWizard extends Wizard implements IExpo
 		project_ePub_manifest_item.itemFileMediaType = itemFileMediaType;
 		project_ePub_manifest_item.itemFileProperties = itemFileProperties;
 
-		gridItem.setFont(EPubProjectEditor.itemFileIdIndex, F.isEmpty(project_ePub_manifest_item.itemFileManualId) ?
+		gridItem.setFont(EPubProjectEditor.itemFileIdIndex, CU.isEmpty(project_ePub_manifest_item.itemFileManualId) ?
 				ePubProjectEditor.getGridFont() : ePubProjectEditor.getGridFontItalic());
 		gridItem.setText(EPubProjectEditor.itemFileIdIndex, itemFileId);
 		gridItem.setText(EPubProjectEditor.itemFileMediaTypeIndex, itemFileMediaType);

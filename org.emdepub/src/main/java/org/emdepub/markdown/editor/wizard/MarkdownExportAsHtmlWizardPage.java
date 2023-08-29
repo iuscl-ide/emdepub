@@ -12,8 +12,8 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.emdepub.activator.F;
-import org.emdepub.activator.UI;
+import org.emdepub.common.ui.UI;
+import org.emdepub.common.utils.CU;
 import org.emdepub.markdown.editor.wizard.MarkdownExportAsHtmlWizard.MarkdownExportType;
 
 import lombok.AccessLevel;
@@ -25,7 +25,7 @@ import lombok.experimental.FieldDefaults;
 public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 	/** Convenient */
-	static final String s = F.s;
+	static final String s = CU.S;
 	
 	/* Data */
 	@Getter MarkdownExportType markdownExportType;
@@ -74,17 +74,17 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 		/* Wizard layout */
 		Composite container = new Composite(parent, SWT.NULL);
-		container.setLayout(ui.createMarginsVerticalSpacingGridLayout(6, 7));
+		container.setLayout(ui.createGridLayout_Margins_VerticalSpacing(6, 7));
 		
 		/* Export type */
 		label = new Label(container, SWT.LEAD);
 		label.setText("Export type:");
-		label.setLayoutData(ui.createFillHorizontalGridData());
+		label.setLayoutData(ui.createGridData_FillHorizontal());
 
 		
 		Button exportAllRadio = new Button(container, SWT.RADIO);
 		exportAllRadio.setText("Export the HTML and its assets in a folder");
-		exportAllRadio.setLayoutData(ui.createFillHorizontalGridData());
+		exportAllRadio.setLayoutData(ui.createGridData_FillHorizontal());
 		exportAllRadio.setSelection(markdownExportType == MarkdownExportType.ExportAssetsFolder);
 		exportAllRadio.addSelectionListener(SelectionListener.widgetSelectedAdapter(selectionEvent -> {
 			markdownExportType = MarkdownExportType.ExportAssetsFolder;
@@ -92,21 +92,21 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		}));
 
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createFillHorizontalGridData());
-		composite.setLayout(ui.createColumnsSpacingGridLayout(2, 7));
+		composite.setLayoutData(ui.createGridData_FillHorizontal());
+		composite.setLayout(ui.createGridLayout_ColumnsSpacing(2, 7));
 
 		label = new Label(composite, SWT.LEAD);
-		label.setLayoutData(ui.createWidthGridData(indentWidth));
+		label.setLayoutData(ui.createGridData_Width(indentWidth));
 		
 		label = new Label(composite, SWT.LEAD);
 		label.setText("If the folder already exists it xill be deleted!");
-		label.setLayoutData(ui.createFillHorizontalGridData());
+		label.setLayoutData(ui.createGridData_FillHorizontal());
 		label.setFont(fontItalic);
 
 		
 		Button exportEPubRadio = new Button(container, SWT.RADIO);
 		exportEPubRadio.setText("Export the HTML as file with a custom style file reference (for ePub)");
-		exportEPubRadio.setLayoutData(ui.createFillHorizontalGridData());
+		exportEPubRadio.setLayoutData(ui.createGridData_FillHorizontal());
 		exportEPubRadio.setSelection(markdownExportType == MarkdownExportType.ExportFileOnlyWithCssReference);
 		exportEPubRadio.addSelectionListener(SelectionListener.widgetSelectedAdapter(selectionEvent -> {
 			markdownExportType = MarkdownExportType.ExportFileOnlyWithCssReference;
@@ -114,34 +114,34 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		}));
 
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createFillHorizontalGridData());
-		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
+		composite.setLayoutData(ui.createGridData_FillHorizontal());
+		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
 
 		label = new Label(composite, SWT.LEAD);
-		label.setLayoutData(ui.createWidthGridData(indentWidth));
+		label.setLayoutData(ui.createGridData_Width(indentWidth));
 
 		label = new Label(composite, SWT.NULL);
 		label.setText("Style (.css) file name with relative path");
-		//label.setLayoutData(ui.createWidthGridData((int) (labelWidth * 2.5)));
+		//label.setLayoutData(ui.createGridData_Width((int) (labelWidth * 2.5)));
 		label.setLayoutData(ui.createGridData());
 		label.pack();
 		
 		exportCssReferenceText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		exportCssReferenceText.setText(exportCssReference);
-		exportCssReferenceText.setLayoutData(ui.createFillHorizontalGridData());
+		exportCssReferenceText.setLayoutData(ui.createGridData_FillHorizontal());
 		exportCssReferenceText.addModifyListener(modifyEvent -> {
 			exportCssReference = exportCssReferenceText.getText();
 			dialogChanged();
 		});
 
 //		label = new Label(composite, SWT.LEAD);
-//		label.setLayoutData(ui.createWidthGridData(buttonWidth));
+//		label.setLayoutData(ui.createGridData_Width(buttonWidth));
 
 		
 				
 		Button exportFileOnlyRadio = new Button(container, SWT.RADIO);
 		exportFileOnlyRadio.setText("Export the HTML file only");
-		exportFileOnlyRadio.setLayoutData(ui.createFillHorizontalGridData());
+		exportFileOnlyRadio.setLayoutData(ui.createGridData_FillHorizontal());
 		exportFileOnlyRadio.setSelection(markdownExportType == MarkdownExportType.ExportFileOnly);
 		exportFileOnlyRadio.addSelectionListener(SelectionListener.widgetSelectedAdapter(selectionEvent -> {
 			markdownExportType = MarkdownExportType.ExportFileOnly;
@@ -150,60 +150,60 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 		/* Horizontal separator */
 		label = new Label(container, SWT.LEAD);
-		label.setLayoutData(ui.createFillHorizontalGridData());
+		label.setLayoutData(ui.createGridData_FillHorizontal());
 
 		/* Export HTML title */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createFillHorizontalGridData());
-		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
+		composite.setLayoutData(ui.createGridData_FillHorizontal());
+		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("Export HTML title");
-		label.setLayoutData(ui.createWidthGridData(labelWidth));
+		label.setLayoutData(ui.createGridData_Width(labelWidth));
 		
 		exportHtmlTitleText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		exportHtmlTitleText.setText(exportHtmlTitle);
-		exportHtmlTitleText.setLayoutData(ui.createFillHorizontalGridData());
+		exportHtmlTitleText.setLayoutData(ui.createGridData_FillHorizontal());
 		exportHtmlTitleText.addModifyListener(modifyEvent -> {
 			exportHtmlTitle = exportHtmlTitleText.getText();
 			dialogChanged();
 		});
 
 		label = new Label(composite, SWT.LEAD);
-		label.setLayoutData(ui.createWidthGridData(buttonWidth));
+		label.setLayoutData(ui.createGridData_Width(buttonWidth));
 
 		/* Export name */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createFillHorizontalGridData());
-		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
+		composite.setLayoutData(ui.createGridData_FillHorizontal());
+		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("Export name");
-		label.setLayoutData(ui.createWidthGridData(labelWidth));
+		label.setLayoutData(ui.createGridData_Width(labelWidth));
 		
 		exportFileOrFolderNameText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		exportFileOrFolderNameText.setText(exportFileOrFolderName);
-		exportFileOrFolderNameText.setLayoutData(ui.createFillHorizontalGridData());
+		exportFileOrFolderNameText.setLayoutData(ui.createGridData_FillHorizontal());
 		exportFileOrFolderNameText.addModifyListener(modifyEvent -> {
 			exportFileOrFolderName = exportFileOrFolderNameText.getText();
 			dialogChanged();
 		});
 
 		label = new Label(composite, SWT.LEAD);
-		label.setLayoutData(ui.createWidthGridData(buttonWidth));
+		label.setLayoutData(ui.createGridData_Width(buttonWidth));
 
 		/* Export location */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createFillHorizontalGridData());
-		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
+		composite.setLayoutData(ui.createGridData_FillHorizontal());
+		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
 
 		label = new Label(composite, SWT.NULL);
 		label.setText("Export location");
-		label.setLayoutData(ui.createWidthGridData(labelWidth));
+		label.setLayoutData(ui.createGridData_Width(labelWidth));
 
 		exportLocationText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		exportLocationText.setText(exportLocation);
-		exportLocationText.setLayoutData(ui.createFillHorizontalGridData());
+		exportLocationText.setLayoutData(ui.createGridData_FillHorizontal());
 		exportLocationText.addModifyListener(modifyEvent -> {
 			exportLocation = exportLocationText.getText();
 			dialogChanged();
@@ -211,7 +211,7 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 		Button button = new Button(composite, SWT.PUSH);
 		button.setText("Change...");
-		button.setLayoutData(ui.createWidthGridData(buttonWidth));
+		button.setLayoutData(ui.createGridData_Width(buttonWidth));
 		button.addSelectionListener(SelectionListener.widgetSelectedAdapter(selectionEvent -> {
 			handleBrowse();
 		}));
@@ -219,14 +219,14 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 		
 		/* Horizontal separator */
 		label = new Label(container, SWT.LEAD);
-		label.setLayoutData(ui.createFillHorizontalGridData());
+		label.setLayoutData(ui.createGridData_FillHorizontal());
 
 		label = new Label(container, SWT.NULL);
-		label.setLayoutData(ui.createFillHorizontalGridData());
+		label.setLayoutData(ui.createGridData_FillHorizontal());
 		label.setText("The export will be created in:");
 		
 		exportPathLabel = new Label(container, SWT.WRAP);
-		GridData exportPathLabelGridData =  ui.createFillHorizontalGridData();
+		GridData exportPathLabelGridData =  ui.createGridData_FillHorizontal();
 		exportPathLabelGridData.minimumHeight = 3 * exportLocationText.getLineHeight();
 		exportPathLabelGridData.heightHint = 3 * exportLocationText.getLineHeight();
 		exportPathLabel.setLayoutData(exportPathLabelGridData);
@@ -234,7 +234,7 @@ public class MarkdownExportAsHtmlWizardPage extends WizardPage {
 
 		/* Horizontal separator */
 		label = new Label(container, SWT.LEAD);
-		label.setLayoutData(ui.createFillHorizontalGridData());
+		label.setLayoutData(ui.createGridData_FillHorizontal());
 		
 		dialogChanged();
 		setControl(container);

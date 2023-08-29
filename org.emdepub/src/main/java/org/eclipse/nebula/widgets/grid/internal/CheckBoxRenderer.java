@@ -14,7 +14,7 @@ import org.eclipse.nebula.widgets.grid.AbstractRenderer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
-import org.emdepub.activator.R;
+import org.emdepub.common.resources.CR;
 
 /**
  * A checkbox renderer.  
@@ -50,7 +50,7 @@ public class CheckBoxRenderer extends AbstractRenderer
         }
         else
         {
-            gc.setBackground(R.getColor(R.Colors.List));
+            gc.setBackground(CR.getColor(CR.Colors.List));
         }
 
         gc.fillRectangle(getBounds());

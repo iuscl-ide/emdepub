@@ -2,7 +2,7 @@
 # Emdepub Eclipse Plugin - emdepub.org
 # Markdown content assist proposals
 # 
-# MarkdownCompletionProposal
+# CommonCompletionProposal
 # 
 # String replacementString,
 # int replacementOffset,
