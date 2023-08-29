@@ -48,16 +48,16 @@ public class EPubProjectGenerateIDsWizardPage extends WizardPage {
 
 		/* Wizard layout */
 		Composite container = new Composite(parent, SWT.NULL);
-		container.setLayout(ui.createGridLayout_Margins_VerticalSpacing(6, 7));
+		container.setLayout(ui.createMarginsVerticalSpacingGridLayout(6, 7));
 		
 		/* Export type */
 		label = new Label(container, SWT.LEAD);
 		label.setText("Generate IDs type:");
-		label.setLayoutData(ui.createGridData_FillHorizontal());
+		label.setLayoutData(ui.createFillHorizontalGridData());
 		
 		Button guidsRadio = new Button(container, SWT.RADIO);
 		guidsRadio.setText("Generate IDs as unique GUIDs");
-		guidsRadio.setLayoutData(ui.createGridData_FillHorizontal());
+		guidsRadio.setLayoutData(ui.createFillHorizontalGridData());
 		guidsRadio.setSelection(manifestIDGuid);
 		guidsRadio.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -70,7 +70,7 @@ public class EPubProjectGenerateIDsWizardPage extends WizardPage {
 
 		Button incrementsRadio = new Button(container, SWT.RADIO);
 		incrementsRadio.setText("Generate IDs as counter increments");
-		incrementsRadio.setLayoutData(ui.createGridData_FillHorizontal());
+		incrementsRadio.setLayoutData(ui.createFillHorizontalGridData());
 		incrementsRadio.setSelection(manifestIDCounter);
 		incrementsRadio.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -83,20 +83,20 @@ public class EPubProjectGenerateIDsWizardPage extends WizardPage {
 		
 		/* Horizontal separator */
 		label = new Label(container, SWT.LEAD);
-		label.setLayoutData(ui.createGridData_FillHorizontal());
+		label.setLayoutData(ui.createFillHorizontalGridData());
 
 		/* Export name */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("ID prefix");
-		label.setLayoutData(ui.createGridData_Width(90));
+		label.setLayoutData(ui.createWidthGridData(90));
 		
 		prefixText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		prefixText.setText(manifestIDPrefix);
-		prefixText.setLayoutData(ui.createGridData_FillHorizontal());
+		prefixText.setLayoutData(ui.createFillHorizontalGridData());
 		prefixText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				manifestIDPrefix = prefixText.getText().trim().strip();

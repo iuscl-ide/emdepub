@@ -59,52 +59,52 @@ public class EPubProjectModifyManifestItemWizardPage extends WizardPage {
 
 		/* Wizard layout */
 		Composite container = new Composite(parent, SWT.NULL);
-		container.setLayout(ui.createGridLayout_Margins_VerticalSpacing(6, 7));
+		container.setLayout(ui.createMarginsVerticalSpacingGridLayout(6, 7));
 
 		/* itemFileName */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("File name");
-		label.setLayoutData(ui.createGridData_Width(labelWidth));
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
 
 		label = new Label(composite, SWT.NULL);
 		label.setText(itemFileName);
 		label.setFont(fontItalic);
-		label.setLayoutData(ui.createGridData_FillHorizontal());
+		label.setLayoutData(ui.createFillHorizontalGridData());
 
 		/* itemFileRelativePath */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("File relative path");
-		label.setLayoutData(ui.createGridData_Width(labelWidth));
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
 
 		label = new Label(composite, SWT.NULL);
 		label.setText(itemFileRelativePath);
 		label.setFont(fontItalic);
-		label.setLayoutData(ui.createGridData_FillHorizontal());
+		label.setLayoutData(ui.createFillHorizontalGridData());
 		
 		/* Horizontal separator */
 		label = new Label(container, SWT.LEAD);
-		label.setLayoutData(ui.createGridData_FillHorizontal());
+		label.setLayoutData(ui.createFillHorizontalGridData());
 
 		/* itemFileId */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("File ID");
-		label.setLayoutData(ui.createGridData_Width(labelWidth));
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
 		
 		itemFileIdText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		itemFileIdText.setText(itemFileId);
-		itemFileIdText.setLayoutData(ui.createGridData_FillHorizontal());
+		itemFileIdText.setLayoutData(ui.createFillHorizontalGridData());
 		itemFileIdText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				itemFileId = itemFileIdText.getText().trim().strip();
@@ -114,16 +114,16 @@ public class EPubProjectModifyManifestItemWizardPage extends WizardPage {
 
 		/* itemFileMediaType */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("File media type");
-		label.setLayoutData(ui.createGridData_Width(labelWidth));
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
 		
 		itemFileMediaTypeText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		itemFileMediaTypeText.setText(itemFileMediaType);
-		itemFileMediaTypeText.setLayoutData(ui.createGridData_FillHorizontal());
+		itemFileMediaTypeText.setLayoutData(ui.createFillHorizontalGridData());
 		itemFileMediaTypeText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				itemFileMediaType = itemFileMediaTypeText.getText().trim().strip();
@@ -133,16 +133,16 @@ public class EPubProjectModifyManifestItemWizardPage extends WizardPage {
 
 		/* itemFileProperties */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("Item properties");
-		label.setLayoutData(ui.createGridData_Width(labelWidth));
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
 		
 		itemFilePropertiesText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		itemFilePropertiesText.setText(itemFileProperties);
-		itemFilePropertiesText.setLayoutData(ui.createGridData_FillHorizontal());
+		itemFilePropertiesText.setLayoutData(ui.createFillHorizontalGridData());
 		itemFilePropertiesText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 				itemFileProperties = itemFilePropertiesText.getText().trim().strip();

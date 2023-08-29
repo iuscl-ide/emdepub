@@ -162,12 +162,12 @@ public class MarkdownEditor extends FormEditor {
 		UI ui = new UI(false, Display.getCurrent());
 		
 		Composite viewerPageComposite = new Composite(getContainer(), SWT.NONE);
-		viewerPageComposite.setLayout(ui.createGridLayout_Margins(1));
+		viewerPageComposite.setLayout(ui.createMarginsGridLayout(1));
 	
 		viewerBrowser = new Browser(viewerPageComposite, SWT.NONE);
 		viewerBrowser.setJavascriptEnabled(true);
 		viewerBrowser.setText("");
-		viewerBrowser.setLayoutData(ui.createGridData_FillBoth());
+		viewerBrowser.setLayoutData(ui.createFillBothGridData());
 		
 		/** Status bar */
 		viewerBrowser.addStatusTextListener(new StatusTextListener() {

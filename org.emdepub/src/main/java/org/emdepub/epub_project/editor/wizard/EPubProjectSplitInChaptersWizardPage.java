@@ -55,20 +55,20 @@ public class EPubProjectSplitInChaptersWizardPage extends WizardPage {
 
 		/* Wizard layout */
 		Composite container = new Composite(parent, SWT.NULL);
-		container.setLayout(ui.createGridLayout_Margins_VerticalSpacing(6, 7));
+		container.setLayout(ui.createMarginsVerticalSpacingGridLayout(6, 7));
 
 		/* splitStartExpression */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 		
 		label = new Label(composite, SWT.NULL);
 		label.setText("Split start expression");
-		label.setLayoutData(ui.createGridData_Width(labelWidth));
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
 		
 		splitStartExpressionText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		splitStartExpressionText.setText(splitStartExpression);
-		splitStartExpressionText.setLayoutData(ui.createGridData_FillHorizontal());
+		splitStartExpressionText.setLayoutData(ui.createFillHorizontalGridData());
 		splitStartExpressionText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent modifyEvent) {
 				splitStartExpression = splitStartExpressionText.getText();
@@ -77,20 +77,20 @@ public class EPubProjectSplitInChaptersWizardPage extends WizardPage {
 		});
 
 		label = new Label(composite, SWT.LEAD);
-		label.setLayoutData(ui.createGridData_Width(buttonWidth));
+		label.setLayoutData(ui.createWidthGridData(buttonWidth));
 
 		/* splitSourceFileNameWithFullPath */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 
 		label = new Label(composite, SWT.NULL);
 		label.setText("Split source file");
-		label.setLayoutData(ui.createGridData_Width(labelWidth));
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
 
 		splitSourceFileNameWithFullPathText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		splitSourceFileNameWithFullPathText.setText(splitSourceFileNameWithFullPath);
-		splitSourceFileNameWithFullPathText.setLayoutData(ui.createGridData_FillHorizontal());
+		splitSourceFileNameWithFullPathText.setLayoutData(ui.createFillHorizontalGridData());
 		splitSourceFileNameWithFullPathText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent modifyEvent) {
 				splitSourceFileNameWithFullPath = splitSourceFileNameWithFullPathText.getText();
@@ -100,7 +100,7 @@ public class EPubProjectSplitInChaptersWizardPage extends WizardPage {
 
 		Button button = new Button(composite, SWT.PUSH);
 		button.setText("Change...");
-		button.setLayoutData(ui.createGridData_Width(buttonWidth));
+		button.setLayoutData(ui.createWidthGridData(buttonWidth));
 		button.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent selectionEvent) {
 				
@@ -118,16 +118,16 @@ public class EPubProjectSplitInChaptersWizardPage extends WizardPage {
 
 		/* splitTargetFileNamesWithFullPath */
 		composite = new Composite(container, SWT.NULL);
-		composite.setLayoutData(ui.createGridData_FillHorizontal());
-		composite.setLayout(ui.createGridLayout_ColumnsSpacing(3, 7));
+		composite.setLayoutData(ui.createFillHorizontalGridData());
+		composite.setLayout(ui.createColumnsSpacingGridLayout(3, 7));
 
 		label = new Label(composite, SWT.NULL);
 		label.setText("Split target files (\"*\" for counter)");
-		label.setLayoutData(ui.createGridData_Width(labelWidth));
+		label.setLayoutData(ui.createWidthGridData(labelWidth));
 
 		splitTargetFileNamesWithFullPathText = new Text(composite, SWT.BORDER | SWT.SINGLE);
 		splitTargetFileNamesWithFullPathText.setText(splitTargetFileNamesWithFullPath);
-		splitTargetFileNamesWithFullPathText.setLayoutData(ui.createGridData_FillHorizontal());
+		splitTargetFileNamesWithFullPathText.setLayoutData(ui.createFillHorizontalGridData());
 		splitTargetFileNamesWithFullPathText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent modifyEvent) {
 				splitTargetFileNamesWithFullPath = splitTargetFileNamesWithFullPathText.getText();
@@ -137,7 +137,7 @@ public class EPubProjectSplitInChaptersWizardPage extends WizardPage {
 
 		button = new Button(composite, SWT.PUSH);
 		button.setText("Change...");
-		button.setLayoutData(ui.createGridData_Width(buttonWidth));
+		button.setLayoutData(ui.createWidthGridData(buttonWidth));
 		button.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent selectionEvent) {
 				

@@ -27,19 +27,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.toml.TomlMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import lombok.SneakyThrows;
 
@@ -47,9 +43,6 @@ import lombok.SneakyThrows;
 //@SuppressWarnings({ "java:S3776", "java:S1319", "java:S1066", "java:S5663", "java:S1612", "java:S135", "java:S125" })
 public class CU {
 
-	static char[] lowerCaseAlphabetWithDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-	
 	/* Strings */
 
 	/** _ as thousands separator */
@@ -589,86 +582,32 @@ public class CU {
 			map.put(keyValue[0].toLowerCase(), keyValue[1]);
 		});
 	}
-
-	/* JSON */
-	private static final ObjectMapper jsonMapper = new ObjectMapper();
+	
+	private static final ObjectMapper objectMapper = new ObjectMapper();
 	
 	@SneakyThrows({DatabindException.class, StreamReadException.class, IOException.class})
-	public static <T> T jsonDeserializeFromFile(String sourceFileName, Class<T> valueType) {
+	public static <T> T deserializeFromFile(String sourceFile, Class<T> valueType) {
 		
-		return jsonMapper.readValue(new File(sourceFileName), valueType);
+		return objectMapper.readValue(new File(sourceFile), valueType);
 	}
 
 	@SneakyThrows({DatabindException.class, StreamReadException.class, IOException.class})
-	public static <T> T jsonDeserialize(String content, Class<T> valueType) {
+	public static <T> T deserialize(String content, Class<T> valueType) {
 		
-		return jsonMapper.readValue(content, valueType);
+		return objectMapper.readValue(content, valueType);
+	}
+
+	/**  */
+	@SneakyThrows({DatabindException.class, StreamWriteException.class, IOException.class})
+	public static void serializeToFile(String resultFile, Object value) {
+
+		objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File (resultFile), value);
 	}
 
 	@SneakyThrows({DatabindException.class, StreamWriteException.class, IOException.class})
-	public static void jsonSerializeToFile(String resultFileName, Object value) {
+	public static String serialize(Object value) {
 
-		jsonMapper.writerWithDefaultPrettyPrinter().writeValue(new File(resultFileName), value);
-	}
-
-	@SneakyThrows({DatabindException.class, StreamWriteException.class, IOException.class})
-	public static String jsonSerialize(Object value) {
-
-		return jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
-	}
-
-	/* TOML */
-	private static final ObjectMapper tomlMapper = new TomlMapper();
-	
-	@SneakyThrows({DatabindException.class, StreamReadException.class, IOException.class})
-	public static <T> T tomlDeserializeFromFile(String sourceFileName, Class<T> valueType) {
-		
-		return tomlMapper.readValue(new File(sourceFileName), valueType);
-	}
-
-	@SneakyThrows({DatabindException.class, StreamReadException.class, IOException.class})
-	public static <T> T tomlDeserialize(String content, Class<T> valueType) {
-		
-		return tomlMapper.readValue(content, valueType);
-	}
-
-	@SneakyThrows({DatabindException.class, StreamWriteException.class, IOException.class})
-	public static void tomlSerializeToFile(String resultFileName, Object value) {
-
-		tomlMapper.writerWithDefaultPrettyPrinter().writeValue(new File(resultFileName), value);
-	}
-
-	@SneakyThrows({DatabindException.class, StreamWriteException.class, IOException.class})
-	public static String tomlSerialize(Object value) {
-
-		return tomlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
-	}
-
-	/* YAML */
-	private static final ObjectMapper yamlMapper = new YAMLMapper();
-	
-	@SneakyThrows({DatabindException.class, StreamReadException.class, IOException.class})
-	public static <T> T yamlDeserializeFromFile(String sourceFileName, Class<T> valueType) {
-		
-		return yamlMapper.readValue(new File(sourceFileName), valueType);
-	}
-
-	@SneakyThrows({DatabindException.class, StreamReadException.class, IOException.class})
-	public static <T> T yamlDeserialize(String content, Class<T> valueType) {
-		
-		return yamlMapper.readValue(content, valueType);
-	}
-
-	@SneakyThrows({DatabindException.class, StreamWriteException.class, IOException.class})
-	public static void yamlSerializeToFile(String resultFileName, Object value) {
-
-		yamlMapper.writerWithDefaultPrettyPrinter().writeValue(new File(resultFileName), value);
-	}
-
-	@SneakyThrows({DatabindException.class, StreamWriteException.class, IOException.class})
-	public static String yamlSerialize(Object value) {
-
-		return yamlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
+		return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(value);
 	}
 
 	public static void exec(Object target, String methodName, Object argument) {
@@ -704,10 +643,5 @@ public class CU {
 	public static void await(Future<?> future) {
 
 		future.get();
-	}
-	
-	public static String generateUniqueId() {
-		
-		return NanoIdUtils.randomNanoId(new Random(), lowerCaseAlphabetWithDigits, 8);
 	}
 }
