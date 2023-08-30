@@ -1,5 +1,5 @@
 #Preferences for displaying Markdown rendering; Emdepub Eclipse Plugin - emdepub.org
-#Sun Feb 19 20:32:17 EET 2023
+#Wed Aug 30 13:26:02 EEST 2023
 DisplayCenterHeaders=true
 ExportCssReference=css/stylesheet.css
 ExportHtmlTitle=Eclipse Markdown ePub TOML Plugin - Progress

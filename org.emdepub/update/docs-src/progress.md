@@ -11,12 +11,13 @@ Eclipse Markdown ePub TOML Plugin - 2023 emdepub.org
 
 ### Versions
 
-| Release Tag Version |     Date     |      Content      |
-|---------------------|--------------|-------------------|
-| 1.0.3               | Feb 19, 2023 | Corrections       |
-| 1.0.2.202206282012  | Jun 28, 2022 | TOML added        |
-| 1.0.0.202103232351  | May 3, 2021  | Corrections       |
-| 1.0.1.202105032050  | Mar 23, 2021 | Markdown and ePub |
+| Release Tag Version |     Date     |              Content              |
+|---------------------|--------------|-----------------------------------|
+| 1.0.4               | Aug 29, 2023 | Eclipse changes in newer versions |
+| 1.0.3               | Feb 19, 2023 | Corrections                       |
+| 1.0.2.202206282012  | Jun 28, 2022 | TOML added                        |
+| 1.0.0.202103232351  | May 3, 2021  | Corrections                       |
+| 1.0.1.202105032050  | Mar 23, 2021 | Markdown and ePub                 |
 
 ----------
 
